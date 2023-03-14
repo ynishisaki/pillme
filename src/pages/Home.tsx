@@ -9,8 +9,25 @@ import { TodaysRecord } from "../organisms/TodaysRecord";
 import { WeeklyRecord } from "../organisms/WeeklyRecord";
 import { CurrentSheet } from "../organisms/CurrentSheet";
 import { dailyRecordType, recordType } from "../types/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export const Home = ({ navigation }: { navigation: any }) => {
+type RootStackParamList = {
+	Home: undefined; // Homeには引数が必要ない
+	WeeklyRecordDetails: { userId: string };
+	Feed: { sort: "latest" | "top" } | undefined; // Feedには引数があったら{ sort: "latest" | "top" }型で、無くてもOK
+};
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+	RootStackParamList,
+	"Home"
+>;
+
+export const Home = ({
+	navigation,
+}: {
+	navigation: ProfileScreenNavigationProp;
+}) => {
 	const [record, setRecord] = useRecoilState<recordType>(recordState);
 
 	// AsyncStorageから記録を取得
@@ -86,8 +103,20 @@ export const Home = ({ navigation }: { navigation: any }) => {
 	// 	})();
 	// }, []);
 
+	const insets = useSafeAreaInsets();
+
 	return (
-		<View style={styles.container}>
+		<View
+			style={[
+				styles.container,
+				{
+					backgroundColor: "#fff",
+					paddingTop: insets.top,
+					paddingBottom: insets.bottom,
+					paddingLeft: insets.left,
+					paddingRight: insets.right,
+				},
+			]}>
 			<ImageBackground
 				source={require("../../assets/bgimage.png")}
 				resizeMode='cover'
@@ -102,7 +131,9 @@ export const Home = ({ navigation }: { navigation: any }) => {
 					<View style={styles.weeklyRecord}>
 						<WeeklyRecord
 							onPress={() =>
-								navigation.navigate("WeeklyRecordDetails")
+								navigation.navigate("WeeklyRecordDetails", {
+									userId: "123",
+								})
 							}
 						/>
 					</View>
@@ -127,7 +158,7 @@ const styles = StyleSheet.create({
 		width: 47,
 		alignSelf: "flex-start",
 		// backgroundColor: "gray",
-		marginTop: 25,
+		marginTop: 10,
 		marginHorizontal: 16,
 	},
 	contentsLayout: {

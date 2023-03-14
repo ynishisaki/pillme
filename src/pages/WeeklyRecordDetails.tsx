@@ -5,15 +5,28 @@ import {
 	StyleSheet,
 	View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const WeeklyRecordDetails = ({ navigation }: { navigation: any }) => {
+	const insets = useSafeAreaInsets();
+
 	return (
-		<View style={styles.container}>
+		<View
+			style={[
+				styles.container,
+				{
+					backgroundColor: "#fff",
+					paddingTop: insets.top,
+					paddingBottom: insets.bottom,
+					paddingLeft: insets.left,
+					paddingRight: insets.right,
+				},
+			]}>
 			<ImageBackground
 				source={require("../../assets/bgimage.png")}
 				resizeMode='cover'
 				style={styles.bgimage}>
-				<View>details</View>
+				<Text>details</Text>
 				<TouchableHighlight
 					onPress={() => navigation.goBack()}
 					// onPress={() => {
@@ -41,7 +54,6 @@ const styles = StyleSheet.create({
 		width: 47,
 		alignSelf: "flex-start",
 		// backgroundColor: "gray",
-		marginTop: 25,
 		marginHorizontal: 16,
 	},
 });
