@@ -1,3 +1,4 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
 	ImageBackground,
 	Text,
@@ -6,8 +7,18 @@ import {
 	View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { RootStackParamList } from "../types/types";
 
-export const WeeklyRecordDetails = ({ navigation }: { navigation: any }) => {
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+	RootStackParamList,
+	"WeeklyRecordDetails"
+>;
+
+export const WeeklyRecordDetails = ({
+	navigation,
+}: {
+	navigation: ProfileScreenNavigationProp;
+}) => {
 	const insets = useSafeAreaInsets();
 
 	return (

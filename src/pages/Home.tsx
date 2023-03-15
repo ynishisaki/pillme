@@ -8,15 +8,13 @@ import { MenuIcon } from "../atoms/Icons";
 import { TodaysRecord } from "../organisms/TodaysRecord";
 import { WeeklyRecord } from "../organisms/WeeklyRecord";
 import { CurrentSheet } from "../organisms/CurrentSheet";
-import { dailyRecordType, recordType } from "../types/types";
+import {
+	dailyRecordType,
+	recordType,
+	RootStackParamList,
+} from "../types/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
-type RootStackParamList = {
-	Home: undefined; // Homeには引数が必要ない
-	WeeklyRecordDetails: { userId: string };
-	Feed: { sort: "latest" | "top" } | undefined; // Feedには引数があったら{ sort: "latest" | "top" }型で、無くてもOK
-};
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
 	RootStackParamList,
