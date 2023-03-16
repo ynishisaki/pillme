@@ -28,6 +28,7 @@ export const recordState = atom({
 				date: today,
 				tookMedicine: false, // 今日薬を飲んだか
 				haveBleeding: false, // 今日出血があったか
+				isRestPeriod: false, // 休薬日か
 			},
 		],
 		isAsyncStorageLoaded: false,

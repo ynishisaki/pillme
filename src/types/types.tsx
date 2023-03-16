@@ -21,4 +21,5 @@ export interface dailyRecordType {
 	date: string;
 	tookMedicine: boolean;
 	haveBleeding: boolean;
+	isRestPeriod: boolean;
 }

@@ -1,15 +1,15 @@
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { recordState } from "../../App";
 import { RightIcon } from "../atoms/Icons";
 import CountRecord from "../molecules/WeeklyCountRecord";
 import CheckBox from "../molecules/WeeklyCheckBox";
 
 export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
-	const record = useRecoilValue(recordState);
+	const [record, setRecord] = useRecoilState(recordState);
 
 	// タスク：これは連続で飲んだ日数を数えるよう、修正する必要がある
-	const countTakeMedicineDays = () => {
+	function countTakeMedicineDays() {
 		let count = 0;
 		for (let i = record.dailyRecord.length - 1; i >= 0; i--) {
 			if (record.dailyRecord[i].tookMedicine === true) {
@@ -19,10 +19,12 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 			}
 		}
 		return count;
-	};
+	}
 
-	const countHaveBleedingDays = () => {
-		// jsonから、今日から直近で出血が何日連続しているか数える
+	const takeMedicineDays = countTakeMedicineDays();
+
+	// jsonから、今日から直近で出血が何日連続しているか数える
+	function countHaveBleedingDays() {
 		let count = 0;
 		for (let i = 0; i < record.dailyRecord.length; i++) {
 			if (record.dailyRecord[i].haveBleeding === true) {
@@ -32,7 +34,22 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 			}
 		}
 		return count;
-	};
+	}
+	const haveBleedingDays = countHaveBleedingDays();
+
+	// 連続で出血が4日以上あった場合、休薬する
+	if (haveBleedingDays > 3) {
+		setRecord((oldRecord) => ({
+			...oldRecord,
+			dailyRecord: [
+				{
+					...oldRecord.dailyRecord[0],
+					isRestPeriod: true,
+				},
+				...oldRecord.dailyRecord.slice(1),
+			],
+		}));
+	}
 
 	const date = new Date();
 	const week = date.getDay();
@@ -62,10 +79,10 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 				<View style={styles.bodyTextLayout}>
 					<CountRecord
 						title='服薬'
-						countDays={countTakeMedicineDays()}></CountRecord>
+						days={takeMedicineDays}></CountRecord>
 					<CountRecord
 						title='出血'
-						countDays={countHaveBleedingDays()}></CountRecord>
+						days={haveBleedingDays}></CountRecord>
 				</View>
 
 				<View style={styles.bodyRecordLayout}>

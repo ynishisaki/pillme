@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 
-export default ({ title, countDays }: { title: string; countDays: number }) => {
+export default ({ title, days }: { title: string; days: number }) => {
 	return (
 		<>
 			<Text style={styles.subtitleText}>{title}</Text>
-			<Text style={styles.numberOfDaysText}>{`${countDays}日目`}</Text>
+			<Text style={styles.numberOfDaysText}>{`${days}日目`}</Text>
 		</>
 	);
 };

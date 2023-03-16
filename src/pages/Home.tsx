@@ -67,6 +67,7 @@ export const Home = ({
 								date: getDateStrings(latestDate),
 								tookMedicine: false,
 								haveBleeding: false,
+								isRestPeriod: false,
 							},
 							...lapsedDailyRecords,
 						];
