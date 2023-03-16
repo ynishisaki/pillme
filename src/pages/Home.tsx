@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, View } from "react-native";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -162,14 +162,17 @@ const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
 		marginTop: 16,
+		marginBottom: 16,
 		marginHorizontal: 16,
 		alignItems: "center",
+		flexDirection: "column",
+		gap: 32,
 	},
 	todaysRecord: {
 		// height: 200,
 		flex: 43,
 		width: 260,
-		marginBottom: 32,
+		// marginBottom: 32,
 		backgroundColor: "white",
 		borderRadius: 40,
 	},
@@ -177,7 +180,7 @@ const styles = StyleSheet.create({
 		// height: 150,
 		flex: 25,
 		width: 330,
-		marginBottom: 24,
+		// marginBottom: 24,
 		backgroundColor: "#63769C",
 		borderRadius: 16,
 	},

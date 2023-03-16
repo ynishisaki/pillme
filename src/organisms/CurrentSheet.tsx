@@ -25,7 +25,7 @@ export const CurrentSheet = () => {
 	const recordLength = record.dailyRecord.length; // 今日の分を含めてOK
 
 	const currentSheetTookMedicineLength =
-		(recordLength + beginSheetIndex) % numOfPillsPerSheet;
+		(recordLength + beginSheetIndex) % numOfPillsPerSheet || 24; // 1, 2, ... 24
 
 	const remainingDays = numOfPillsPerSheet - currentSheetTookMedicineLength;
 

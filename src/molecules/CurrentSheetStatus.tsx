@@ -11,10 +11,16 @@ export const CurrentSheetStatus = ({
 	currentSheetTookMedicineLength: number;
 	remainingDays: number;
 }) => {
+	console.log(
+		"currentSheetTookMedicineLength",
+		currentSheetTookMedicineLength
+	);
+	console.log("remainingDays", remainingDays);
+
 	const checkBoxes = [];
-	// 現在のシートの初期開始位置までの分
-	if (record.initialSheetSettings.beginSheetIndex > 0) {
-		for (let i = 0; i < record.initialSheetSettings.beginSheetIndex; i++) {
+	// 現在のシートの昨日までの分
+	if (currentSheetTookMedicineLength > 0) {
+		for (let i = 0; i < currentSheetTookMedicineLength - 1; i++) {
 			checkBoxes.push(
 				<View key={i} style={styles.checkBoxLayout}>
 					<CurrentSheetCheckBox isChecked={true} />
@@ -24,18 +30,15 @@ export const CurrentSheetStatus = ({
 		}
 	}
 
-	// 現在のシートの飲んだ分
-	record.dailyRecord
-		.slice(0, currentSheetTookMedicineLength)
-		.reverse()
-		.forEach((rec, i) => {
-			checkBoxes.push(
-				<View key={100 + i} style={styles.checkBoxLayout}>
-					<CurrentSheetCheckBox isChecked={rec.tookMedicine} />
-				</View>
-			);
-			console.log(100 + i);
-		});
+	// 今日の分
+	checkBoxes.push(
+		<View key={100 + 1} style={styles.checkBoxLayout}>
+			<CurrentSheetCheckBox
+				isChecked={record.dailyRecord[0].tookMedicine}
+			/>
+		</View>
+	);
+	console.log(100 + 1);
 
 	// 現在のシートの残り分
 	for (let i = 0; i < remainingDays; i++) {
@@ -47,7 +50,7 @@ export const CurrentSheetStatus = ({
 		console.log(1000 + i);
 	}
 
-	// 空間を埋める用
+	// 空間を埋めるためのダミー分
 	for (
 		let i = 0;
 		i < (currentSheetTookMedicineLength + (remainingDays + 1)) % 7;
