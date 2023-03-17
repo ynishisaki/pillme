@@ -16,7 +16,7 @@ export default ({
 		<View style={styles.container}>
 			<Text style={styles.checkBoxText}>{title}</Text>
 			<BouncyCheckbox
-				size={80}
+				size={90}
 				fillColor='#F6B69A'
 				unfillColor='#fff'
 				isChecked={isChecked}

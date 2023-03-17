@@ -21,13 +21,13 @@ export const TodaysRecord = () => {
 		});
 	}
 
-	function onPressHaveBleeding() {
+	function onPressHaveBleeding(nextBoolean: boolean) {
 		setRecord({
 			...record,
 			dailyRecord: [
 				{
 					...record.dailyRecord[0],
-					haveBleeding: !record.dailyRecord[0].haveBleeding,
+					haveBleeding: nextBoolean,
 				},
 				...record.dailyRecord.slice(1),
 			],
