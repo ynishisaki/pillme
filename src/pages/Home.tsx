@@ -8,28 +8,27 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { getDateStrings, recordState, today } from "../../App";
-import { MenuIcon, SettingIcon } from "../atoms/Icons";
-import { TodaysRecord } from "../organisms/TodaysRecord";
-import { WeeklyRecord } from "../organisms/WeeklyRecord";
-import { CurrentSheet } from "../organisms/CurrentSheet";
-import {
-	dailyRecordType,
-	recordType,
-	RootStackParamList,
-} from "../types/types";
+import { getDateStrings, recordState, today } from "~/../App";
+import { MenuIcon, SettingIcon } from "~/atoms/Icons";
+import { TodaysRecord } from "~/organisms/TodaysRecord";
+import { WeeklyRecord } from "~/organisms/WeeklyRecord";
+import { CurrentSheet } from "~/organisms/CurrentSheet";
+import { dailyRecordType, recordType, RootStackParamList } from "~/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-type ProfileScreenNavigationProp = NativeStackNavigationProp<
-	RootStackParamList,
-	"Home"
->;
+// type ScreenNavigationProp = NativeStackNavigationProp<
+// 	RootStackParamList,
+// 	"Home"
+// >;
 
 export const Home = ({
 	navigation,
 }: {
-	navigation: ProfileScreenNavigationProp;
+	navigation: NativeStackNavigationProp<
+		RootStackParamList,
+		"Home" | "InitialSettings" | "WeeklyRecordDetails"
+	>;
 }) => {
 	const [record, setRecord] = useRecoilState<recordType>(recordState);
 
