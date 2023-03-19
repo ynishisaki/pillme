@@ -12,10 +12,10 @@ import { RootStackParamList } from "../types/types";
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
 	RootStackParamList,
-	"WeeklyRecordDetails"
+	"InitialSettings"
 >;
 
-export const WeeklyRecordDetails = ({
+export const InitialSettings = ({
 	navigation,
 }: {
 	navigation: ProfileScreenNavigationProp;

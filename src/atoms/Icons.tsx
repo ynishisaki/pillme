@@ -1,7 +1,15 @@
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export const MenuIcon = () => (
-	<MaterialCommunityIcons name='menu' size={45} color='#000' />
+	<MaterialCommunityIcons name='menu' size={40} color='#000' />
+);
+
+export const SettingIcon = () => (
+	<MaterialCommunityIcons name='cog-outline' size={35} color='gray' />
+);
+
+export const BackIcon = () => (
+	<MaterialCommunityIcons name='keyboard-backspace' size={35} color='gray' />
 );
 
 export const RightIcon = () => (

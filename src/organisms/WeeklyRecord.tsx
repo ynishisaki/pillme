@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useRecoilState } from "recoil";
 import { recordState } from "../../App";
 import { RightIcon } from "../atoms/Icons";
 import CountRecord from "../molecules/WeeklyCountRecord";
@@ -65,7 +65,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	return (
 		<>
-			<TouchableHighlight
+			<TouchableOpacity
 				// onPress={() => {
 				// 	console.log("test: pressed");
 				// }}
@@ -74,7 +74,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 					<Text style={styles.titleText}>直近一週間の記録</Text>
 					<RightIcon />
 				</View>
-			</TouchableHighlight>
+			</TouchableOpacity>
 			<View style={styles.bodyContainer}>
 				<View style={styles.bodyTextLayout}>
 					<CountRecord

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
 
 import { recordState } from "../../App";
@@ -44,7 +44,7 @@ export const CurrentSheet = () => {
 
 	return (
 		<>
-			<TouchableHighlight
+			<TouchableOpacity
 				onPress={() => {
 					console.log("test: pressed");
 				}}>
@@ -52,7 +52,7 @@ export const CurrentSheet = () => {
 					<Text style={styles.titleText}>現在のシート</Text>
 					<RightIcon />
 				</View>
-			</TouchableHighlight>
+			</TouchableOpacity>
 
 			<View style={styles.bodyContainer}>
 				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />

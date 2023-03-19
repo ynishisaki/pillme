@@ -1,10 +1,15 @@
-import { ImageBackground, StyleSheet, View } from "react-native";
+import {
+	ImageBackground,
+	StyleSheet,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getDateStrings, recordState, today } from "../../App";
-import { MenuIcon } from "../atoms/Icons";
+import { MenuIcon, SettingIcon } from "../atoms/Icons";
 import { TodaysRecord } from "../organisms/TodaysRecord";
 import { WeeklyRecord } from "../organisms/WeeklyRecord";
 import { CurrentSheet } from "../organisms/CurrentSheet";
@@ -121,7 +126,15 @@ export const Home = ({
 				resizeMode='cover'
 				style={styles.bgimage}>
 				<View style={styles.header}>
-					<MenuIcon />
+					{/* <MenuIcon /> */}
+					<TouchableOpacity
+						onPress={() =>
+							navigation.navigate("InitialSettings", {
+								userId: "1",
+							})
+						}>
+						<SettingIcon />
+					</TouchableOpacity>
 				</View>
 				<View style={styles.contentsLayout}>
 					<View style={styles.todaysRecord}>
@@ -131,7 +144,7 @@ export const Home = ({
 						<WeeklyRecord
 							onPress={() =>
 								navigation.navigate("WeeklyRecordDetails", {
-									userId: "123",
+									userId: "2",
 								})
 							}
 						/>
@@ -155,9 +168,10 @@ const styles = StyleSheet.create({
 	header: {
 		height: 47,
 		width: 47,
-		alignSelf: "flex-start",
-		marginTop: 10,
-		marginHorizontal: 16,
+		marginTop: 8,
+		marginLeft: 8,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	contentsLayout: {
 		flex: 1,
@@ -169,14 +183,12 @@ const styles = StyleSheet.create({
 		gap: 40,
 	},
 	todaysRecord: {
-		// height: 200,
 		flex: 40,
 		width: 280,
 		backgroundColor: "white",
 		borderRadius: 40,
 	},
 	weeklyRecord: {
-		// height: 150,
 		flex: 25,
 		width: 330,
 		backgroundColor: "#63769C",
