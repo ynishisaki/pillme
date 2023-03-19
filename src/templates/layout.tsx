@@ -1,4 +1,3 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
 	ImageBackground,
 	Text,
@@ -8,8 +7,8 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BackIcon, MenuIcon } from "~/atoms/Icons";
-import { RootStackParamList } from "../types";
-import { ScreenNavigationProp } from "../types";
+import { RootStackParamList } from "~/types";
+import { ScreenNavigationProp } from "~/types";
 
 export const Layout = ({
 	navigationProps,
@@ -54,8 +53,8 @@ export const Layout = ({
 							<BackIcon />
 						)}
 					</TouchableOpacity>
-					<View style={styles.contentsLayout}>{children}</View>
 				</View>
+				<View style={styles.contentsLayout}>{children}</View>
 			</ImageBackground>
 		</View>
 	);
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 16,
 		alignItems: "center",
 		flexDirection: "column",
-		gap: 40,
+		// gap: 40,
+		backgroundColor: "black",
 	},
 });

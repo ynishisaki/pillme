@@ -9,6 +9,7 @@ import React from "react";
 import { Layout } from "~/templates/layout";
 
 import { ScreenNavigationProp } from "~/types";
+import { Settings } from "~/organisms/Settings";
 
 export const InitialSettings = ({
 	navigation,
@@ -17,7 +18,17 @@ export const InitialSettings = ({
 }) => {
 	return (
 		<Layout navigationProps={navigation} navigationType='InitialSettings'>
-			<Text>InitialSettings</Text>
+			<Settings />
 		</Layout>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		// width: 330,
+		// marginBottom: 24,
+		// backgroundColor: "#000",
+		borderRadius: 16,
+	},
+});
