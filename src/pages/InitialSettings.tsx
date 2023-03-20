@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import { Layout } from "~/templates/layout";
+import Title from "../molecules/TodaysTitle";
 
 import { ScreenNavigationProp } from "~/types";
 import { Settings } from "~/organisms/Settings";
@@ -24,11 +25,5 @@ export const InitialSettings = ({
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		// width: 330,
-		// marginBottom: 24,
-		// backgroundColor: "#000",
-		borderRadius: 16,
-	},
+	// container: {},
 });

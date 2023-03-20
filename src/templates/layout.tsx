@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		flexDirection: "column",
 		// gap: 40,
-		backgroundColor: "black",
+		// backgroundColor: "black",
 	},
 });

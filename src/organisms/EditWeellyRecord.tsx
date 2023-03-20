@@ -5,7 +5,7 @@ import { recordState } from "../../App";
 import Title from "../molecules/TodaysTitle";
 import CheckBox from "../molecules/TodaysCheckBox";
 
-export const Settings = () => {
+export default () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function onPressTookMedicine(nextBoolean: boolean, index: number) {
@@ -50,9 +50,37 @@ export const Settings = () => {
 
 	return (
 		<View style={styles.container}>
+			{/* <View style={styles.titleContainer}> */}
 			<Title title={`初期設定`} />
 
-			<View style={styles.layout}></View>
+			<View style={styles.checkBoxLayout}>
+				{record.isAsyncStorageLoaded && (
+					<>
+						<CheckBox
+							title='服薬'
+							isChecked={record.dailyRecord[0].tookMedicine}
+							onPress={onPressTookMedicine}
+						/>
+						<CheckBox
+							title='出血'
+							isChecked={record.dailyRecord[0].haveBleeding}
+							onPress={onPressHaveBleeding}
+						/>
+					</>
+				)}
+			</View>
+			{/* </View> */}
+
+			{/* <View style={styles.bodyContainer}>
+				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
+				<CurrentSheetStatus
+					record={record}
+					currentSheetTookMedicineLength={
+						currentSheetTookMedicineLength
+					}
+					remainingDays={remainingDays}
+				/>
+			</View> */}
 		</View>
 	);
 };
@@ -61,10 +89,12 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: 330,
+		// width: 280,
+		// marginBottom: 24,
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
-	layout: {
+	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
 		marginTop: 20,

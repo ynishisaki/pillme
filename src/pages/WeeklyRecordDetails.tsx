@@ -9,6 +9,7 @@ import React from "react";
 import { Layout } from "~/templates/layout";
 
 import { ScreenNavigationProp } from "~/types";
+import EditWeellyRecord from "~/organisms/EditWeellyRecord";
 
 export const WeeklyRecordDetails = ({
 	navigation,
@@ -19,7 +20,7 @@ export const WeeklyRecordDetails = ({
 		<Layout
 			navigationProps={navigation}
 			navigationType='WeeklyRecordDetails'>
-			<Text>InitialSettings</Text>
+			<EditWeellyRecord />
 		</Layout>
 	);
 };
