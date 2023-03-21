@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		borderWidth: 2,
 		borderRadius: 16,
+		maxWidth: 210,
 	},
 	checkBoxesLayout: {
 		flex: 1,

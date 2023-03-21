@@ -46,13 +46,11 @@ export const TodaysRecord = () => {
 		});
 	}
 
-	const takeRestPeriod = true;
-
 	return (
 		<View style={styles.container}>
 			<Title title={showDate(record.dailyRecord[0].date)} />
 			<View style={styles.contentLayout}>
-				<Message takeRestPeriod={takeRestPeriod} />
+				<Message takeRestPeriod={record.dailyRecord[0].isRestPeriod} />
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (
 						<>
@@ -87,6 +85,6 @@ const styles = StyleSheet.create({
 	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		marginTop: 20,
+		marginTop: 10,
 	},
 });

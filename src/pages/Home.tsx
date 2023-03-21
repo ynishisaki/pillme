@@ -127,13 +127,13 @@ const styles = StyleSheet.create({
 		borderRadius: 40,
 	},
 	weeklyRecord: {
-		flex: 25,
+		flex: 28,
 		width: 330,
 		backgroundColor: "#63769C",
 		borderRadius: 16,
 	},
 	sheetRecord: {
-		flex: 35,
+		flex: 32,
 		width: 330,
 		marginBottom: 24,
 		backgroundColor: "#63769C",

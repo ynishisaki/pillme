@@ -152,9 +152,10 @@ const styles = StyleSheet.create({
 	},
 	layout: {
 		flexDirection: "row",
+		justifyContent: "space-between",
 		margin: "auto",
 		marginHorizontal: 20,
-		maxHeight: 90,
+		maxHeight: 100,
 	},
 	textLayout: {
 		marginTop: 8,

@@ -51,55 +51,33 @@ export const CurrentSheet = () => {
 				}}>
 				<SubTitle title='現在のシート' Icon={RightIcon} />
 			</TouchableOpacity>
-
-			<View style={styles.bodyContainer}>
-				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
-				<CurrentSheetStatus
-					record={record}
-					currentSheetTookMedicineLength={
-						currentSheetTookMedicineLength
-					}
-					remainingDays={remainingDays}
-				/>
+			<View style={styles.container}>
+				<View style={styles.layout}>
+					<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
+					<CurrentSheetStatus
+						record={record}
+						currentSheetTookMedicineLength={
+							currentSheetTookMedicineLength
+						}
+						remainingDays={remainingDays}
+					/>
+				</View>
 			</View>
 		</>
 	);
 };
 
 const styles = StyleSheet.create({
-	titleContainer: {
+	container: {
+		flex: 1,
+	},
+	layout: {
+		flex: 1,
 		flexDirection: "row",
-		justifyContent: "space-between",
 		alignItems: "center",
-		marginTop: 10,
-		marginHorizontal: 20,
-		height: 30,
-		borderBottomColor: "#fff",
-		borderBottomWidth: 0.5,
-	},
-	titleText: {
-		fontSize: 14,
-		lineHeight: 30,
-		color: "#fff",
-	},
-	bodyContainer: {
-		flexDirection: "row",
 		justifyContent: "space-between",
-		marginTop: 10,
+		margin: "auto",
 		marginHorizontal: 20,
-	},
-	bodyTextLayout: {
-		marginTop: 8,
-	},
-
-	subtitleText: {
-		fontSize: 10,
-		color: "#CCCCCC",
-	},
-	numberOfDaysText: {
-		fontSize: 16,
-		fontWeight: "600", // semibold
-		color: "#fff",
-		marginBottom: 4,
+		maxHeight: 150,
 	},
 });
