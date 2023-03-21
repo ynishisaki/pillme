@@ -13,12 +13,12 @@ export type ScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export type recordType = {
-	initialSheetInitialSettings: initialSheetInitialSettingsType;
+	initialSheetSettings: initialSheetSettingsType;
 	dailyRecord: Array<dailyRecordType>;
 	isAsyncStorageLoaded: boolean;
 };
 
-export interface initialSheetInitialSettingsType {
+export interface initialSheetSettingsType {
 	numOfPillsPerSheet: number;
 	beginSheetIndex: number;
 }
