@@ -1,5 +1,3 @@
-import { View } from "react-native";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { atom, RecoilRoot } from "recoil";
 

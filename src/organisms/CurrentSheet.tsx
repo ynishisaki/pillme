@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
 
-import { recordState } from "../../App";
-import { CurrentSheetStatus } from "../molecules/CurrentSheetStatus";
-import EstimatedEndDate from "../atoms/CurrentSheetEstimatedEndDate";
-import { RightIcon } from "../atoms/Icons";
+import { recordState } from "~/../App";
+import { CurrentSheetStatus } from "~/molecules/CurrentSheetStatus";
+import EstimatedEndDate from "~/atoms/CurrentSheetEstimatedEndDate";
+import { RightIcon } from "~/atoms/Icons";
 
 export const CurrentSheet = () => {
 	const record = useRecoilValue(recordState);

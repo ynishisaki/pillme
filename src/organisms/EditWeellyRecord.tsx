@@ -1,10 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { StyleSheet, Text, View } from "react-native";
+import { useRecoilState } from "recoil";
 
-import { recordState } from "../../App";
-import Title from "../molecules/TodaysTitle";
-import CheckBox from "../molecules/TodaysCheckBox";
-import { showDate } from "./TodaysRecord";
+import { recordState } from "~/../App";
+import Title from "~/molecules/TodaysTitle";
+import CheckBox from "~/molecules/TodaysCheckBox";
+import { showDate } from "~/organisms/TodaysRecord";
 
 export default () => {
 	const [record, setRecord] = useRecoilState(recordState);

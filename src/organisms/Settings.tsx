@@ -1,11 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { StyleSheet, Text, View } from "react-native";
+import { useRecoilState } from "recoil";
 import { Picker } from "@react-native-picker/picker";
 
-import { recordState } from "../../App";
-import Title from "../molecules/TodaysTitle";
-import CheckBox from "../molecules/TodaysCheckBox";
-import { useRef, useState } from "react";
+import { recordState } from "~/../App";
+import Title from "~/molecules/TodaysTitle";
 
 export const Settings = () => {
 	const [record, setRecord] = useRecoilState(recordState);

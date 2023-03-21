@@ -1,9 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import { recordState } from "../../App";
-import Title from "../molecules/TodaysTitle";
-import Message from "../molecules/TodaysMessage";
-import CheckBox from "../molecules/TodaysCheckBox";
 import { useRecoilState } from "recoil";
+
+import { recordState } from "~/../App";
+import Title from "~/molecules/TodaysTitle";
+import Message from "~/molecules/TodaysMessage";
+import CheckBox from "~/molecules/TodaysCheckBox";
 
 export function showDate(dateStrings: string) {
 	const date = new Date(dateStrings);
