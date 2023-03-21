@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { recordState } from "../../App";
 import Title from "../molecules/TodaysTitle";
 import CheckBox from "../molecules/TodaysCheckBox";
+import { showDate } from "./TodaysRecord";
 
 export default () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -48,45 +49,45 @@ export default () => {
 	const recordLength =
 		record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
 
+	const editableWeelyRecordCheckBoxes = [];
+	for (let i = 0; i < recordLength; i++) {
+		editableWeelyRecordCheckBoxes.push(
+			<View key={i} style={styles.checkBoxLayout}>
+				<View style={styles.checkBoxLayout}>
+					<Text>{showDate(record.dailyRecord[0].date)}</Text>
+
+					{record.isAsyncStorageLoaded && (
+						<>
+							<CheckBox
+								title='服薬'
+								isChecked={record.dailyRecord[i].tookMedicine}
+								disabled={record.dailyRecord[i].isRestPeriod}
+								onPress={(nextBoolean) =>
+									onPressTookMedicine(nextBoolean, i)
+								}
+							/>
+							<CheckBox
+								title='出血'
+								isChecked={record.dailyRecord[i].haveBleeding}
+								disabled={record.dailyRecord[i].isRestPeriod}
+								onPress={(nextBoolean) =>
+									onPressHaveBleeding(nextBoolean, i)
+								}
+							/>
+						</>
+					)}
+				</View>
+			</View>
+		);
+	}
+
 	return (
 		<View style={styles.container}>
 			{/* <View style={styles.titleContainer}> */}
-			<Title title={`初期設定`} />
+			<Title title={`一週間の記録`} />
+			<Text>直近一週間の記録を編集できます</Text>
 
-			<View style={styles.checkBoxLayout}>
-				{record.isAsyncStorageLoaded && (
-					<>
-						<CheckBox
-							title='服薬'
-							isChecked={record.dailyRecord[0].tookMedicine}
-							disabled={record.dailyRecord[0].isRestPeriod}
-							onPress={(nextBoolean) =>
-								onPressTookMedicine(nextBoolean, 0)
-							}
-						/>
-						<CheckBox
-							title='出血'
-							isChecked={record.dailyRecord[0].haveBleeding}
-							disabled={record.dailyRecord[0].isRestPeriod}
-							onPress={(nextBoolean) =>
-								onPressHaveBleeding(nextBoolean, 0)
-							}
-						/>
-					</>
-				)}
-			</View>
-			{/* </View> */}
-
-			{/* <View style={styles.bodyContainer}>
-				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
-				<CurrentSheetStatus
-					record={record}
-					currentSheetTookMedicineLength={
-						currentSheetTookMedicineLength
-					}
-					remainingDays={remainingDays}
-				/>
-			</View> */}
+			{editableWeelyRecordCheckBoxes}
 		</View>
 	);
 };
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
 		width: 330,
 		// width: 280,
 		// marginBottom: 24,
+		textAlign: "center",
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},

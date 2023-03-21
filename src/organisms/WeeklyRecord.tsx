@@ -97,49 +97,46 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 								.slice(0, recordLength)
 								.reverse()
 								.map((record, index) => (
-									<>
-										{/* <View
-											key={index}
-											style={styles.checkBoxLayout}>
-											<Text style={styles.weekTextLayout}>
-												{recentWeekArr[index]}
-											</Text>
-											<CheckBox
-												title='服薬'
-												isChecked={record.tookMedicine}
-											/>
-											<CheckBox
-												title='出血'
-												isChecked={record.haveBleeding}
-											/>
-										</View> */}
-									</>
+									<View
+										key={index}
+										style={styles.checkBoxLayout}>
+										<Text style={styles.weekTextLayout}>
+											{recentWeekArr[index]}
+										</Text>
+										<CheckBox
+											title='服薬'
+											isChecked={record.tookMedicine}
+										/>
+										<CheckBox
+											title='出血'
+											isChecked={record.haveBleeding}
+										/>
+									</View>
 								))
 						: [...record.dailyRecord]
 								.reverse()
 								.map((record, index) => (
-									<>
-										<View style={styles.checkBoxLayout}>
-											<Text style={styles.weekTextLayout}>
-												{
-													recentWeekArr[
-														(index +
-															(7 -
-																recordLength)) %
-															7
-													]
-												}
-											</Text>
-											<CheckBox
-												title='服薬'
-												isChecked={record.tookMedicine}
-											/>
-											<CheckBox
-												title='出血'
-												isChecked={record.haveBleeding}
-											/>
-										</View>
-									</>
+									<View
+										key={index}
+										style={styles.checkBoxLayout}>
+										<Text style={styles.weekTextLayout}>
+											{
+												recentWeekArr[
+													(index +
+														(7 - recordLength)) %
+														7
+												]
+											}
+										</Text>
+										<CheckBox
+											title='服薬'
+											isChecked={record.tookMedicine}
+										/>
+										<CheckBox
+											title='出血'
+											isChecked={record.haveBleeding}
+										/>
+									</View>
 								))}
 				</View>
 			</View>

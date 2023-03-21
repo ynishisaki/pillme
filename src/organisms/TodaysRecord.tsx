@@ -5,6 +5,17 @@ import Message from "../molecules/TodaysMessage";
 import CheckBox from "../molecules/TodaysCheckBox";
 import { useRecoilState } from "recoil";
 
+export function showDate(dateStrings: string) {
+	const date = new Date(dateStrings);
+
+	const month = date.getMonth() + 1;
+	const day = date.getDate();
+	const week = date.getDay();
+	const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
+
+	return `${month}月${day}日(${weekArr[week]})`;
+}
+
 export const TodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
@@ -32,17 +43,6 @@ export const TodaysRecord = () => {
 				...record.dailyRecord.slice(1),
 			],
 		});
-	}
-
-	function showDate(dateStrings: string) {
-		const date = new Date(dateStrings);
-
-		const month = date.getMonth() + 1;
-		const day = date.getDate();
-		const week = date.getDay();
-		const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
-
-		return `${month}月${day}日(${weekArr[week]})`;
 	}
 
 	const takeRestPeriod = true;

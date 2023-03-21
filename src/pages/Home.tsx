@@ -125,7 +125,6 @@ export const Home = ({
 				resizeMode='cover'
 				style={styles.bgimage}>
 				<View style={styles.header}>
-					{/* <MenuIcon /> */}
 					<TouchableOpacity
 						onPress={() =>
 							navigation.navigate("InitialSettings", {
