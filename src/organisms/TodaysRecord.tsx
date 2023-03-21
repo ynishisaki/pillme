@@ -57,11 +57,13 @@ export const TodaysRecord = () => {
 						<CheckBox
 							title='服薬'
 							isChecked={record.dailyRecord[0].tookMedicine}
+							disabled={record.dailyRecord[0].isRestPeriod}
 							onPress={onPressTookMedicine}
 						/>
 						<CheckBox
 							title='出血'
 							isChecked={record.dailyRecord[0].haveBleeding}
+							disabled={record.dailyRecord[0].isRestPeriod}
 							onPress={onPressHaveBleeding}
 						/>
 					</>

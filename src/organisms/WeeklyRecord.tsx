@@ -11,7 +11,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	// タスク：これは連続で飲んだ日数を数えるよう、修正する必要がある
 	function countTakeMedicineDays() {
 		let count = 0;
-		for (let i = record.dailyRecord.length - 1; i >= 0; i--) {
+		for (let i = 0; i < record.dailyRecord.length; i++) {
 			if (record.dailyRecord[i].tookMedicine === true) {
 				count++;
 			} else {
@@ -37,8 +37,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	}
 	const haveBleedingDays = countHaveBleedingDays();
 
-	// 連続で出血が4日以上あった場合、休薬する
-	if (haveBleedingDays > 3) {
+	const setRest = () => {
 		setRecord((oldRecord) => ({
 			...oldRecord,
 			dailyRecord: [
@@ -49,6 +48,17 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 				...oldRecord.dailyRecord.slice(1),
 			],
 		}));
+	};
+
+	// 出血が3日連続した場合、休薬する
+	if (haveBleedingDays > 3) {
+		if (takeMedicineDays > 25) {
+			setRest();
+		}
+	}
+
+	if (takeMedicineDays > 120) {
+		setRest();
 	}
 
 	const date = new Date();
@@ -65,11 +75,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	return (
 		<>
-			<TouchableOpacity
-				// onPress={() => {
-				// 	console.log("test: pressed");
-				// }}
-				onPress={onPress}>
+			<TouchableOpacity onPress={onPress}>
 				<View style={styles.titleContainer}>
 					<Text style={styles.titleText}>直近一週間の記録</Text>
 					<RightIcon />
@@ -92,7 +98,9 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 								.reverse()
 								.map((record, index) => (
 									<>
-										<View style={styles.checkBoxLayout}>
+										{/* <View
+											key={index}
+											style={styles.checkBoxLayout}>
 											<Text style={styles.weekTextLayout}>
 												{recentWeekArr[index]}
 											</Text>
@@ -104,7 +112,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 												title='出血'
 												isChecked={record.haveBleeding}
 											/>
-										</View>
+										</View> */}
 									</>
 								))
 						: [...record.dailyRecord]

@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import React from "react";
 import { Layout } from "~/templates/layout";
-import Title from "../molecules/TodaysTitle";
 
 import { ScreenNavigationProp } from "~/types";
 import { Settings } from "~/organisms/Settings";

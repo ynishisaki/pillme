@@ -6,10 +6,12 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 export default ({
 	title,
 	isChecked,
+	disabled,
 	onPress,
 }: {
 	title: string;
 	isChecked: boolean;
+	disabled: boolean;
 	onPress: (nextBoolean: boolean) => void;
 }) => {
 	return (
@@ -22,6 +24,7 @@ export default ({
 				isChecked={isChecked}
 				textComponent={null}
 				disableText={true}
+				disabled={disabled}
 				ImageComponent={title === "服薬" ? PillLgIcon : DropLgIcon}
 				onPress={(nextBoolean) => onPress(nextBoolean)}
 			/>
