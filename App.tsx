@@ -19,6 +19,12 @@ export const recordState = atom({
 	key: "1", // unique ID (with respect to other atoms/selectors)
 	default: {
 		initialSheetSettings: {
+			// 投薬方法に関する設定
+			minConteniousTakingDays: 24,
+			maxConteniousTakingDays: 120,
+			conteniousBleeingDaysForRest: 3,
+			stopTakingDays: 4,
+			// シートの管理
 			numOfPillsPerSheet: 28,
 			beginSheetIndex: 0, // 0スタート
 		},
