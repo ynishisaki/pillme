@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 
 import { recordState } from "~/../App";
-import Title from "~/molecules/TodaysTitle";
+import Title from "~/atoms/Title";
 import CheckBox from "~/molecules/TodaysCheckBox";
 import { showDate } from "~/organisms/TodaysRecord";
 

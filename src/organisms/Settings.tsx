@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { Picker } from "@react-native-picker/picker";
 
 import { recordState } from "~/../App";
-import Title from "~/molecules/TodaysTitle";
+import Title from "~/atoms/Title";
 
 export const Settings = () => {
 	const [record, setRecord] = useRecoilState(recordState);

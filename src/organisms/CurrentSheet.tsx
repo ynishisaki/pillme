@@ -5,6 +5,7 @@ import { recordState } from "~/../App";
 import { CurrentSheetStatus } from "~/molecules/CurrentSheetStatus";
 import EstimatedEndDate from "~/atoms/CurrentSheetEstimatedEndDate";
 import { RightIcon } from "~/atoms/Icons";
+import SubTitle from "~/atoms/SubTitle";
 
 export const CurrentSheet = () => {
 	const record = useRecoilValue(recordState);
@@ -48,10 +49,7 @@ export const CurrentSheet = () => {
 				onPress={() => {
 					console.log("test: pressed");
 				}}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.titleText}>現在のシート</Text>
-					<RightIcon />
-				</View>
+				<SubTitle title='現在のシート' Icon={RightIcon} />
 			</TouchableOpacity>
 
 			<View style={styles.bodyContainer}>

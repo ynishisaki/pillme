@@ -4,6 +4,7 @@ import { recordState } from "../../App";
 import { RightIcon } from "../atoms/Icons";
 import CountRecord from "../molecules/WeeklyCountRecord";
 import CheckBox from "../molecules/WeeklyCheckBox";
+import SubTitle from "~/atoms/SubTitle";
 
 export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -76,10 +77,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	return (
 		<>
 			<TouchableOpacity onPress={onPress}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.titleText}>直近一週間の記録</Text>
-					<RightIcon />
-				</View>
+				<SubTitle title='直近一週間の記録' Icon={RightIcon} />
 			</TouchableOpacity>
 			<View style={styles.bodyContainer}>
 				<View style={styles.bodyTextLayout}>

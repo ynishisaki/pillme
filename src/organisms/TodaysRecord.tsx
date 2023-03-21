@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 
 import { recordState } from "~/../App";
-import Title from "~/molecules/TodaysTitle";
+import Title from "~/atoms/Title";
 import Message from "~/molecules/TodaysMessage";
 import CheckBox from "~/molecules/TodaysCheckBox";
 
@@ -49,32 +49,41 @@ export const TodaysRecord = () => {
 	const takeRestPeriod = true;
 
 	return (
-		<>
+		<View style={styles.container}>
 			<Title title={showDate(record.dailyRecord[0].date)} />
-			<Message takeRestPeriod={takeRestPeriod} />
-			<View style={styles.checkBoxLayout}>
-				{record.isAsyncStorageLoaded && (
-					<>
-						<CheckBox
-							title='服薬'
-							isChecked={record.dailyRecord[0].tookMedicine}
-							disabled={record.dailyRecord[0].isRestPeriod}
-							onPress={onPressTookMedicine}
-						/>
-						<CheckBox
-							title='出血'
-							isChecked={record.dailyRecord[0].haveBleeding}
-							disabled={record.dailyRecord[0].isRestPeriod}
-							onPress={onPressHaveBleeding}
-						/>
-					</>
-				)}
+			<View style={styles.contentLayout}>
+				<Message takeRestPeriod={takeRestPeriod} />
+				<View style={styles.checkBoxLayout}>
+					{record.isAsyncStorageLoaded && (
+						<>
+							<CheckBox
+								title='服薬'
+								isChecked={record.dailyRecord[0].tookMedicine}
+								disabled={record.dailyRecord[0].isRestPeriod}
+								onPress={onPressTookMedicine}
+							/>
+							<CheckBox
+								title='出血'
+								isChecked={record.dailyRecord[0].haveBleeding}
+								disabled={record.dailyRecord[0].isRestPeriod}
+								onPress={onPressHaveBleeding}
+							/>
+						</>
+					)}
+				</View>
 			</View>
-		</>
+		</View>
 	);
 };
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+	contentLayout: {
+		flex: 1,
+		justifyContent: "center",
+	},
 	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
