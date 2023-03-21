@@ -85,7 +85,7 @@ export default () => {
 		<View style={styles.container}>
 			{/* <View style={styles.titleContainer}> */}
 			<Title title={`一週間の記録`} />
-			<Text>直近一週間の記録を編集できます</Text>
+			<Text>直近一週間の記録を編集することができます</Text>
 
 			{editableWeelyRecordCheckBoxes}
 		</View>

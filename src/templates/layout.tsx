@@ -1,12 +1,11 @@
 import {
 	ImageBackground,
-	Text,
 	StyleSheet,
 	View,
 	TouchableOpacity,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BackIcon, MenuIcon } from "~/atoms/Icons";
+import { BackIcon, SettingIcon } from "~/atoms/Icons";
 import { RootStackParamList } from "~/types";
 import { ScreenNavigationProp } from "~/types";
 
@@ -48,7 +47,7 @@ export default ({
 								: navigationProps.goBack();
 						}}>
 						{navigationType === "Home" ? (
-							<MenuIcon />
+							<SettingIcon />
 						) : (
 							<BackIcon />
 						)}

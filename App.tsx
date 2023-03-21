@@ -6,7 +6,7 @@ import { atom, RecoilRoot } from "recoil";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "./src/pages/Home";
 import { InitialSettings } from "./src/pages/InitialSettings";
-import { WeeklyRecordDetails } from "./src/pages/WeeklyRecordDetails";
+import { EditWeeklyRecord } from "./src/pages/EditWeeklyRecord";
 
 export function getDateStrings(selectedDate: Date) {
 	const offset = selectedDate.getTimezoneOffset();
@@ -55,8 +55,8 @@ export default function App() {
 						component={InitialSettings}
 					/>
 					<Stack.Screen
-						name='WeeklyRecordDetails'
-						component={WeeklyRecordDetails}
+						name='EditWeeklyRecord'
+						component={EditWeeklyRecord}
 					/>
 				</Stack.Navigator>
 			</RecoilRoot>

@@ -2,23 +2,23 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
 	Home: undefined;
-	WeeklyRecordDetails: { userId: string };
+	EditWeeklyRecord: { userId: string };
 	InitialSettings: { userId: string };
 	Feed: { sort: "latest" | "top" } | undefined;
 };
 
 export type ScreenNavigationProp = NativeStackNavigationProp<
 	RootStackParamList,
-	"Home" | "InitialSettings" | "WeeklyRecordDetails"
+	"Home" | "InitialSettings" | "EditWeeklyRecord"
 >;
 
 export type recordType = {
-	initialSheetSettings: initialSheetSettingsType;
+	initialSheetInitialSettings: initialSheetInitialSettingsType;
 	dailyRecord: Array<dailyRecordType>;
 	isAsyncStorageLoaded: boolean;
 };
 
-export interface initialSheetSettingsType {
+export interface initialSheetInitialSettingsType {
 	numOfPillsPerSheet: number;
 	beginSheetIndex: number;
 }

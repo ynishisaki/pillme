@@ -1,10 +1,3 @@
-import {
-	ImageBackground,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from "react-native";
 import React from "react";
 import Layout from "~/templates/Layout";
 
@@ -22,7 +15,3 @@ export const InitialSettings = ({
 		</Layout>
 	);
 };
-
-const styles = StyleSheet.create({
-	// container: {},
-});
