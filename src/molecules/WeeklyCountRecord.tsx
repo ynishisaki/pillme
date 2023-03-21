@@ -12,7 +12,7 @@ export default ({ title, days }: { title: string; days: number }) => {
 const styles = StyleSheet.create({
 	subtitleText: {
 		fontSize: 10,
-		color: "#CCCCCC",
+		color: "#ddd",
 	},
 	numberOfDaysText: {
 		fontSize: 16,

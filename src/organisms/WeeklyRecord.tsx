@@ -79,63 +79,66 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 			<TouchableOpacity onPress={onPress}>
 				<SubTitle title='直近一週間の記録' Icon={RightIcon} />
 			</TouchableOpacity>
-			<View style={styles.bodyContainer}>
-				<View style={styles.bodyTextLayout}>
-					<CountRecord
-						title='服薬'
-						days={takeMedicineDays}></CountRecord>
-					<CountRecord
-						title='出血'
-						days={haveBleedingDays}></CountRecord>
-				</View>
+			<View style={styles.container}>
+				<View style={styles.layout}>
+					<View style={styles.textLayout}>
+						<CountRecord
+							title='服薬'
+							days={takeMedicineDays}></CountRecord>
+						<CountRecord
+							title='出血'
+							days={haveBleedingDays}></CountRecord>
+					</View>
 
-				<View style={styles.bodyRecordLayout}>
-					{recordLength === 7
-						? [...record.dailyRecord]
-								.slice(0, recordLength)
-								.reverse()
-								.map((record, index) => (
-									<View
-										key={index}
-										style={styles.checkBoxLayout}>
-										<Text style={styles.weekTextLayout}>
-											{recentWeekArr[index]}
-										</Text>
-										<CheckBox
-											title='服薬'
-											isChecked={record.tookMedicine}
-										/>
-										<CheckBox
-											title='出血'
-											isChecked={record.haveBleeding}
-										/>
-									</View>
-								))
-						: [...record.dailyRecord]
-								.reverse()
-								.map((record, index) => (
-									<View
-										key={index}
-										style={styles.checkBoxLayout}>
-										<Text style={styles.weekTextLayout}>
-											{
-												recentWeekArr[
-													(index +
-														(7 - recordLength)) %
-														7
-												]
-											}
-										</Text>
-										<CheckBox
-											title='服薬'
-											isChecked={record.tookMedicine}
-										/>
-										<CheckBox
-											title='出血'
-											isChecked={record.haveBleeding}
-										/>
-									</View>
-								))}
+					<View style={styles.recordLayout}>
+						{recordLength === 7
+							? [...record.dailyRecord]
+									.slice(0, recordLength)
+									.reverse()
+									.map((record, index) => (
+										<View
+											key={index}
+											style={styles.checkBoxLayout}>
+											<Text style={styles.weekTextLayout}>
+												{recentWeekArr[index]}
+											</Text>
+											<CheckBox
+												title='服薬'
+												isChecked={record.tookMedicine}
+											/>
+											<CheckBox
+												title='出血'
+												isChecked={record.haveBleeding}
+											/>
+										</View>
+									))
+							: [...record.dailyRecord]
+									.reverse()
+									.map((record, index) => (
+										<View
+											key={index}
+											style={styles.checkBoxLayout}>
+											<Text style={styles.weekTextLayout}>
+												{
+													recentWeekArr[
+														(index +
+															(7 -
+																recordLength)) %
+															7
+													]
+												}
+											</Text>
+											<CheckBox
+												title='服薬'
+												isChecked={record.tookMedicine}
+											/>
+											<CheckBox
+												title='出血'
+												isChecked={record.haveBleeding}
+											/>
+										</View>
+									))}
+					</View>
 				</View>
 			</View>
 		</>
@@ -143,35 +146,21 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 };
 
 const styles = StyleSheet.create({
-	titleContainer: {
-		flexDirection: "row",
-		justifyContent: "space-between",
+	container: {
+		flex: 1,
 		alignItems: "center",
-		marginTop: 10,
-		marginHorizontal: 20,
-		height: 30,
-		borderBottomColor: "#fff",
-		borderBottomWidth: 0.5,
 	},
-	titleText: {
-		fontSize: 14,
-		lineHeight: 30,
-		color: "#fff",
-	},
-	bodyContainer: {
+	layout: {
 		flexDirection: "row",
-		justifyContent: "space-between",
-		marginTop: 10,
+		margin: "auto",
 		marginHorizontal: 20,
+		maxHeight: 90,
 	},
-	bodyTextLayout: {
+	textLayout: {
 		marginTop: 8,
 	},
-	bodyRecordLayout: {
+	recordLayout: {
 		flexDirection: "row",
-		// alignItems: "center",
-		// marginTop: 16,
-		// marginHorizontal: 20,
 	},
 	checkBoxLayout: {
 		alignItems: "center",

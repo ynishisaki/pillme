@@ -36,10 +36,10 @@ export const Settings = () => {
 	return (
 		<View style={styles.container}>
 			<Title title={`初期設定`} />
-			<Text>お持ちのお薬の説明を読んで、記入してください</Text>
+			<Text>{"お持ちのお薬の説明をもとに記入してください"}</Text>
 
 			<View style={styles.layout}>
-				<Text>１シートあたりの錠数（プラシーボは除く）</Text>
+				<Text>{"１シートあたりの錠数\n（プラシーボは除く）"}</Text>
 				{/* <Text>プラシーボは除く</Text> */}
 
 				<Picker
