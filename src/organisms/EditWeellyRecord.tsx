@@ -59,12 +59,16 @@ export default () => {
 						<CheckBox
 							title='服薬'
 							isChecked={record.dailyRecord[0].tookMedicine}
-							onPress={onPressTookMedicine}
+							onPress={(nextBoolean) =>
+								onPressTookMedicine(nextBoolean, 0)
+							}
 						/>
 						<CheckBox
 							title='出血'
 							isChecked={record.dailyRecord[0].haveBleeding}
-							onPress={onPressHaveBleeding}
+							onPress={(nextBoolean) =>
+								onPressHaveBleeding(nextBoolean, 0)
+							}
 						/>
 					</>
 				)}

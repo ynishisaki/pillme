@@ -1,58 +1,72 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { Picker } from "@react-native-picker/picker";
 
 import { recordState } from "../../App";
 import Title from "../molecules/TodaysTitle";
 import CheckBox from "../molecules/TodaysCheckBox";
+import { useRef, useState } from "react";
 
 export const Settings = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	function onPressTookMedicine(nextBoolean: boolean, index: number) {
+	function setNumOfPillsPerSheet(itemValue: number, itemIndex: number) {
 		setRecord({
 			...record,
-			dailyRecord: [
-				...record.dailyRecord.slice(0, index),
-				{
-					...record.dailyRecord[index],
-					tookMedicine: nextBoolean,
-				},
-				...record.dailyRecord.slice(index + 1),
-			],
+			initialSheetSettings: {
+				...record.initialSheetSettings,
+				numOfPillsPerSheet: itemValue,
+			},
 		});
 	}
 
-	function onPressHaveBleeding(nextBoolean: boolean, index: number) {
+	function setBeginSheetIndex(itemValue: number, itemIndex: number) {
 		setRecord({
 			...record,
-			dailyRecord: [
-				...record.dailyRecord.slice(0, index),
-				{
-					...record.dailyRecord[index],
-					haveBleeding: nextBoolean,
-				},
-				...record.dailyRecord.slice(index + 1),
-			],
+			initialSheetSettings: {
+				...record.initialSheetSettings,
+				beginSheetIndex: itemValue - 1, // 0スタート
+			},
 		});
 	}
 
-	const date = new Date();
-	const week = date.getDay();
-	const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
-
-	const recentWeekArr = [
-		...weekArr.slice((week + 1) % 7),
-		...weekArr.slice(0, (week + 1) % 7),
-	];
-
-	const recordLength =
-		record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
+	const pickerItems = [];
+	for (let i = 1; i <= 30; i++) {
+		pickerItems.push(<Picker.Item key={i} label={`${i}`} value={i} />);
+	}
 
 	return (
 		<View style={styles.container}>
 			<Title title={`初期設定`} />
 
-			<View style={styles.layout}></View>
+			<View style={styles.layout}>
+				<Text>１シートあたりの錠数</Text>
+				{/* <Text>プラシーボは除く</Text> */}
+
+				<Picker
+					style={styles.picker}
+					selectedValue={
+						record.initialSheetSettings.numOfPillsPerSheet
+					}
+					onValueChange={(itemValue, itemIndex) =>
+						setNumOfPillsPerSheet(itemValue, itemIndex)
+					}>
+					{pickerItems}
+				</Picker>
+			</View>
+			<View style={styles.layout}>
+				<Text>最初のシートの位置</Text>
+				<Picker
+					style={styles.picker}
+					selectedValue={
+						record.initialSheetSettings.beginSheetIndex + 1
+					}
+					onValueChange={(itemValue, itemIndex) =>
+						setBeginSheetIndex(itemValue, itemIndex)
+					}>
+					{pickerItems}
+				</Picker>
+			</View>
 		</View>
 	);
 };
@@ -66,7 +80,13 @@ const styles = StyleSheet.create({
 	},
 	layout: {
 		flexDirection: "row",
+		alignItems: "center",
 		justifyContent: "space-around",
 		marginTop: 20,
+	},
+	picker: {
+		width: 100,
+		height: 50,
+		fontSize: 20,
 	},
 });

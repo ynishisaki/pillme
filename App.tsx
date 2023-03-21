@@ -21,8 +21,8 @@ export const recordState = atom({
 	key: "1", // unique ID (with respect to other atoms/selectors)
 	default: {
 		initialSheetSettings: {
-			numOfPillsPerSheet: 24,
-			beginSheetIndex: 22, // 0スタート
+			numOfPillsPerSheet: 28,
+			beginSheetIndex: 0, // 0スタート
 		},
 		dailyRecord: [
 			{
