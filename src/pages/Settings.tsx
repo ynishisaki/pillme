@@ -6,7 +6,7 @@ import {
 	View,
 } from "react-native";
 import React from "react";
-import { Layout } from "~/templates/layout";
+import Layout from "~/templates/Layout";
 
 import { ScreenNavigationProp } from "~/types";
 import { Settings } from "~/organisms/Settings";

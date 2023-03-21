@@ -9,7 +9,7 @@ import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getDateStrings, recordState, today } from "~/../App";
-import { MenuIcon, SettingIcon } from "~/atoms/Icons";
+import { SettingIcon } from "~/atoms/Icons";
 import { TodaysRecord } from "~/organisms/TodaysRecord";
 import { WeeklyRecord } from "~/organisms/WeeklyRecord";
 import { CurrentSheet } from "~/organisms/CurrentSheet";

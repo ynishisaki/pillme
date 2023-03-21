@@ -10,7 +10,7 @@ import { BackIcon, MenuIcon } from "~/atoms/Icons";
 import { RootStackParamList } from "~/types";
 import { ScreenNavigationProp } from "~/types";
 
-export const Layout = ({
+export default ({
 	navigationProps,
 	navigationType,
 	children,
