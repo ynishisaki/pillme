@@ -51,17 +51,19 @@ export const CurrentSheetStatus = ({
 	}
 
 	// 空間を埋めるためのダミー分
-	for (
-		let i = 0;
-		i < (currentSheetTookMedicineLength + (remainingDays + 1)) % 7;
-		i++
-	) {
-		checkBoxes.push(
-			<View key={10000 + i} style={styles.checkBoxLayout}>
-				<View style={styles.dammyCheckBox} />
-			</View>
-		);
-		// console.log(10000 + i);
+	if (currentSheetTookMedicineLength + ((remainingDays + 1) % 7) === 0) {
+		for (
+			let i = 0;
+			i < (currentSheetTookMedicineLength + (remainingDays + 1)) % 7;
+			i++
+		) {
+			checkBoxes.push(
+				<View key={10000 + i} style={styles.checkBoxLayout}>
+					<View style={styles.dammyCheckBox} />
+				</View>
+			);
+			console.log(10000 + i);
+		}
 	}
 
 	return (
