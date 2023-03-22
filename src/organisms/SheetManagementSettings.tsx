@@ -5,7 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
 
-export const Settings = () => {
+export default () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function setNumOfPillsPerSheet(itemValue: number, itemIndex: number) {
@@ -40,81 +40,6 @@ export const Settings = () => {
 
 	return (
 		<View style={styles.container}>
-			<Title title={`服薬方法の設定`} />
-			<View style={styles.contentLayout}>
-				<Text>{"このアプリは、120日連続服用を対象としています。"}</Text>
-				<Text>
-					{
-						"お飲みのお薬の使用方法に合わせて、以下の設定を編集してください。"
-					}
-				</Text>
-				<View style={styles.currentSettingsContainer}>
-					<Text>現在の設定内容</Text>
-					{/* 服用1日目～24日目までは、出血がみられても連続して服用します。 */}
-					{/* 25日目以降120日目の間に3日以上の出血が見られた場合、服用を中止し、休薬期間を4日とります。 */}
-					<Text>
-						服用1日目～
-						<Text style={{ fontWeight: "bold" }}>
-							{minConteniousTakingDays}
-						</Text>
-						日目までは出血がみられても連続して服用します。
-					</Text>
-					<Text>
-						服用
-						<Text>{minConteniousTakingDays + 1}</Text>
-						日目〜
-						<Text style={{ fontWeight: "bold" }}>
-							{maxConteniousTakingDays}
-						</Text>
-						日目の間に
-						<Text style={{ fontWeight: "bold" }}>
-							{conteniousBleeingDaysForRest}
-						</Text>
-						日連続で出血が見られた場合、服用を中止し、休薬期間を翌日から
-						<Text style={{ fontWeight: "bold" }}>
-							{stopTakingDays}
-						</Text>
-						日間とります。
-					</Text>
-				</View>
-
-				<View style={styles.layout}>
-					<View style={styles.leftContent}>
-						<Text>
-							{"１シートあたりの錠数\n（プラセボは除く）"}
-						</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<Picker
-							style={styles.picker}
-							selectedValue={
-								record.initialSheetSettings.numOfPillsPerSheet
-							}
-							onValueChange={(itemValue, itemIndex) =>
-								setNumOfPillsPerSheet(itemValue, itemIndex)
-							}>
-							{pickerItems}
-						</Picker>
-					</View>
-				</View>
-				<View style={styles.layout}>
-					<View style={styles.leftContent}>
-						<Text>アプリ使い始めの最初のシートの位置</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<Picker
-							style={styles.picker}
-							selectedValue={
-								record.initialSheetSettings.beginSheetIndex + 1
-							}
-							onValueChange={(itemValue, itemIndex) =>
-								setBeginSheetIndex(itemValue, itemIndex)
-							}>
-							{pickerItems}
-						</Picker>
-					</View>
-				</View>
-			</View>
 			<Title title={`シートの設定`} />
 			<View style={styles.contentLayout}>
 				<Text>{"利用開始時に設定"}</Text>

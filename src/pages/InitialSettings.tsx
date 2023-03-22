@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "~/templates/Layout";
 
 import { ScreenNavigationProp } from "~/types";
-import { Settings } from "~/organisms/Settings";
+import TakingMedicineSettings from "~/organisms/TakingMedicineSettings";
 
 export const InitialSettings = ({
 	navigation,
@@ -11,7 +11,7 @@ export const InitialSettings = ({
 }) => {
 	return (
 		<Layout navigationProps={navigation} navigationType='InitialSettings'>
-			<Settings />
+			<TakingMedicineSettings />
 		</Layout>
 	);
 };

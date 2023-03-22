@@ -19,6 +19,10 @@ export type recordType = {
 };
 
 export interface initialSheetSettingsType {
+	minConteniousTakingDays: number;
+	maxConteniousTakingDays: number;
+	conteniousBleeingDaysForRest: number;
+	stopTakingDays: number;
 	numOfPillsPerSheet: number;
 	beginSheetIndex: number;
 }
