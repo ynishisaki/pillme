@@ -151,10 +151,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	layout: {
+		flex: 1,
+		width: "100%",
 		flexDirection: "row",
 		justifyContent: "space-between",
 		margin: "auto",
-		marginHorizontal: 20,
+		paddingHorizontal: 20,
 		maxHeight: 100,
 	},
 	textLayout: {
