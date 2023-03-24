@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
-import CheckBox from "~/molecules/TodaysCheckBox";
+import CheckBox from "~/molecules/PressableCheckBox";
 import { showDate } from "~/organisms/TodaysRecord";
 
 export default () => {
@@ -60,6 +60,7 @@ export default () => {
 						<>
 							<CheckBox
 								title='服薬'
+								size={"md"}
 								isChecked={record.dailyRecord[i].tookMedicine}
 								disabled={record.dailyRecord[i].isRestPeriod}
 								onPress={(nextBoolean) =>
@@ -68,6 +69,7 @@ export default () => {
 							/>
 							<CheckBox
 								title='出血'
+								size={"md"}
 								isChecked={record.dailyRecord[i].haveBleeding}
 								disabled={record.dailyRecord[i].isRestPeriod}
 								onPress={(nextBoolean) =>

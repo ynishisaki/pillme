@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
 import Message from "~/molecules/TodaysMessage";
-import CheckBox from "~/molecules/TodaysCheckBox";
+import CheckBox from "~/molecules/PressableCheckBox";
 
 export function showDate(dateStrings: string) {
 	const date = new Date(dateStrings);
@@ -56,12 +56,14 @@ export const TodaysRecord = () => {
 						<>
 							<CheckBox
 								title='服薬'
+								size={"lg"}
 								isChecked={record.dailyRecord[0].tookMedicine}
 								disabled={record.dailyRecord[0].isRestPeriod}
 								onPress={onPressTookMedicine}
 							/>
 							<CheckBox
 								title='出血'
+								size={"lg"}
 								isChecked={record.dailyRecord[0].haveBleeding}
 								disabled={record.dailyRecord[0].isRestPeriod}
 								onPress={onPressHaveBleeding}

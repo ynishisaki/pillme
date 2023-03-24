@@ -5,20 +5,22 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 // 薬飲んだかと、出血したかチェックボックス
 export default ({
 	title,
+	size,
 	isChecked,
 	disabled,
 	onPress,
 }: {
-	title: string;
+	title: string | null;
+	size: "md" | "lg"; //  60 | 90
 	isChecked: boolean;
 	disabled: boolean;
 	onPress: (nextBoolean: boolean) => void;
 }) => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.checkBoxText}>{title}</Text>
+			{title && <Text style={styles.checkBoxText}>{title}</Text>}
 			<BouncyCheckbox
-				size={90}
+				size={size === "md" ? 60 : 90}
 				fillColor='#F6B69A'
 				unfillColor='#fff'
 				isChecked={isChecked}
@@ -38,6 +40,5 @@ const styles = StyleSheet.create({
 	},
 	checkBoxText: {
 		fontSize: 12,
-		fontWeight: "bold",
 	},
 });
