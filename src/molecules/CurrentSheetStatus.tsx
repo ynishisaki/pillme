@@ -23,7 +23,7 @@ export const CurrentSheetStatus = ({
 		for (let i = 0; i < currentSheetTookMedicineLength - 1; i++) {
 			checkBoxes.push(
 				<View key={i} style={styles.checkBoxLayout}>
-					<CurrentSheetCheckBox size={15} isChecked={true} />
+					<CurrentSheetCheckBox isChecked={true} />
 				</View>
 			);
 			// console.log(i);

@@ -73,19 +73,19 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	}, []);
 
 	// AsyncStorageに記録を保存
-	// useEffect(() => {
-	// 	AsyncStorage.setItem("record", JSON.stringify(record));
-	// 	console.log(record);
-	// 	console.log("stored");
-	// 	console.log();
-	// }, [record]);
+	useEffect(() => {
+		AsyncStorage.setItem("record", JSON.stringify(record));
+		console.log(record);
+		console.log("stored");
+		console.log();
+	}, [record]);
 
 	// 注意！AsyncStorageを初期化
-	useEffect(() => {
-		(async () => {
-			await AsyncStorage.clear();
-		})();
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		await AsyncStorage.clear();
+	// 	})();
+	// }, []);
 
 	return (
 		<Layout navigationProps={navigation} navigationType='Home'>

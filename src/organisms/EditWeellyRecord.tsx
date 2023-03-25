@@ -52,33 +52,31 @@ export default () => {
 	const editableWeelyRecordCheckBoxes = [];
 	for (let i = 0; i < recordLength; i++) {
 		editableWeelyRecordCheckBoxes.push(
-			<View key={i} style={styles.checkBoxLayout}>
-				<View style={styles.checkBoxLayout}>
-					<Text>{showDate(record.dailyRecord[0].date)}</Text>
+			<View key={i} style={styles.horizonalStackLayout}>
+				<Text>{showDate(record.dailyRecord[0].date)}</Text>
 
-					{record.isAsyncStorageLoaded && (
-						<>
-							<CheckBox
-								title='服薬'
-								size={"md"}
-								isChecked={record.dailyRecord[i].tookMedicine}
-								disabled={record.dailyRecord[i].isRestPeriod}
-								onPress={(nextBoolean) =>
-									onPressTookMedicine(nextBoolean, i)
-								}
-							/>
-							<CheckBox
-								title='出血'
-								size={"md"}
-								isChecked={record.dailyRecord[i].haveBleeding}
-								disabled={record.dailyRecord[i].isRestPeriod}
-								onPress={(nextBoolean) =>
-									onPressHaveBleeding(nextBoolean, i)
-								}
-							/>
-						</>
-					)}
-				</View>
+				{record.isAsyncStorageLoaded && (
+					<>
+						<CheckBox
+							title={i === 0 ? "服薬" : null}
+							size={"md"}
+							isChecked={record.dailyRecord[i].tookMedicine}
+							disabled={record.dailyRecord[i].isRestPeriod}
+							onPress={(nextBoolean) =>
+								onPressTookMedicine(nextBoolean, i)
+							}
+						/>
+						<CheckBox
+							title={i === 0 ? "出血" : null}
+							size={"md"}
+							isChecked={record.dailyRecord[i].haveBleeding}
+							disabled={record.dailyRecord[i].isRestPeriod}
+							onPress={(nextBoolean) =>
+								onPressHaveBleeding(nextBoolean, i)
+							}
+						/>
+					</>
+				)}
 			</View>
 		);
 	}
@@ -88,8 +86,9 @@ export default () => {
 			{/* <View style={styles.titleContainer}> */}
 			<Title title={`一週間の記録`} />
 			<Text>７日前まで記録をさかのぼって編集することができます</Text>
-
-			{editableWeelyRecordCheckBoxes}
+			<View style={styles.verticalStackLayout}>
+				{editableWeelyRecordCheckBoxes}
+			</View>
 		</View>
 	);
 };
@@ -104,9 +103,18 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
-	checkBoxLayout: {
+	verticalStackLayout: {
+		flex: 1,
+		marginVertical: 20,
+		marginHorizontal: "auto",
+		minWidth: 230,
+		// maxWidth: 250,
+		gap: 20,
+	},
+	horizonalStackLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		marginTop: 20,
+		// marginTop: 20,
+		alignItems: "center",
 	},
 });
