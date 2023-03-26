@@ -9,10 +9,21 @@ import SubTitle from "~/atoms/SubTitle";
 export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	// タスク：これは連続で飲んだ日数を数えるよう、修正する必要がある
+	// 最後のisRestPeriod=trueの翌日から数える
+	function countStartTakeMedicineIndex() {
+		const latestIsRestPeriodIndex = record.dailyRecord.findIndex(
+			(item) => item.isRestPeriod === true
+		);
+		const recordLength = record.dailyRecord.length;
+		return latestIsRestPeriodIndex > 0
+			? latestIsRestPeriodIndex
+			: recordLength - 1;
+	}
+	const startTakeMedicineIndex = countStartTakeMedicineIndex();
+
 	function countTakeMedicineDays() {
 		let count = 0;
-		for (let i = 0; i < record.dailyRecord.length; i++) {
+		for (let i = startTakeMedicineIndex; i > -1; i--) {
 			if (record.dailyRecord[i].tookMedicine === true) {
 				count++;
 			} else {
