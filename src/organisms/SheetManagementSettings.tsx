@@ -13,9 +13,10 @@ export default () => {
 			...record,
 			initialSheetSettings: {
 				...record.initialSheetSettings,
-				numOfPillsPerSheet: itemValue,
+				numOfPillsPerSheet: Number(itemValue),
 				beginSheetIndex:
-					record.initialSheetSettings.beginSheetIndex <= itemValue - 1
+					record.initialSheetSettings.beginSheetIndex <=
+					Number(itemValue) - 1
 						? record.initialSheetSettings.beginSheetIndex
 						: 0, // シートの開始位置設定 -> シートの数設定という操作で、シートの開始位置がシートの数を超える場合は、シートの開始位置を0にする
 			},
@@ -27,7 +28,7 @@ export default () => {
 			...record,
 			initialSheetSettings: {
 				...record.initialSheetSettings,
-				beginSheetIndex: itemValue - 1, // 0スタート
+				beginSheetIndex: Number(itemValue) - 1, // 0スタート
 			},
 		});
 	}

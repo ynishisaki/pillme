@@ -64,12 +64,18 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	// 出血が3日連続した場合、休薬する
 	if (haveBleedingDays > 3) {
-		if (takeMedicineDays > 25) {
+		if (
+			takeMedicineDays >
+			record.initialSheetSettings.minConteniousTakingDays
+		) {
+			// 翌日から
 			setRest();
 		}
 	}
 
-	if (takeMedicineDays > 120) {
+	if (
+		takeMedicineDays > record.initialSheetSettings.maxConteniousTakingDays
+	) {
 		setRest();
 	}
 
