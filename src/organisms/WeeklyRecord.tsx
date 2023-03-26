@@ -77,7 +77,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	return (
 		<>
 			<TouchableOpacity onPress={onPress}>
-				<SubTitle title='直近一週間の記録' Icon={RightIcon} />
+				<SubTitle title='過去一週間分の記録' Icon={RightIcon} />
 			</TouchableOpacity>
 			<View style={styles.container}>
 				<View style={styles.layout}>

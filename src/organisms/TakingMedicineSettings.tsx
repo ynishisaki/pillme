@@ -95,14 +95,19 @@ export default () => {
 		<View style={styles.container}>
 			<Title title={`服薬方法の設定`} />
 			<View style={styles.contentLayout}>
-				<Text>{"このアプリは、120日連続服用を対象としています。"}</Text>
-				<Text>
-					{
-						"お飲みのお薬の使用方法に合わせて、以下の設定を編集してください。"
-					}
-				</Text>
+				<View>
+					<Text style={styles.description}>
+						{"このアプリは、120日連続服用を対象としています。"}
+					</Text>
+					<Text style={styles.description}>
+						{
+							"お飲みのお薬の使用方法に合わせて、以下の設定を編集してください。"
+						}
+					</Text>
+				</View>
+
 				<View style={styles.currentSettingsContainer}>
-					<Text>現在の設定内容</Text>
+					<Text style={styles.subtitle}>現在の設定内容</Text>
 					{/* 服用1日目～24日目までは、出血がみられても連続して服用します。 */}
 					{/* 25日目以降120日目の間に3日以上の出血が見られた場合、服用を中止し、休薬期間を4日とります。 */}
 					<Text>
@@ -162,10 +167,22 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
+	description: {
+		fontSize: 12,
+		color: "#000000A8",
+	},
 	currentSettingsContainer: {
 		// flex: 1,
-		backgroundColor: "#ddd",
+		marginTop: 10,
+		padding: 20,
+		backgroundColor: "#ffffe0",
 		borderRadius: 16,
+		boxShadow: "0px 0px 4px #00000040",
+	},
+	subtitle: {
+		fontSize: 16,
+		textAlign: "center",
+		paddingBottom: 6,
 	},
 	contentLayout: {
 		flex: 1,

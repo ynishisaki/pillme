@@ -84,8 +84,10 @@ export default () => {
 	return (
 		<View style={styles.container}>
 			{/* <View style={styles.titleContainer}> */}
-			<Title title={`一週間の記録`} />
-			<Text>７日前まで記録をさかのぼって編集することができます</Text>
+			<Title title={`過去の記録`} />
+			<Text style={styles.description}>
+				一週間前まで記録をさかのぼって編集することができます
+			</Text>
 			<View style={styles.verticalStackLayout}>
 				{editableWeelyRecordCheckBoxes}
 			</View>
@@ -102,6 +104,12 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		backgroundColor: "#fff",
 		borderRadius: 16,
+	},
+	description: {
+		marginTop: 8,
+		marginHorizontal: 20,
+		fontSize: 12,
+		color: "#000000A8",
 	},
 	verticalStackLayout: {
 		flex: 1,

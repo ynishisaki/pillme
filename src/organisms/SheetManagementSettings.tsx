@@ -14,6 +14,10 @@ export default () => {
 			initialSheetSettings: {
 				...record.initialSheetSettings,
 				numOfPillsPerSheet: itemValue,
+				beginSheetIndex:
+					record.initialSheetSettings.beginSheetIndex <= itemValue - 1
+						? record.initialSheetSettings.beginSheetIndex
+						: 0, // シートの開始位置設定 -> シートの数設定という操作で、シートの開始位置がシートの数を超える場合は、シートの開始位置を0にする
 			},
 		});
 	}
@@ -28,26 +32,33 @@ export default () => {
 		});
 	}
 
-	const pickerItems = [];
-	for (let i = 1; i <= 30; i++) {
-		pickerItems.push(<Picker.Item key={i} label={`${i}`} value={i} />);
-	}
-
-	const minConteniousTakingDays = 24;
-	const maxConteniousTakingDays = 120;
-	const conteniousBleeingDaysForRest = 3;
-	const stopTakingDays = 4;
+	const pickerItems = (maxValue: number) => {
+		const items = [];
+		for (let i = 1; i <= maxValue; i++) {
+			items.push(<Picker.Item key={i} label={`${i}`} value={i} />);
+		}
+		return items;
+	};
 
 	return (
 		<View style={styles.container}>
 			<Title title={`シートの設定`} />
 			<View style={styles.contentLayout}>
-				<Text>{"利用開始時に設定"}</Text>
+				<View>
+					<Text style={styles.description}>
+						{
+							"この設定は、アプリ利用開始時とデータリセット時にのみ登録することができます。"
+						}
+					</Text>
+					<Text style={styles.description}>
+						{
+							"お飲みのお薬とシートの現在の状態に合わせて、以下の設定を編集してください。"
+						}
+					</Text>
+				</View>
 				<View style={styles.layout}>
 					<View style={styles.leftContent}>
-						<Text>
-							{"１シートあたりの錠数\n（プラセボは除く）"}
-						</Text>
+						<Text>{"１シートの錠数\n（プラセボは除く）"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<Picker
@@ -58,13 +69,13 @@ export default () => {
 							onValueChange={(itemValue, itemIndex) =>
 								setNumOfPillsPerSheet(itemValue, itemIndex)
 							}>
-							{pickerItems}
+							{pickerItems(28)}
 						</Picker>
 					</View>
 				</View>
 				<View style={styles.layout}>
 					<View style={styles.leftContent}>
-						<Text>アプリ使い始めの最初のシートの位置</Text>
+						<Text>シートの開始位置</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<Picker
@@ -75,7 +86,9 @@ export default () => {
 							onValueChange={(itemValue, itemIndex) =>
 								setBeginSheetIndex(itemValue, itemIndex)
 							}>
-							{pickerItems}
+							{pickerItems(
+								record.initialSheetSettings.numOfPillsPerSheet
+							)}
 						</Picker>
 					</View>
 				</View>
@@ -99,6 +112,10 @@ const styles = StyleSheet.create({
 	contentLayout: {
 		flex: 1,
 		padding: 20,
+	},
+	description: {
+		fontSize: 12,
+		color: "#000000A8",
 	},
 	layout: {
 		flexDirection: "row",
