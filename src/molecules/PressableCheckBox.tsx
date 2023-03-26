@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { DropIcon, PillIcon } from "../atoms/Icons";
+import { CancelLgIcon, DropLgIcon, PillLgIcon } from "../atoms/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 // 薬飲んだかと、出血したかチェックボックス
@@ -21,14 +21,18 @@ export default ({
 			{title && <Text style={styles.checkBoxText}>{title}</Text>}
 			<BouncyCheckbox
 				size={size === "md" ? 60 : 90}
-				fillColor='#F6B69A'
+				fillColor={disabled ? "lightgray" : "#F6B69A"}
 				unfillColor='#fff'
-				isChecked={isChecked}
+				isChecked={disabled ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				textComponent={null}
 				disableText={true}
 				disabled={disabled}
 				ImageComponent={
-					title === "服薬" ? PillIcon("lg") : DropIcon("lg")
+					disabled
+						? CancelLgIcon
+						: title === "服薬"
+						? PillLgIcon
+						: DropLgIcon
 				}
 				onPress={(nextBoolean) => onPress(nextBoolean)}
 			/>

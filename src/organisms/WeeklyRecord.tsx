@@ -105,10 +105,12 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 											<CheckBox
 												title='服薬'
 												isChecked={record.tookMedicine}
+												disabled={record.isRestPeriod}
 											/>
 											<CheckBox
 												title='出血'
 												isChecked={record.haveBleeding}
+												disabled={record.isRestPeriod}
 											/>
 										</View>
 									))
@@ -131,10 +133,12 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 											<CheckBox
 												title='服薬'
 												isChecked={record.tookMedicine}
+												disabled={record.isRestPeriod}
 											/>
 											<CheckBox
 												title='出血'
 												isChecked={record.haveBleeding}
+												disabled={record.isRestPeriod}
 											/>
 										</View>
 									))}
