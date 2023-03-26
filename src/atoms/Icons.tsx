@@ -16,18 +16,14 @@ export const RightIcon = () => (
 	<MaterialCommunityIcons name='chevron-right' size={30} color='#fff' />
 );
 
-export const PillLgIcon = () => (
-	<MaterialCommunityIcons name='pill' size={50} color='#fff' />
+export const PillIcon = (size: "sm" | "lg") => (
+	<MaterialCommunityIcons name='pill' size={size ? 20 : 50} color='#fff' />
 );
 
-export const PillSmIcon = () => (
-	<MaterialCommunityIcons name='pill' size={20} color='#fff' />
+export const DropIcon = (size: "sm" | "lg") => (
+	<MaterialCommunityIcons name='water' size={size ? 20 : 50} color='#fff' />
 );
 
-export const DropLgIcon = () => (
-	<MaterialCommunityIcons name='water' size={50} color='#fff' />
-);
-
-export const DropSmIcon = () => (
-	<MaterialCommunityIcons name='water' size={20} color='#fff' />
+export const CancelIcon = (size: "sm" | "lg") => (
+	<MaterialCommunityIcons name='cancel' size={size ? 20 : 50} color='#fff' />
 );

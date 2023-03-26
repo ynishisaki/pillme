@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { DropLgIcon, PillLgIcon } from "../atoms/Icons";
+import { DropIcon, PillIcon } from "../atoms/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 // 薬飲んだかと、出血したかチェックボックス
@@ -27,7 +27,9 @@ export default ({
 				textComponent={null}
 				disableText={true}
 				disabled={disabled}
-				ImageComponent={title === "服薬" ? PillLgIcon : DropLgIcon}
+				ImageComponent={
+					title === "服薬" ? PillIcon("lg") : DropIcon("lg")
+				}
 				onPress={(nextBoolean) => onPress(nextBoolean)}
 			/>
 		</View>

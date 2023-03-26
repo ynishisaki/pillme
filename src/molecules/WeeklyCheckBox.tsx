@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { DropSmIcon, PillSmIcon } from "../atoms/Icons";
+import { DropIcon, PillIcon } from "../atoms/Icons";
 
 export default ({
 	title,
@@ -18,7 +18,9 @@ export default ({
 				unfillColor='#fcfae8'
 				isChecked={isChecked} // must set
 				disableText={true}
-				ImageComponent={title === "服薬" ? PillSmIcon : DropSmIcon}
+				ImageComponent={
+					title === "服薬" ? PillIcon("sm") : DropIcon("sm")
+				}
 				disabled={true}
 				disableBuiltInState={isChecked}
 			/>
