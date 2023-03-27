@@ -54,14 +54,14 @@ export default function App() {
 						component={Home}
 						// options={{ title: "Welcome" }}
 					/>
-					<Stack.Screen
+					{/* <Stack.Screen
 						name='InitialSettings'
 						component={InitialSettings}
 					/>
 					<Stack.Screen
 						name='EditWeeklyRecord'
 						component={EditWeeklyRecord}
-					/>
+					/> */}
 				</Stack.Navigator>
 			</RecoilRoot>
 		</NavigationContainer>
