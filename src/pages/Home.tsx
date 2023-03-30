@@ -94,73 +94,30 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	// 	})();
 	// }, []);
 
-	const insets = useSafeAreaInsets();
-
 	return (
-		<View
-			style={[
-				styles.container,
-				{
-					backgroundColor: "#fff",
-					paddingTop: insets.top,
-					paddingBottom: insets.bottom,
-					paddingLeft: insets.left,
-					paddingRight: insets.right,
-				},
-			]}>
-			<ImageBackground
-				source={require("../../assets/bgimage.png")}
-				resizeMode='cover'
-				style={styles.bgimage}>
-				<View style={styles.header}>
-					<TouchableOpacity
-						onPress={() => {
-							navigation.navigate("InitialSettings", {
-								userId: "1",
-							});
-						}}>
-						<SettingIcon />
-					</TouchableOpacity>
+		<Layout navigationProps={navigation} navigationType='Home'>
+			<View style={styles.contentsLayout}>
+				<View style={styles.todaysRecord}>
+					<TodaysRecord />
 				</View>
-				<View style={styles.contentsLayout}>
-					<View style={styles.contentsLayoutt}>
-						<View style={styles.todaysRecord}>
-							<TodaysRecord />
-						</View>
-						<View style={styles.weeklyRecord}>
-							<WeeklyRecord
-								onPress={() =>
-									navigation.navigate("EditWeeklyRecord", {
-										userId: "2",
-									})
-								}
-							/>
-						</View>
-						<View style={styles.sheetRecord}>
-							<CurrentSheet />
-						</View>
-					</View>
+				<View style={styles.weeklyRecord}>
+					<WeeklyRecord
+						onPress={() =>
+							navigation.navigate("EditWeeklyRecord", {
+								userId: "2",
+							})
+						}
+					/>
 				</View>
-			</ImageBackground>
-		</View>
+				<View style={styles.sheetRecord}>
+					<CurrentSheet />
+				</View>
+			</View>
+		</Layout>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	bgimage: {
-		flex: 1,
-	},
-	header: {
-		height: 47,
-		width: 47,
-		marginTop: 8,
-		marginLeft: 8,
-		alignItems: "center",
-		justifyContent: "center",
-	},
 	contentsLayout: {
 		flex: 1,
 		marginTop: 16,
@@ -168,34 +125,25 @@ const styles = StyleSheet.create({
 		marginHorizontal: 16,
 		alignItems: "center",
 		flexDirection: "column",
-		// gap: 40,
-		// backgroundColor: "black",
-	},
-	contentsLayoutt: {
-		flex: 1,
-		marginTop: 16,
-		marginBottom: 16,
-		marginHorizontal: 16,
-		alignItems: "center",
-		flexDirection: "column",
-		gap: 40,
+		// gap: 30,
+		justifyContent: "space-between",
 	},
 	todaysRecord: {
-		flex: 40,
+		flex: 4,
 		width: 280,
 		backgroundColor: "white",
 		borderRadius: 40,
 	},
 	weeklyRecord: {
-		flex: 28,
+		flex: 3,
 		width: 330,
 		backgroundColor: "#63769C",
 		borderRadius: 16,
 	},
 	sheetRecord: {
-		flex: 32,
+		flex: 4,
 		width: 330,
-		marginBottom: 24,
+		// marginBottom: 24,
 		backgroundColor: "#63769C",
 		borderRadius: 16,
 	},
