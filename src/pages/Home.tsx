@@ -17,141 +17,134 @@ import { dailyRecordType, ScreenNavigationProp } from "~/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SettingIcon } from "~/atoms/Icons";
 
-export const Home = () =>
-	// { navigation }: { navigation: ScreenNavigationProp }
-	{
-		const [record, setRecord] = useRecoilState(recordState);
+export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+	const [record, setRecord] = useRecoilState(recordState);
 
-		// AsyncStorageから記録を取得
-		useEffect(() => {
-			(async () => {
-				const storedRecordAsString: string | null =
-					await AsyncStorage.getItem("record");
-				// AsyncStorageに記録がないので、デフォルトのrecordを利用する
-				if (storedRecordAsString === null) {
-					setRecord((oldRecord) => ({
-						...oldRecord,
+	// AsyncStorageから記録を取得
+	useEffect(() => {
+		(async () => {
+			const storedRecordAsString: string | null =
+				await AsyncStorage.getItem("record");
+			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
+			if (storedRecordAsString === null) {
+				setRecord((oldRecord) => ({
+					...oldRecord,
+					isAsyncStorageLoaded: true,
+				}));
+			}
+			// AsyncStorageから記録取得、stateにsetする
+			else {
+				const storedRecord = JSON.parse(storedRecordAsString);
+				const latestDailyRecord = storedRecord.dailyRecord[0];
+
+				// アプリ起動日が、前回起動日と同日の場合
+				if (latestDailyRecord.date === today) {
+					setRecord({
+						...storedRecord,
 						isAsyncStorageLoaded: true,
-					}));
+					});
 				}
-				// AsyncStorageから記録取得、stateにsetする
+
+				// アプリ起動日が、前回起動日と異なる日だったら、前回から今日までの記録を追加
 				else {
-					const storedRecord = JSON.parse(storedRecordAsString);
-					const latestDailyRecord = storedRecord.dailyRecord[0];
+					let latestDate = new Date(latestDailyRecord.date);
+					let todayDate = new Date(today);
 
-					// アプリ起動日が、前回起動日と同日の場合
-					if (latestDailyRecord.date === today) {
-						setRecord({
-							...storedRecord,
-							isAsyncStorageLoaded: true,
-						});
+					let lapsedDailyRecords: Array<dailyRecordType> = [];
+					// 時刻まで比較すると、左項は0時0分0秒、右項は現在時刻になることに注意
+					while (latestDate.getTime() < todayDate.getTime()) {
+						latestDate.setDate(latestDate.getDate() + 1);
+						lapsedDailyRecords = [
+							{
+								date: getDateStrings(latestDate),
+								tookMedicine: false,
+								haveBleeding: false,
+								isRestPeriod: false,
+							},
+							...lapsedDailyRecords,
+						];
 					}
 
-					// アプリ起動日が、前回起動日と異なる日だったら、前回から今日までの記録を追加
-					else {
-						let latestDate = new Date(latestDailyRecord.date);
-						let todayDate = new Date(today);
-
-						let lapsedDailyRecords: Array<dailyRecordType> = [];
-						// 時刻まで比較すると、左項は0時0分0秒、右項は現在時刻になることに注意
-						while (latestDate.getTime() < todayDate.getTime()) {
-							latestDate.setDate(latestDate.getDate() + 1);
-							lapsedDailyRecords = [
-								{
-									date: getDateStrings(latestDate),
-									tookMedicine: false,
-									haveBleeding: false,
-									isRestPeriod: false,
-								},
-								...lapsedDailyRecords,
-							];
-						}
-
-						setRecord({
-							...storedRecord,
-							dailyRecord: [
-								...lapsedDailyRecords,
-								...storedRecord.dailyRecord,
-							],
-							isAsyncStorageLoaded: true,
-						});
-					}
+					setRecord({
+						...storedRecord,
+						dailyRecord: [
+							...lapsedDailyRecords,
+							...storedRecord.dailyRecord,
+						],
+						isAsyncStorageLoaded: true,
+					});
 				}
-			})();
-			// 上記の括弧をつけることで即時関数を実行
-		}, []);
+			}
+		})();
+		// 上記の括弧をつけることで即時関数を実行
+	}, []);
 
-		// AsyncStorageに記録を保存
-		useEffect(() => {
-			AsyncStorage.setItem("record", JSON.stringify(record));
-			console.log(record);
-			console.log("stored");
-			console.log();
-		}, [record]);
+	// AsyncStorageに記録を保存
+	useEffect(() => {
+		AsyncStorage.setItem("record", JSON.stringify(record));
+		console.log(record);
+		console.log("stored");
+		console.log();
+	}, [record]);
 
-		// 注意！AsyncStorageを初期化
-		// useEffect(() => {
-		// 	(async () => {
-		// 		await AsyncStorage.clear();
-		// 	})();
-		// }, []);
+	// 注意！AsyncStorageを初期化
+	// useEffect(() => {
+	// 	(async () => {
+	// 		await AsyncStorage.clear();
+	// 	})();
+	// }, []);
 
-		const insets = useSafeAreaInsets();
+	const insets = useSafeAreaInsets();
 
-		return (
-			<View
-				style={[
-					styles.container,
-					{
-						backgroundColor: "#fff",
-						paddingTop: insets.top,
-						paddingBottom: insets.bottom,
-						paddingLeft: insets.left,
-						paddingRight: insets.right,
-					},
-				]}>
-				<ImageBackground
-					source={require("../../assets/bgimage.png")}
-					resizeMode='cover'
-					style={styles.bgimage}>
-					<View style={styles.header}>
-						<TouchableOpacity
-						// onPress={() => {
-						// 	navigation.navigate("InitialSettings", {
-						// 		userId: "1",
-						// 	});
-						// }}
-						>
-							<SettingIcon />
-						</TouchableOpacity>
-					</View>
-					<View style={styles.contentsLayout}>
-						<View style={styles.contentsLayoutt}>
-							<View style={styles.todaysRecord}>
-								<TodaysRecord />
-							</View>
-							<View style={styles.weeklyRecord}>
-								<WeeklyRecord
-									onPress={() =>
-										// navigation.navigate(
-										// 	"EditWeeklyRecord",
-										// 	{
-										// 		userId: "2",
-										// 	}
-										// )
-										{}
-									}
-								/>
-							</View>
-							<View style={styles.sheetRecord}>
-								<CurrentSheet />
-							</View>
+	return (
+		<View
+			style={[
+				styles.container,
+				{
+					backgroundColor: "#fff",
+					paddingTop: insets.top,
+					paddingBottom: insets.bottom,
+					paddingLeft: insets.left,
+					paddingRight: insets.right,
+				},
+			]}>
+			<ImageBackground
+				source={require("../../assets/bgimage.png")}
+				resizeMode='cover'
+				style={styles.bgimage}>
+				<View style={styles.header}>
+					<TouchableOpacity
+						onPress={() => {
+							navigation.navigate("InitialSettings", {
+								userId: "1",
+							});
+						}}>
+						<SettingIcon />
+					</TouchableOpacity>
+				</View>
+				<View style={styles.contentsLayout}>
+					<View style={styles.contentsLayoutt}>
+						<View style={styles.todaysRecord}>
+							<TodaysRecord />
+						</View>
+						<View style={styles.weeklyRecord}>
+							<WeeklyRecord
+								onPress={() =>
+									navigation.navigate("EditWeeklyRecord", {
+										userId: "2",
+									})
+								}
+							/>
+						</View>
+						<View style={styles.sheetRecord}>
+							<CurrentSheet />
 						</View>
 					</View>
-				</ImageBackground>
-			</View>
-		);
-	};
+				</View>
+			</ImageBackground>
+		</View>
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
