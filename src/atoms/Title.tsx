@@ -12,14 +12,14 @@ export default ({ title }: { title: string }) => {
 
 const styles = StyleSheet.create({
 	titleContainer: {
-		marginTop: 16,
+		marginTop: 12,
 		marginHorizontal: 20,
-		height: 32,
+		height: 28,
 		borderBottomColor: "#848484",
 		borderBottomWidth: 0.5,
 	},
 	titleText: {
-		fontSize: 20,
+		fontSize: 18,
 		textAlign: "center",
 	},
 });

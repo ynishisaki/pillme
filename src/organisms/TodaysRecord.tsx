@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
 	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		marginTop: 10,
+		marginTop: -10,
 	},
 });

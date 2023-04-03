@@ -11,7 +11,7 @@ export default ({
 	onPress,
 }: {
 	title: string | null;
-	size: "md" | "lg"; //  60 | 90
+	size: "md" | "lg"; //  60 | 80
 	isChecked: boolean;
 	disabled: boolean;
 	onPress: (nextBoolean: boolean) => void;
@@ -20,7 +20,7 @@ export default ({
 		<View style={styles.container}>
 			{title && <Text style={styles.checkBoxText}>{title}</Text>}
 			<BouncyCheckbox
-				size={size === "md" ? 60 : 90}
+				size={size === "md" ? 60 : 80}
 				fillColor={disabled ? "lightgray" : "#F6B69A"}
 				unfillColor='#fff'
 				isChecked={disabled ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
