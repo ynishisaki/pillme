@@ -67,11 +67,7 @@ export const CurrentSheetStatus = ({
 		}
 	}
 
-	return (
-		<View style={styles.container}>
-			<View style={styles.checkBoxesLayout}>{checkBoxes}</View>
-		</View>
-	);
+	return <View style={styles.container}>{checkBoxes}</View>;
 };
 
 const styles = StyleSheet.create({
@@ -81,20 +77,22 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		borderRadius: 16,
 		maxWidth: 210,
-	},
-	checkBoxesLayout: {
-		flex: 1,
+		maxHeight: 110,
 		flexDirection: "row",
 		flexWrap: "wrap",
-		padding: 5,
+		padding: "auto",
 		justifyContent: "space-between",
 	},
 	checkBoxLayout: {
+		// flex: 1,
 		alignItems: "center",
-		marginHorizontal: 5,
-		marginVertical: 5,
+		// marginHorizontal: 5,
+		// marginVertical: 150,
+		margin: 5,
+		paddingVertical: 5,
 	},
 	dammyCheckBox: {
 		width: 15,
+		// height: 10,
 	},
 });

@@ -177,8 +177,9 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		margin: "auto",
+		marginTop: 10,
 		paddingHorizontal: 20,
-		maxHeight: 100,
+		maxHeight: 90,
 	},
 	textLayout: {
 		marginTop: 8,
@@ -193,6 +194,6 @@ const styles = StyleSheet.create({
 	weekTextLayout: {
 		fontSize: 8,
 		color: "#fff",
-		marginBottom: 4,
+		marginBottom: -4,
 	},
 });

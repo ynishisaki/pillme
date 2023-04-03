@@ -76,8 +76,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",
-		margin: "auto",
 		marginHorizontal: 20,
-		maxHeight: 150,
 	},
 });

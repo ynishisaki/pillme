@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 	todaysRecord: {
 		// flex: 4,
 		height: 190,
-		width: 280,
+		width: 270,
 		backgroundColor: "white",
 		borderRadius: 40,
 	},
