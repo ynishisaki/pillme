@@ -116,24 +116,28 @@ export default () => {
 				<View style={styles.currentSettingsContainer}>
 					<Text style={styles.subtitle}>現在の設定内容</Text>
 
-					<Text>
+					<Text style={styles.textline}>
 						服用1日目～
-						<SmallPicker
-							value={minConteniousTakingDays}
-							onChange={onChangeMinConteniousTakingDays}
-							items={pickerItems(30)}
-						/>
+						<View>
+							<SmallPicker
+								value={minConteniousTakingDays}
+								onChange={onChangeMinConteniousTakingDays}
+								items={pickerItems(30)}
+							/>
+						</View>
 						日目までは出血がみられても連続して服用します。
 					</Text>
 					<Text>
 						服用
 						<Text>{minConteniousTakingDays + 1}</Text>
 						日目〜
-						<SmallPicker
-							value={maxConteniousTakingDays}
-							onChange={onChangeMaxConteniousTakingDays}
-							items={pickerItems(120)}
-						/>
+						<View>
+							<SmallPicker
+								value={maxConteniousTakingDays}
+								onChange={onChangeMaxConteniousTakingDays}
+								items={pickerItems(120)}
+							/>
+						</View>
 						日目の間に
 						<SmallPicker
 							value={conteniousBleeingDaysForRest}
@@ -178,6 +182,12 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		paddingBottom: 6,
 	},
+	textline: {
+		flexDirection: "row",
+		height: 50,
+		alignItems: "center",
+		// justifyContent: "space-around",
+	},
 	contentLayout: {
 		flex: 1,
 		padding: 20,
@@ -196,7 +206,11 @@ const styles = StyleSheet.create({
 		width: "35%",
 	},
 	picker: {
-		// height: 50,
-		// fontSize: 20,
+		backgroundColor: "cyan",
+		display: "flex",
+		// height: 10,
+		width: 100,
+		height: 50,
+		fontSize: 20,
 	},
 });
