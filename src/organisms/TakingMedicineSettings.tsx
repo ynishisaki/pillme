@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { Picker } from "@react-native-picker/picker";
-
+import CurrentSettings from "~/molecules/CurrentSettings";
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
 
@@ -113,46 +113,56 @@ export default () => {
 					</Text>
 				</View>
 
-				<View style={styles.currentSettingsContainer}>
-					<Text style={styles.subtitle}>現在の設定内容</Text>
-
-					<Text style={styles.textline}>
-						服用1日目～
-						<View>
-							<SmallPicker
-								value={minConteniousTakingDays}
-								onChange={onChangeMinConteniousTakingDays}
-								items={pickerItems(30)}
-							/>
-						</View>
-						日目までは出血がみられても連続して服用します。
-					</Text>
-					<Text>
-						服用
-						<Text>{minConteniousTakingDays + 1}</Text>
-						日目〜
-						<View>
-							<SmallPicker
-								value={maxConteniousTakingDays}
-								onChange={onChangeMaxConteniousTakingDays}
-								items={pickerItems(120)}
-							/>
-						</View>
-						日目の間に
+				<View style={styles.layout}>
+					<View style={styles.leftContent}>
+						<Text>{"最小連続投与日数"}</Text>
+					</View>
+					<View style={styles.rightContent}>
+						<SmallPicker
+							value={minConteniousTakingDays}
+							onChange={onChangeMinConteniousTakingDays}
+							items={pickerItems(30)}
+						/>
+					</View>
+				</View>
+				<View style={styles.layout}>
+					<View style={styles.leftContent}>
+						<Text>{"最大連続投与日数"}</Text>
+					</View>
+					<View style={styles.rightContent}>
+						<SmallPicker
+							value={maxConteniousTakingDays}
+							onChange={onChangeMinConteniousTakingDays}
+							items={pickerItems(30)}
+						/>
+					</View>
+				</View>
+				<View style={styles.layout}>
+					<View style={styles.leftContent}>
+						<Text>{"休薬に必要な連続出血日数"}</Text>
+					</View>
+					<View style={styles.rightContent}>
 						<SmallPicker
 							value={conteniousBleeingDaysForRest}
 							onChange={onChangeConteniousBleeingDaysForRest}
 							items={pickerItems(7)}
 						/>
-						日連続で出血が見られた場合、服用を中止し、休薬期間を翌日から
+					</View>
+				</View>
+				<View style={styles.layout}>
+					<View style={styles.leftContent}>
+						<Text>{"休薬日数"}</Text>
+					</View>
+					<View style={styles.rightContent}>
 						<SmallPicker
 							value={stopTakingDays}
 							onChange={onChangeStopTakingDays}
 							items={pickerItems(7)}
 						/>
-						日間とります。
-					</Text>
+					</View>
 				</View>
+
+				<CurrentSettings />
 			</View>
 		</View>
 	);
@@ -206,11 +216,12 @@ const styles = StyleSheet.create({
 		width: "35%",
 	},
 	picker: {
-		backgroundColor: "cyan",
+		// backgroundColor: "cyan",
+
 		display: "flex",
 		// height: 10,
-		width: 100,
+		// width: 100,
 		height: 50,
-		fontSize: 20,
+		// fontSize: 20,
 	},
 });

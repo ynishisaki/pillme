@@ -13,7 +13,7 @@ export const InitialSettings = ({
 	return (
 		<Layout navigationProps={navigation} navigationType='InitialSettings'>
 			<TakingMedicineSettings />
-			<SheetManagementSettings />
+			{/* <SheetManagementSettings /> */}
 		</Layout>
 	);
 };
