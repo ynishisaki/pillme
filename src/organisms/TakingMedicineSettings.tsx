@@ -115,7 +115,7 @@ export default () => {
 
 				<View style={styles.layout}>
 					<View style={styles.leftContent}>
-						<Text>{"最小連続投与日数"}</Text>
+						<Text>{"最短連続投与日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
@@ -127,19 +127,19 @@ export default () => {
 				</View>
 				<View style={styles.layout}>
 					<View style={styles.leftContent}>
-						<Text>{"最大連続投与日数"}</Text>
+						<Text>{"最長連続投与日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
 							value={maxConteniousTakingDays}
 							onChange={onChangeMinConteniousTakingDays}
-							items={pickerItems(30)}
+							items={pickerItems(120)}
 						/>
 					</View>
 				</View>
 				<View style={styles.layout}>
 					<View style={styles.leftContent}>
-						<Text>{"休薬に必要な連続出血日数"}</Text>
+						<Text>{"休薬に入る条件となる連続出血日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
@@ -151,7 +151,7 @@ export default () => {
 				</View>
 				<View style={styles.layout}>
 					<View style={styles.leftContent}>
-						<Text>{"休薬日数"}</Text>
+						<Text>{"連続休薬日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
@@ -180,24 +180,13 @@ const styles = StyleSheet.create({
 		color: "#000000A8",
 	},
 	currentSettingsContainer: {
-		// flex: 1,
 		marginTop: 10,
 		padding: 20,
 		backgroundColor: "#ffffe0",
 		borderRadius: 16,
 		boxShadow: "0px 0px 4px #00000040",
 	},
-	subtitle: {
-		fontSize: 16,
-		textAlign: "center",
-		paddingBottom: 6,
-	},
-	textline: {
-		flexDirection: "row",
-		height: 50,
-		alignItems: "center",
-		// justifyContent: "space-around",
-	},
+
 	contentLayout: {
 		flex: 1,
 		padding: 20,
@@ -210,18 +199,13 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 	},
 	leftContent: {
-		width: "65%",
+		width: "60%",
 	},
 	rightContent: {
-		width: "35%",
+		width: "40%",
 	},
 	picker: {
-		// backgroundColor: "cyan",
-
 		display: "flex",
-		// height: 10,
-		// width: 100,
 		height: 50,
-		// fontSize: 20,
 	},
 });
