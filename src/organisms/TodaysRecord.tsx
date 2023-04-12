@@ -20,6 +20,11 @@ export function showDate(dateStrings: string) {
 export const TodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
+	const tookMedicine = record.dailyRecord[0].tookMedicine;
+	console.log("tookMedicine: ", tookMedicine);
+	const haveBleeding = record.dailyRecord[0].haveBleeding;
+	const isRestPeriod = record.dailyRecord[0].isRestPeriod;
+
 	function onPressTookMedicine(nextBoolean: boolean) {
 		setRecord({
 			...record,
@@ -56,16 +61,18 @@ export const TodaysRecord = () => {
 						<>
 							<CheckBox
 								title='服薬'
+								type='medicine'
 								size={"lg"}
-								isChecked={record.dailyRecord[0].tookMedicine}
-								disabled={record.dailyRecord[0].isRestPeriod}
+								isChecked={tookMedicine}
+								disabled={isRestPeriod}
 								onPress={onPressTookMedicine}
 							/>
 							<CheckBox
 								title='出血'
+								type='bleeding'
 								size={"lg"}
-								isChecked={record.dailyRecord[0].haveBleeding}
-								disabled={record.dailyRecord[0].isRestPeriod}
+								isChecked={haveBleeding}
+								disabled={isRestPeriod}
 								onPress={onPressHaveBleeding}
 							/>
 						</>

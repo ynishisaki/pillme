@@ -20,6 +20,7 @@ export default () => {
 				},
 				...record.dailyRecord.slice(index + 1),
 			],
+			isAsyncStorageLoaded: false,
 		});
 	}
 
@@ -59,6 +60,7 @@ export default () => {
 					<>
 						<CheckBox
 							title={i === 0 ? "服薬" : null}
+							type='medicine'
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
 							disabled={record.dailyRecord[i].isRestPeriod}
@@ -68,6 +70,7 @@ export default () => {
 						/>
 						<CheckBox
 							title={i === 0 ? "出血" : null}
+							type='bleeding'
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
 							disabled={record.dailyRecord[i].isRestPeriod}

@@ -5,12 +5,14 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 // 薬飲んだかと、出血したかチェックボックス
 export default ({
 	title,
+	type,
 	size,
 	isChecked,
 	disabled,
 	onPress,
 }: {
 	title: string | null;
+	type: "medicine" | "bleeding";
 	size: "md" | "lg"; //  60 | 80
 	isChecked: boolean;
 	disabled: boolean;
@@ -30,7 +32,7 @@ export default ({
 				ImageComponent={
 					disabled
 						? CancelLgIcon
-						: title === "服薬"
+						: type === "medicine"
 						? PillLgIcon
 						: DropLgIcon
 				}
