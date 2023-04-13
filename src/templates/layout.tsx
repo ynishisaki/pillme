@@ -41,9 +41,7 @@ export default ({
 					<TouchableOpacity
 						onPress={() => {
 							navigationType === "Home"
-								? navigationProps.navigate("InitialSettings", {
-										userId: "1",
-								  })
+								? navigationProps.navigate("InitialSettings")
 								: navigationProps.goBack();
 						}}>
 						{navigationType === "Home" ? (

@@ -102,11 +102,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 				</View>
 				<View style={styles.weeklyRecord}>
 					<WeeklyRecord
-						onPress={() =>
-							navigation.navigate("EditWeeklyRecord", {
-								userId: "2",
-							})
-						}
+						onPress={() => navigation.navigate("EditWeeklyRecord")}
 					/>
 				</View>
 				<View style={styles.sheetRecord}>

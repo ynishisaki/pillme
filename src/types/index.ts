@@ -2,8 +2,8 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
 	Home: undefined;
-	EditWeeklyRecord: { userId: string };
-	InitialSettings: { userId: string };
+	EditWeeklyRecord: undefined;
+	InitialSettings: undefined;
 	Feed: { sort: "latest" | "top" } | undefined;
 };
 

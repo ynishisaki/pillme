@@ -20,7 +20,6 @@ export default () => {
 				},
 				...record.dailyRecord.slice(index + 1),
 			],
-			isAsyncStorageLoaded: false,
 		});
 	}
 
