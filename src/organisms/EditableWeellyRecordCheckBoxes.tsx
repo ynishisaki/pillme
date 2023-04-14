@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 
 import { recordState } from "~/../App";
-import Title from "~/atoms/Title";
 import CheckBox from "~/molecules/PressableCheckBox";
 import { showDate } from "~/organisms/TodaysRecord";
 
@@ -37,15 +36,6 @@ export default () => {
 		});
 	}
 
-	const date = new Date();
-	const week = date.getDay();
-	const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
-
-	const recentWeekArr = [
-		...weekArr.slice((week + 1) % 7),
-		...weekArr.slice(0, (week + 1) % 7),
-	];
-
 	const recordLength =
 		record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
 
@@ -53,7 +43,7 @@ export default () => {
 	for (let i = 0; i < recordLength; i++) {
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
-				<Text>{showDate(record.dailyRecord[0].date)}</Text>
+				<Text>{showDate(record.dailyRecord[i].date)}</Text>
 
 				{record.isAsyncStorageLoaded && (
 					<>
@@ -84,15 +74,8 @@ export default () => {
 	}
 
 	return (
-		<View style={styles.container}>
-			{/* <View style={styles.titleContainer}> */}
-			<Title title={`過去の記録`} />
-			<Text style={styles.description}>
-				一週間前まで記録をさかのぼって編集することができます
-			</Text>
-			<View style={styles.verticalStackLayout}>
-				{editableWeelyRecordCheckBoxes}
-			</View>
+		<View style={styles.verticalStackLayout}>
+			{editableWeelyRecordCheckBoxes}
 		</View>
 	);
 };
