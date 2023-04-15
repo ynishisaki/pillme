@@ -38,18 +38,14 @@ export default ({
 				resizeMode='cover'
 				style={styles.bgimage}>
 				<View style={styles.header}>
-					<TouchableOpacity
-						onPress={() => {
-							navigationType === "Home"
-								? navigationProps.navigate("InitialSettings")
-								: navigationProps.goBack();
-						}}>
-						{navigationType === "Home" ? (
+					{navigationType === "Home" && (
+						<TouchableOpacity
+							onPress={() => {
+								navigationProps.navigate("InitialSettings");
+							}}>
 							<SettingIcon />
-						) : (
-							<BackIcon />
-						)}
-					</TouchableOpacity>
+						</TouchableOpacity>
+					)}
 				</View>
 				<View style={styles.contentsLayout}>{children}</View>
 			</ImageBackground>

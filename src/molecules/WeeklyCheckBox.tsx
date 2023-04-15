@@ -27,7 +27,7 @@ export default ({
 						? PillSmIcon
 						: DropSmIcon
 				}
-				disabled={disabled}
+				disabled={true}
 				disableBuiltInState={isChecked}
 			/>
 		</>

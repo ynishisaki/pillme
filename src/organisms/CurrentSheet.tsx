@@ -24,6 +24,7 @@ export const CurrentSheet = () => {
 	const beginSheetIndex = record.initialSheetSettings.beginSheetIndex;
 
 	const recordLength = record.dailyRecord.length; // 今日の分を含めてOK
+	console.log("test: recordLength", recordLength);
 
 	const currentSheetTookMedicineLength =
 		(recordLength + beginSheetIndex) % numOfPillsPerSheet || 24; // 1, 2, ... 24

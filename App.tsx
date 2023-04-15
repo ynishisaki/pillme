@@ -47,7 +47,11 @@ export default function App() {
 		<NavigationContainer>
 			<RecoilRoot>
 				<Stack.Navigator
-					screenOptions={{ headerShown: false }}
+					// Task: Setting Button is under the header
+					screenOptions={{
+						title: "",
+						headerTransparent: true,
+					}}
 					initialRouteName='Home'>
 					<Stack.Screen
 						name='Home'

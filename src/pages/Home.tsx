@@ -19,6 +19,12 @@ import { SettingIcon } from "~/atoms/Icons";
 
 export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	const [record, setRecord] = useRecoilState(recordState);
+	console.log("");
+	console.log("");
+
+	console.log("*** Home.tsx ***");
+	console.log("view rendered");
+	console.log("****************");
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -86,13 +92,6 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 		console.log("stored");
 		console.log();
 	}, [record]);
-
-	// 注意！AsyncStorageを初期化
-	// useEffect(() => {
-	// 	(async () => {
-	// 		await AsyncStorage.clear();
-	// 	})();
-	// }, []);
 
 	return (
 		<Layout navigationProps={navigation} navigationType='Home'>
