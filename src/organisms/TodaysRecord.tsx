@@ -63,7 +63,7 @@ export const TodaysRecord = () => {
 								type='medicine'
 								size={"lg"}
 								isChecked={tookMedicine}
-								disabled={isRestPeriod}
+								isRestPeriod={isRestPeriod}
 								onPress={onPressTookMedicine}
 							/>
 							<CheckBox
@@ -71,7 +71,7 @@ export const TodaysRecord = () => {
 								type='bleeding'
 								size={"lg"}
 								isChecked={haveBleeding}
-								disabled={isRestPeriod}
+								isRestPeriod={isRestPeriod}
 								onPress={onPressHaveBleeding}
 							/>
 						</>

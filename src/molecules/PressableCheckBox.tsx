@@ -8,14 +8,14 @@ export default ({
 	type,
 	size,
 	isChecked,
-	disabled,
+	isRestPeriod,
 	onPress,
 }: {
 	title: string | null;
 	type: "medicine" | "bleeding";
 	size: "md" | "lg"; //  60 | 80
 	isChecked: boolean;
-	disabled: boolean;
+	isRestPeriod: boolean;
 	onPress: (nextBoolean: boolean) => void;
 }) => {
 	return (
@@ -23,14 +23,14 @@ export default ({
 			{title && <Text style={styles.checkBoxText}>{title}</Text>}
 			<BouncyCheckbox
 				size={size === "md" ? 60 : 80}
-				fillColor={disabled ? "lightgray" : "#F6B69A"}
+				fillColor={isRestPeriod ? "lightgray" : "#F6B69A"}
 				unfillColor='#fff'
-				isChecked={disabled ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
+				isChecked={isRestPeriod ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				textComponent={null}
 				disableText={true}
-				disabled={disabled}
+				disabled={isRestPeriod}
 				ImageComponent={
-					disabled
+					isRestPeriod
 						? CancelLgIcon
 						: type === "medicine"
 						? PillLgIcon

@@ -52,7 +52,7 @@ export default () => {
 							type='medicine'
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
-							disabled={record.dailyRecord[i].isRestPeriod}
+							isRestPeriod={record.dailyRecord[i].isRestPeriod}
 							onPress={(nextBoolean) =>
 								onPressTookMedicine(nextBoolean, i)
 							}
@@ -62,7 +62,7 @@ export default () => {
 							type='bleeding'
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
-							disabled={record.dailyRecord[i].isRestPeriod}
+							isRestPeriod={record.dailyRecord[i].isRestPeriod}
 							onPress={(nextBoolean) =>
 								onPressHaveBleeding(nextBoolean, i)
 							}

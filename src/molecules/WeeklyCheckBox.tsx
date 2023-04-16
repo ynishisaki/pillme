@@ -5,23 +5,24 @@ import { CancelSmIcon, DropSmIcon, PillSmIcon } from "../atoms/Icons";
 export default ({
 	title,
 	isChecked,
-	disabled,
+	isRestPeriod,
 }: {
 	title: string;
 	isChecked: boolean;
-	disabled: boolean;
+	isRestPeriod: boolean;
 }) => {
+	console.log("isChecked", isChecked);
 	return (
 		<>
 			<BouncyCheckbox
 				style={styles.container}
 				size={25}
-				fillColor={disabled ? "lightgray" : "#F6B69A"} // タスク
+				fillColor={isRestPeriod ? "lightgray" : "#F6B69A"} // タスク
 				unfillColor='#fcfae8'
-				isChecked={disabled ? true : isChecked} // must set
+				isChecked={isRestPeriod ? true : isChecked} // must set
 				disableText={true}
 				ImageComponent={
-					disabled
+					isRestPeriod
 						? CancelSmIcon
 						: title === "服薬"
 						? PillSmIcon
