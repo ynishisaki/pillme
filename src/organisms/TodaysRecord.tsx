@@ -21,7 +21,6 @@ export const TodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const tookMedicine = record.dailyRecord[0].tookMedicine;
-	console.log("tookMedicine: ", tookMedicine);
 	const haveBleeding = record.dailyRecord[0].haveBleeding;
 	const isRestPeriod = record.dailyRecord[0].isRestPeriod;
 

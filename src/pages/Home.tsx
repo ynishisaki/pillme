@@ -16,15 +16,18 @@ import { CurrentSheet } from "~/organisms/CurrentSheet";
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SettingIcon } from "~/atoms/Icons";
+import { useIsFocused } from "@react-navigation/native";
 
 export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 	console.log("");
 	console.log("");
+	console.log("******** Home.tsx ********");
+	console.log("****** view rendered ******");
 
-	console.log("*** Home.tsx ***");
-	console.log("view rendered");
-	console.log("****************");
+	// This hook returns `true` if the screen is focused, `false` otherwise
+	const isFocused = useIsFocused();
+	console.log("isFocused: " + isFocused);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -95,19 +98,23 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 
 	return (
 		<Layout navigationProps={navigation} navigationType='Home'>
-			<View style={styles.contentsLayout}>
-				<View style={styles.todaysRecord}>
-					<TodaysRecord />
+			{isFocused && (
+				<View style={styles.contentsLayout}>
+					<View style={styles.todaysRecord}>
+						<TodaysRecord />
+					</View>
+					<View style={styles.weeklyRecord}>
+						<WeeklyRecord
+							onPress={() =>
+								navigation.navigate("EditWeeklyRecord")
+							}
+						/>
+					</View>
+					<View style={styles.sheetRecord}>
+						<CurrentSheet />
+					</View>
 				</View>
-				<View style={styles.weeklyRecord}>
-					<WeeklyRecord
-						onPress={() => navigation.navigate("EditWeeklyRecord")}
-					/>
-				</View>
-				<View style={styles.sheetRecord}>
-					<CurrentSheet />
-				</View>
-			</View>
+			)}
 		</Layout>
 	);
 };
