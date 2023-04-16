@@ -36,44 +36,17 @@ export default () => {
 		console.log("Initialized AsyncStorage.");
 	};
 
-	// AsyncStorageに記録を保存
-	// useEffect(() => {
-	// 	AsyncStorage.setItem("record", JSON.stringify(record));
-	// 	console.log(record);
-	// 	console.log("stored");
-	// 	console.log();
-	// }, [record]);
-	// 注意！AsyncStorageを初期化
-	// 	async () => {
-	// 		await AsyncStorage.clear();
-	// 	};
-
-	// 	console.log("Initialized AsyncStorage.");
-	// };
-	// useEffect(() => {
-	// 	(async () => {
-	// 		await AsyncStorage.clear();
-	// 	})();
-	// }, []);
-
 	return (
 		<View style={styles.container}>
-			<Title title={`シートの設定`} />
+			<Title title={`初期化`} />
 			<View style={styles.contentLayout}>
 				<View>
 					<Text style={styles.description}>
-						{
-							"この設定は、アプリ利用開始時とデータリセット時にのみ登録することができます。"
-						}
-					</Text>
-					<Text style={styles.description}>
-						{
-							"お飲みのお薬とシートの現在の状態に合わせて、以下の設定を編集してください。"
-						}
+						{"アプリ内の全データを削除することができます。"}
 					</Text>
 					<Button
 						onPress={onPressDelete}
-						title='注意！データ削除'
+						title='削除'
 						color='#841584'
 						accessibilityLabel='delete button'
 					/>

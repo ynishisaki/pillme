@@ -122,7 +122,6 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginTop: 16,
 		marginBottom: 16,
 		marginHorizontal: 16,
 		alignItems: "center",
@@ -131,24 +130,20 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 	},
 	todaysRecord: {
-		// flex: 4,
 		height: 190,
 		width: 270,
 		backgroundColor: "white",
 		borderRadius: 40,
 	},
 	weeklyRecord: {
-		// flex: 3,
 		height: 150,
 		width: 330,
 		backgroundColor: "#63769C",
 		borderRadius: 16,
 	},
 	sheetRecord: {
-		// flex: 4,
 		height: 180,
 		width: 330,
-		// marginBottom: 24,
 		backgroundColor: "#63769C",
 		borderRadius: 16,
 	},

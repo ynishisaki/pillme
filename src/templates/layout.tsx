@@ -1,17 +1,9 @@
-import {
-	ImageBackground,
-	StyleSheet,
-	View,
-	TouchableOpacity,
-} from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BackIcon, SettingIcon } from "~/atoms/Icons";
 import { RootStackParamList } from "~/types";
 import { ScreenNavigationProp } from "~/types";
 
 export default ({
-	navigationProps,
-	navigationType,
 	children,
 }: {
 	navigationProps: ScreenNavigationProp;

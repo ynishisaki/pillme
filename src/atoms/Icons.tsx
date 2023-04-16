@@ -1,11 +1,11 @@
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-export const MenuIcon = () => (
-	<MaterialCommunityIcons name='menu' size={40} color='#000' />
-);
+// export const MenuIcon = () => (
+// 	<MaterialCommunityIcons name='menu' size={40} color='#000' />
+// );
 
 export const SettingIcon = () => (
-	<MaterialCommunityIcons name='cog-outline' size={35} color='gray' />
+	<MaterialCommunityIcons name='cog-outline' size={30} color='gray' />
 );
 
 export const BackIcon = () => (
