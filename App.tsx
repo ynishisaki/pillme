@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "./src/pages/Home";
 import { InitialSettings } from "./src/pages/InitialSettings";
 import { EditWeeklyRecord } from "./src/pages/EditWeeklyRecord";
+import { TouchableOpacity } from "react-native";
+import { SettingIcon } from "~/atoms/Icons";
 
 export function getDateStrings(selectedDate: Date) {
 	const offset = selectedDate.getTimezoneOffset();
@@ -47,7 +49,6 @@ export default function App() {
 		<NavigationContainer>
 			<RecoilRoot>
 				<Stack.Navigator
-					// Task: Setting Button is under the header
 					screenOptions={{
 						title: "",
 						headerTransparent: true,
@@ -56,7 +57,16 @@ export default function App() {
 					<Stack.Screen
 						name='Home'
 						component={Home}
-						// options={{ title: "Welcome" }}
+						options={({ navigation }) => ({
+							headerRight: () => (
+								<TouchableOpacity
+									onPress={() => {
+										navigation.navigate("InitialSettings");
+									}}>
+									<SettingIcon />
+								</TouchableOpacity>
+							),
+						})}
 					/>
 					<Stack.Screen
 						name='InitialSettings'

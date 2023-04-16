@@ -37,16 +37,7 @@ export default ({
 				source={require("../../assets/bgimage.png")}
 				resizeMode='cover'
 				style={styles.bgimage}>
-				<View style={styles.header}>
-					{navigationType === "Home" && (
-						<TouchableOpacity
-							onPress={() => {
-								navigationProps.navigate("InitialSettings");
-							}}>
-							<SettingIcon />
-						</TouchableOpacity>
-					)}
-				</View>
+				<View style={styles.header} />
 				<View style={styles.contentsLayout}>{children}</View>
 			</ImageBackground>
 		</View>
