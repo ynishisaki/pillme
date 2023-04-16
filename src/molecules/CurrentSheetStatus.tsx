@@ -72,15 +72,16 @@ export const CurrentSheetStatus = ({
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		// flex: 1,
 		borderColor: "#fff",
 		borderWidth: 2,
 		borderRadius: 16,
-		maxWidth: 210,
-		maxHeight: 110,
+		width: 200,
+		height: 110,
 		flexDirection: "row",
 		flexWrap: "wrap",
-		padding: "auto",
+		// padding: "auto",
+		padding: 5,
 		justifyContent: "space-between",
 	},
 	checkBoxLayout: {
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
 		// marginHorizontal: 5,
 		// marginVertical: 150,
 		margin: 5,
-		paddingVertical: 5,
+		paddingVertical: 7,
 	},
 	dammyCheckBox: {
 		width: 15,
