@@ -46,12 +46,15 @@ export const CurrentSheet = () => {
 
 	return (
 		<>
-			<TouchableOpacity
+			{/* <TouchableOpacity
 				onPress={() => {
 					console.log("test: pressed");
-				}}>
-				<SubTitle title='現在のシート' Icon={RightIcon} />
-			</TouchableOpacity>
+				}}> */}
+			<SubTitle
+				title='現在のシート'
+				// Icon={RightIcon}
+			/>
+			{/* </TouchableOpacity> */}
 			<View style={styles.container}>
 				<View style={styles.layout}>
 					<EstimatedEndDate estimatedEndDate={estimatedEndDate} />

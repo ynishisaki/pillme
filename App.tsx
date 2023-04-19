@@ -50,6 +50,7 @@ export default function App() {
 			<RecoilRoot>
 				<Stack.Navigator
 					screenOptions={{
+						// タスク：設定画面はtitleをつける
 						title: "",
 						headerTransparent: true,
 					}}

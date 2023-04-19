@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default ({ title, Icon }: { title: string; Icon: React.FC | null }) => {
+export default ({ title, Icon }: { title: string; Icon?: React.FC }) => {
 	return (
 		<View style={styles.titleContainer}>
 			<Text style={styles.titleText}>{title}</Text>

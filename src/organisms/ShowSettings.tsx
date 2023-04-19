@@ -1,11 +1,11 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, Modal, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { Picker } from "@react-native-picker/picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import ModalLayout from "~/templates/ModalLayout";
 import { recordState, today } from "~/../App";
 import Title from "~/atoms/Title";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -36,16 +36,35 @@ export default () => {
 		console.log("Initialized AsyncStorage.");
 	};
 
+	const createTwoButtonAlert = () =>
+		Alert.alert(
+			"データの初期化",
+			"一度初期化するとデータは復元できません。本当によろしいでしょうか？",
+			[
+				{
+					text: "Cancel",
+					style: "cancel",
+				},
+				{
+					text: "OK",
+					onPress: () => onPressDelete,
+
+					style: "destructive",
+				},
+			]
+		);
+
 	return (
 		<View style={styles.container}>
 			<Title title={`初期化`} />
+
 			<View style={styles.contentLayout}>
 				<View>
 					<Text style={styles.description}>
 						{"アプリ内の全データを削除することができます。"}
 					</Text>
 					<Button
-						onPress={onPressDelete}
+						onPress={createTwoButtonAlert}
 						title='削除'
 						color='#841584'
 						accessibilityLabel='delete button'
