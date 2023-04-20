@@ -19,7 +19,6 @@ export const InitialSettings = ({
 				<MedicationMethodSettings />
 				<SheetManagementSettings />
 				<ShowSettings />
-				{/* <CurrentSettings /> */}
 			</ScrollView>
 		</Layout>
 	);
@@ -31,13 +30,14 @@ const styles = StyleSheet.create({
 	// 	paddingTop: StatusBar.currentHeight,
 	// },
 	scrollView: {
+		flex: 1,
 		// backgroundColor: "pink",
 		// marginHorizontal: 20,
 		// marginBottom: 16,
 		// marginHorizontal: 16,
 		// alignItems: "center",
 		// flexDirection: "column",
-		// gap: 30,
+		gap: 30,
 		// justifyContent: "space-between",
 	},
 });

@@ -8,9 +8,13 @@ import Title from "~/atoms/Title";
 import { useEffect, useState } from "react";
 
 export default () => {
+	const [isPressDelete, setIsPressDelete] = useState(false);
+
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const onPressDelete = async () => {
+		setIsPressDelete(true);
+
 		setRecord({
 			initialSheetSettings: {
 				// 投薬方法に関する設定
@@ -38,18 +42,17 @@ export default () => {
 
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			"データの初期化",
-			"一度初期化するとデータは復元できません。本当によろしいでしょうか？",
+			"データを削除しますか？",
+			"一度削除したデータは復元できません。よろしいですか？",
 			[
 				{
-					text: "Cancel",
+					text: "キャンセル",
 					style: "cancel",
 				},
 				{
 					text: "OK",
-					onPress: () => onPressDelete,
-
 					style: "destructive",
+					onPress: () => onPressDelete,
 				},
 			]
 		);
@@ -57,15 +60,17 @@ export default () => {
 	return (
 		<View style={styles.container}>
 			<Title title={`初期化`} />
-
 			<View style={styles.contentLayout}>
 				<View>
 					<Text style={styles.description}>
-						{"アプリ内の全データを削除することができます。"}
+						{
+							"本アプリ内の全データを削除し、インストール時の状態に初期化します。"
+						}
 					</Text>
 					<Button
 						onPress={createTwoButtonAlert}
-						title='削除'
+						title='データ初期化'
+						disabled={isPressDelete}
 						color='#841584'
 						accessibilityLabel='delete button'
 					/>
