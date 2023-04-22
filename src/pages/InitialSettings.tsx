@@ -1,12 +1,14 @@
 import React from "react";
-import Layout from "~/templates/Layout";
-import { StyleSheet } from "react-native";
+import ScreenLayout from "~/template/ScreenLayout";
+import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { ScreenNavigationProp } from "~/types";
 import MedicationMethodSettings from "~/organisms/MedicationMethodSettings";
 import SheetManagementSettings from "~/organisms/SheetManagementSettings";
 import CurrentSettings from "~/molecules/CurrentSettings";
 import ShowSettings from "~/organisms/ShowSettings";
 import { ScrollView } from "react-native";
+import { useHeaderHeight } from "@react-navigation/elements";
+import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 
 export const InitialSettings = ({
 	navigation,
@@ -14,30 +16,22 @@ export const InitialSettings = ({
 	navigation: ScreenNavigationProp;
 }) => {
 	return (
-		<Layout navigationProps={navigation} navigationType='InitialSettings'>
-			<ScrollView style={styles.scrollView}>
+		<ScrollableScreenLayout
+			navigationProps={navigation}
+			navigationType='InitialSettings'>
+			<View style={styles.contentsLayout}>
 				<MedicationMethodSettings />
 				<SheetManagementSettings />
 				<ShowSettings />
-			</ScrollView>
-		</Layout>
+			</View>
+		</ScrollableScreenLayout>
 	);
 };
 
 const styles = StyleSheet.create({
-	// container: {
-	// 	flex: 1,
-	// 	paddingTop: StatusBar.currentHeight,
-	// },
-	scrollView: {
+	contentsLayout: {
 		flex: 1,
-		// backgroundColor: "pink",
-		// marginHorizontal: 20,
-		// marginBottom: 16,
-		// marginHorizontal: 16,
-		// alignItems: "center",
-		// flexDirection: "column",
-		gap: 30,
-		// justifyContent: "space-between",
+		marginBottom: 16,
+		gap: 24,
 	},
 });

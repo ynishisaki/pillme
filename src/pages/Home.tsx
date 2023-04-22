@@ -8,7 +8,7 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import Layout from "~/templates/Layout";
+import ScreenLayout from "~/template/ScreenLayout";
 import { getDateStrings, recordState, today } from "~/../App";
 import { TodaysRecord } from "~/organisms/TodaysRecord";
 import { WeeklyRecord } from "~/organisms/WeeklyRecord";
@@ -97,7 +97,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	}, [record]);
 
 	return (
-		<Layout navigationProps={navigation} navigationType='Home'>
+		<ScreenLayout navigationProps={navigation} navigationType='Home'>
 			{isFocused && (
 				<View style={styles.contentsLayout}>
 					<View style={styles.todaysRecord}>
@@ -115,7 +115,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 					</View>
 				</View>
 			)}
-		</Layout>
+		</ScreenLayout>
 	);
 };
 

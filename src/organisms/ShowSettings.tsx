@@ -2,7 +2,6 @@ import { Alert, Button, Modal, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { Picker } from "@react-native-picker/picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ModalLayout from "~/templates/ModalLayout";
 import { recordState, today } from "~/../App";
 import Title from "~/atoms/Title";
 import { useEffect, useState } from "react";

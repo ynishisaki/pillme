@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "~/templates/Layout";
+import ScreenLayout from "~/template/ScreenLayout";
 import { ScreenNavigationProp } from "~/types";
 import EditableWeellyRecordCheckBoxes from "~/organisms/EditableWeellyRecordCheckBoxes";
 import { Text, View, StyleSheet } from "react-native";
@@ -11,7 +11,9 @@ export const EditWeeklyRecord = ({
 	navigation: ScreenNavigationProp;
 }) => {
 	return (
-		<Layout navigationProps={navigation} navigationType='EditWeeklyRecord'>
+		<ScreenLayout
+			navigationProps={navigation}
+			navigationType='EditWeeklyRecord'>
 			<View style={styles.container}>
 				<Title title={`過去の記録`} />
 				<Text style={styles.description}>
@@ -19,7 +21,7 @@ export const EditWeeklyRecord = ({
 				</Text>
 				<EditableWeellyRecordCheckBoxes />
 			</View>
-		</Layout>
+		</ScreenLayout>
 	);
 };
 
