@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import CurrentSettings from "~/molecules/CurrentSettings";
+
 import { recordState } from "~/../App";
+import CurrentSettings from "~/molecules/CurrentSettings";
 import Title from "~/atoms/Title";
-import SmallPicker from "~/atoms/SmallPicker";
+import SettingPicker from "~/molecules/SettingPicker";
 
 export default function MedicationMethodSettings() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -60,73 +61,50 @@ export default function MedicationMethodSettings() {
 		<View style={styles.container}>
 			<Title title={`服薬方法の設定`} />
 			<View style={styles.containerLayout}>
-				<View>
-					<Text style={styles.description}>
-						{"このアプリは、120日連続服用を対象としています。"}
-					</Text>
-					<Text style={styles.description}>
-						{
-							"お飲みのお薬の使用方法に合わせて、以下の設定を編集してください。"
-						}
-					</Text>
-				</View>
+				<Text style={styles.description}>
+					{"このアプリは、120日連続服用を対象としています。"}
+				</Text>
+				<Text style={styles.description}>
+					{
+						"お飲みのお薬の使用方法に合わせて、以下の設定を編集してください。"
+					}
+				</Text>
 
-				<View style={styles.contentLayout}>
-					<View style={styles.leftContent}>
-						<Text>{"最短連続投与日数"}</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<SmallPicker
-							selectedValue={minConteniousTakingDays}
-							minValue={1}
-							maxValue={
-								maxConteniousTakingDays - 1 > 30
-									? 30
-									: maxConteniousTakingDays - 1
-							}
-							onChange={onChangeMinConteniousTakingDays}
-						/>
-					</View>
-				</View>
-				<View style={styles.contentLayout}>
-					<View style={styles.leftContent}>
-						<Text>{"最長連続投与日数"}</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<SmallPicker
-							selectedValue={maxConteniousTakingDays}
-							minValue={minConteniousTakingDays + 1}
-							maxValue={120}
-							onChange={onChangeMaxConteniousTakingDays}
-						/>
-					</View>
-				</View>
-				<View style={styles.contentLayout}>
-					<View style={styles.leftContent}>
-						<Text>{"休薬に入る条件となる連続出血日数"}</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<SmallPicker
-							selectedValue={conteniousBleeingDaysForRest}
-							minValue={1}
-							maxValue={7}
-							onChange={onChangeConteniousBleeingDaysForRest}
-						/>
-					</View>
-				</View>
-				<View style={styles.contentLayout}>
-					<View style={styles.leftContent}>
-						<Text>{"連続休薬日数"}</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<SmallPicker
-							selectedValue={stopTakingDays}
-							minValue={1}
-							maxValue={7}
-							onChange={onChangeStopTakingDays}
-						/>
-					</View>
-				</View>
+				<SettingPicker
+					description={"最短連続投与日数"}
+					selectedValue={minConteniousTakingDays}
+					minValue={1}
+					maxValue={
+						maxConteniousTakingDays - 1 > 30
+							? 30
+							: maxConteniousTakingDays - 1
+					}
+					onChange={onChangeMinConteniousTakingDays}
+				/>
+
+				<SettingPicker
+					description={"最長連続投与日数"}
+					selectedValue={maxConteniousTakingDays}
+					minValue={minConteniousTakingDays + 1}
+					maxValue={120}
+					onChange={onChangeMaxConteniousTakingDays}
+				/>
+
+				<SettingPicker
+					description={"休薬に必要な連続出血日数"}
+					selectedValue={conteniousBleeingDaysForRest}
+					minValue={1}
+					maxValue={7}
+					onChange={onChangeConteniousBleeingDaysForRest}
+				/>
+
+				<SettingPicker
+					description={"連続休薬日数"}
+					selectedValue={stopTakingDays}
+					minValue={1}
+					maxValue={7}
+					onChange={onChangeStopTakingDays}
+				/>
 
 				<CurrentSettings />
 			</View>
@@ -149,12 +127,4 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		color: "#000000A8",
 	},
-	contentLayout: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		paddingVertical: 10,
-	},
-	leftContent: {},
-	rightContent: {},
 });

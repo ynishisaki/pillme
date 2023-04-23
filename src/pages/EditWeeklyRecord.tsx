@@ -16,10 +16,12 @@ export const EditWeeklyRecord = ({
 			navigationType='EditWeeklyRecord'>
 			<View style={styles.container}>
 				<Title title={`過去の記録`} />
-				<Text style={styles.description}>
-					昨日から一週間前まで記録をさかのぼって編集することができます
-				</Text>
-				<EditableWeellyRecordCheckBoxes />
+				<View style={styles.containerLayout}>
+					<Text style={styles.description}>
+						昨日から一週間前まで記録をさかのぼって編集することができます
+					</Text>
+					<EditableWeellyRecordCheckBoxes />
+				</View>
 			</View>
 		</ScreenLayout>
 	);
@@ -29,11 +31,13 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: 330,
-		// width: 280,
-		// marginBottom: 24,
 		textAlign: "center",
 		backgroundColor: "#fff",
 		borderRadius: 16,
+	},
+	containerLayout: {
+		flex: 1,
+		padding: 20,
 	},
 	description: {
 		marginTop: 8,

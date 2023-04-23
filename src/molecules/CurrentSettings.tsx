@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
-import { useRecoilState } from "recoil";
-import { Picker } from "@react-native-picker/picker";
+import { useRecoilValue } from "recoil";
 
 import { recordState } from "~/../App";
-import Title from "~/atoms/Title";
 
-export default () => {
-	const [record, setRecord] = useRecoilState(recordState);
+export default function CurrentSettings() {
+	const record = useRecoilValue(recordState);
 
 	const minConteniousTakingDays =
 		record.initialSheetSettings.minConteniousTakingDays;
@@ -17,7 +15,7 @@ export default () => {
 	const stopTakingDays = record.initialSheetSettings.stopTakingDays;
 
 	return (
-		<View style={styles.currentSettingsContainer}>
+		<View style={styles.container}>
 			<Text style={styles.subtitle}>現在の設定内容</Text>
 
 			<Text style={styles.textline}>
@@ -30,20 +28,10 @@ export default () => {
 			</Text>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		width: 330,
-		backgroundColor: "#fff",
-		borderRadius: 16,
-	},
-	description: {
-		fontSize: 12,
-		color: "#000000A8",
-	},
-	currentSettingsContainer: {
 		marginTop: 10,
 		padding: 20,
 		backgroundColor: "#ffffe0",
@@ -59,15 +47,5 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		height: 50,
 		alignItems: "center",
-	},
-	contentLayout: {
-		flex: 1,
-		padding: 20,
-	},
-	layout: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-around",
-		paddingVertical: 10,
 	},
 });

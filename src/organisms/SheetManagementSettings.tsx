@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
-import SmallPicker from "~/atoms/SmallPicker";
+import SettingPicker from "~/molecules/SettingPicker";
 
 export default function SheetManagementSettings() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -37,45 +37,31 @@ export default function SheetManagementSettings() {
 		<View style={styles.container}>
 			<Title title={`シートの設定`} />
 			<View style={styles.containerLayout}>
-				<View>
-					<Text style={styles.description}>
-						{
-							"現在お飲みのお薬とシートの状態に合わせて、編集してください。"
-						}
-					</Text>
-				</View>
-				<View style={styles.contentLayout}>
-					<View style={styles.leftContent}>
-						<Text>{"１シートの錠数\n（プラセボは除く）"}</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<SmallPicker
-							selectedValue={
-								record.initialSheetSettings.numOfPillsPerSheet
-							}
-							minValue={1}
-							maxValue={28}
-							onChange={setNumOfPillsPerSheet}
-						/>
-					</View>
-				</View>
-				<View style={styles.contentLayout}>
-					<View style={styles.leftContent}>
-						<Text>シートの開始位置</Text>
-					</View>
-					<View style={styles.rightContent}>
-						<SmallPicker
-							selectedValue={
-								record.initialSheetSettings.beginSheetIndex + 1
-							}
-							minValue={1}
-							maxValue={
-								record.initialSheetSettings.numOfPillsPerSheet
-							}
-							onChange={setBeginSheetIndex}
-						/>
-					</View>
-				</View>
+				<Text style={styles.description}>
+					{
+						"現在お飲みのお薬とシートの状態に合わせて、編集してください。"
+					}
+				</Text>
+
+				<SettingPicker
+					description={"１シートの錠数（プラセボは除く）"}
+					selectedValue={
+						record.initialSheetSettings.numOfPillsPerSheet
+					}
+					minValue={1}
+					maxValue={28}
+					onChange={setNumOfPillsPerSheet}
+				/>
+
+				<SettingPicker
+					description={"シートの開始位置"}
+					selectedValue={
+						record.initialSheetSettings.beginSheetIndex + 1
+					}
+					minValue={1}
+					maxValue={record.initialSheetSettings.numOfPillsPerSheet}
+					onChange={setBeginSheetIndex}
+				/>
 			</View>
 		</View>
 	);
@@ -96,12 +82,4 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		color: "#000000A8",
 	},
-	contentLayout: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		paddingVertical: 10,
-	},
-	leftContent: {},
-	rightContent: {},
 });

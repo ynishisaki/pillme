@@ -1,17 +1,14 @@
 import { Picker } from "@react-native-picker/picker";
 import { StyleSheet } from "react-native";
 
-export default function SmallPicker({
-	selectedValue,
-	minValue,
-	maxValue,
-	onChange,
-}: {
+interface props {
 	selectedValue: number;
 	minValue: number;
 	maxValue: number;
-	onChange: (itemValue: number, itemIndex: number) => void;
-}) {
+	onChange: (itemValue: number) => void;
+}
+
+export default function SmallPicker(props: props) {
 	const pickerItems = (minValue: number, maxValue: number) => {
 		const items = [];
 		for (let i = minValue; i <= maxValue; i++) {
@@ -23,11 +20,9 @@ export default function SmallPicker({
 	return (
 		<Picker
 			style={styles.picker}
-			selectedValue={selectedValue}
-			onValueChange={(itemValue, itemIndex) =>
-				onChange(itemValue, itemIndex)
-			}>
-			{pickerItems(minValue, maxValue)}
+			selectedValue={props.selectedValue}
+			onValueChange={(itemValue) => props.onChange(itemValue)}>
+			{pickerItems(props.minValue, props.maxValue)}
 		</Picker>
 	);
 }

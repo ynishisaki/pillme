@@ -39,20 +39,18 @@ export default function DataInitialization() {
 		<View style={styles.container}>
 			<Title title={`初期化`} />
 			<View style={styles.contentLayout}>
-				<View>
-					<Text style={styles.description}>
-						{
-							"本アプリ内の全データを削除し、インストール時の状態に初期化します。"
-						}
-					</Text>
-					<Button
-						onPress={createTwoButtonAlert}
-						title='データ初期化'
-						disabled={isPressDelete}
-						color='#841584'
-						accessibilityLabel='delete button'
-					/>
-				</View>
+				<Text style={styles.description}>
+					{
+						"本アプリ内の全データを削除し、インストール時の状態に初期化します。"
+					}
+				</Text>
+				<Button
+					onPress={createTwoButtonAlert}
+					title='データ初期化'
+					disabled={isPressDelete}
+					color='#841584'
+					accessibilityLabel='delete button'
+				/>
 			</View>
 		</View>
 	);
