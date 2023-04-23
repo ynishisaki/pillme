@@ -62,12 +62,7 @@ const styles = StyleSheet.create({
 	container: {
 		height: 160,
 		marginBottom: 20,
-
 		backgroundColor: "#fff",
-		borderRadius: 16,
-	},
-	currentSettingsContainer: {
-		backgroundColor: "#ddd",
 		borderRadius: 16,
 	},
 	contentLayout: {

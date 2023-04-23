@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { Picker } from "@react-native-picker/picker";
 import CurrentSettings from "~/molecules/CurrentSettings";
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
@@ -17,14 +16,7 @@ export default function MedicationMethodSettings() {
 		record.initialSheetSettings.conteniousBleeingDaysForRest;
 	const stopTakingDays = record.initialSheetSettings.stopTakingDays;
 
-	function onChangeMinConteniousTakingDays(
-		itemValue: number,
-		itemIndex: number
-	) {
-		console.log("onChangeMinConteniousTakingDays");
-		console.log("itemValue: " + itemValue);
-		console.log("typeof itemValue: " + typeof itemValue);
-
+	function onChangeMinConteniousTakingDays(itemValue: number) {
 		setRecord((oldrecord) => ({
 			...oldrecord,
 			initialSheetSettings: {
@@ -34,10 +26,7 @@ export default function MedicationMethodSettings() {
 		}));
 	}
 
-	function onChangeMaxConteniousTakingDays(
-		itemValue: number,
-		itemIndex: number
-	) {
+	function onChangeMaxConteniousTakingDays(itemValue: number) {
 		setRecord((oldrecord) => ({
 			...oldrecord,
 			initialSheetSettings: {
@@ -47,10 +36,7 @@ export default function MedicationMethodSettings() {
 		}));
 	}
 
-	function onChangeConteniousBleeingDaysForRest(
-		itemValue: number,
-		itemIndex: number
-	) {
+	function onChangeConteniousBleeingDaysForRest(itemValue: number) {
 		setRecord((oldrecord) => ({
 			...oldrecord,
 			initialSheetSettings: {
@@ -60,7 +46,7 @@ export default function MedicationMethodSettings() {
 		}));
 	}
 
-	function onChangeStopTakingDays(itemValue: number, itemIndex: number) {
+	function onChangeStopTakingDays(itemValue: number) {
 		setRecord((oldrecord) => ({
 			...oldrecord,
 			initialSheetSettings: {

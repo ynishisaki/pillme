@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { Picker } from "@react-native-picker/picker";
 
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
@@ -9,7 +8,7 @@ import SmallPicker from "~/atoms/SmallPicker";
 export default function SheetManagementSettings() {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	function setNumOfPillsPerSheet(itemValue: number, itemIndex: number) {
+	function setNumOfPillsPerSheet(itemValue: number) {
 		setRecord({
 			...record,
 			initialSheetSettings: {
@@ -24,7 +23,7 @@ export default function SheetManagementSettings() {
 		});
 	}
 
-	function setBeginSheetIndex(itemValue: number, itemIndex: number) {
+	function setBeginSheetIndex(itemValue: number) {
 		setRecord({
 			...record,
 			initialSheetSettings: {
@@ -56,9 +55,7 @@ export default function SheetManagementSettings() {
 							}
 							minValue={1}
 							maxValue={28}
-							onChange={(itemValue, itemIndex) =>
-								setNumOfPillsPerSheet(itemValue, itemIndex)
-							}
+							onChange={setNumOfPillsPerSheet}
 						/>
 					</View>
 				</View>
@@ -75,9 +72,7 @@ export default function SheetManagementSettings() {
 							maxValue={
 								record.initialSheetSettings.numOfPillsPerSheet
 							}
-							onChange={(itemValue, itemIndex) =>
-								setBeginSheetIndex(itemValue, itemIndex)
-							}
+							onChange={setBeginSheetIndex}
 						/>
 					</View>
 				</View>
