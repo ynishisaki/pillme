@@ -53,6 +53,7 @@ export default function App() {
 						// タスク：設定画面はtitleをつける
 						title: "",
 						headerTransparent: true,
+						headerBlurEffect: "systemUltraThinMaterial",
 					}}
 					initialRouteName='Home'>
 					<Stack.Screen

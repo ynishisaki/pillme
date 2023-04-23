@@ -4,6 +4,7 @@ import { Picker } from "@react-native-picker/picker";
 
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
+import SmallPicker from "~/atoms/SmallPicker";
 
 export default () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -48,12 +49,7 @@ export default () => {
 				<View>
 					<Text style={styles.description}>
 						{
-							"この設定は、アプリ利用開始時とデータリセット時にのみ登録することができます。"
-						}
-					</Text>
-					<Text style={styles.description}>
-						{
-							"お飲みのお薬とシートの現在の状態に合わせて、以下の設定を編集してください。"
+							"現在お飲みのお薬とシートの状態に合わせて、編集してください。"
 						}
 					</Text>
 				</View>
@@ -62,16 +58,15 @@ export default () => {
 						<Text>{"１シートの錠数\n（プラセボは除く）"}</Text>
 					</View>
 					<View style={styles.rightContent}>
-						<Picker
-							style={styles.picker}
-							selectedValue={
+						<SmallPicker
+							value={
 								record.initialSheetSettings.numOfPillsPerSheet
 							}
-							onValueChange={(itemValue, itemIndex) =>
+							onChange={(itemValue, itemIndex) =>
 								setNumOfPillsPerSheet(itemValue, itemIndex)
-							}>
-							{pickerItems(28)}
-						</Picker>
+							}
+							items={pickerItems(28)}
+						/>
 					</View>
 				</View>
 				<View style={styles.layout}>
@@ -79,18 +74,17 @@ export default () => {
 						<Text>シートの開始位置</Text>
 					</View>
 					<View style={styles.rightContent}>
-						<Picker
-							style={styles.picker}
-							selectedValue={
+						<SmallPicker
+							value={
 								record.initialSheetSettings.beginSheetIndex + 1
 							}
-							onValueChange={(itemValue, itemIndex) =>
+							onChange={(itemValue, itemIndex) =>
 								setBeginSheetIndex(itemValue, itemIndex)
-							}>
-							{pickerItems(
+							}
+							items={pickerItems(
 								record.initialSheetSettings.numOfPillsPerSheet
 							)}
-						</Picker>
+						/>
 					</View>
 				</View>
 			</View>
@@ -100,8 +94,10 @@ export default () => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		width: 330,
+		// flex: 1,
+		height: 240,
+		// width: 330,
+		marginBottom: 20,
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
@@ -121,18 +117,9 @@ const styles = StyleSheet.create({
 	layout: {
 		flexDirection: "row",
 		alignItems: "center",
-		justifyContent: "space-around",
-		// marginHorizontal: 20,
+		justifyContent: "space-between",
 		paddingVertical: 10,
 	},
-	leftContent: {
-		width: "65%",
-	},
-	rightContent: {
-		width: "35%",
-	},
-	picker: {
-		height: 50,
-		fontSize: 20,
-	},
+	leftContent: {},
+	rightContent: {},
 });

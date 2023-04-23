@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
 		color: "#000000A8",
 	},
 	currentSettingsContainer: {
-		// flex: 1,
 		marginTop: 10,
 		padding: 20,
 		backgroundColor: "#ffffe0",
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		height: 50,
 		alignItems: "center",
-		// justifyContent: "space-around",
 	},
 	contentLayout: {
 		flex: 1,
@@ -70,7 +68,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-around",
-		// marginHorizontal: 20,
 		paddingVertical: 10,
 	},
 });

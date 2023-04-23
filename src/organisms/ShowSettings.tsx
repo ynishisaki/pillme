@@ -81,13 +81,13 @@ export default () => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		width: 330,
+		height: 160,
+		marginBottom: 20,
+
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
 	currentSettingsContainer: {
-		// flex: 1,
 		backgroundColor: "#ddd",
 		borderRadius: 16,
 	},
@@ -98,22 +98,6 @@ const styles = StyleSheet.create({
 	description: {
 		fontSize: 12,
 		color: "#000000A8",
-	},
-	layout: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-around",
-		// marginHorizontal: 20,
-		paddingVertical: 10,
-	},
-	leftContent: {
-		width: "65%",
-	},
-	rightContent: {
-		width: "35%",
-	},
-	picker: {
-		height: 50,
-		fontSize: 20,
+		paddingBottom: 10,
 	},
 });

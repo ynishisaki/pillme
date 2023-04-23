@@ -20,8 +20,8 @@ export const InitialSettings = ({
 			navigationProps={navigation}
 			navigationType='InitialSettings'>
 			<View style={styles.contentsLayout}>
-				<MedicationMethodSettings />
 				<SheetManagementSettings />
+				<MedicationMethodSettings />
 				<ShowSettings />
 			</View>
 		</ScrollableScreenLayout>
@@ -30,8 +30,8 @@ export const InitialSettings = ({
 
 const styles = StyleSheet.create({
 	contentsLayout: {
-		flex: 1,
-		marginBottom: 16,
-		gap: 24,
+		// flex: 1,
+		// marginBottom: 16,
+		// gap: 24,
 	},
 });

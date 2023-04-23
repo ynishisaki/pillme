@@ -4,27 +4,7 @@ import { Picker } from "@react-native-picker/picker";
 import CurrentSettings from "~/molecules/CurrentSettings";
 import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
-
-export const SmallPicker = ({
-	value,
-	onChange,
-	items,
-}: {
-	value: number;
-	onChange: (itemValue: number, itemIndex: number) => void;
-	items: JSX.Element[];
-}) => {
-	return (
-		<Picker
-			style={styles.picker}
-			selectedValue={value}
-			onValueChange={(itemValue, itemIndex) =>
-				onChange(itemValue, itemIndex)
-			}>
-			{items}
-		</Picker>
-	);
-};
+import SmallPicker from "~/atoms/SmallPicker";
 
 export default () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -132,7 +112,7 @@ export default () => {
 					<View style={styles.rightContent}>
 						<SmallPicker
 							value={maxConteniousTakingDays}
-							onChange={onChangeMinConteniousTakingDays}
+							onChange={onChangeMaxConteniousTakingDays}
 							items={pickerItems(120)}
 						/>
 					</View>
@@ -170,8 +150,8 @@ export default () => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		width: 330,
+		height: 580,
+		marginBottom: 20,
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
@@ -186,7 +166,6 @@ const styles = StyleSheet.create({
 		borderRadius: 16,
 		boxShadow: "0px 0px 4px #00000040",
 	},
-
 	contentLayout: {
 		flex: 1,
 		padding: 20,
@@ -194,18 +173,9 @@ const styles = StyleSheet.create({
 	layout: {
 		flexDirection: "row",
 		alignItems: "center",
-		justifyContent: "space-around",
-		// marginHorizontal: 20,
+		justifyContent: "space-between",
 		paddingVertical: 10,
 	},
-	leftContent: {
-		width: "60%",
-	},
-	rightContent: {
-		width: "40%",
-	},
-	picker: {
-		display: "flex",
-		height: 50,
-	},
+	leftContent: {},
+	rightContent: {},
 });
