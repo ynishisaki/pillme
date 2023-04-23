@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Home } from "./src/pages/Home";
-import { InitialSettings } from "./src/pages/InitialSettings";
+import { Settings } from "./src/pages/Settings";
 import { EditWeeklyRecord } from "./src/pages/EditWeeklyRecord";
 import { TouchableOpacity } from "react-native";
 import { SettingIcon } from "~/atoms/Icons";
@@ -63,17 +63,14 @@ export default function App() {
 							headerRight: () => (
 								<TouchableOpacity
 									onPress={() => {
-										navigation.navigate("InitialSettings");
+										navigation.navigate("Settings");
 									}}>
 									<SettingIcon />
 								</TouchableOpacity>
 							),
 						})}
 					/>
-					<Stack.Screen
-						name='InitialSettings'
-						component={InitialSettings}
-					/>
+					<Stack.Screen name='Settings' component={Settings} />
 					<Stack.Screen
 						name='EditWeeklyRecord'
 						component={EditWeeklyRecord}

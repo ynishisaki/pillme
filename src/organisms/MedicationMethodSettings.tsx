@@ -6,7 +6,7 @@ import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
 import SmallPicker from "~/atoms/SmallPicker";
 
-export default () => {
+export default function MedicationMethodSettings() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const minConteniousTakingDays =
@@ -70,18 +70,10 @@ export default () => {
 		}));
 	}
 
-	function pickerItems(max: number) {
-		const items = [];
-		for (let i = 1; i <= max; i++) {
-			items.push(<Picker.Item key={i} label={`${i}`} value={i} />);
-		}
-		return items;
-	}
-
 	return (
 		<View style={styles.container}>
 			<Title title={`服薬方法の設定`} />
-			<View style={styles.contentLayout}>
+			<View style={styles.containerLayout}>
 				<View>
 					<Text style={styles.description}>
 						{"このアプリは、120日連続服用を対象としています。"}
@@ -93,51 +85,59 @@ export default () => {
 					</Text>
 				</View>
 
-				<View style={styles.layout}>
+				<View style={styles.contentLayout}>
 					<View style={styles.leftContent}>
 						<Text>{"最短連続投与日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
-							value={minConteniousTakingDays}
+							selectedValue={minConteniousTakingDays}
+							minValue={1}
+							maxValue={
+								maxConteniousTakingDays - 1 > 30
+									? 30
+									: maxConteniousTakingDays - 1
+							}
 							onChange={onChangeMinConteniousTakingDays}
-							items={pickerItems(30)}
 						/>
 					</View>
 				</View>
-				<View style={styles.layout}>
+				<View style={styles.contentLayout}>
 					<View style={styles.leftContent}>
 						<Text>{"最長連続投与日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
-							value={maxConteniousTakingDays}
+							selectedValue={maxConteniousTakingDays}
+							minValue={minConteniousTakingDays + 1}
+							maxValue={120}
 							onChange={onChangeMaxConteniousTakingDays}
-							items={pickerItems(120)}
 						/>
 					</View>
 				</View>
-				<View style={styles.layout}>
+				<View style={styles.contentLayout}>
 					<View style={styles.leftContent}>
 						<Text>{"休薬に入る条件となる連続出血日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
-							value={conteniousBleeingDaysForRest}
+							selectedValue={conteniousBleeingDaysForRest}
+							minValue={1}
+							maxValue={7}
 							onChange={onChangeConteniousBleeingDaysForRest}
-							items={pickerItems(7)}
 						/>
 					</View>
 				</View>
-				<View style={styles.layout}>
+				<View style={styles.contentLayout}>
 					<View style={styles.leftContent}>
 						<Text>{"連続休薬日数"}</Text>
 					</View>
 					<View style={styles.rightContent}>
 						<SmallPicker
-							value={stopTakingDays}
+							selectedValue={stopTakingDays}
+							minValue={1}
+							maxValue={7}
 							onChange={onChangeStopTakingDays}
-							items={pickerItems(7)}
 						/>
 					</View>
 				</View>
@@ -146,7 +146,7 @@ export default () => {
 			</View>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
@@ -155,22 +155,15 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		borderRadius: 16,
 	},
+	containerLayout: {
+		flex: 1,
+		padding: 20,
+	},
 	description: {
 		fontSize: 12,
 		color: "#000000A8",
 	},
-	currentSettingsContainer: {
-		marginTop: 10,
-		padding: 20,
-		backgroundColor: "#ffffe0",
-		borderRadius: 16,
-		boxShadow: "0px 0px 4px #00000040",
-	},
 	contentLayout: {
-		flex: 1,
-		padding: 20,
-	},
-	layout: {
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",

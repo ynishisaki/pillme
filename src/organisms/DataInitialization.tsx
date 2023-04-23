@@ -1,40 +1,19 @@
-import { Alert, Button, Modal, StyleSheet, Text, View } from "react-native";
-import { useRecoilState } from "recoil";
-import { Picker } from "@react-native-picker/picker";
+import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { useResetRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { recordState, today } from "~/../App";
+import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default () => {
+export default function DataInitialization() {
 	const [isPressDelete, setIsPressDelete] = useState(false);
 
-	const [record, setRecord] = useRecoilState(recordState);
+	const resetRecord = useResetRecoilState(recordState);
 
 	const onPressDelete = async () => {
 		setIsPressDelete(true);
 
-		setRecord({
-			initialSheetSettings: {
-				// 投薬方法に関する設定
-				minConteniousTakingDays: 24,
-				maxConteniousTakingDays: 120,
-				conteniousBleeingDaysForRest: 3,
-				stopTakingDays: 4,
-				// シートの管理
-				numOfPillsPerSheet: 28,
-				beginSheetIndex: 0, // 0スタート
-			},
-			dailyRecord: [
-				{
-					date: today,
-					tookMedicine: false, // 今日薬を飲んだか
-					haveBleeding: false, // 今日出血があったか
-					isRestPeriod: false, // 休薬日か
-				},
-			],
-			isAsyncStorageLoaded: true,
-		});
+		resetRecord;
 		await AsyncStorage.clear();
 		console.log("Initialized AsyncStorage.");
 	};
@@ -77,7 +56,7 @@ export default () => {
 			</View>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
