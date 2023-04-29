@@ -1,9 +1,4 @@
-import {
-	ImageBackground,
-	StyleSheet,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,20 +9,13 @@ import { TodaysRecord } from "~/organisms/TodaysRecord";
 import { WeeklyRecord } from "~/organisms/WeeklyRecord";
 import { CurrentSheet } from "~/organisms/CurrentSheet";
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SettingIcon } from "~/atoms/Icons";
 import { useIsFocused } from "@react-navigation/native";
 
 export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	const [record, setRecord] = useRecoilState(recordState);
-	console.log("");
-	console.log("");
-	console.log("******** Home.tsx ********");
-	console.log("****** view rendered ******");
 
 	// This hook returns `true` if the screen is focused, `false` otherwise
 	const isFocused = useIsFocused();
-	console.log("isFocused: " + isFocused);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {

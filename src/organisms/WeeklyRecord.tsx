@@ -5,50 +5,54 @@ import { RightIcon } from "../atoms/Icons";
 import CountRecord from "../molecules/WeeklyCountRecord";
 import CheckBox from "../molecules/WeeklyCheckBox";
 import SubTitle from "~/atoms/SubTitle";
+import { recordType } from "~/types";
+
+// 最後のisRestPeriod=trueの翌日から数える
+export function countStartTakeMedicineIndex(record: recordType) {
+	const latestIsRestPeriodIndex = record.dailyRecord.findIndex(
+		(item) => item.isRestPeriod === true
+	);
+	const recordLength = record.dailyRecord.length;
+	return latestIsRestPeriodIndex > 0
+		? latestIsRestPeriodIndex
+		: recordLength - 1;
+}
+
+export function countTakeMedicineDays(record: recordType) {
+	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
+
+	let count = 0;
+	for (let i = startTakeMedicineIndex; i > -1; i--) {
+		if (record.dailyRecord[i].tookMedicine === true) {
+			count++;
+		} else {
+			break;
+		}
+	}
+	return count;
+}
+
+// jsonから、昨日から直近で出血が何日連続しているか数える
+export function countHaveBleedingDays(record: recordType) {
+	let count = 0;
+	for (let i = 1; i < record.dailyRecord.length; i++) {
+		if (record.dailyRecord[i].haveBleeding === true) {
+			count++;
+		} else {
+			break;
+		}
+	}
+	// 今日の出血の有無を調べ、含める
+	return record.dailyRecord[0].haveBleeding ? count + 1 : count;
+}
 
 export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	// 最後のisRestPeriod=trueの翌日から数える
-	function countStartTakeMedicineIndex() {
-		const latestIsRestPeriodIndex = record.dailyRecord.findIndex(
-			(item) => item.isRestPeriod === true
-		);
-		const recordLength = record.dailyRecord.length;
-		return latestIsRestPeriodIndex > 0
-			? latestIsRestPeriodIndex
-			: recordLength - 1;
-	}
-	const startTakeMedicineIndex = countStartTakeMedicineIndex();
+	const takeMedicineDays = countTakeMedicineDays(record);
+	const haveBleedingDays = countHaveBleedingDays(record);
 
-	function countTakeMedicineDays() {
-		let count = 0;
-		for (let i = startTakeMedicineIndex; i > -1; i--) {
-			if (record.dailyRecord[i].tookMedicine === true) {
-				count++;
-			} else {
-				break;
-			}
-		}
-		return count;
-	}
-
-	const takeMedicineDays = countTakeMedicineDays();
-
-	// jsonから、今日から直近で出血が何日連続しているか数える
-	function countHaveBleedingDays() {
-		let count = 0;
-		for (let i = 0; i < record.dailyRecord.length; i++) {
-			if (record.dailyRecord[i].haveBleeding === true) {
-				count++;
-			} else {
-				break;
-			}
-		}
-		return count;
-	}
-	const haveBleedingDays = countHaveBleedingDays();
-
+	// 休薬の設定
 	const setRest = () => {
 		setRecord((oldRecord) => ({
 			...oldRecord,
@@ -62,22 +66,24 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 		}));
 	};
 
-	// 出血が3日連続した場合、休薬する
-	if (haveBleedingDays > 3) {
+	// 休薬の判断
+	// 出血が3日以上連続していたら
+	if (haveBleedingDays >= record.initialSheetSettings.stopTakingDays) {
+		// かつ、連続投与日数が最少の25日以上だったら
 		if (
-			takeMedicineDays >
+			takeMedicineDays >=
 			record.initialSheetSettings.minConteniousTakingDays
 		) {
-			// 翌日から
 			setRest();
 		}
 	}
-
-	if (
+	// 連続投与日数が最大の120日を超えていたら
+	else if (
 		takeMedicineDays > record.initialSheetSettings.maxConteniousTakingDays
 	) {
 		setRest();
 	}
+	// 昨日が休薬日だったら
 
 	const date = new Date();
 	const week = date.getDay();

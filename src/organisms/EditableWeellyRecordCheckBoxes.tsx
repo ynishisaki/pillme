@@ -43,7 +43,9 @@ export default () => {
 	for (let i = 0; i < recordLength; i++) {
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
-				<Text>{showDate(record.dailyRecord[i].date)}</Text>
+				<Text style={styles.text}>
+					{showDate(record.dailyRecord[i].date)}
+				</Text>
 
 				{record.isAsyncStorageLoaded && (
 					<>
@@ -81,27 +83,11 @@ export default () => {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		width: 330,
-		// width: 280,
-		// marginBottom: 24,
-		textAlign: "center",
-		backgroundColor: "#fff",
-		borderRadius: 16,
-	},
-	description: {
-		marginTop: 8,
-		marginHorizontal: 20,
-		fontSize: 12,
-		color: "#000000A8",
-	},
 	verticalStackLayout: {
 		flex: 1,
 		marginVertical: 20,
 		marginHorizontal: "auto",
-		minWidth: 230,
-		// maxWidth: 250,
+		width: 230,
 		gap: 20,
 	},
 	horizonalStackLayout: {
@@ -109,5 +95,8 @@ const styles = StyleSheet.create({
 		justifyContent: "space-around",
 		// marginTop: 20,
 		alignItems: "center",
+	},
+	text: {
+		paddingRight: 20,
 	},
 });

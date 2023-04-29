@@ -20,6 +20,7 @@ export const EditWeeklyRecord = ({
 					<Text style={styles.description}>
 						昨日から一週間前まで記録をさかのぼって編集することができます
 					</Text>
+
 					<EditableWeellyRecordCheckBoxes />
 				</View>
 			</View>
@@ -40,8 +41,6 @@ const styles = StyleSheet.create({
 		padding: 20,
 	},
 	description: {
-		marginTop: 8,
-		marginHorizontal: 20,
 		fontSize: 12,
 		color: "#000000A8",
 	},
