@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilValue } from "recoil";
-
-import { recordState } from "~/../App";
+import { recordState } from "~/hooks";
 
 export default function CurrentSettings() {
 	const record = useRecoilValue(recordState);

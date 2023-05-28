@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-
-import { recordState } from "~/../App";
 import Title from "~/atoms/Title";
+import { recordState } from "~/hooks";
 import SettingPicker from "~/molecules/SettingPicker";
 
 export default function SheetManagementSettings() {

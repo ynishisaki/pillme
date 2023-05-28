@@ -1,11 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { recordState } from "../../App";
+
 import { RightIcon } from "../atoms/Icons";
 import CountRecord from "../molecules/WeeklyCountRecord";
 import CheckBox from "../molecules/WeeklyCheckBox";
 import SubTitle from "~/atoms/SubTitle";
 import { recordType } from "~/types";
+import { recordState } from "~/hooks";
 
 // 最後のisRestPeriod=trueの翌日から数える
 export function countStartTakeMedicineIndex(record: recordType) {

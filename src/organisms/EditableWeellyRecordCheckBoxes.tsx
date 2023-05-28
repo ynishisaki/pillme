@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-
-import { recordState } from "~/../App";
+import { recordState } from "~/hooks";
 import CheckBox from "~/molecules/PressableCheckBox";
 import { showDate } from "~/organisms/TodaysRecord";
 

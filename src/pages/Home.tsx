@@ -4,12 +4,13 @@ import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { getDateStrings, recordState, today } from "~/../App";
 import { TodaysRecord } from "~/organisms/TodaysRecord";
 import { WeeklyRecord } from "~/organisms/WeeklyRecord";
 import { CurrentSheet } from "~/organisms/CurrentSheet";
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
 import { useIsFocused } from "@react-navigation/native";
+import { recordState, today } from "~/hooks";
+import { getDateStrings } from "~/utils/getDateStrings";
 
 export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	const [record, setRecord] = useRecoilState(recordState);
