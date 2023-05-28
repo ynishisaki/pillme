@@ -1,7 +1,7 @@
 import React from "react";
 import ScreenLayout from "~/template/ScreenLayout";
 import { ScreenNavigationProp } from "~/types";
-import EditableWeellyRecordCheckBoxes from "~/organisms/EditableWeellyRecordCheckBoxes";
+import EditWeellyRecordCheckBoxes from "~/organisms/EditWeellyRecordCheckBoxes";
 import { Text, View, StyleSheet } from "react-native";
 import Title from "~/atoms/Title";
 
@@ -21,7 +21,7 @@ export const EditWeeklyRecord = ({
 						昨日から一週間前まで記録をさかのぼって編集することができます
 					</Text>
 
-					<EditableWeellyRecordCheckBoxes />
+					<EditWeellyRecordCheckBoxes />
 				</View>
 			</View>
 		</ScreenLayout>

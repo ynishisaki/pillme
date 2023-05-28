@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { recordState } from "~/hooks";
 import CheckBox from "~/molecules/PressableCheckBox";
-import { showDate } from "~/organisms/TodaysRecord";
+import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
 
-export default () => {
+export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function onPressTookMedicine(nextBoolean: boolean, index: number) {
@@ -43,7 +43,7 @@ export default () => {
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
 				<Text style={styles.text}>
-					{showDate(record.dailyRecord[i].date)}
+					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)}
 				</Text>
 
 				{record.isAsyncStorageLoaded && (
@@ -79,7 +79,7 @@ export default () => {
 			{editableWeelyRecordCheckBoxes}
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	verticalStackLayout: {

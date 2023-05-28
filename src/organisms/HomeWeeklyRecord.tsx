@@ -1,53 +1,17 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-
 import { RightIcon } from "../atoms/Icons";
 import CountRecord from "../molecules/WeeklyCountRecord";
 import CheckBox from "../molecules/WeeklyCheckBox";
 import SubTitle from "~/atoms/SubTitle";
-import { recordType } from "~/types";
 import { recordState } from "~/hooks";
+import {
+	countHaveBleedingDays,
+	countTakeMedicineDays,
+} from "~/utils/countRecord";
+import { getWeekArr } from "~/utils/getDateStrings";
 
-// 最後のisRestPeriod=trueの翌日から数える
-export function countStartTakeMedicineIndex(record: recordType) {
-	const latestIsRestPeriodIndex = record.dailyRecord.findIndex(
-		(item) => item.isRestPeriod === true
-	);
-	const recordLength = record.dailyRecord.length;
-	return latestIsRestPeriodIndex > 0
-		? latestIsRestPeriodIndex
-		: recordLength - 1;
-}
-
-export function countTakeMedicineDays(record: recordType) {
-	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
-
-	let count = 0;
-	for (let i = startTakeMedicineIndex; i > -1; i--) {
-		if (record.dailyRecord[i].tookMedicine === true) {
-			count++;
-		} else {
-			break;
-		}
-	}
-	return count;
-}
-
-// jsonから、昨日から直近で出血が何日連続しているか数える
-export function countHaveBleedingDays(record: recordType) {
-	let count = 0;
-	for (let i = 1; i < record.dailyRecord.length; i++) {
-		if (record.dailyRecord[i].haveBleeding === true) {
-			count++;
-		} else {
-			break;
-		}
-	}
-	// 今日の出血の有無を調べ、含める
-	return record.dailyRecord[0].haveBleeding ? count + 1 : count;
-}
-
-export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
+export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const takeMedicineDays = countTakeMedicineDays(record);
@@ -86,17 +50,10 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	}
 	// 昨日が休薬日だったら
 
-	const date = new Date();
-	const week = date.getDay();
-	const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
-
-	const recentWeekArr = [
-		...weekArr.slice((week + 1) % 7),
-		...weekArr.slice(0, (week + 1) % 7),
-	];
-
 	const recordLength =
 		record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
+
+	const weekArr = getWeekArr();
 
 	return (
 		<>
@@ -124,7 +81,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 											key={index}
 											style={styles.checkBoxLayout}>
 											<Text style={styles.weekTextLayout}>
-												{recentWeekArr[index]}
+												{weekArr[index]}
 											</Text>
 											<CheckBox
 												title='服薬'
@@ -150,7 +107,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 											style={styles.checkBoxLayout}>
 											<Text style={styles.weekTextLayout}>
 												{
-													recentWeekArr[
+													weekArr[
 														(index +
 															(7 -
 																recordLength)) %

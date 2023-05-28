@@ -5,8 +5,9 @@ import EstimatedEndDate from "~/atoms/CurrentSheetEstimatedEndDate";
 import { RightIcon } from "~/atoms/Icons";
 import SubTitle from "~/atoms/SubTitle";
 import { recordState } from "~/hooks";
+import { getDateStringsForDisplay } from "~/utils/getDateStrings";
 
-export const CurrentSheet = () => {
+export const HomeCurrentSheet = () => {
 	const record = useRecoilValue(recordState);
 
 	// シートの終了日を計算
@@ -34,14 +35,9 @@ export const CurrentSheet = () => {
 	const todayDate = today.getDate();
 	const calculateSheetEndDate = today.setDate(todayDate + remainingDays);
 
-	const estimatedEndDate = getDateStrings(new Date(calculateSheetEndDate));
-
-	function getDateStrings(selectedDate: Date) {
-		const month = selectedDate.getMonth() + 1;
-		const day = selectedDate.getDate();
-
-		return `${month}月${day}日`;
-	}
+	const estimatedEndDate = getDateStringsForDisplay(
+		new Date(calculateSheetEndDate)
+	);
 
 	return (
 		<>

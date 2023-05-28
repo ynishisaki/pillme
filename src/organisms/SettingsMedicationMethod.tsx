@@ -5,7 +5,7 @@ import Title from "~/atoms/Title";
 import SettingPicker from "~/molecules/SettingPicker";
 import { recordState } from "~/hooks";
 
-export default function MedicationMethodSettings() {
+export default function SettingsMedicationMethod() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const minConteniousTakingDays =

@@ -4,19 +4,9 @@ import Title from "~/atoms/Title";
 import Message from "~/molecules/TodaysMessage";
 import CheckBox from "~/molecules/PressableCheckBox";
 import { recordState } from "~/hooks";
+import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
 
-export function showDate(dateStrings: string) {
-	const date = new Date(dateStrings);
-
-	const month = date.getMonth() + 1;
-	const day = date.getDate();
-	const week = date.getDay();
-	const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
-
-	return `${month}月${day}日(${weekArr[week]})`;
-}
-
-export const TodaysRecord = () => {
+export const HomeTodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const tookMedicine = record.dailyRecord[0].tookMedicine;
@@ -51,7 +41,9 @@ export const TodaysRecord = () => {
 
 	return (
 		<View style={styles.container}>
-			<Title title={showDate(record.dailyRecord[0].date)} />
+			<Title
+				title={getDateWeekStringsForDisplay(record.dailyRecord[0].date)}
+			/>
 			<View style={styles.contentLayout}>
 				<Message takeRestPeriod={record.dailyRecord[0].isRestPeriod} />
 				<View style={styles.checkBoxLayout}>

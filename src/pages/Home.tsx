@@ -4,9 +4,9 @@ import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { TodaysRecord } from "~/organisms/TodaysRecord";
-import { WeeklyRecord } from "~/organisms/WeeklyRecord";
-import { CurrentSheet } from "~/organisms/CurrentSheet";
+import { HomeTodaysRecord } from "~/organisms/HomeTodaysRecord";
+import { HomeWeeklyRecord } from "~/organisms/HomeWeeklyRecord";
+import { HomeCurrentSheet } from "~/organisms/HomeCurrentSheet";
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
 import { useIsFocused } from "@react-navigation/native";
 import { recordState, today } from "~/hooks";
@@ -90,17 +90,17 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 			{isFocused && (
 				<View style={styles.contentsLayout}>
 					<View style={styles.todaysRecord}>
-						<TodaysRecord />
+						<HomeTodaysRecord />
 					</View>
 					<View style={styles.weeklyRecord}>
-						<WeeklyRecord
+						<HomeWeeklyRecord
 							onPress={() =>
 								navigation.navigate("EditWeeklyRecord")
 							}
 						/>
 					</View>
 					<View style={styles.sheetRecord}>
-						<CurrentSheet />
+						<HomeCurrentSheet />
 					</View>
 				</View>
 			)}

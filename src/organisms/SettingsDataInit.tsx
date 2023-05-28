@@ -5,7 +5,7 @@ import Title from "~/atoms/Title";
 import { useState } from "react";
 import { recordState } from "~/hooks";
 
-export default function DataInitialization() {
+export default function SettingsDataInit() {
 	const [isPressDelete, setIsPressDelete] = useState(false);
 
 	const resetRecord = useResetRecoilState(recordState);

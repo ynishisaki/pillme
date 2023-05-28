@@ -1,9 +1,9 @@
 import React from "react";
 import { ScreenNavigationProp } from "~/types";
-import MedicationMethodSettings from "~/organisms/MedicationMethodSettings";
-import SheetManagementSettings from "~/organisms/SheetManagementSettings";
+import SettingsMedicationMethod from "~/organisms/SettingsMedicationMethod";
+import SettingsSheetManagement from "~/organisms/SettingsSheetManagement";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
-import DataInitialization from "~/organisms/DataInitialization";
+import SettingsDataInit from "~/organisms/SettingsDataInit";
 
 export const Settings = ({
 	navigation,
@@ -14,9 +14,9 @@ export const Settings = ({
 		<ScrollableScreenLayout
 			navigationProps={navigation}
 			navigationType='Settings'>
-			<SheetManagementSettings />
-			<MedicationMethodSettings />
-			<DataInitialization />
+			<SettingsMedicationMethod />
+			<SettingsSheetManagement />
+			<SettingsDataInit />
 		</ScrollableScreenLayout>
 	);
 };

@@ -4,7 +4,7 @@ import Title from "~/atoms/Title";
 import { recordState } from "~/hooks";
 import SettingPicker from "~/molecules/SettingPicker";
 
-export default function SheetManagementSettings() {
+export default function SettingsSheetManagement() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function setNumOfPillsPerSheet(itemValue: number) {
