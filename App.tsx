@@ -8,9 +8,9 @@ import { EditWeeklyRecord } from "./src/pages/EditWeeklyRecord";
 import { TouchableOpacity } from "react-native";
 import { SettingIcon } from "~/atoms/Icons";
 
-const Stack = createNativeStackNavigator();
-
 export default function App() {
+	const Stack = createNativeStackNavigator();
+
 	return (
 		<NavigationContainer>
 			<RecoilRoot>
