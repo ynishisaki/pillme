@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import Title from "~/atoms/Title";
-import Message from "~/molecules/TodaysMessage";
-import CheckBox from "~/molecules/PressableCheckBox";
-import { recordState } from "~/hooks";
+import Title from "~/components/small/Title";
+import Message from "~/medium/TodaysMessage";
+import CheckBox from "~/medium/PressableCheckBox";
+import { recordState } from "~/hooks/recordState";
 import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
 
 export const HomeTodaysRecord = () => {

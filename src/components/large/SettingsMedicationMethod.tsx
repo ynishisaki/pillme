@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import CurrentSettings from "~/molecules/CurrentSettings";
-import Title from "~/atoms/Title";
-import SettingPicker from "~/molecules/SettingPicker";
-import { recordState } from "~/hooks";
+import CurrentSettings from "~/medium/CurrentSettings";
+import Title from "~/components/small/Title";
+import SettingPicker from "~/medium/SettingPicker";
+import { recordState } from "~/hooks/recordState";
 
 export default function SettingsMedicationMethod() {
 	const [record, setRecord] = useRecoilState(recordState);

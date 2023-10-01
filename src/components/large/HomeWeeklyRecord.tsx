@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { RightIcon } from "../atoms/Icons";
-import CountRecord from "../molecules/WeeklyCountRecord";
-import CheckBox from "../molecules/WeeklyCheckBox";
-import SubTitle from "~/atoms/SubTitle";
-import { recordState } from "~/hooks";
+import { RightIcon } from "../small/Icons";
+import CountRecord from "../medium/WeeklyCountRecord";
+import CheckBox from "../medium/WeeklyCheckBox";
+import SubTitle from "~/components/small/SubTitle";
+import { recordState } from "~/hooks/recordState";
 import {
 	countHaveBleedingDays,
 	countTakeMedicineDays,

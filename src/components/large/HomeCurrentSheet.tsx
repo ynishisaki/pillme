@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import { CurrentSheetStatus } from "~/molecules/CurrentSheetStatus";
-import EstimatedEndDate from "~/atoms/CurrentSheetEstimatedEndDate";
-import { RightIcon } from "~/atoms/Icons";
-import SubTitle from "~/atoms/SubTitle";
-import { recordState } from "~/hooks";
+import { CurrentSheetStatus } from "~/medium/CurrentSheetStatus";
+import EstimatedEndDate from "~/components/small/CurrentSheetEstimatedEndDate";
+import { RightIcon } from "~/components/small/Icons";
+import SubTitle from "~/components/small/SubTitle";
+import { recordState } from "~/hooks/recordState";
 import { getDateStringsForDisplay } from "~/utils/getDateStrings";
 
 export const HomeCurrentSheet = () => {

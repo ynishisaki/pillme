@@ -2,14 +2,14 @@ import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useIsFocused } from "@react-navigation/native";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { HomeTodaysRecord } from "~/organisms/HomeTodaysRecord";
-import { HomeWeeklyRecord } from "~/organisms/HomeWeeklyRecord";
-import { HomeCurrentSheet } from "~/organisms/HomeCurrentSheet";
+import { HomeTodaysRecord } from "~/components/large/HomeTodaysRecord";
+import { HomeWeeklyRecord } from "~/components/large/HomeWeeklyRecord";
+import { HomeCurrentSheet } from "~/components/large/HomeCurrentSheet";
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
-import { useIsFocused } from "@react-navigation/native";
-import { recordState, today } from "~/hooks";
+import { recordState, today } from "~/hooks/recordState";
 import { getDateStrings } from "~/utils/getDateStrings";
 
 export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
@@ -23,6 +23,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 		(async () => {
 			const storedRecordAsString: string | null =
 				await AsyncStorage.getItem("record");
+
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
 				setRecord((oldRecord) => ({
@@ -30,6 +31,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 					isAsyncStorageLoaded: true,
 				}));
 			}
+
 			// AsyncStorageから記録取得、stateにsetする
 			else {
 				const storedRecord = JSON.parse(storedRecordAsString);

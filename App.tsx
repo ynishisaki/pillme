@@ -2,11 +2,11 @@ import { RecoilRoot } from "recoil";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Home } from "./src/pages/Home";
-import { Settings } from "./src/pages/Settings";
-import { EditWeeklyRecord } from "./src/pages/EditWeeklyRecord";
+import { Home } from "~/pages/Home";
+import { Settings } from "~/pages/Settings";
+import { EditWeeklyRecord } from "~/pages/EditWeeklyRecord";
 import { TouchableOpacity } from "react-native";
-import { SettingIcon } from "~/atoms/Icons";
+import { SettingIcon } from "~/components/small/Icons";
 
 export default function App() {
 	const Stack = createNativeStackNavigator();

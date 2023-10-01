@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { recordState } from "~/hooks";
-import CheckBox from "~/molecules/PressableCheckBox";
+import { recordState } from "~/hooks/recordState";
+import CheckBox from "~/medium/PressableCheckBox";
 import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
 
 export default function EditWeellyRecordCheckBoxes() {

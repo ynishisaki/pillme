@@ -1,9 +1,9 @@
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
 import { useResetRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Title from "~/atoms/Title";
+import Title from "~/components/small/Title";
 import { useState } from "react";
-import { recordState } from "~/hooks";
+import { recordState } from "~/hooks/recordState";
 
 export default function SettingsDataInit() {
 	const [isPressDelete, setIsPressDelete] = useState(false);

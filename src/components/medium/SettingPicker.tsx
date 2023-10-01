@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import SmallPicker from "~/atoms/SmallPicker";
+import SmallPicker from "~/components/small/SmallPicker";
 
 interface props {
 	description: string;

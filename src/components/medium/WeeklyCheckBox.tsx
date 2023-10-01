@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { CancelSmIcon, DropSmIcon, PillSmIcon } from "../atoms/Icons";
+import { CancelSmIcon, DropSmIcon, PillSmIcon } from "../small/Icons";
 
 export default ({
 	title,

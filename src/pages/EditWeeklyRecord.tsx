@@ -1,9 +1,9 @@
 import React from "react";
 import ScreenLayout from "~/template/ScreenLayout";
 import { ScreenNavigationProp } from "~/types";
-import EditWeellyRecordCheckBoxes from "~/organisms/EditWeellyRecordCheckBoxes";
+import EditWeellyRecordCheckBoxes from "~/components/large/EditWeellyRecordCheckBoxes";
 import { Text, View, StyleSheet } from "react-native";
-import Title from "~/atoms/Title";
+import Title from "~/components/small/Title";
 
 export const EditWeeklyRecord = ({
 	navigation,
