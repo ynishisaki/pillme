@@ -38,3 +38,26 @@ export function countHaveBleedingDays(record: recordType) {
 	// 今日の出血の有無を調べ、含める
 	return record.dailyRecord[0].haveBleeding ? count + 1 : count;
 }
+
+export function countIsRestPeriodDays(record: recordType) {
+	let count = 0;
+	while (record.dailyRecord[count].isRestPeriod === false) {
+		count++;
+	}
+
+	return count;
+}
+
+// 今日から何日前まで記録をつけていないか
+export function countNotRecordDays(record: recordType) {
+	let count = 0;
+	while (
+		record.dailyRecord[count].tookMedicine ||
+		record.dailyRecord[count].haveBleeding ||
+		record.dailyRecord[count].isRestPeriod
+	) {
+		count++;
+	}
+
+	return count;
+}

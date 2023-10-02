@@ -1,7 +1,5 @@
-import { recordType } from "~/types";
-import { testDataTwo } from "../resources/testData";
-import { getIsRestPeriod } from "../getIsRestPeriod";
-import { useState } from "react";
+import { testDataTwo } from "./resources/testDataTwo";
+import { getIsRestPeriod } from "../src/utils/getIsRestPeriod";
 
 describe("sholdRest", () => {
 	// TEST
@@ -11,7 +9,6 @@ describe("sholdRest", () => {
 
 	it("should be isRestPeriod=true", () => {
 		const record = testDataTwo;
-
 		const isRestPeriod = getIsRestPeriod(record);
 
 		expect(isRestPeriod).toBe(true);
