@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import Title from "~/components/small/Title";
 import { recordState } from "~/hooks/recordState";
-import SettingPicker from "~/medium/SettingPicker";
+import SettingPicker from "~/components/medium/SettingPicker";
 
 export default function SettingsSheetManagement() {
 	const [record, setRecord] = useRecoilState(recordState);

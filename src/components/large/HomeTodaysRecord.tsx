@@ -1,8 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import Title from "~/components/small/Title";
-import Message from "~/medium/TodaysMessage";
-import CheckBox from "~/medium/PressableCheckBox";
+import Message from "~/components/medium/TodaysMessage";
+import CheckBox from "~/components/medium/PressableCheckBox";
 import { recordState } from "~/hooks/recordState";
 import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
 

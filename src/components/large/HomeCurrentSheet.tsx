@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import { CurrentSheetStatus } from "~/medium/CurrentSheetStatus";
+import { CurrentSheetStatus } from "~/components/medium/CurrentSheetStatus";
 import EstimatedEndDate from "~/components/small/CurrentSheetEstimatedEndDate";
 import { RightIcon } from "~/components/small/Icons";
 import SubTitle from "~/components/small/SubTitle";
