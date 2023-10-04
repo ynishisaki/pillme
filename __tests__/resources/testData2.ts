@@ -1,36 +1,32 @@
 import { recordType } from "~/types";
 
-// 120日以上連続服用で休薬する
-export const testDataThree: recordType = {
+// 3日連続出血かつ、連続投与24日以上のため休薬する
+export const testDataTwo: recordType = {
 	dailyRecord: [
-		{
-			date: "2023-01-26",
-			tookMedicine: true,
-			haveBleeding: false,
-			isRestPeriod: false,
-		},
+		// 今日の記録はまだ
 		{
 			date: "2023-01-25",
-			tookMedicine: true,
+			tookMedicine: false,
 			haveBleeding: false,
 			isRestPeriod: false,
 		},
+		// 3日連続出血
 		{
 			date: "2023-01-24",
 			tookMedicine: true,
-			haveBleeding: false,
+			haveBleeding: true,
 			isRestPeriod: false,
 		},
 		{
 			date: "2023-01-23",
 			tookMedicine: true,
-			haveBleeding: false,
+			haveBleeding: true,
 			isRestPeriod: false,
 		},
 		{
 			date: "2023-01-22",
 			tookMedicine: true,
-			haveBleeding: false,
+			haveBleeding: true,
 			isRestPeriod: false,
 		},
 		{

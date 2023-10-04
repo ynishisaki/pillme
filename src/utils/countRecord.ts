@@ -41,8 +41,12 @@ export function countHaveBleedingDays(record: recordType) {
 
 export function countIsRestPeriodDays(record: recordType) {
 	let count = 0;
-	while (record.dailyRecord[count].isRestPeriod === false) {
-		count++;
+	for (let i = 1; i < record.dailyRecord.length; i++) {
+		if (record.dailyRecord[i].isRestPeriod === true) {
+			count++;
+		} else {
+			break;
+		}
 	}
 
 	return count;
@@ -51,12 +55,16 @@ export function countIsRestPeriodDays(record: recordType) {
 // 今日から何日前まで記録をつけていないか
 export function countNotRecordDays(record: recordType) {
 	let count = 0;
-	while (
-		record.dailyRecord[count].tookMedicine ||
-		record.dailyRecord[count].haveBleeding ||
-		record.dailyRecord[count].isRestPeriod
-	) {
-		count++;
+	for (let i = 0; i < record.dailyRecord.length; i++) {
+		if (
+			record.dailyRecord[i].tookMedicine === false &&
+			record.dailyRecord[i].haveBleeding === false &&
+			record.dailyRecord[i].isRestPeriod === false
+		) {
+			count++;
+		} else {
+			break;
+		}
 	}
 
 	return count;

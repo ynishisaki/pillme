@@ -1,5 +1,7 @@
-import { testDataTwo } from "./resources/testDataTwo";
-import { getIsRestPeriod } from "../src/utils/getIsRestPeriod";
+import { testDataOne } from "./resources/testData1";
+import { testDataTwo } from "./resources/testData2";
+import { testDataThree } from "./resources/testData3";
+import { judgeIsTodayRestPeriod } from "../src/utils/judgeIsTodayRestPeriod";
 
 describe("sholdRest", () => {
 	// TEST
@@ -7,9 +9,23 @@ describe("sholdRest", () => {
 	// 	expect(1).toBe(1);
 	// });
 
-	it("should be isRestPeriod=true", () => {
+	it("test1: today's isRestPeriod should be false", () => {
+		const record = testDataOne;
+		const isRestPeriod = judgeIsTodayRestPeriod(record);
+
+		expect(isRestPeriod).toBe(false);
+	});
+
+	it("test2: today's isRestPeriod should be true", () => {
 		const record = testDataTwo;
-		const isRestPeriod = getIsRestPeriod(record);
+		const isRestPeriod = judgeIsTodayRestPeriod(record);
+
+		expect(isRestPeriod).toBe(true);
+	});
+
+	it("test3: today's isRestPeriod should be true", () => {
+		const record = testDataThree;
+		const isRestPeriod = judgeIsTodayRestPeriod(record);
 
 		expect(isRestPeriod).toBe(true);
 	});

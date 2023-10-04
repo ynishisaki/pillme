@@ -4,6 +4,13 @@ import { recordType } from "~/types";
 export const testDataOne: recordType = {
 	dailyRecord: [
 		{
+			date: "2023-01-04",
+			tookMedicine: false,
+			haveBleeding: false,
+			isRestPeriod: false,
+		},
+		// 3日連続出血
+		{
 			date: "2023-01-03",
 			tookMedicine: true,
 			haveBleeding: true,
