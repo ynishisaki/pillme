@@ -21,7 +21,7 @@ export default function ScreenLayout({
 	return (
 		<View style={styles.container}>
 			<ImageBackground
-				source={require("../../assets/bgimage.png")}
+				source={require("../../assets/bgimage2.png")}
 				resizeMode='cover'
 				style={styles.bgimage}>
 				<View
