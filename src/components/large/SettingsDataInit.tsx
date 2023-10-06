@@ -13,7 +13,7 @@ export default function SettingsDataInit() {
 	const onPressDelete = async () => {
 		setIsPressDelete(true);
 
-		resetRecord;
+		resetRecord();
 		await AsyncStorage.clear();
 		console.log("Initialized AsyncStorage.");
 	};
@@ -30,7 +30,7 @@ export default function SettingsDataInit() {
 				{
 					text: "OK",
 					style: "destructive",
-					onPress: () => onPressDelete,
+					onPress: onPressDelete,
 				},
 			]
 		);

@@ -30,7 +30,12 @@ export default function SmallPicker(props: props) {
 const styles = StyleSheet.create({
 	picker: {
 		display: "flex",
-		height: 40,
-		width: 60,
+		height: 50,
+		width: 110,
+
+		borderWidth: 1,
+		borderColor: "#ccc",
+		border: "solid",
+		backgroundColor: "#ccc",
 	},
 });
