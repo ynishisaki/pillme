@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 	},
 	subtitle: {
 		fontSize: 16,
-		textAlign: "center",
+		// textAlign: "center",
 		paddingBottom: 6,
 	},
 	textline: {

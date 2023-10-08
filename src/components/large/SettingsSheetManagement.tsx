@@ -70,8 +70,9 @@ const styles = StyleSheet.create({
 	container: {
 		height: 240,
 		marginBottom: 20,
-		backgroundColor: "#fff",
-		borderRadius: 16,
+		backgroundColor: "rgba(255, 255, 255, 0.9)",
+		// backgroundColor: "white",
+		borderRadius: 8,
 	},
 	containerLayout: {
 		flex: 1,

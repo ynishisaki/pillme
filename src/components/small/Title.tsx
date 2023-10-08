@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 0.5,
 	},
 	titleText: {
-		fontSize: 18,
-		textAlign: "center",
+		fontSize: 20,
 	},
 });

@@ -72,7 +72,7 @@ export const CurrentSheetStatus = ({
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
+		flex: 1,
 		borderColor: "#fff",
 		borderWidth: 2,
 		borderRadius: 16,

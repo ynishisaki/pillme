@@ -22,8 +22,8 @@ export default ({
 		<View style={styles.container}>
 			{title && <Text style={styles.checkBoxText}>{title}</Text>}
 			<BouncyCheckbox
-				size={size === "md" ? 60 : 80}
-				fillColor={isRestPeriod ? "lightgray" : "#F6B69A"}
+				size={size === "md" ? 60 : 100}
+				fillColor={isRestPeriod ? "lightgray" : "#B25AB4"}
 				unfillColor='#fff'
 				isChecked={isRestPeriod ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				textComponent={null}
@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	checkBoxText: {
-		fontSize: 12,
+		// fontSize: 12,
+		fontSize: 18,
+		marginBottom: 8,
 	},
 });

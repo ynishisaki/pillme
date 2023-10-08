@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
 	},
 	weekTextLayout: {
 		fontSize: 8,
-		color: "#fff",
+		// color: "#fff",
 		marginBottom: -4,
 	},
 });

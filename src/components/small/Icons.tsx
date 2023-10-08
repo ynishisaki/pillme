@@ -1,8 +1,11 @@
+import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-// export const MenuIcon = () => (
-// 	<MaterialCommunityIcons name='menu' size={40} color='#000' />
-// );
+export const HomeIcon = () => <Octicons name='home' size={28} color='gray' />;
+
+export const HistoryIcon = () => (
+	<MaterialCommunityIcons name='table-clock' size={30} color='gray' />
+);
 
 export const SettingIcon = () => (
 	<MaterialCommunityIcons name='cog-outline' size={30} color='gray' />
@@ -13,7 +16,7 @@ export const BackIcon = () => (
 );
 
 export const RightIcon = () => (
-	<MaterialCommunityIcons name='chevron-right' size={30} color='#fff' />
+	<MaterialCommunityIcons name='chevron-right' size={30} color='black' />
 );
 
 export const PillLgIcon = () => (

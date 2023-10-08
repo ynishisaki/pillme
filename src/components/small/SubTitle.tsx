@@ -17,12 +17,10 @@ const styles = StyleSheet.create({
 		marginTop: 9,
 		marginHorizontal: 20,
 		height: 30,
-		borderBottomColor: "#fff",
+		borderBottomColor: "#848484",
 		borderBottomWidth: 0.5,
 	},
 	titleText: {
 		fontSize: 14,
-		lineHeight: 30,
-		color: "#fff",
 	},
 });

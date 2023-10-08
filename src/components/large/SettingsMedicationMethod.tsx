@@ -114,9 +114,11 @@ export default function SettingsMedicationMethod() {
 const styles = StyleSheet.create({
 	container: {
 		height: 580,
+		marginTop: 40,
 		marginBottom: 20,
-		backgroundColor: "#fff",
-		borderRadius: 16,
+		backgroundColor: "rgba(255, 255, 255, 0.9)",
+		// backgroundColor: "white",
+		borderRadius: 8,
 	},
 	containerLayout: {
 		flex: 1,

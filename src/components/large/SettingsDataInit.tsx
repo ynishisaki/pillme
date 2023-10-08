@@ -48,7 +48,7 @@ export default function SettingsDataInit() {
 					onPress={createTwoButtonAlert}
 					title='データ初期化'
 					disabled={isPressDelete}
-					color='#841584'
+					color='#B25AB4'
 					accessibilityLabel='delete button'
 				/>
 			</View>
@@ -59,9 +59,10 @@ export default function SettingsDataInit() {
 const styles = StyleSheet.create({
 	container: {
 		height: 160,
-		marginBottom: 20,
-		backgroundColor: "#fff",
-		borderRadius: 16,
+		marginBottom: 40,
+		backgroundColor: "rgba(255, 255, 255, 0.9)",
+		// backgroundColor: "white",
+		borderRadius: 8,
 	},
 	contentLayout: {
 		flex: 1,

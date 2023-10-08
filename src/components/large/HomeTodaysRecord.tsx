@@ -41,9 +41,9 @@ export const HomeTodaysRecord = () => {
 
 	return (
 		<View style={styles.container}>
-			<Title
+			{/* <Title
 				title={getDateWeekStringsForDisplay(record.dailyRecord[0].date)}
-			/>
+			/> */}
 			<View style={styles.contentLayout}>
 				<Message takeRestPeriod={record.dailyRecord[0].isRestPeriod} />
 				<View style={styles.checkBoxLayout}>

@@ -26,7 +26,7 @@ export default function ScrollableScreenLayout({
 	return (
 		<View style={styles.container}>
 			<ImageBackground
-				source={require("../../assets/bgimage2.png")}
+				source={require("../../assets/bgimage3.png")}
 				resizeMode='cover'
 				style={styles.bgimage}>
 				<ScrollView

@@ -11,6 +11,7 @@ import { HomeCurrentSheet } from "~/components/large/HomeCurrentSheet";
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
 import { recordState, today } from "~/hooks/recordState";
 import { getDateStrings } from "~/utils/getDateStrings";
+import { HomeInfo } from "~/components/large/HomeInfo";
 
 export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -91,10 +92,13 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 		<ScreenLayout navigationProps={navigation} navigationType='Home'>
 			{isFocused && (
 				<View style={styles.contentsLayout}>
-					<View style={styles.todaysRecord}>
+					<View style={styles.infoView}>
+						<HomeInfo />
+					</View>
+					<View style={styles.todaysRecordView}>
 						<HomeTodaysRecord />
 					</View>
-					<View style={styles.weeklyRecord}>
+					{/* <View style={styles.weeklyRecord}>
 						<HomeWeeklyRecord
 							onPress={() =>
 								navigation.navigate("EditWeeklyRecord")
@@ -103,7 +107,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 					</View>
 					<View style={styles.sheetRecord}>
 						<HomeCurrentSheet />
-					</View>
+					</View> */}
 				</View>
 			)}
 		</ScreenLayout>
@@ -113,29 +117,31 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginBottom: 16,
-		marginHorizontal: 16,
+		justifyContent: "center",
 		alignItems: "center",
 		flexDirection: "column",
-		// gap: 30,
-		justifyContent: "space-between",
+		rowGap: 200,
 	},
-	todaysRecord: {
-		height: 190,
-		width: 270,
-		backgroundColor: "white",
-		borderRadius: 40,
+	infoView: {
+		height: 200,
+		width: 300,
 	},
-	weeklyRecord: {
-		height: 150,
-		width: 330,
-		backgroundColor: "#63769C",
-		borderRadius: 16,
+	todaysRecordView: {
+		height: 220,
+		width: 300,
+		// backgroundColor: "rgba(255, 255, 255, 0.7)",
+		borderRadius: 8,
 	},
-	sheetRecord: {
-		height: 180,
-		width: 330,
-		backgroundColor: "#63769C",
-		borderRadius: 16,
-	},
+	// weeklyRecord: {
+	// 	height: 150,
+	// 	width: 330,
+	// 	backgroundColor: "#63769C",
+	// 	borderRadius: 16,
+	// },
+	// sheetRecord: {
+	// 	height: 180,
+	// 	width: 330,
+	// 	backgroundColor: "#63769C",
+	// 	borderRadius: 16,
+	// },
 });

@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
 
 	subtitleText: {
 		fontSize: 10,
-		color: "#ddd",
+		// color: "#ddd",
 		lineHeight: 10,
 	},
 	numberOfDaysText: {
 		fontSize: 16,
 		fontWeight: "600", // semibold
-		color: "#fff",
+		// color: "#fff",
 		marginBottom: 4,
 	},
 });
