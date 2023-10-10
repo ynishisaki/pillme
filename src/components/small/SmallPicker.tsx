@@ -29,7 +29,7 @@ export default function SmallPicker(props: props) {
 
 const styles = StyleSheet.create({
 	picker: {
-		display: "flex",
+		// display: "flex",
 		height: 50,
 		width: 110,
 

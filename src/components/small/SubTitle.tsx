@@ -16,11 +16,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginTop: 9,
 		marginHorizontal: 20,
-		height: 30,
-		borderBottomColor: "#848484",
-		borderBottomWidth: 0.5,
+		height: 42,
+		borderBottomColor: "#B25AB4",
+		borderBottomWidth: 2,
 	},
 	titleText: {
-		fontSize: 14,
+		fontSize: 24,
+		fontWeight: "bold",
 	},
 });

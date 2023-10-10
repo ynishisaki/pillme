@@ -34,16 +34,10 @@ export default function SettingsSheetManagement() {
 
 	return (
 		<View style={styles.container}>
-			<Title title={`シートの設定`} />
+			<Title title={`現在のシート`} />
 			<View style={styles.containerLayout}>
-				<Text style={styles.description}>
-					{
-						"現在お飲みのお薬とシートの状態に合わせて、編集してください。"
-					}
-				</Text>
-
 				<SettingPicker
-					description={"１シートの錠数（プラセボは除く）"}
+					description={"１シートの錠数（プラセボ除く）"}
 					selectedValue={
 						record.initialSheetSettings.numOfPillsPerSheet
 					}
@@ -68,7 +62,7 @@ export default function SettingsSheetManagement() {
 
 const styles = StyleSheet.create({
 	container: {
-		height: 240,
+		height: 250,
 		marginBottom: 20,
 		backgroundColor: "rgba(255, 255, 255, 0.9)",
 		// backgroundColor: "white",

@@ -58,19 +58,19 @@ export default function SettingsMedicationMethod() {
 
 	return (
 		<View style={styles.container}>
-			<Title title={`服薬方法の設定`} />
+			<Title title={`服薬方法`} />
 			<View style={styles.containerLayout}>
 				<Text style={styles.description}>
-					{"このアプリは、120日連続服用を対象としています。"}
+					このアプリは、120日連続服用を対象としています。
 				</Text>
 				<Text style={styles.description}>
-					{
-						"お飲みのお薬の使用方法に合わせて、以下の設定を編集してください。"
-					}
+					お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。
 				</Text>
 
+				<CurrentSettings />
+
 				<SettingPicker
-					description={"最短連続投与日数"}
+					description={"最短連続服薬日数"}
 					selectedValue={minConteniousTakingDays}
 					minValue={1}
 					maxValue={
@@ -82,7 +82,7 @@ export default function SettingsMedicationMethod() {
 				/>
 
 				<SettingPicker
-					description={"最長連続投与日数"}
+					description={"最長連続服薬日数"}
 					selectedValue={maxConteniousTakingDays}
 					minValue={minConteniousTakingDays + 1}
 					maxValue={120}
@@ -90,7 +90,7 @@ export default function SettingsMedicationMethod() {
 				/>
 
 				<SettingPicker
-					description={"休薬に必要な連続出血日数"}
+					description={"休薬開始となる連続出血日数"}
 					selectedValue={conteniousBleeingDaysForRest}
 					minValue={1}
 					maxValue={7}
@@ -104,8 +104,6 @@ export default function SettingsMedicationMethod() {
 					maxValue={7}
 					onChange={onChangeStopTakingDays}
 				/>
-
-				<CurrentSettings />
 			</View>
 		</View>
 	);
@@ -113,7 +111,7 @@ export default function SettingsMedicationMethod() {
 
 const styles = StyleSheet.create({
 	container: {
-		height: 580,
+		height: 616,
 		marginTop: 40,
 		marginBottom: 20,
 		backgroundColor: "rgba(255, 255, 255, 0.9)",
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 	},
 	description: {
-		fontSize: 12,
+		fontSize: 13,
 		color: "#000000A8",
 	},
 });

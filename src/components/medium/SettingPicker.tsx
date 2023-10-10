@@ -12,7 +12,7 @@ interface props {
 export default function SettingPicker(props: props) {
 	return (
 		<View style={styles.contentLayout}>
-			<Text>{props.description}</Text>
+			<Text style={styles.contentText}>{props.description}</Text>
 			<SmallPicker
 				selectedValue={props.selectedValue}
 				minValue={props.minValue}
@@ -28,6 +28,11 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",
-		paddingVertical: 10,
+		paddingVertical: 6,
+	},
+
+	contentText: {
+		fontSize: 16,
+		maxWidth: 200,
 	},
 });

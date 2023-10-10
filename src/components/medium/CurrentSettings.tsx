@@ -33,8 +33,9 @@ const styles = StyleSheet.create({
 	container: {
 		marginTop: 10,
 		padding: 20,
-		backgroundColor: "#ffffe0",
-		borderRadius: 16,
+		// backgroundColor: "#ffffe0",
+		backgroundColor: "#ddd",
+		borderRadius: 6,
 		boxShadow: "0px 0px 4px #00000040",
 	},
 	subtitle: {
