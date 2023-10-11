@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { mainColor } from "~/utils/color";
 
 export default ({ title, Icon }: { title: string; Icon?: React.FC }) => {
 	return (
@@ -14,14 +15,14 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		marginTop: 9,
-		marginHorizontal: 20,
-		height: 42,
-		borderBottomColor: "#B25AB4",
-		borderBottomWidth: 2,
+		// paddingTop: 8,
+		paddingHorizontal: 20,
+		height: 46,
+		backgroundColor: mainColor,
 	},
 	titleText: {
-		fontSize: 24,
+		fontSize: 18,
 		fontWeight: "bold",
+		color: "white",
 	},
 });

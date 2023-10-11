@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { mainColor } from "~/utils/color";
 
 export default ({ title }: { title: string }) => {
 	return (
@@ -12,14 +13,14 @@ export default ({ title }: { title: string }) => {
 
 const styles = StyleSheet.create({
 	titleContainer: {
-		marginTop: 16,
-		marginHorizontal: 20,
-		height: 42,
-		borderBottomColor: "#B25AB4",
-		borderBottomWidth: 2,
+		paddingTop: 8,
+		paddingHorizontal: 20,
+		height: 46,
+		backgroundColor: mainColor,
 	},
 	titleText: {
-		fontSize: 24,
+		fontSize: 20,
 		fontWeight: "bold",
+		color: "white",
 	},
 });

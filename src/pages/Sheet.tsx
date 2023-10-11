@@ -27,9 +27,11 @@ export const Sheet = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
+		marginBottom: 16,
+		paddingHorizontal: 16,
 		// marginBottom: 16,
 		// paddingHorizontal: 16,
-		marginHorizontal: 16,
+		// marginHorizontal: 16,
 
 		// marginBottom: 100,
 		// justifyContent: "flex-end",
@@ -41,16 +43,17 @@ const styles = StyleSheet.create({
 		// flex: 1,
 		height: 200,
 		// width: 330,
+		marginHorizontal: 0,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
-		// backgroundColor: "white",
 		borderRadius: 8,
+		overflow: "hidden",
 	},
 	sheetRecord: {
-		// flex: 1,
+		flex: 1,
 		height: 180,
-		// width: 300,
+		marginHorizontal: 0,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
-		// backgroundColor: "white",
 		borderRadius: 8,
+		overflow: "hidden",
 	},
 });

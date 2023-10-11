@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Title from "~/components/small/Title";
 import { useState } from "react";
 import { recordState } from "~/hooks/recordState";
+import { warningRed } from "~/utils/color";
 
 export default function SettingsDataInit() {
 	const [isPressDelete, setIsPressDelete] = useState(false);
@@ -48,7 +49,7 @@ export default function SettingsDataInit() {
 					onPress={createTwoButtonAlert}
 					title='データ初期化'
 					disabled={isPressDelete}
-					color='#B25AB4'
+					color={warningRed}
 					accessibilityLabel='delete button'
 				/>
 			</View>
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(255, 255, 255, 0.9)",
 		// backgroundColor: "white",
 		borderRadius: 8,
+		overflow: "hidden",
 	},
 	contentLayout: {
 		flex: 1,

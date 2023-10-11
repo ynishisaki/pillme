@@ -124,12 +124,11 @@ const styles = StyleSheet.create({
 	},
 	infoView: {
 		height: 200,
-		width: 300,
+		width: 330,
 	},
 	todaysRecordView: {
 		height: 220,
-		width: 300,
-		// backgroundColor: "rgba(255, 255, 255, 0.7)",
+		width: 330,
 		borderRadius: 8,
 	},
 	// weeklyRecord: {

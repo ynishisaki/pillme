@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(255, 255, 255, 0.9)",
 		// backgroundColor: "white",
 		borderRadius: 8,
+		overflow: "hidden",
 	},
 	containerLayout: {
 		flex: 1,
