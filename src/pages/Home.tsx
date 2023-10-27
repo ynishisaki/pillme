@@ -6,24 +6,22 @@ import { useIsFocused } from "@react-navigation/native";
 
 import ScreenLayout from "~/template/ScreenLayout";
 import { HomeTodaysRecord } from "~/components/large/HomeTodaysRecord";
-import { HomeWeeklyRecord } from "~/components/large/HomeWeeklyRecord";
-import { HomeCurrentSheet } from "~/components/large/HomeCurrentSheet";
+
 import { dailyRecordType, ScreenNavigationProp } from "~/types";
 import { recordState, today } from "~/hooks/recordState";
 import { getDateStrings } from "~/utils/getDateStrings";
 import { HomeInfo } from "~/components/large/HomeInfo";
 
-export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+export const Home = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	// This hook returns `true` if the screen is focused, `false` otherwise
-	const isFocused = useIsFocused();
+	// const isFocused = useIsFocused();
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
 		(async () => {
-			const storedRecordAsString: string | null =
-				await AsyncStorage.getItem("record");
+			const storedRecordAsString: string | null = await AsyncStorage.getItem("record");
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
@@ -68,10 +66,7 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 
 					setRecord({
 						...storedRecord,
-						dailyRecord: [
-							...lapsedDailyRecords,
-							...storedRecord.dailyRecord,
-						],
+						dailyRecord: [...lapsedDailyRecords, ...storedRecord.dailyRecord],
 						isAsyncStorageLoaded: true,
 					});
 				}
@@ -89,27 +84,17 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	}, [record]);
 
 	return (
-		<ScreenLayout navigationProps={navigation} navigationType='Home'>
-			{isFocused && (
-				<View style={styles.contentsLayout}>
-					<View style={styles.infoView}>
-						<HomeInfo />
-					</View>
-					<View style={styles.todaysRecordView}>
-						<HomeTodaysRecord />
-					</View>
-					{/* <View style={styles.weeklyRecord}>
-						<HomeWeeklyRecord
-							onPress={() =>
-								navigation.navigate("EditWeeklyRecord")
-							}
-						/>
-					</View>
-					<View style={styles.sheetRecord}>
-						<HomeCurrentSheet />
-					</View> */}
+		<ScreenLayout>
+			{/* {isFocused && ( */}
+			<View style={styles.contentsLayout}>
+				<View style={styles.infoView}>
+					<HomeInfo />
 				</View>
-			)}
+				<View style={styles.todaysRecordView}>
+					<HomeTodaysRecord />
+				</View>
+			</View>
+			{/* )} */}
 		</ScreenLayout>
 	);
 };
@@ -131,16 +116,4 @@ const styles = StyleSheet.create({
 		width: 330,
 		borderRadius: 8,
 	},
-	// weeklyRecord: {
-	// 	height: 150,
-	// 	width: 330,
-	// 	backgroundColor: "#63769C",
-	// 	borderRadius: 16,
-	// },
-	// sheetRecord: {
-	// 	height: 180,
-	// 	width: 330,
-	// 	backgroundColor: "#63769C",
-	// 	borderRadius: 16,
-	// },
 });

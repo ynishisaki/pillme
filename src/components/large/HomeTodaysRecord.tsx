@@ -1,10 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import Title from "~/components/small/Title";
 import Message from "~/components/medium/TodaysMessage";
 import CheckBox from "~/components/medium/PressableCheckBox";
 import { recordState } from "~/hooks/recordState";
-import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
 
 export const HomeTodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -13,26 +11,13 @@ export const HomeTodaysRecord = () => {
 	const haveBleeding = record.dailyRecord[0].haveBleeding;
 	const isRestPeriod = record.dailyRecord[0].isRestPeriod;
 
-	function onPressTookMedicine(nextBoolean: boolean) {
+	function updateTodayRecord(key: string, nextBoolean: boolean) {
 		setRecord({
 			...record,
 			dailyRecord: [
 				{
 					...record.dailyRecord[0],
-					tookMedicine: nextBoolean,
-				},
-				...record.dailyRecord.slice(1),
-			],
-		});
-	}
-
-	function onPressHaveBleeding(nextBoolean: boolean) {
-		setRecord({
-			...record,
-			dailyRecord: [
-				{
-					...record.dailyRecord[0],
-					haveBleeding: nextBoolean,
+					[key]: nextBoolean,
 				},
 				...record.dailyRecord.slice(1),
 			],
@@ -41,11 +26,8 @@ export const HomeTodaysRecord = () => {
 
 	return (
 		<View style={styles.container}>
-			{/* <Title
-				title={getDateWeekStringsForDisplay(record.dailyRecord[0].date)}
-			/> */}
 			<View style={styles.contentLayout}>
-				<Message takeRestPeriod={record.dailyRecord[0].isRestPeriod} />
+				<Message takeRestPeriod={isRestPeriod} />
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (
 						<>
@@ -55,7 +37,7 @@ export const HomeTodaysRecord = () => {
 								size={"lg"}
 								isChecked={tookMedicine}
 								isRestPeriod={isRestPeriod}
-								onPress={onPressTookMedicine}
+								onPress={() => updateTodayRecord("tookMedicine", !tookMedicine)}
 							/>
 							<CheckBox
 								title='出血'
@@ -63,7 +45,7 @@ export const HomeTodaysRecord = () => {
 								size={"lg"}
 								isChecked={haveBleeding}
 								isRestPeriod={isRestPeriod}
-								onPress={onPressHaveBleeding}
+								onPress={() => updateTodayRecord("haveBleeding", !haveBleeding)}
 							/>
 						</>
 					)}
@@ -84,6 +66,5 @@ const styles = StyleSheet.create({
 	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		marginTop: -10,
 	},
 });

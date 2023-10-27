@@ -1,10 +1,4 @@
-import {
-	ImageBackground,
-	ScrollView,
-	StatusBar,
-	StyleSheet,
-	View,
-} from "react-native";
+import { ImageBackground, ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useHeaderHeight } from "@react-navigation/elements";
 
@@ -16,28 +10,11 @@ interface ScreenLayoutProps {
 	children: React.ReactNode;
 }
 
-export default function ScrollableScreenLayout({
-	navigationProps,
-	navigationType,
-	children,
-}: ScreenLayoutProps) {
-	const headerHeight = useHeaderHeight();
-
+export default function ScrollableScreenLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<View style={styles.container}>
-			<ImageBackground
-				source={require("../../assets/bgimage3.png")}
-				resizeMode='cover'
-				style={styles.bgimage}>
-				<ScrollView
-					style={[
-						styles.contentsLayout,
-						{
-							marginTop: headerHeight,
-						},
-					]}>
-					{children}
-				</ScrollView>
+			<ImageBackground source={require("../../assets/bgimage3.png")} resizeMode='cover' style={styles.bgimage}>
+				<ScrollView style={[styles.contentsLayout]}>{children}</ScrollView>
 			</ImageBackground>
 		</View>
 	);

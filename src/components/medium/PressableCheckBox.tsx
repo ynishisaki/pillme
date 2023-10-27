@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CancelLgIcon, DropLgIcon, PillLgIcon } from "~/components/small/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { mainColor } from "~/utils/color";
 
-// 薬飲んだかと、出血したかチェックボックス
 export default ({
 	title,
 	type,
@@ -23,19 +23,17 @@ export default ({
 			{title && <Text style={styles.checkBoxText}>{title}</Text>}
 			<BouncyCheckbox
 				size={size === "md" ? 60 : 100}
-				fillColor={isRestPeriod ? "lightgray" : "#B25AB4"}
-				unfillColor='#fff'
+				style={{
+					borderRadius: 10,
+					borderWidth: 0,
+				}}
+				fillColor={isRestPeriod ? "lightgray" : mainColor}
+				unfillColor='white'
 				isChecked={isRestPeriod ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				textComponent={null}
 				disableText={true}
 				disabled={isRestPeriod}
-				ImageComponent={
-					isRestPeriod
-						? CancelLgIcon
-						: type === "medicine"
-						? PillLgIcon
-						: DropLgIcon
-				}
+				ImageComponent={isRestPeriod ? CancelLgIcon : type === "medicine" ? PillLgIcon : DropLgIcon}
 				onPress={(nextBoolean) => onPress(nextBoolean)}
 			/>
 		</View>
@@ -47,8 +45,9 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	checkBoxText: {
-		// fontSize: 12,
+		color: "white",
 		fontSize: 18,
+		fontWeight: "bold",
 		marginBottom: 8,
 	},
 });

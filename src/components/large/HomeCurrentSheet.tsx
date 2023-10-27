@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
 	},
 	layout: {
 		flex: 1,
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
+		// flexDirection: "row",
+		// alignItems: "center",
+		// justifyContent: "space-between",
 		marginHorizontal: 20,
 	},
 });

@@ -9,12 +9,10 @@ import { ScreenNavigationProp } from "~/types";
 
 export const Sheet = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	return (
-		<ScreenLayout navigationProps={navigation} navigationType='Home'>
+		<ScreenLayout>
 			<View style={styles.contentsLayout}>
 				<View style={styles.weeklyRecord}>
-					<HomeWeeklyRecord
-						onPress={() => navigation.navigate("EditWeeklyRecord")}
-					/>
+					<HomeWeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 				</View>
 				<View style={styles.sheetRecord}>
 					<HomeCurrentSheet />

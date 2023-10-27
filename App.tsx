@@ -11,7 +11,6 @@ import { TouchableOpacity } from "react-native";
 import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/small/Icons";
 
 export default function App() {
-	const Stack = createNativeStackNavigator();
 	const Tab = createBottomTabNavigator();
 
 	return (

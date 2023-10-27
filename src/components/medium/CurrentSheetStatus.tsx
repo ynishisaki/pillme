@@ -90,7 +90,9 @@ const styles = StyleSheet.create({
 		// marginHorizontal: 5,
 		// marginVertical: 150,
 		margin: 5,
-		paddingVertical: 7,
+		// paddingVertical: 7,
+		columnGap: 5,
+		// rowGap: 5,
 	},
 	dammyCheckBox: {
 		width: 15,

@@ -5,15 +5,9 @@ import SettingsSheetManagement from "~/components/large/SettingsSheetManagement"
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 import SettingsDataInit from "~/components/large/SettingsDataInit";
 
-export const Settings = ({
-	navigation,
-}: {
-	navigation: ScreenNavigationProp;
-}) => {
+export const Settings = () => {
 	return (
-		<ScrollableScreenLayout
-			navigationProps={navigation}
-			navigationType='Settings'>
+		<ScrollableScreenLayout>
 			<SettingsMedicationMethod />
 			<SettingsSheetManagement />
 			<SettingsDataInit />
