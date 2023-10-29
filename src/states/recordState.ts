@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { getDateStrings } from "~/utils/getDateStrings";
+import { getDateStrings } from "~/functions/getDateStrings";
 
 export const today = getDateStrings(new Date()); // YYYY-DD-MM
 

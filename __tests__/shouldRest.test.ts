@@ -1,7 +1,7 @@
 import { testDataOne } from "./resources/testData1";
 import { testDataTwo } from "./resources/testData2";
 import { testDataThree } from "./resources/testData3";
-import { judgeIsTodayRestPeriod } from "../src/utils/judgeIsTodayRestPeriod";
+import { judgeIsTodayRestPeriod } from "../src/functions/judgeIsTodayRestPeriod";
 
 describe("sholdRest", () => {
 	// TEST

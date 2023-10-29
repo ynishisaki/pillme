@@ -33,9 +33,7 @@ export const CurrentSheetStatus = ({
 	// 今日の分
 	checkBoxes.push(
 		<View key={100 + 1} style={styles.checkBoxLayout}>
-			<CurrentSheetCheckBox
-				isChecked={record.dailyRecord[0].tookMedicine}
-			/>
+			<CurrentSheetCheckBox isChecked={record.dailyRecord[0].tookMedicine} />
 		</View>
 	);
 	// console.log(100 + 1);
@@ -53,11 +51,7 @@ export const CurrentSheetStatus = ({
 	// 空間を埋めるためのダミー分
 
 	if ((currentSheetTookMedicineLength + remainingDays) % 7 !== 0) {
-		for (
-			let i = 0;
-			i < (currentSheetTookMedicineLength + 1 + remainingDays) % 7;
-			i++
-		) {
+		for (let i = 0; i < (currentSheetTookMedicineLength + 1 + remainingDays) % 7; i++) {
 			checkBoxes.push(
 				<View key={10000 + i} style={styles.checkBoxLayout}>
 					<View style={styles.dammyCheckBox} />
@@ -83,6 +77,7 @@ const styles = StyleSheet.create({
 		// padding: "auto",
 		padding: 5,
 		justifyContent: "space-between",
+		alignItems: "center",
 	},
 	checkBoxLayout: {
 		// flex: 1,

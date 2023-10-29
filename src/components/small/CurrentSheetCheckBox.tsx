@@ -18,6 +18,6 @@ export const CurrentSheetCheckBox = ({ isChecked }: { isChecked: boolean }) => {
 
 const styles = StyleSheet.create({
 	checkBox: {
-		flex: 1,
+		// flex: 1,
 	},
 });

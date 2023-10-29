@@ -1,9 +1,9 @@
 import { StyleSheet, View, Text } from "react-native";
 import { useRecoilValue } from "recoil";
 import Message from "~/components/medium/TodaysMessage";
-import { recordState } from "~/hooks/recordState";
-import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
-import { countHaveBleedingDays, countTakeMedicineDays } from "~/utils/countRecord";
+import { recordState } from "~/states/recordState";
+import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
+import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
 
 export const HomeInfo = () => {
 	const record = useRecoilValue(recordState);

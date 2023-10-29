@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { recordState } from "~/hooks/recordState";
+import { recordState } from "~/states/recordState";
 import CheckBox from "~/components/medium/PressableCheckBox";
-import { getDateWeekStringsForDisplay } from "~/utils/getDateStrings";
+import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -35,16 +35,13 @@ export default function EditWeellyRecordCheckBoxes() {
 		});
 	}
 
-	const recordLength =
-		record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
+	const recordLength = record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
 
 	const editableWeelyRecordCheckBoxes = [];
 	for (let i = 0; i < recordLength; i++) {
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
-				<Text style={styles.text}>
-					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)}
-				</Text>
+				<Text style={styles.text}>{getDateWeekStringsForDisplay(record.dailyRecord[i].date)}</Text>
 
 				{record.isAsyncStorageLoaded && (
 					<>
@@ -54,9 +51,7 @@ export default function EditWeellyRecordCheckBoxes() {
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
 							isRestPeriod={record.dailyRecord[i].isRestPeriod}
-							onPress={(nextBoolean) =>
-								onPressTookMedicine(nextBoolean, i)
-							}
+							onPress={(nextBoolean) => onPressTookMedicine(nextBoolean, i)}
 						/>
 						<CheckBox
 							title={i === 0 ? "出血" : null}
@@ -64,9 +59,7 @@ export default function EditWeellyRecordCheckBoxes() {
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
 							isRestPeriod={record.dailyRecord[i].isRestPeriod}
-							onPress={(nextBoolean) =>
-								onPressHaveBleeding(nextBoolean, i)
-							}
+							onPress={(nextBoolean) => onPressHaveBleeding(nextBoolean, i)}
 						/>
 					</>
 				)}
@@ -74,11 +67,7 @@ export default function EditWeellyRecordCheckBoxes() {
 		);
 	}
 
-	return (
-		<View style={styles.verticalStackLayout}>
-			{editableWeelyRecordCheckBoxes}
-		</View>
-	);
+	return <View style={styles.verticalStackLayout}>{editableWeelyRecordCheckBoxes}</View>;
 }
 
 const styles = StyleSheet.create({

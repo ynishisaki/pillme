@@ -4,12 +4,9 @@ import { RightIcon } from "~/components/small/Icons";
 import CountRecord from "~/components/medium/WeeklyCountRecord";
 import CheckBox from "~/components/medium/WeeklyCheckBox";
 import SubTitle from "~/components/small/SubTitle";
-import { recordState } from "~/hooks/recordState";
-import {
-	countHaveBleedingDays,
-	countTakeMedicineDays,
-} from "~/utils/countRecord";
-import { getWeekArr } from "~/utils/getDateStrings";
+import { recordState } from "~/states/recordState";
+import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
+import { getWeekArr } from "~/functions/getDateStrings";
 
 export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -35,23 +32,17 @@ export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	// 出血が3日以上連続していたら
 	if (haveBleedingDays >= record.initialSheetSettings.stopTakingDays) {
 		// かつ、連続投与日数が最少の25日以上だったら
-		if (
-			takeMedicineDays >=
-			record.initialSheetSettings.minConteniousTakingDays
-		) {
+		if (takeMedicineDays >= record.initialSheetSettings.minConteniousTakingDays) {
 			setRest();
 		}
 	}
 	// 連続投与日数が最大の120日を超えていたら
-	else if (
-		takeMedicineDays > record.initialSheetSettings.maxConteniousTakingDays
-	) {
+	else if (takeMedicineDays > record.initialSheetSettings.maxConteniousTakingDays) {
 		setRest();
 	}
 	// 昨日が休薬日だったら
 
-	const recordLength =
-		record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
+	const recordLength = record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
 
 	const weekArr = getWeekArr();
 
@@ -63,12 +54,8 @@ export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 			<View style={styles.container}>
 				<View style={styles.layout}>
 					<View style={styles.textLayout}>
-						<CountRecord
-							title='服薬'
-							days={takeMedicineDays}></CountRecord>
-						<CountRecord
-							title='出血'
-							days={haveBleedingDays}></CountRecord>
+						<CountRecord title='服薬' days={takeMedicineDays}></CountRecord>
+						<CountRecord title='出血' days={haveBleedingDays}></CountRecord>
 					</View>
 
 					<View style={styles.recordLayout}>
@@ -77,60 +64,37 @@ export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 									.slice(0, recordLength)
 									.reverse()
 									.map((record, index) => (
-										<View
-											key={index}
-											style={styles.checkBoxLayout}>
-											<Text style={styles.weekTextLayout}>
-												{weekArr[index]}
-											</Text>
+										<View key={index} style={styles.checkBoxLayout}>
+											<Text style={styles.weekTextLayout}>{weekArr[index]}</Text>
 											<CheckBox
 												title='服薬'
 												isChecked={record.tookMedicine}
-												isRestPeriod={
-													record.isRestPeriod
-												}
+												isRestPeriod={record.isRestPeriod}
 											/>
 											<CheckBox
 												title='出血'
 												isChecked={record.haveBleeding}
-												isRestPeriod={
-													record.isRestPeriod
-												}
+												isRestPeriod={record.isRestPeriod}
 											/>
 										</View>
 									))
-							: [...record.dailyRecord]
-									.reverse()
-									.map((record, index) => (
-										<View
-											key={index}
-											style={styles.checkBoxLayout}>
-											<Text style={styles.weekTextLayout}>
-												{
-													weekArr[
-														(index +
-															(7 -
-																recordLength)) %
-															7
-													]
-												}
-											</Text>
-											<CheckBox
-												title='服薬'
-												isChecked={record.tookMedicine}
-												isRestPeriod={
-													record.isRestPeriod
-												}
-											/>
-											<CheckBox
-												title='出血'
-												isChecked={record.haveBleeding}
-												isRestPeriod={
-													record.isRestPeriod
-												}
-											/>
-										</View>
-									))}
+							: [...record.dailyRecord].reverse().map((record, index) => (
+									<View key={index} style={styles.checkBoxLayout}>
+										<Text style={styles.weekTextLayout}>
+											{weekArr[(index + (7 - recordLength)) % 7]}
+										</Text>
+										<CheckBox
+											title='服薬'
+											isChecked={record.tookMedicine}
+											isRestPeriod={record.isRestPeriod}
+										/>
+										<CheckBox
+											title='出血'
+											isChecked={record.haveBleeding}
+											isRestPeriod={record.isRestPeriod}
+										/>
+									</View>
+							  ))}
 					</View>
 				</View>
 			</View>

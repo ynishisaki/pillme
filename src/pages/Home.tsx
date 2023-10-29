@@ -7,10 +7,11 @@ import { useIsFocused } from "@react-navigation/native";
 import ScreenLayout from "~/template/ScreenLayout";
 import { HomeTodaysRecord } from "~/components/large/HomeTodaysRecord";
 
-import { dailyRecordType, ScreenNavigationProp } from "~/types";
-import { recordState, today } from "~/hooks/recordState";
-import { getDateStrings } from "~/utils/getDateStrings";
+import { dailyRecordType, recordType } from "~/types";
+import { recordState, today } from "~/states/recordState";
+import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeInfo } from "~/components/large/HomeInfo";
+import { judgeIsTodayRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
 
 export const Home = () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -25,52 +26,64 @@ export const Home = () => {
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
-				setRecord((oldRecord) => ({
+				return setRecord((oldRecord) => ({
 					...oldRecord,
 					isAsyncStorageLoaded: true,
 				}));
 			}
 
 			// AsyncStorageから記録取得、stateにsetする
-			else {
-				const storedRecord = JSON.parse(storedRecordAsString);
-				const latestDailyRecord = storedRecord.dailyRecord[0];
+			const storedRecord: recordType = JSON.parse(storedRecordAsString);
+			const latestRecordDateString = storedRecord.dailyRecord[0].date;
 
-				// アプリ起動日が、前回起動日と同日の場合
-				if (latestDailyRecord.date === today) {
-					setRecord({
-						...storedRecord,
-						isAsyncStorageLoaded: true,
-					});
-				}
-
-				// アプリ起動日が、前回起動日と異なる日だったら、前回から今日までの記録を追加
-				else {
-					let latestDate = new Date(latestDailyRecord.date);
-					let todayDate = new Date(today);
-
-					let lapsedDailyRecords: Array<dailyRecordType> = [];
-					// 時刻まで比較すると、左項は0時0分0秒、右項は現在時刻になることに注意
-					while (latestDate.getTime() < todayDate.getTime()) {
-						latestDate.setDate(latestDate.getDate() + 1);
-						lapsedDailyRecords = [
-							{
-								date: getDateStrings(latestDate),
-								tookMedicine: false,
-								haveBleeding: false,
-								isRestPeriod: false,
-							},
-							...lapsedDailyRecords,
-						];
-					}
-
-					setRecord({
-						...storedRecord,
-						dailyRecord: [...lapsedDailyRecords, ...storedRecord.dailyRecord],
-						isAsyncStorageLoaded: true,
-					});
-				}
+			// アプリ起動日が、前回起動日と同日の場合
+			if (latestRecordDateString === today) {
+				return setRecord({
+					...storedRecord,
+					isAsyncStorageLoaded: true,
+				});
 			}
+
+			// アプリ起動日が、前回起動日と異なる日だったら、前回から今日までの記録を追加
+			let latestDate = new Date(latestRecordDateString);
+			let todayDate = new Date();
+
+			todayDate.setHours(0, 0, 0, 0);
+
+			let lapsedDailyRecords: Array<dailyRecordType> = [];
+			// 時刻まで比較すると、左項は0時0分0秒、右項は現在時刻になることに注意
+			while (latestDate.getTime() < todayDate.getTime()) {
+				latestDate.setDate(latestDate.getDate() + 1);
+				lapsedDailyRecords = [
+					{
+						date: getDateStrings(latestDate),
+						tookMedicine: false,
+						haveBleeding: false,
+						isRestPeriod: false,
+					},
+					...lapsedDailyRecords,
+				];
+			}
+
+			const updatedRecord = {
+				...storedRecord,
+				dailyRecord: [...lapsedDailyRecords, ...storedRecord.dailyRecord],
+				isAsyncStorageLoaded: true,
+			};
+
+			// 今日が休薬日かどうか判定
+			const shouldRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
+
+			return setRecord({
+				...updatedRecord,
+				dailyRecord: [
+					{
+						...updatedRecord.dailyRecord[0],
+						isRestPeriod: shouldRestPeriod,
+					},
+					...updatedRecord.dailyRecord.slice(1),
+				],
+			});
 		})();
 		// 上記の括弧をつけることで即時関数を実行
 	}, []);

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CancelLgIcon, DropLgIcon, PillLgIcon } from "~/components/small/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { mainColor } from "~/utils/color";
+import { mainColor } from "~/styles/color";
 
 export default ({
 	title,

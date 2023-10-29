@@ -39,3 +39,24 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	// 昨日以前の記録がない場合もfalseとする
 	return false;
 };
+
+export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => {
+	const takeMedicineDays = countTakeMedicineDays(record);
+	const haveBleedingDays = countHaveBleedingDays(record);
+	const isRestPeriodDays = countIsRestPeriodDays(record);
+	const notRecordDays = countNotRecordDays(record);
+
+	// 今日までで、服薬120日以上の場合 -> 明日から休薬期間
+	// 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
+	// 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
+	const shouldRest =
+		takeMedicineDays >= 120 ||
+		(takeMedicineDays >= 24 && haveBleedingDays >= 3) ||
+		(isRestPeriodDays > 0 && isRestPeriodDays < 4);
+
+	// 今日の記録がある場合のみ判定を行う
+	if (notRecordDays === 0 && shouldRest) {
+		return true;
+	}
+	return false;
+};

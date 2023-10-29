@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import Message from "~/components/medium/TodaysMessage";
 import CheckBox from "~/components/medium/PressableCheckBox";
-import { recordState } from "~/hooks/recordState";
+import { recordState } from "~/states/recordState";
 
 export const HomeTodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);

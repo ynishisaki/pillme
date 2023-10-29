@@ -4,8 +4,8 @@ import { CurrentSheetStatus } from "~/components/medium/CurrentSheetStatus";
 import EstimatedEndDate from "~/components/small/CurrentSheetEstimatedEndDate";
 import { RightIcon } from "~/components/small/Icons";
 import SubTitle from "~/components/small/SubTitle";
-import { recordState } from "~/hooks/recordState";
-import { getDateStringsForDisplay } from "~/utils/getDateStrings";
+import { recordState } from "~/states/recordState";
+import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 
 export const HomeCurrentSheet = () => {
 	const record = useRecoilValue(recordState);
@@ -26,8 +26,7 @@ export const HomeCurrentSheet = () => {
 	const recordLength = record.dailyRecord.length; // 今日の分を含めてOK
 	console.log("test: recordLength", recordLength);
 
-	const currentSheetTookMedicineLength =
-		(recordLength + beginSheetIndex) % numOfPillsPerSheet || 24; // 1, 2, ... 24
+	const currentSheetTookMedicineLength = (recordLength + beginSheetIndex) % numOfPillsPerSheet || 24; // 1, 2, ... 24
 
 	const remainingDays = numOfPillsPerSheet - currentSheetTookMedicineLength;
 
@@ -35,9 +34,7 @@ export const HomeCurrentSheet = () => {
 	const todayDate = today.getDate();
 	const calculateSheetEndDate = today.setDate(todayDate + remainingDays);
 
-	const estimatedEndDate = getDateStringsForDisplay(
-		new Date(calculateSheetEndDate)
-	);
+	const estimatedEndDate = getDateStringsForDisplay(new Date(calculateSheetEndDate));
 
 	return (
 		<>
@@ -55,9 +52,7 @@ export const HomeCurrentSheet = () => {
 					<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
 					<CurrentSheetStatus
 						record={record}
-						currentSheetTookMedicineLength={
-							currentSheetTookMedicineLength
-						}
+						currentSheetTookMedicineLength={currentSheetTookMedicineLength}
 						remainingDays={remainingDays}
 					/>
 				</View>

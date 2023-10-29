@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { mainColor } from "~/utils/color";
+import { mainColor } from "~/styles/color";
 
 export default ({ title }: { title: string }) => {
 	return (

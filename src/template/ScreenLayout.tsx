@@ -1,27 +1,26 @@
 import { ImageBackground, StatusBar, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useHeaderHeight } from "@react-navigation/elements";
-
-import { RootStackParamList, ScreenNavigationProp } from "~/types";
 import React from "react";
 
-// interface ScreenLayoutProps {
-// 	navigationProps: ScreenNavigationProp;
-// 	navigationType: keyof RootStackParamList;
-// 	children: React.ReactNode;
-// }
-
 export default function ScreenLayout({ children }: { children: React.ReactNode }) {
+	const insets = useSafeAreaInsets();
+
 	return (
-		<View style={styles.container}>
-			<ImageBackground source={require("../../assets/bgimage3.png")} resizeMode='cover' style={styles.bgimage}>
-				<StatusBar
-					barStyle='light-content'
-					// backgroundColor='#323FA4'
-				/>
+		<ImageBackground source={require("../../assets/bgimage3.png")} resizeMode='cover' style={styles.bgimage}>
+			<View
+				style={[
+					styles.container,
+					{
+						paddingTop: insets.top,
+						paddingBottom: insets.bottom,
+						paddingLeft: insets.left,
+						paddingRight: insets.right,
+					},
+				]}>
+				<StatusBar barStyle='light-content' translucent={true} backgroundColor='rgba(0, 0, 0, 0)' />
 				<View style={styles.contentsLayout}>{children}</View>
-			</ImageBackground>
-		</View>
+			</View>
+		</ImageBackground>
 	);
 }
 

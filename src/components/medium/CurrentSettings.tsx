@@ -1,16 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import { recordState } from "~/hooks/recordState";
+import { recordState } from "~/states/recordState";
 
 export default function CurrentSettings() {
 	const record = useRecoilValue(recordState);
 
-	const minConteniousTakingDays =
-		record.initialSheetSettings.minConteniousTakingDays;
-	const maxConteniousTakingDays =
-		record.initialSheetSettings.maxConteniousTakingDays;
-	const conteniousBleeingDaysForRest =
-		record.initialSheetSettings.conteniousBleeingDaysForRest;
+	const minConteniousTakingDays = record.initialSheetSettings.minConteniousTakingDays;
+	const maxConteniousTakingDays = record.initialSheetSettings.maxConteniousTakingDays;
+	const conteniousBleeingDaysForRest = record.initialSheetSettings.conteniousBleeingDaysForRest;
 	const stopTakingDays = record.initialSheetSettings.stopTakingDays;
 
 	return (
@@ -18,9 +15,7 @@ export default function CurrentSettings() {
 			<Text style={styles.subtitle}>現在の設定内容</Text>
 
 			<Text style={styles.textline}>
-				{`服用1日目～${
-					minConteniousTakingDays - 1
-				}日目までは出血がみられても連続して服用します。`}
+				{`服用1日目～${minConteniousTakingDays - 1}日目までは出血がみられても連続して服用します。`}
 			</Text>
 			<Text>
 				{`服用${minConteniousTakingDays}日目〜${maxConteniousTakingDays}日目の間に${conteniousBleeingDaysForRest}日連続で出血が見られた場合、服用を中止し、休薬期間を翌日から${stopTakingDays}日間とします。`}

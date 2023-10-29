@@ -3,8 +3,8 @@ import { useResetRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Title from "~/components/small/Title";
 import { useState } from "react";
-import { recordState } from "~/hooks/recordState";
-import { warningRed } from "~/utils/color";
+import { recordState } from "~/states/recordState";
+import { warningRed } from "~/styles/color";
 
 export default function SettingsDataInit() {
 	const [isPressDelete, setIsPressDelete] = useState(false);
@@ -20,30 +20,24 @@ export default function SettingsDataInit() {
 	};
 
 	const createTwoButtonAlert = () =>
-		Alert.alert(
-			"データを削除しますか？",
-			"一度削除したデータは復元できません。よろしいですか？",
-			[
-				{
-					text: "キャンセル",
-					style: "cancel",
-				},
-				{
-					text: "OK",
-					style: "destructive",
-					onPress: onPressDelete,
-				},
-			]
-		);
+		Alert.alert("データを削除しますか？", "一度削除したデータは復元できません。よろしいですか？", [
+			{
+				text: "キャンセル",
+				style: "cancel",
+			},
+			{
+				text: "OK",
+				style: "destructive",
+				onPress: onPressDelete,
+			},
+		]);
 
 	return (
 		<View style={styles.container}>
 			<Title title={`初期化`} />
 			<View style={styles.contentLayout}>
 				<Text style={styles.description}>
-					{
-						"本アプリ内の全データを削除し、インストール時の状態に初期化します。"
-					}
+					{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}
 				</Text>
 				<Button
 					onPress={createTwoButtonAlert}

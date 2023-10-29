@@ -3,17 +3,14 @@ import { useRecoilState } from "recoil";
 import CurrentSettings from "~/components/medium/CurrentSettings";
 import Title from "~/components/small/Title";
 import SettingPicker from "~/components/medium/SettingPicker";
-import { recordState } from "~/hooks/recordState";
+import { recordState } from "~/states/recordState";
 
 export default function SettingsMedicationMethod() {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	const minConteniousTakingDays =
-		record.initialSheetSettings.minConteniousTakingDays;
-	const maxConteniousTakingDays =
-		record.initialSheetSettings.maxConteniousTakingDays;
-	const conteniousBleeingDaysForRest =
-		record.initialSheetSettings.conteniousBleeingDaysForRest;
+	const minConteniousTakingDays = record.initialSheetSettings.minConteniousTakingDays;
+	const maxConteniousTakingDays = record.initialSheetSettings.maxConteniousTakingDays;
+	const conteniousBleeingDaysForRest = record.initialSheetSettings.conteniousBleeingDaysForRest;
 	const stopTakingDays = record.initialSheetSettings.stopTakingDays;
 
 	function onChangeMinConteniousTakingDays(itemValue: number) {
@@ -60,12 +57,8 @@ export default function SettingsMedicationMethod() {
 		<View style={styles.container}>
 			<Title title={`服薬方法`} />
 			<View style={styles.containerLayout}>
-				<Text style={styles.description}>
-					このアプリは、120日連続服用を対象としています。
-				</Text>
-				<Text style={styles.description}>
-					お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。
-				</Text>
+				<Text style={styles.description}>このアプリは、120日連続服用を対象としています。</Text>
+				<Text style={styles.description}>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</Text>
 
 				<CurrentSettings />
 
@@ -73,11 +66,7 @@ export default function SettingsMedicationMethod() {
 					description={"最短連続服薬日数"}
 					selectedValue={minConteniousTakingDays}
 					minValue={1}
-					maxValue={
-						maxConteniousTakingDays - 1 > 30
-							? 30
-							: maxConteniousTakingDays - 1
-					}
+					maxValue={maxConteniousTakingDays - 1 > 30 ? 30 : maxConteniousTakingDays - 1}
 					onChange={onChangeMinConteniousTakingDays}
 				/>
 

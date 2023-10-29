@@ -29,9 +29,6 @@ export function getWeekArr() {
 	const week = date.getDay();
 	const weekArr = ["日", "月", "火", "水", "木", "金", "土"];
 
-	const recentWeekArr = [
-		...weekArr.slice((week + 1) % 7),
-		...weekArr.slice(0, (week + 1) % 7),
-	];
+	const recentWeekArr = [...weekArr.slice((week + 1) % 7), ...weekArr.slice(0, (week + 1) % 7)];
 	return recentWeekArr;
 }

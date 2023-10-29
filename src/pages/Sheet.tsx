@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 	},
 	weeklyRecord: {
 		// flex: 1,
-		height: 200,
+		height: 170,
 		// width: 330,
 		marginHorizontal: 0,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 	},
 	sheetRecord: {
-		flex: 1,
-		height: 180,
+		// flex: 1,
+		height: 220,
 		marginHorizontal: 0,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
 		borderRadius: 8,
