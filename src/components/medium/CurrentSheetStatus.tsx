@@ -11,12 +11,6 @@ export const CurrentSheetStatus = ({
 	currentSheetTookMedicineLength: number;
 	remainingDays: number;
 }) => {
-	// console.log(
-	// 	"currentSheetTookMedicineLength",
-	// 	currentSheetTookMedicineLength
-	// );
-	// console.log("remainingDays", remainingDays);
-
 	const checkBoxes = [];
 	// 現在のシートの昨日までの分
 	if (currentSheetTookMedicineLength > 0) {
@@ -51,7 +45,9 @@ export const CurrentSheetStatus = ({
 	// 空間を埋めるためのダミー分
 
 	if ((currentSheetTookMedicineLength + remainingDays) % 7 !== 0) {
-		for (let i = 0; i < (currentSheetTookMedicineLength + 1 + remainingDays) % 7; i++) {
+		const remainingDummyDays = 7 - ((currentSheetTookMedicineLength + remainingDays) % 7);
+		for (let i = 0; i < remainingDummyDays; i++) {
+			console.log("i", i);
 			checkBoxes.push(
 				<View key={10000 + i} style={styles.checkBoxLayout}>
 					<View style={styles.dammyCheckBox} />
