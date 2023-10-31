@@ -12,7 +12,7 @@ export default ({ estimatedEndDate }: { estimatedEndDate: string }) => {
 
 const styles = StyleSheet.create({
 	bodyTextLayout: {
-		marginTop: 8,
+		marginTop: 16,
 	},
 
 	subtitleText: {

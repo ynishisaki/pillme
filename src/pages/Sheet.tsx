@@ -1,18 +1,16 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { useRecoilValue } from "recoil";
 
 import ScreenLayout from "~/template/ScreenLayout";
 import { HomeWeeklyRecord } from "~/components/large/HomeWeeklyRecord";
 import { HomeCurrentSheet } from "~/components/large/HomeCurrentSheet";
-import { ScreenNavigationProp } from "~/types";
 
-export const Sheet = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+export const Sheet = () => {
 	return (
 		<ScreenLayout>
 			<View style={styles.contentsLayout}>
 				<View style={styles.weeklyRecord}>
-					<HomeWeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+					<HomeWeeklyRecord onPress={() => console.log()} />
 				</View>
 				<View style={styles.sheetRecord}>
 					<HomeCurrentSheet />
@@ -25,31 +23,22 @@ export const Sheet = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginBottom: 16,
-		paddingHorizontal: 16,
-		// marginBottom: 16,
-		// paddingHorizontal: 16,
-		// marginHorizontal: 16,
-
-		// marginBottom: 100,
-		// justifyContent: "flex-end",
+		justifyContent: "flex-end",
 		alignItems: "center",
 		flexDirection: "column",
-		rowGap: 20,
+		rowGap: 50,
+		marginBottom: 40,
 	},
 	weeklyRecord: {
-		// flex: 1,
 		height: 170,
-		// width: 330,
-		marginHorizontal: 0,
+		width: 330,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
 		borderRadius: 8,
 		overflow: "hidden",
 	},
 	sheetRecord: {
-		// flex: 1,
-		height: 220,
-		marginHorizontal: 0,
+		height: 230,
+		width: 330,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
 		borderRadius: 8,
 		overflow: "hidden",
