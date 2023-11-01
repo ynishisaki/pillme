@@ -1,5 +1,5 @@
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
-import { useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Title from "~/components/small/Title";
 import { useState } from "react";
@@ -7,15 +7,20 @@ import { recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
 
 export default function SettingsDataInit() {
-	const [isPressDelete, setIsPressDelete] = useState(false);
-
+	const [record, setRecord] = useRecoilState(recordState);
 	const resetRecord = useResetRecoilState(recordState);
 
 	const onPressDelete = async () => {
-		setIsPressDelete(true);
-
+		// console.log("before record", record);
 		resetRecord();
+		setRecord({
+			...record,
+			isAsyncStorageLoaded: true,
+		});
 		await AsyncStorage.clear();
+		// console.log("after record", record);
+		// AsyncStorage.setItem("record", JSON.stringify(record));
+
 		console.log("Initialized AsyncStorage.");
 	};
 
@@ -42,7 +47,6 @@ export default function SettingsDataInit() {
 				<Button
 					onPress={createTwoButtonAlert}
 					title='データ初期化'
-					disabled={isPressDelete}
 					color={warningRed}
 					accessibilityLabel='delete button'
 				/>

@@ -47,7 +47,6 @@ export const CurrentSheetStatus = ({
 	if ((currentSheetTookMedicineLength + remainingDays) % 7 !== 0) {
 		const remainingDummyDays = 7 - ((currentSheetTookMedicineLength + remainingDays) % 7);
 		for (let i = 0; i < remainingDummyDays; i++) {
-			console.log("i", i);
 			checkBoxes.push(
 				<View key={10000 + i} style={styles.checkBoxLayout}>
 					<View style={styles.dammyCheckBox} />

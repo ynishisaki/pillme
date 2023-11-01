@@ -12,11 +12,6 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	const isRestPeriodDays = countIsRestPeriodDays(record);
 	const notRecordDays = countNotRecordDays(record);
 
-	console.log("takeMedicineDays", takeMedicineDays);
-	console.log("haveBleedingDays", haveBleedingDays);
-	console.log("isRestPeriodDays", isRestPeriodDays);
-	console.log("notRecordDays", notRecordDays);
-
 	// 今日の記録があるので、それをそのまま返す
 	if (notRecordDays === 0) {
 		const todayIsRestPeriod = record.dailyRecord[0].isRestPeriod;
