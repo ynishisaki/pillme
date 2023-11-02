@@ -3,24 +3,19 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Title from "~/components/small/Title";
 import { useState } from "react";
-import { recordState } from "~/states/recordState";
+import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
 
 export default function SettingsDataInit() {
 	const [record, setRecord] = useRecoilState(recordState);
-	const resetRecord = useResetRecoilState(recordState);
 
 	const onPressDelete = async () => {
-		// console.log("before record", record);
-		resetRecord();
 		setRecord({
-			...record,
+			...initialRecord,
 			isAsyncStorageLoaded: true,
 		});
-		await AsyncStorage.clear();
-		// console.log("after record", record);
-		// AsyncStorage.setItem("record", JSON.stringify(record));
 
+		await AsyncStorage.clear();
 		console.log("Initialized AsyncStorage.");
 	};
 

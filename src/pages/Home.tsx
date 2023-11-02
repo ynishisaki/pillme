@@ -17,7 +17,7 @@ export const Home = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	// This hook returns `true` if the screen is focused, `false` otherwise
-	// const isFocused = useIsFocused();
+	const isFocused = useIsFocused();
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -91,23 +91,23 @@ export const Home = () => {
 	// AsyncStorageに記録を保存
 	useEffect(() => {
 		AsyncStorage.setItem("record", JSON.stringify(record));
-		console.log(record);
+		console.log(record.dailyRecord);
 		console.log("stored");
 		console.log();
 	}, [record]);
 
 	return (
 		<ScreenLayout>
-			{/* {isFocused && ( */}
-			<View style={styles.contentsLayout}>
-				<View style={styles.infoView}>
-					<HomeInfo />
+			{isFocused && (
+				<View style={styles.contentsLayout}>
+					<View style={styles.infoView}>
+						<HomeInfo />
+					</View>
+					<View style={styles.todaysRecordView}>
+						<HomeTodaysRecord />
+					</View>
 				</View>
-				<View style={styles.todaysRecordView}>
-					<HomeTodaysRecord />
-				</View>
-			</View>
-			{/* )} */}
+			)}
 		</ScreenLayout>
 	);
 };
