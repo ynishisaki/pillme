@@ -1,4 +1,4 @@
-import { recordType } from "~/types";
+import { recordType } from "~/types/record";
 import {
 	countHaveBleedingDays,
 	countIsRestPeriodDays,

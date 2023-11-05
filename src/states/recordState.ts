@@ -1,6 +1,6 @@
-import { recordType } from "~/types";
 import { atom } from "recoil";
 import { getDateStrings } from "~/functions/getDateStrings";
+import { recordType } from "~/types/record";
 
 export const today = getDateStrings(new Date()); // YYYY-DD-MM
 

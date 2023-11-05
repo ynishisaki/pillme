@@ -7,7 +7,7 @@ import { useIsFocused } from "@react-navigation/native";
 import ScreenLayout from "~/template/ScreenLayout";
 import { HomeTodaysRecord } from "~/components/large/HomeTodaysRecord";
 
-import { dailyRecordType, recordType } from "~/types";
+import { dailyRecordType, recordType } from "~/types/record";
 import { recordState, today } from "~/states/recordState";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeInfo } from "~/components/large/HomeInfo";

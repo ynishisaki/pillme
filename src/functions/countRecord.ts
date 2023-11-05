@@ -1,14 +1,10 @@
-import { recordType } from "~/types";
+import { recordType } from "~/types/record";
 
 // 最後のisRestPeriod=trueの翌日から数える
 export function countStartTakeMedicineIndex(record: recordType) {
-	const latestIsRestPeriodIndex = record.dailyRecord.findIndex(
-		(item) => item.isRestPeriod === true
-	);
+	const latestIsRestPeriodIndex = record.dailyRecord.findIndex((item) => item.isRestPeriod === true);
 	const recordLength = record.dailyRecord.length;
-	return latestIsRestPeriodIndex > 0
-		? latestIsRestPeriodIndex
-		: recordLength - 1;
+	return latestIsRestPeriodIndex > 0 ? latestIsRestPeriodIndex : recordLength - 1;
 }
 
 export function countTakeMedicineDays(record: recordType) {

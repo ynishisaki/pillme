@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { CurrentSheetCheckBox } from "~/components/small/CurrentSheetCheckBox";
-import { recordType } from "~/types";
+import { recordType } from "~/types/record";
 
 export const CurrentSheetStatus = ({
 	record,
