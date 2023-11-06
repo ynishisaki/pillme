@@ -7,6 +7,15 @@ import {
 } from "~/functions/countRecord";
 
 export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
+	const {
+		beginSheetIndex,
+		conteniousBleeingDaysForRest,
+		maxConteniousTakingDays,
+		minConteniousTakingDays,
+		numOfPillsPerSheet,
+		stopTakingDays,
+	} = record.initialSheetSettings;
+
 	const takeMedicineDays = countTakeMedicineDays(record);
 	const haveBleedingDays = countHaveBleedingDays(record);
 	const isRestPeriodDays = countIsRestPeriodDays(record);
@@ -22,9 +31,9 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	// 昨日までで、服薬24日以上かつ出血3日以上の場合 -> 今日から休薬期間
 	// 昨日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
 	const shouldRest =
-		takeMedicineDays >= 120 ||
-		(takeMedicineDays >= 24 && haveBleedingDays >= 3) ||
-		(isRestPeriodDays > 0 && isRestPeriodDays < 4);
+		takeMedicineDays >= maxConteniousTakingDays ||
+		(takeMedicineDays >= minConteniousTakingDays && haveBleedingDays >= conteniousBleeingDaysForRest) ||
+		(isRestPeriodDays > 0 && isRestPeriodDays < stopTakingDays);
 
 	// 今日の記録がないので、昨日までの記録から判定する
 	if (notRecordDays === 1 && shouldRest) {
@@ -36,6 +45,15 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 };
 
 export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => {
+	const {
+		beginSheetIndex,
+		conteniousBleeingDaysForRest,
+		maxConteniousTakingDays,
+		minConteniousTakingDays,
+		numOfPillsPerSheet,
+		stopTakingDays,
+	} = record.initialSheetSettings;
+
 	const takeMedicineDays = countTakeMedicineDays(record);
 	const haveBleedingDays = countHaveBleedingDays(record);
 	const isRestPeriodDays = countIsRestPeriodDays(record);
@@ -45,9 +63,9 @@ export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => 
 	// 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
 	// 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
 	const shouldRest =
-		takeMedicineDays >= 120 ||
-		(takeMedicineDays >= 24 && haveBleedingDays >= 3) ||
-		(isRestPeriodDays > 0 && isRestPeriodDays < 4);
+		takeMedicineDays >= maxConteniousTakingDays ||
+		(takeMedicineDays >= minConteniousTakingDays && haveBleedingDays >= conteniousBleeingDaysForRest) ||
+		(isRestPeriodDays > 0 && isRestPeriodDays < stopTakingDays);
 
 	// 今日の記録がある場合のみ判定を行う
 	if (notRecordDays === 0 && shouldRest) {

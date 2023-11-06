@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
 		marginBottom: 40,
 	},
 	weeklyRecord: {
-		height: 170,
+		height: 160,
 		width: 330,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
 		borderRadius: 8,
 		overflow: "hidden",
 	},
 	sheetRecord: {
-		height: 230,
+		height: 214,
 		width: 330,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
 		borderRadius: 8,

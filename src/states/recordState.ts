@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { recordType } from "~/types/record";
 
@@ -29,4 +29,13 @@ export const initialRecord: recordType = {
 export const recordState = atom({
 	key: "recordState",
 	default: initialRecord,
+});
+
+export const recordStatusSelector = selector({
+	key: "recordStatusSelector",
+	get: ({ get }) => {
+		const record = get(recordState);
+
+		return {};
+	},
 });

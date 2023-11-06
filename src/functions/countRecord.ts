@@ -1,5 +1,24 @@
 import { recordType } from "~/types/record";
 
+// 現在のシートの飲んだ数と残りの錠数を返す
+export default function getCurrentSheetStatus(record: recordType) {
+	const { numOfPillsPerSheet, beginSheetIndex } = record.initialSheetSettings;
+	const totalTookMedicineLength = record.dailyRecord.filter((item) => item.tookMedicine === true).length;
+
+	let tookDays = (totalTookMedicineLength + beginSheetIndex) % numOfPillsPerSheet;
+
+	const isTodayTookMedicine = record.dailyRecord[0].tookMedicine;
+	tookDays = tookDays === 0 && isTodayTookMedicine ? numOfPillsPerSheet : tookDays;
+	const remainingDays = numOfPillsPerSheet - tookDays;
+	// console.log("tookDays", tookDays);
+	// console.log("remainingDays", remainingDays);
+
+	return {
+		tookDays,
+		remainingDays,
+	};
+}
+
 // 最後のisRestPeriod=trueの翌日から数える
 export function countStartTakeMedicineIndex(record: recordType) {
 	const latestIsRestPeriodIndex = record.dailyRecord.findIndex((item) => item.isRestPeriod === true);

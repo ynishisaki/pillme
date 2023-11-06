@@ -6,6 +6,7 @@ import { RightIcon } from "~/components/small/Icons";
 import SubTitle from "~/components/small/SubTitle";
 import { recordState } from "~/states/recordState";
 import { getDateStringsForDisplay } from "~/functions/getDateStrings";
+import getCurrentSheetStatus from "~/functions/countRecord";
 
 export const HomeCurrentSheet = () => {
 	const record = useRecoilValue(recordState);
@@ -20,14 +21,7 @@ export const HomeCurrentSheet = () => {
 	// シート2枚目、シート開始index20の場合：
 	// 今日の日付 + ((numOfPillsPerSheet -(recordLength + index) % numOfPillsPerSheet)日
 
-	const numOfPillsPerSheet = record.initialSheetSettings.numOfPillsPerSheet;
-	const beginSheetIndex = record.initialSheetSettings.beginSheetIndex;
-
-	const recordLength = record.dailyRecord.length; // 今日の分を含めてOK
-
-	const currentSheetTookMedicineLength = (recordLength + beginSheetIndex) % numOfPillsPerSheet || 24; // 1, 2, ... 24
-
-	const remainingDays = numOfPillsPerSheet - currentSheetTookMedicineLength;
+	const { tookDays, remainingDays } = getCurrentSheetStatus(record);
 
 	const today = new Date();
 	const todayDate = today.getDate();
@@ -47,14 +41,8 @@ export const HomeCurrentSheet = () => {
 			/>
 			{/* </TouchableOpacity> */}
 			<View style={styles.container}>
-				<View style={styles.layout}>
-					<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
-					<CurrentSheetStatus
-						record={record}
-						currentSheetTookMedicineLength={currentSheetTookMedicineLength}
-						remainingDays={remainingDays}
-					/>
-				</View>
+				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
+				<CurrentSheetStatus tookDays={tookDays} remainingDays={remainingDays} />
 			</View>
 		</>
 	);
@@ -63,12 +51,9 @@ export const HomeCurrentSheet = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-	},
-	layout: {
-		flex: 1,
-		// flexDirection: "row",
-		// alignItems: "center",
-		// justifyContent: "space-between",
-		marginHorizontal: 20,
+		margin: 20,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		columnGap: 10,
 	},
 });

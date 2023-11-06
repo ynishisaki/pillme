@@ -1,5 +1,4 @@
 import React from "react";
-import { ScreenNavigationProp } from "~/types/record";
 import SettingsMedicationMethod from "~/components/large/SettingsMedicationMethod";
 import SettingsSheetManagement from "~/components/large/SettingsSheetManagement";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";

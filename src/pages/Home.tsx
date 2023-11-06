@@ -10,7 +10,7 @@ import { HomeTodaysRecord } from "~/components/large/HomeTodaysRecord";
 import { dailyRecordType, recordType } from "~/types/record";
 import { recordState, today } from "~/states/recordState";
 import { getDateStrings } from "~/functions/getDateStrings";
-import { HomeInfo } from "~/components/large/HomeInfo";
+import { HomeTitle } from "~/components/large/HomeTitle";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
 
 export const Home = () => {
@@ -92,6 +92,7 @@ export const Home = () => {
 	useEffect(() => {
 		AsyncStorage.setItem("record", JSON.stringify(record));
 		console.log(record.dailyRecord);
+		console.log(record.initialSheetSettings);
 		console.log("stored");
 		console.log();
 	}, [record]);
@@ -101,7 +102,7 @@ export const Home = () => {
 			{isFocused && (
 				<View style={styles.contentsLayout}>
 					<View style={styles.infoView}>
-						<HomeInfo />
+						<HomeTitle />
 					</View>
 					<View style={styles.todaysRecordView}>
 						<HomeTodaysRecord />
