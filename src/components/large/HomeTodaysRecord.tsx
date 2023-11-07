@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
 	contentLayout: {
 		flex: 1,
 		justifyContent: "center",
+		backgroundColor: "rgba(140, 185, 173, 0.5)",
 	},
 	checkBoxLayout: {
 		flexDirection: "row",

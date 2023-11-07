@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { mainColor } from "~/styles/color";
+import { HeaderColor } from "~/styles/color";
 
 export default ({ title, Icon }: { title: string; Icon?: React.FC }) => {
 	return (
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 		// paddingTop: 8,
 		paddingHorizontal: 20,
 		height: 46,
-		backgroundColor: mainColor,
+		backgroundColor: HeaderColor,
 	},
 	titleText: {
 		fontSize: 18,

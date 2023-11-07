@@ -1,8 +1,7 @@
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Title from "~/components/small/Title";
-import { useState } from "react";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
 
@@ -52,10 +51,8 @@ export default function SettingsDataInit() {
 
 const styles = StyleSheet.create({
 	container: {
-		height: 160,
 		marginBottom: 40,
 		backgroundColor: "rgba(255, 255, 255, 0.9)",
-		// backgroundColor: "white",
 		borderRadius: 8,
 		overflow: "hidden",
 	},

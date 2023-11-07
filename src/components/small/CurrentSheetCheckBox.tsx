@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { unPressableCheckBoxColor, pillColor } from "~/styles/color";
 
 export const CurrentSheetCheckBox = ({ isChecked }: { isChecked: boolean }) => {
 	return (
 		<BouncyCheckbox
 			style={styles.checkBox}
 			size={15}
-			fillColor='#848484'
-			unfillColor='#F6B69A'
+			fillColor={unPressableCheckBoxColor}
+			unfillColor={pillColor}
 			isChecked={isChecked} // must set
 			disableText={true}
 			disabled={true}

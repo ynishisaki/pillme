@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CancelLgIcon, DropLgIcon, PillLgIcon } from "~/components/small/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { mainColor } from "~/styles/color";
+import { HeaderColor, pillColor, unPressableCheckBoxColor, unfillCheckBoxColor } from "~/styles/color";
 
 export default ({
 	title,
@@ -27,8 +27,8 @@ export default ({
 					borderRadius: 10,
 					borderWidth: 0,
 				}}
-				fillColor={isRestPeriod ? "lightgray" : mainColor}
-				unfillColor='white'
+				fillColor={isRestPeriod ? unPressableCheckBoxColor : pillColor}
+				unfillColor={unfillCheckBoxColor}
 				isChecked={isRestPeriod ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				textComponent={null}
 				disableText={true}
