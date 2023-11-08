@@ -1,8 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useRecoilState } from "recoil";
 import Message from "~/components/medium/TodaysMessage";
 import CheckBox from "~/components/medium/PressableCheckBox";
 import { recordState } from "~/states/recordState";
+import { HeaderColor } from "~/styles/color";
 
 export const HomeTodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -25,9 +26,12 @@ export const HomeTodaysRecord = () => {
 	}
 
 	return (
-		<View style={styles.container}>
+		<>
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>今日の記録</Text>
+			</View>
+
 			<View style={styles.contentLayout}>
-				<Message takeRestPeriod={isRestPeriod} />
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (
 						<>
@@ -51,7 +55,7 @@ export const HomeTodaysRecord = () => {
 					)}
 				</View>
 			</View>
-		</View>
+		</>
 	);
 };
 
@@ -59,10 +63,20 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
+	titleContainer: {
+		paddingTop: 8,
+		paddingHorizontal: 20,
+		height: 46,
+		backgroundColor: HeaderColor,
+	},
+	titleText: {
+		fontSize: 20,
+		fontWeight: "bold",
+		color: "white",
+	},
 	contentLayout: {
 		flex: 1,
-		justifyContent: "center",
-		backgroundColor: "rgba(140, 185, 173, 0.5)",
+		padding: 20,
 	},
 	checkBoxLayout: {
 		flexDirection: "row",

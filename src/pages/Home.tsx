@@ -129,5 +129,7 @@ const styles = StyleSheet.create({
 		height: 220,
 		width: 330,
 		borderRadius: 8,
+		backgroundColor: "rgba(255, 255, 255, 0.7)",
+		overflow: "hidden",
 	},
 });

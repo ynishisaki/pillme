@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import Title from "~/components/small/Title";
 import { recordState } from "~/states/recordState";
 import SettingPicker from "~/components/medium/SettingPicker";
+import ContentLayout from "./ContendLayout";
 
 export default function SettingsSheetManagement() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -32,44 +31,22 @@ export default function SettingsSheetManagement() {
 	}
 
 	return (
-		<View style={styles.container}>
-			<Title title={`現在のシート`} />
-			<View style={styles.containerLayout}>
-				<SettingPicker
-					description={"１シートの錠数（プラセボ除く）"}
-					selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
-					minValue={1}
-					maxValue={28}
-					onChange={setNumOfPillsPerSheet}
-				/>
+		<ContentLayout title='現在のシート'>
+			<SettingPicker
+				description={"１シートの錠数（プラセボ除く）"}
+				selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
+				minValue={1}
+				maxValue={28}
+				onChange={setNumOfPillsPerSheet}
+			/>
 
-				<SettingPicker
-					description={"シートの開始位置"}
-					selectedValue={record.initialSheetSettings.beginSheetIndex + 1}
-					minValue={1}
-					maxValue={record.initialSheetSettings.numOfPillsPerSheet}
-					onChange={setBeginSheetIndex}
-				/>
-			</View>
-		</View>
+			<SettingPicker
+				description={"シートの開始位置"}
+				selectedValue={record.initialSheetSettings.beginSheetIndex + 1}
+				minValue={1}
+				maxValue={record.initialSheetSettings.numOfPillsPerSheet}
+				onChange={setBeginSheetIndex}
+			/>
+		</ContentLayout>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		height: 250,
-		marginBottom: 20,
-		backgroundColor: "rgba(255, 255, 255, 0.9)",
-		// backgroundColor: "white",
-		borderRadius: 8,
-		overflow: "hidden",
-	},
-	containerLayout: {
-		flex: 1,
-		padding: 20,
-	},
-	description: {
-		fontSize: 12,
-		color: "#000000A8",
-	},
-});

@@ -1,9 +1,9 @@
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, StyleSheet, Text } from "react-native";
 import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Title from "~/components/small/Title";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
+import ContentLayout from "./ContendLayout";
 
 export default function SettingsDataInit() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -32,34 +32,21 @@ export default function SettingsDataInit() {
 		]);
 
 	return (
-		<View style={styles.container}>
-			<Title title={`初期化`} />
-			<View style={styles.contentLayout}>
-				<Text style={styles.description}>
-					{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}
-				</Text>
-				<Button
-					onPress={createTwoButtonAlert}
-					title='データ初期化'
-					color={warningRed}
-					accessibilityLabel='delete button'
-				/>
-			</View>
-		</View>
+		<ContentLayout title='初期化'>
+			<Text style={styles.description}>
+				{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}
+			</Text>
+			<Button
+				onPress={createTwoButtonAlert}
+				title='データ初期化'
+				color={warningRed}
+				accessibilityLabel='delete button'
+			/>
+		</ContentLayout>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		marginBottom: 40,
-		backgroundColor: "rgba(255, 255, 255, 0.9)",
-		borderRadius: 8,
-		overflow: "hidden",
-	},
-	contentLayout: {
-		flex: 1,
-		padding: 20,
-	},
 	description: {
 		fontSize: 12,
 		color: "#000000A8",

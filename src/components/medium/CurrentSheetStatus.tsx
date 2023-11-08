@@ -44,33 +44,24 @@ export const CurrentSheetStatus = ({ tookDays, remainingDays }: { tookDays: numb
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		// flex: 1,
 		borderColor: "#fff",
 		borderWidth: 2,
 		borderRadius: 16,
 		width: 200,
 		height: 130,
-
 		flexDirection: "row",
 		flexWrap: "wrap",
 		// padding: "auto",
 		padding: 5,
 		justifyContent: "space-between",
-		alignItems: "center",
+		// alignItems: "center",
 	},
 	checkBoxLayout: {
-		// flex: 1,
-		alignItems: "center",
-		// marginHorizontal: 5,
-		// marginVertical: 150,
 		margin: 5,
 		marginVertical: 7,
-		// paddingVertical: 7,
-		// columnGap: 5,
-		// rowGap: 5,
 	},
 	dammyCheckBox: {
 		width: 15,
-		// height: 10,
 	},
 });
