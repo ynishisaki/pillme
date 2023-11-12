@@ -16,8 +16,8 @@ export default function SettingPicker(props: props) {
 			<SmallPicker
 				selectedValue={props.selectedValue}
 				minValue={props.minValue}
-				maxValue={props.maxValue}
 				onChange={props.onChange}
+				maxValue={props.maxValue}
 			/>
 		</View>
 	);

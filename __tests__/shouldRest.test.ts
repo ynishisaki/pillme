@@ -4,10 +4,10 @@ import { testDataThree } from "./resources/testData3";
 import { judgeIsTodayRestPeriod } from "../src/functions/judgeIsTodayRestPeriod";
 
 describe("sholdRest", () => {
-	// TEST
-	// it("should be true", () => {
-	// 	expect(1).toBe(1);
-	// });
+	// TEST EXAMPLE
+	it("should be true", () => {
+		expect(1).toBe(1);
+	});
 
 	it("test1: today's isRestPeriod should be false", () => {
 		const record = testDataOne;
