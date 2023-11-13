@@ -1,5 +1,5 @@
-import { Picker } from "@react-native-picker/picker";
 import { StyleSheet, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
 interface props {
 	selectedValue: number;
@@ -9,15 +9,13 @@ interface props {
 }
 
 export default function SmallPicker(props: props) {
-	console.log("selectedValue", props.selectedValue);
-
 	const pickerItems = (minValue: number, maxValue: number) => {
 		const items = [];
 		for (let i = minValue; i <= maxValue; i++) {
-			items.push(
-				<Picker.Item key={i} label={`${i}`} value={i} color={props.selectedValue === i ? "#000" : "#bbb"} />
-			);
+			const fontColor = props.selectedValue === i ? "#000" : "#bbb";
+			items.push(<Picker.Item key={i} label={`${i}`} value={i} color={fontColor} />);
 		}
+
 		return items;
 	};
 

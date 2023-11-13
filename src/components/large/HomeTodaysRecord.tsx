@@ -1,19 +1,18 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Alert } from "react-native";
 import { useRecoilState } from "recoil";
-import Message from "~/components/medium/TodaysMessage";
 import CheckBox from "~/components/medium/PressableCheckBox";
+import { judgeIsTodayRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
 import { recordState } from "~/states/recordState";
 import { HeaderColor } from "~/styles/color";
+import { recordType } from "~/types/record";
 
 export const HomeTodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	const tookMedicine = record.dailyRecord[0].tookMedicine;
-	const haveBleeding = record.dailyRecord[0].haveBleeding;
-	const isRestPeriod = record.dailyRecord[0].isRestPeriod;
+	const { tookMedicine, haveBleeding, isRestPeriod } = record.dailyRecord[0];
 
 	function updateTodayRecord(key: string, nextBoolean: boolean) {
-		setRecord({
+		const updatedRecord: recordType = {
 			...record,
 			dailyRecord: [
 				{
@@ -22,8 +21,26 @@ export const HomeTodaysRecord = () => {
 				},
 				...record.dailyRecord.slice(1),
 			],
-		});
+		};
+
+		const isTomorrowStartsRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
+		setRecord(updatedRecord);
+
+		// 明日から休薬日の場合はアラートを表示
+		nextBoolean && isTomorrowStartsRestPeriod && createTwoButtonAlert();
 	}
+
+	const createTwoButtonAlert = () =>
+		Alert.alert(
+			"明日から休薬日です",
+			`出血の有無に関わらず${record.initialSheetSettings.stopTakingDays}日間休薬します。`,
+			[
+				{
+					text: "OK",
+					style: "default",
+				},
+			]
+		);
 
 	return (
 		<>

@@ -1,10 +1,9 @@
 import { StyleSheet, View, Text } from "react-native";
 import { useRecoilValue } from "recoil";
-import Message from "~/components/medium/TodaysMessage";
 import { recordState } from "~/states/recordState";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
-import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
+import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
 
 export const HomeTitle = () => {
 	const record = useRecoilValue(recordState);
@@ -12,7 +11,7 @@ export const HomeTitle = () => {
 	const displayDate = getDateWeekStringsForDisplay(record.dailyRecord[0].date);
 	const takeMedicineDays = countTakeMedicineDays(record);
 	const haveBleedingDays = countHaveBleedingDays(record);
-	const isTodayRestPeriod = judgeIsTomorrowStartsRestPeriod(record);
+	const isTodayRestPeriod = judgeIsTodayRestPeriod(record);
 	const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(record);
 
 	return (
@@ -21,9 +20,9 @@ export const HomeTitle = () => {
 
 			<Text style={styles.text}>服薬　{takeMedicineDays}日目</Text>
 			{haveBleedingDays !== 0 && <Text style={styles.text}>出血　{haveBleedingDays}日</Text>}
-			<Text style={styles.text}>休薬　{isTodayRestPeriod ? "中" : "なし"}</Text>
-			<Text style={styles.text}>明日から休薬　{isTomorrowStartsRestPeriod ? "です" : "ではありません"}</Text>
-			<Message takeRestPeriod={record.dailyRecord[0].isRestPeriod} />
+
+			{isTodayRestPeriod && <Text style={styles.text}>休薬中</Text>}
+			{isTomorrowStartsRestPeriod && <Text style={styles.text}>明日から休薬です</Text>}
 		</View>
 	);
 };
