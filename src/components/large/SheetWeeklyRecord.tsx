@@ -3,16 +3,16 @@ import { useRecoilState } from "recoil";
 import { RightIcon } from "~/components/small/Icons";
 import CountRecord from "~/components/medium/WeeklyCountRecord";
 import CheckBox from "~/components/medium/WeeklyCheckBox";
-import SubTitle from "~/components/small/SubTitle";
 import { recordState } from "~/states/recordState";
 import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
+import { HeaderColor } from "~/styles/color";
 
-export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
+export const SheetWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	const takeMedicineDays = countTakeMedicineDays(record);
-	const haveBleedingDays = countHaveBleedingDays(record);
+	const { takeMedicineDays } = countTakeMedicineDays(record);
+	const { haveBleedingDays } = countHaveBleedingDays(record);
 
 	// 休薬の設定
 	const setRest = () => {
@@ -48,9 +48,12 @@ export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	return (
 		<>
-			<TouchableOpacity onPress={onPress}>
-				<SubTitle title='過去一週間分の記録' Icon={RightIcon} />
-			</TouchableOpacity>
+			{/* <TouchableOpacity onPress={onPress}> */}
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>過去一週間分の記録</Text>
+				{/* <RightIcon /> */}
+				{/* </TouchableOpacity>  */}
+			</View>
 			<View style={styles.container}>
 				<View style={styles.layout}>
 					<View style={styles.textLayout}>
@@ -103,6 +106,19 @@ export const HomeWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 };
 
 const styles = StyleSheet.create({
+	titleContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		paddingHorizontal: 20,
+		height: 46,
+		backgroundColor: HeaderColor,
+	},
+	titleText: {
+		fontSize: 18,
+		fontWeight: "bold",
+		color: "white",
+	},
 	container: {
 		flex: 1,
 		alignItems: "center",

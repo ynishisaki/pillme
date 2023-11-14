@@ -16,9 +16,9 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 		stopTakingDays,
 	} = record.initialSheetSettings;
 
-	const takeMedicineDays = countTakeMedicineDays(record);
-	const haveBleedingDays = countHaveBleedingDays(record);
-	const isRestPeriodDays = countIsRestPeriodDays(record);
+	const { takeMedicineDaysWithoutToday } = countTakeMedicineDays(record);
+	const { haveBleedingDaysWithoutToday } = countHaveBleedingDays(record);
+	const { restPeriodDaysWithoutToday } = countIsRestPeriodDays(record);
 	const notRecordDays = countNotRecordDays(record);
 
 	// 今日の記録があるので、それをそのまま返す
@@ -31,9 +31,10 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	// 昨日までで、服薬24日以上かつ出血3日以上の場合 -> 今日から休薬期間
 	// 昨日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
 	const shouldRest =
-		takeMedicineDays >= maxConteniousTakingDays ||
-		(takeMedicineDays >= minConteniousTakingDays && haveBleedingDays >= conteniousBleeingDaysForRest) ||
-		(isRestPeriodDays > 0 && isRestPeriodDays < stopTakingDays);
+		takeMedicineDaysWithoutToday >= maxConteniousTakingDays ||
+		(takeMedicineDaysWithoutToday >= minConteniousTakingDays &&
+			haveBleedingDaysWithoutToday >= conteniousBleeingDaysForRest) ||
+		(restPeriodDaysWithoutToday > 0 && restPeriodDaysWithoutToday < stopTakingDays);
 
 	// 今日の記録がないので、昨日までの記録から判定する
 	if (notRecordDays === 1 && shouldRest) {
@@ -54,22 +55,26 @@ export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => 
 		stopTakingDays,
 	} = record.initialSheetSettings;
 
-	const takeMedicineDays = countTakeMedicineDays(record);
-	const haveBleedingDays = countHaveBleedingDays(record);
-	const isRestPeriodDays = countIsRestPeriodDays(record);
+	const { tookMedicine, haveBleeding, isRestPeriod } = record.dailyRecord[0];
+	const { takeMedicineDays } = countTakeMedicineDays(record);
+	const { haveBleedingDays } = countHaveBleedingDays(record);
+	const { restPeriodDays } = countIsRestPeriodDays(record);
 	const notRecordDays = countNotRecordDays(record);
 
-	// 今日までで、服薬120日以上の場合 -> 明日から休薬期間
-	// 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
-	// 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
-	const shouldRest =
-		takeMedicineDays >= maxConteniousTakingDays ||
-		(takeMedicineDays >= minConteniousTakingDays && haveBleedingDays >= conteniousBleeingDaysForRest) ||
-		(isRestPeriodDays > 0 && isRestPeriodDays < stopTakingDays);
-
 	// 今日の記録がある場合のみ判定を行う
-	if (notRecordDays === 0 && shouldRest) {
-		return true;
+	if (notRecordDays === 0) {
+		// 今日までで、服薬120日以上の場合 -> 明日から休薬期間
+		// 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
+		// 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
+		const shouldRest =
+			(takeMedicineDays >= maxConteniousTakingDays && tookMedicine) ||
+			(takeMedicineDays >= minConteniousTakingDays &&
+				tookMedicine &&
+				haveBleedingDays >= conteniousBleeingDaysForRest &&
+				haveBleeding) ||
+			(restPeriodDays > 0 && restPeriodDays < stopTakingDays);
+
+		return shouldRest;
 	}
 	return false;
 };

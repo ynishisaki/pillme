@@ -2,13 +2,12 @@ import React from "react";
 import ScreenLayout from "~/template/ScreenLayout";
 import EditWeellyRecordCheckBoxes from "~/components/large/EditWeellyRecordCheckBoxes";
 import { Text, View, StyleSheet } from "react-native";
-import Title from "~/components/small/Title";
 
 export const EditWeeklyRecord = () => {
 	return (
 		<ScreenLayout>
 			<View style={styles.container}>
-				<Title title={`過去の記録`} />
+				{/* <Title title={`過去の記録`} /> */}
 				<View style={styles.containerLayout}>
 					<Text style={styles.description}>昨日から一週間前まで記録をさかのぼって編集することができます</Text>
 

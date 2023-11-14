@@ -3,12 +3,12 @@ import { useRecoilValue } from "recoil";
 import { CurrentSheetStatus } from "~/components/medium/CurrentSheetStatus";
 import EstimatedEndDate from "~/components/small/CurrentSheetEstimatedEndDate";
 import { RightIcon } from "~/components/small/Icons";
-import SubTitle from "~/components/small/SubTitle";
 import { recordState } from "~/states/recordState";
 import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 import getCurrentSheetStatus from "~/functions/countRecord";
+import { HeaderColor } from "~/styles/color";
 
-export const HomeCurrentSheet = () => {
+export const SheetCurrentSheet = () => {
 	const record = useRecoilValue(recordState);
 
 	// シートの終了日を計算
@@ -35,10 +35,10 @@ export const HomeCurrentSheet = () => {
 				onPress={() => {
 					console.log("test: pressed");
 				}}> */}
-			<SubTitle
-				title='現在のシート'
-				// Icon={RightIcon}
-			/>
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>現在のシート</Text>
+				{/* <RightIcon /> */}
+			</View>
 			{/* </TouchableOpacity> */}
 			<View style={styles.container}>
 				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
@@ -49,6 +49,19 @@ export const HomeCurrentSheet = () => {
 };
 
 const styles = StyleSheet.create({
+	titleContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		paddingHorizontal: 20,
+		height: 46,
+		backgroundColor: HeaderColor,
+	},
+	titleText: {
+		fontSize: 18,
+		fontWeight: "bold",
+		color: "white",
+	},
 	container: {
 		flex: 1,
 		margin: 20,

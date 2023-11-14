@@ -11,7 +11,7 @@ import { dailyRecordType, recordType } from "~/types/record";
 import { recordState, today } from "~/states/recordState";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeTitle } from "~/components/large/HomeTitle";
-import { judgeIsTodayRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
+import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 
 export const Home = () => {
 	const [record, setRecord] = useRecoilState(recordState);

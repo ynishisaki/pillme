@@ -3,14 +3,14 @@ import { useRecoilValue } from "recoil";
 import { recordState } from "~/states/recordState";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
-import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
+import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 
 export const HomeTitle = () => {
 	const record = useRecoilValue(recordState);
 
 	const displayDate = getDateWeekStringsForDisplay(record.dailyRecord[0].date);
-	const takeMedicineDays = countTakeMedicineDays(record);
-	const haveBleedingDays = countHaveBleedingDays(record);
+	const { takeMedicineDaysWithoutToday, takeMedicineDays } = countTakeMedicineDays(record);
+	const { haveBleedingDaysWithoutToday, haveBleedingDays } = countHaveBleedingDays(record);
 	const isTodayRestPeriod = judgeIsTodayRestPeriod(record);
 	const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(record);
 

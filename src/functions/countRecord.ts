@@ -26,45 +26,66 @@ export function countStartTakeMedicineIndex(record: recordType) {
 	return latestIsRestPeriodIndex > 0 ? latestIsRestPeriodIndex : recordLength - 1;
 }
 
+// 服薬日数
 export function countTakeMedicineDays(record: recordType) {
 	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
 
-	let count = 0;
-	for (let i = startTakeMedicineIndex; i > -1; i--) {
+	let takeMedicineDaysWithoutToday = 0;
+	for (let i = startTakeMedicineIndex; i > 0; i--) {
 		if (record.dailyRecord[i].tookMedicine === true) {
-			count++;
+			takeMedicineDaysWithoutToday++;
 		} else {
 			break;
 		}
 	}
-	return count;
+
+	const todaysCount = record.dailyRecord[0].tookMedicine ? 1 : 0;
+	const takeMedicineDays = takeMedicineDaysWithoutToday + todaysCount;
+
+	return {
+		takeMedicineDaysWithoutToday,
+		takeMedicineDays,
+	};
 }
 
-// jsonから、昨日から直近で出血が何日連続しているか数える
+// 出血日数
 export function countHaveBleedingDays(record: recordType) {
-	let count = 0;
+	let haveBleedingDaysWithoutToday = 0;
 	for (let i = 1; i < record.dailyRecord.length; i++) {
 		if (record.dailyRecord[i].haveBleeding === true) {
-			count++;
+			haveBleedingDaysWithoutToday++;
 		} else {
 			break;
 		}
 	}
-	// 今日の出血の有無を調べ、含める
-	return record.dailyRecord[0].haveBleeding ? count + 1 : count;
+
+	const todaysCount = record.dailyRecord[0].haveBleeding ? 1 : 0;
+	const haveBleedingDays = haveBleedingDaysWithoutToday + todaysCount;
+
+	return {
+		haveBleedingDaysWithoutToday,
+		haveBleedingDays,
+	};
 }
 
+// 休薬日数
 export function countIsRestPeriodDays(record: recordType) {
-	let count = 0;
+	let restPeriodDaysWithoutToday = 0;
 	for (let i = 1; i < record.dailyRecord.length; i++) {
 		if (record.dailyRecord[i].isRestPeriod === true) {
-			count++;
+			restPeriodDaysWithoutToday++;
 		} else {
 			break;
 		}
 	}
 
-	return count;
+	const todaysCount = record.dailyRecord[0].isRestPeriod ? 1 : 0;
+	const restPeriodDays = restPeriodDaysWithoutToday + todaysCount;
+
+	return {
+		restPeriodDaysWithoutToday,
+		restPeriodDays,
+	};
 }
 
 // 今日から何日前まで記録をつけていないか

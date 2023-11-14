@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native";
-import { CurrentSheetCheckBox } from "~/components/small/CurrentSheetCheckBox";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { pillColor, unPressableCheckBoxColor } from "~/styles/color";
 
 export const CurrentSheetStatus = ({ tookDays, remainingDays }: { tookDays: number; remainingDays: number }) => {
 	const checkBoxes = [];
@@ -8,7 +9,15 @@ export const CurrentSheetStatus = ({ tookDays, remainingDays }: { tookDays: numb
 		for (let i = 0; i < tookDays; i++) {
 			checkBoxes.push(
 				<View key={i} style={styles.checkBoxLayout}>
-					<CurrentSheetCheckBox isChecked={true} />
+					<BouncyCheckbox
+						size={15}
+						fillColor={unPressableCheckBoxColor}
+						unfillColor={pillColor}
+						isChecked={true}
+						disableText={true}
+						disabled={true}
+						disableBuiltInState={true}
+					/>
 				</View>
 			);
 			// console.log(i);
@@ -19,7 +28,15 @@ export const CurrentSheetStatus = ({ tookDays, remainingDays }: { tookDays: numb
 	for (let i = 0; i < remainingDays; i++) {
 		checkBoxes.push(
 			<View key={1000 + i} style={styles.checkBoxLayout}>
-				<CurrentSheetCheckBox isChecked={false} />
+				<BouncyCheckbox
+					size={15}
+					fillColor={unPressableCheckBoxColor}
+					unfillColor={pillColor}
+					isChecked={false}
+					disableText={true}
+					disabled={true}
+					disableBuiltInState={false}
+				/>
 			</View>
 		);
 		// console.log(100 + i);

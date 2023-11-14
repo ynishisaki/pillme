@@ -2,18 +2,18 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { HomeWeeklyRecord } from "~/components/large/HomeWeeklyRecord";
-import { HomeCurrentSheet } from "~/components/large/HomeCurrentSheet";
+import { SheetWeeklyRecord } from "~/components/large/SheetWeeklyRecord";
+import { SheetCurrentSheet } from "~/components/large/SheetCurrentSheet";
 
 export const Sheet = () => {
 	return (
 		<ScreenLayout>
 			<View style={styles.contentsLayout}>
 				<View style={styles.weeklyRecord}>
-					<HomeWeeklyRecord onPress={() => console.log()} />
+					<SheetWeeklyRecord onPress={() => console.log()} />
 				</View>
 				<View style={styles.sheetRecord}>
-					<HomeCurrentSheet />
+					<SheetCurrentSheet />
 				</View>
 			</View>
 		</ScreenLayout>
