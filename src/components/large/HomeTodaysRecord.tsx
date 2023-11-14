@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, Alert } from "react-native";
 import { useRecoilState } from "recoil";
 import CheckBox from "~/components/medium/PressableCheckBox";
-import { judgeIsTodayRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
+import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsTodayRestPeriod";
 import { recordState } from "~/states/recordState";
 import { HeaderColor } from "~/styles/color";
 import { recordType } from "~/types/record";
@@ -23,10 +23,11 @@ export const HomeTodaysRecord = () => {
 			],
 		};
 
-		const isTomorrowStartsRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
+		const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(updatedRecord);
 		setRecord(updatedRecord);
 
 		// 明日から休薬日の場合はアラートを表示
+		console.log("isTomorrowStartsRestPeriod", isTomorrowStartsRestPeriod);
 		nextBoolean && isTomorrowStartsRestPeriod && createTwoButtonAlert();
 	}
 
