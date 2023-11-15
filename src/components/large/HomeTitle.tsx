@@ -9,8 +9,8 @@ export const HomeTitle = () => {
 	const record = useRecoilValue(recordState);
 
 	const displayDate = getDateWeekStringsForDisplay(record.dailyRecord[0].date);
-	const { takeMedicineDaysWithoutToday, takeMedicineDays } = countTakeMedicineDays(record);
-	const { haveBleedingDaysWithoutToday, haveBleedingDays } = countHaveBleedingDays(record);
+	const { takeMedicineDays } = countTakeMedicineDays(record);
+	const { haveBleedingDays } = countHaveBleedingDays(record);
 	const isTodayRestPeriod = judgeIsTodayRestPeriod(record);
 	const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(record);
 

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 	},
 	numberOfDaysText: {
 		fontSize: 16,
-		fontWeight: "600", // semibold
+		// fontWeight: "600", // semibold
 		// color: "#fff",
 		marginBottom: 4,
 	},

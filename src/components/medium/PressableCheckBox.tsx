@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	checkBoxText: {
-		color: "white",
-		fontSize: 18,
+		color: "gray",
+		fontSize: 16,
 		fontWeight: "bold",
 		marginBottom: 8,
 	},
