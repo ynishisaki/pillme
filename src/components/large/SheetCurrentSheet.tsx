@@ -1,7 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import { CurrentSheetStatus } from "~/components/medium/CurrentSheetStatus";
-import EstimatedEndDate from "~/components/small/CurrentSheetEstimatedEndDate";
 import { RightIcon } from "~/components/small/Icons";
 import { recordState } from "~/states/recordState";
 import { getDateStringsForDisplay } from "~/functions/getDateStrings";
@@ -41,7 +40,10 @@ export const SheetCurrentSheet = () => {
 			</View>
 			{/* </TouchableOpacity> */}
 			<View style={styles.container}>
-				<EstimatedEndDate estimatedEndDate={estimatedEndDate} />
+				<View style={styles.textLayout}>
+					<Text style={styles.subtitleText}>{`シート終了日(推定)`}</Text>
+					<Text style={styles.numberOfDaysText}>{estimatedEndDate}</Text>
+				</View>
 				<CurrentSheetStatus tookDays={tookDays} remainingDays={remainingDays} />
 			</View>
 		</>
@@ -63,10 +65,18 @@ const styles = StyleSheet.create({
 		color: "white",
 	},
 	container: {
-		flex: 1,
 		margin: 20,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		columnGap: 10,
+	},
+	textLayout: {
+		marginTop: 16,
+	},
+	subtitleText: {
+		fontSize: 10,
+	},
+	numberOfDaysText: {
+		fontSize: 16,
 	},
 });

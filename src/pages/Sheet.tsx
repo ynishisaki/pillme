@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 		marginBottom: 40,
 	},
 	weeklyRecord: {
-		height: 160,
+		height: 170,
 		width: 330,
 		backgroundColor: "rgba(255, 255, 255, 0.7)",
 		borderRadius: 8,

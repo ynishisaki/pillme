@@ -54,38 +54,21 @@ export const SheetWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 				{/* <RightIcon /> */}
 				{/* </TouchableOpacity>  */}
 			</View>
-			<View style={styles.container}>
-				<View style={styles.layout}>
-					<View style={styles.textLayout}>
-						<CountRecord title='服薬' days={takeMedicineDays}></CountRecord>
-						<CountRecord title='出血' days={haveBleedingDays}></CountRecord>
-					</View>
 
-					<View style={styles.recordLayout}>
-						{recordLength === 7
-							? [...record.dailyRecord]
-									.slice(0, recordLength)
-									.reverse()
-									.map((record, index) => (
-										<View key={index} style={styles.checkBoxLayout}>
-											<Text style={styles.weekTextLayout}>{weekArr[index]}</Text>
-											<CheckBox
-												title='服薬'
-												isChecked={record.tookMedicine}
-												isRestPeriod={record.isRestPeriod}
-											/>
-											<CheckBox
-												title='出血'
-												isChecked={record.haveBleeding}
-												isRestPeriod={record.isRestPeriod}
-											/>
-										</View>
-									))
-							: [...record.dailyRecord].reverse().map((record, index) => (
+			<View style={styles.container}>
+				<View style={styles.textLayout}>
+					<CountRecord title='服薬' days={takeMedicineDays}></CountRecord>
+					<CountRecord title='出血' days={haveBleedingDays}></CountRecord>
+				</View>
+
+				<View style={styles.recordLayout}>
+					{recordLength === 7
+						? [...record.dailyRecord]
+								.slice(0, recordLength)
+								.reverse()
+								.map((record, index) => (
 									<View key={index} style={styles.checkBoxLayout}>
-										<Text style={styles.weekTextLayout}>
-											{weekArr[(index + (7 - recordLength)) % 7]}
-										</Text>
+										<Text style={styles.weekTextLayout}>{weekArr[index]}</Text>
 										<CheckBox
 											title='服薬'
 											isChecked={record.tookMedicine}
@@ -97,8 +80,24 @@ export const SheetWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 											isRestPeriod={record.isRestPeriod}
 										/>
 									</View>
-							  ))}
-					</View>
+								))
+						: [...record.dailyRecord].reverse().map((record, index) => (
+								<View key={index} style={styles.checkBoxLayout}>
+									<Text style={styles.weekTextLayout}>
+										{weekArr[(index + (7 - recordLength)) % 7]}
+									</Text>
+									<CheckBox
+										title='服薬'
+										isChecked={record.tookMedicine}
+										isRestPeriod={record.isRestPeriod}
+									/>
+									<CheckBox
+										title='出血'
+										isChecked={record.haveBleeding}
+										isRestPeriod={record.isRestPeriod}
+									/>
+								</View>
+						  ))}
 				</View>
 			</View>
 		</>
@@ -120,21 +119,14 @@ const styles = StyleSheet.create({
 		color: "white",
 	},
 	container: {
-		flex: 1,
-		alignItems: "center",
-	},
-	layout: {
-		flex: 1,
-		width: "100%",
+		margin: 20,
+		marginTop: 16,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		margin: "auto",
-		marginTop: 10,
-		paddingHorizontal: 20,
-		maxHeight: 90,
+		columnGap: 10,
 	},
 	textLayout: {
-		marginTop: 8,
+		marginTop: 10,
 	},
 	recordLayout: {
 		flexDirection: "row",
@@ -144,8 +136,6 @@ const styles = StyleSheet.create({
 		marginHorizontal: 5,
 	},
 	weekTextLayout: {
-		fontSize: 8,
-		// color: "#fff",
-		marginBottom: -4,
+		fontSize: 10,
 	},
 });
