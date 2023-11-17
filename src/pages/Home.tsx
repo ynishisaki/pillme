@@ -5,12 +5,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { HomeTodaysRecord } from "~/components/large/HomeTodaysRecord";
+import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
 
 import { dailyRecordType, recordType } from "~/types/record";
 import { recordState, today } from "~/states/recordState";
 import { getDateStrings } from "~/functions/getDateStrings";
-import { HomeTitle } from "~/components/large/HomeTitle";
+import { HomeTitle } from "~/components/home/HomeTitle";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 
 export const Home = () => {

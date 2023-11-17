@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { CancelSmIcon, DropSmIcon, PillSmIcon } from "~/components/small/Icons";
+import { CancelSmIcon, DropSmIcon, PillSmIcon } from "~/components/Icons";
 import { unPressableCheckBoxColor, pillColor, unfillCheckBoxColor } from "~/styles/color";
 
 export default ({ title, isChecked, isRestPeriod }: { title: string; isChecked: boolean; isRestPeriod: boolean }) => {

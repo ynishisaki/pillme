@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
-import ContentLayout from "./ContendLayout";
+import ContentLayout from "../ContentLayout";
 
 export default function SettingsDataInit() {
 	const [record, setRecord] = useRecoilState(recordState);

@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import CurrentSettings from "~/components/medium/CurrentSettings";
-import SettingPicker from "~/components/medium/SettingPicker";
+import CurrentSettings from "~/components/settings/CurrentSettings";
+import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
-import ContentLayout from "./ContendLayout";
+import ContentLayout from "../ContentLayout";
 
 export default function SettingsMedicationMethod() {
 	const [record, setRecord] = useRecoilState(recordState);

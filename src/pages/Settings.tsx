@@ -1,8 +1,8 @@
 import React from "react";
-import SettingsMedicationMethod from "~/components/large/SettingsMedicationMethod";
-import SettingsSheetManagement from "~/components/large/SettingsSheetManagement";
+import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
+import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
-import SettingsDataInit from "~/components/large/SettingsDataInit";
+import SettingsDataInit from "~/components/settings/SettingsDataInit";
 
 export const Settings = () => {
 	return (

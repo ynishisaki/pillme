@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "~/pages/Home";
 import { Sheet } from "~/pages/Sheet";
 import { Settings } from "~/pages/Settings";
-import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/small/Icons";
+import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {

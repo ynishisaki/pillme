@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { RightIcon } from "~/components/small/Icons";
-import CountRecord from "~/components/medium/WeeklyCountRecord";
-import CheckBox from "~/components/medium/WeeklyCheckBox";
+import { RightIcon } from "~/components/Icons";
+import CountRecord from "~/components/sheet/WeeklyCountRecord";
+import CheckBox from "~/components/sheet/WeeklyCheckBox";
 import { recordState } from "~/states/recordState";
 import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";

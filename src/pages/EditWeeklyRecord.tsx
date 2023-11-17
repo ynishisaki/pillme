@@ -1,6 +1,6 @@
 import React from "react";
 import ScreenLayout from "~/template/ScreenLayout";
-import EditWeellyRecordCheckBoxes from "~/components/large/EditWeellyRecordCheckBoxes";
+import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
 import { Text, View, StyleSheet } from "react-native";
 
 export const EditWeeklyRecord = () => {

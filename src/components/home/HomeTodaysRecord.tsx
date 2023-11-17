@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text, Alert } from "react-native";
 import { useRecoilState } from "recoil";
-import CheckBox from "~/components/medium/PressableCheckBox";
+import CheckBox from "~/components/PressableCheckBox";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
 import { HeaderColor } from "~/styles/color";

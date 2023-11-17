@@ -2,8 +2,8 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { SheetWeeklyRecord } from "~/components/large/SheetWeeklyRecord";
-import { SheetCurrentSheet } from "~/components/large/SheetCurrentSheet";
+import { SheetWeeklyRecord } from "~/components/sheet/SheetWeeklyRecord";
+import { SheetCurrentSheet } from "~/components/sheet/SheetCurrentSheet";
 
 export const Sheet = () => {
 	return (

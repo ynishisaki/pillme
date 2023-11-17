@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import { CurrentSheetStatus } from "~/components/medium/CurrentSheetStatus";
-import { RightIcon } from "~/components/small/Icons";
+import { CurrentSheetStatus } from "~/components/sheet/CurrentSheetStatus";
+import { RightIcon } from "~/components/Icons";
 import { recordState } from "~/states/recordState";
 import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 import getCurrentSheetStatus from "~/functions/countRecord";

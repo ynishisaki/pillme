@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import { recordState } from "~/states/recordState";
-import SettingPicker from "~/components/medium/SettingPicker";
-import ContentLayout from "./ContendLayout";
+import SettingPicker from "~/components/settings/SettingPicker";
+import ContentLayout from "../ContentLayout";
 
 export default function SettingsSheetManagement() {
 	const [record, setRecord] = useRecoilState(recordState);
