@@ -4,13 +4,14 @@ import React from "react";
 import ScreenLayout from "~/template/ScreenLayout";
 import { SheetWeeklyRecord } from "~/components/sheet/SheetWeeklyRecord";
 import { SheetCurrentSheet } from "~/components/sheet/SheetCurrentSheet";
+import { ScreenNavigationProp } from "~/types/navigation";
 
-export const Sheet = () => {
+export const Sheet = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	return (
 		<ScreenLayout>
 			<View style={styles.contentsLayout}>
 				<View style={styles.weeklyRecord}>
-					<SheetWeeklyRecord onPress={() => console.log()} />
+					<SheetWeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 				</View>
 				<View style={styles.sheetRecord}>
 					<SheetCurrentSheet />

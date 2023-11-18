@@ -48,12 +48,12 @@ export const SheetWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	return (
 		<>
-			{/* <TouchableOpacity onPress={onPress}> */}
-			<View style={styles.titleContainer}>
-				<Text style={styles.titleText}>過去一週間分の記録</Text>
-				{/* <RightIcon /> */}
-				{/* </TouchableOpacity>  */}
-			</View>
+			<TouchableOpacity onPress={onPress}>
+				<View style={styles.titleContainer}>
+					<Text style={styles.titleText}>過去一週間分の記録</Text>
+					<RightIcon />
+				</View>
+			</TouchableOpacity>
 
 			<View style={styles.container}>
 				<View style={styles.textLayout}>

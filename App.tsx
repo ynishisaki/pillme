@@ -8,19 +8,39 @@ import { Sheet } from "~/pages/Sheet";
 import { Settings } from "~/pages/Settings";
 import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { createStackNavigator } from "@react-navigation/stack";
+import { EditWeeklyRecord } from "~/pages/EditWeeklyRecord";
+
+const Stack = createStackNavigator();
+
+function SheetStacks() {
+	return (
+		<Stack.Navigator>
+			<Stack.Screen
+				name='Sheet'
+				component={Sheet}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen name='EditWeeklyRecord' component={EditWeeklyRecord} options={{ headerShown: false }} />
+		</Stack.Navigator>
+	);
+}
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-	const Tab = createBottomTabNavigator();
-
 	return (
 		<SafeAreaProvider>
 			<NavigationContainer>
 				<RecoilRoot>
 					<Tab.Navigator>
 						<Tab.Screen
-							name='ホーム'
+							name='Home'
 							component={Home}
 							options={{
+								tabBarLabel: "ホーム",
 								tabBarIcon: () => {
 									return <HomeIcon />;
 								},
@@ -28,9 +48,11 @@ export default function App() {
 							}}
 						/>
 						<Tab.Screen
-							name='記録の管理'
-							component={Sheet}
+							name='SheetStacks'
+							// component={Sheet}
+							component={SheetStacks}
 							options={{
+								tabBarLabel: "記録",
 								tabBarIcon: () => {
 									return <HistoryIcon />;
 								},
@@ -38,9 +60,10 @@ export default function App() {
 							}}
 						/>
 						<Tab.Screen
-							name='設定'
+							name='Settings'
 							component={Settings}
 							options={{
+								tabBarLabel: "設定",
 								tabBarIcon: () => {
 									return <SettingIcon />;
 								},
