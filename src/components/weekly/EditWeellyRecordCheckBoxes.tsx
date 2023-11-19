@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginVertical: 20,
 		marginHorizontal: "auto",
-		width: 230,
+		// width: 230,
 		gap: 20,
 	},
 	horizonalStackLayout: {

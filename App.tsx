@@ -10,6 +10,7 @@ import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from "@react-navigation/stack";
 import { EditWeeklyRecord } from "~/pages/EditWeeklyRecord";
+import { HeaderColor, palePink } from "~/styles/color";
 
 const Stack = createStackNavigator();
 
@@ -41,22 +42,31 @@ export default function App() {
 							component={Home}
 							options={{
 								tabBarLabel: "ホーム",
-								tabBarIcon: () => {
-									return <HomeIcon />;
+								tabBarLabelStyle: {
+									fontSize: 12,
+									fontWeight: "bold",
+								},
+								tabBarIcon: (parameter) => {
+									return <HomeIcon color={parameter.focused ? palePink : undefined} />;
 								},
 								headerShown: false,
+								tabBarActiveTintColor: palePink,
 							}}
 						/>
 						<Tab.Screen
 							name='SheetStacks'
-							// component={Sheet}
 							component={SheetStacks}
 							options={{
 								tabBarLabel: "記録",
-								tabBarIcon: () => {
-									return <HistoryIcon />;
+								tabBarLabelStyle: {
+									fontSize: 12,
+									fontWeight: "bold",
+								},
+								tabBarIcon: (parameter) => {
+									return <HistoryIcon color={parameter.focused ? palePink : undefined} />;
 								},
 								headerShown: false,
+								tabBarActiveTintColor: palePink,
 							}}
 						/>
 						<Tab.Screen
@@ -64,10 +74,15 @@ export default function App() {
 							component={Settings}
 							options={{
 								tabBarLabel: "設定",
-								tabBarIcon: () => {
-									return <SettingIcon />;
+								tabBarLabelStyle: {
+									fontSize: 12,
+									fontWeight: "bold",
+								},
+								tabBarIcon: (parameter) => {
+									return <SettingIcon color={parameter.focused ? palePink : undefined} />;
 								},
 								headerShown: false,
+								tabBarActiveTintColor: palePink,
 							}}
 						/>
 					</Tab.Navigator>

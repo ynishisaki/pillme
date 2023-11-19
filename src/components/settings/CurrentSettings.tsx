@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		// backgroundColor: "#ffffe0",
 		backgroundColor: "#ddd",
-		borderRadius: 6,
+		borderRadius: 8,
 		boxShadow: "0px 0px 4px #00000040",
 	},
 	subtitle: {

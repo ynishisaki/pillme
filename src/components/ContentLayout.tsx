@@ -1,31 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { HeaderColor } from "~/styles/color";
-import { RightIcon } from "./Icons";
+import { StyleSheet, Text, View } from "react-native";
+import { HeaderColor, translucentWhite } from "~/styles/color";
 
-export default function ContentLayout({
-	children,
-	title,
-	onPress,
-}: {
-	children: React.ReactNode;
-	title: string;
-	onPress?: () => void;
-}) {
+export default function ContentLayout({ children, title }: { children: React.ReactNode; title: string }) {
 	return (
 		<View style={styles.container}>
-			{!onPress && (
-				<View style={styles.titleContainer}>
-					<Text style={styles.titleText}>{title}</Text>
-				</View>
-			)}
-			{onPress && (
-				<TouchableOpacity onPress={onPress}>
-					<View style={styles.titleContainer}>
-						<Text style={styles.titleText}>{title}</Text>
-						<RightIcon />
-					</View>
-				</TouchableOpacity>
-			)}
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>{title}</Text>
+			</View>
+
 			<View style={styles.contentLayout}>{children}</View>
 		</View>
 	);
@@ -34,17 +16,14 @@ export default function ContentLayout({
 const styles = StyleSheet.create({
 	container: {
 		marginBottom: 40,
-		backgroundColor: "rgba(255, 255, 255, 0.9)",
+		backgroundColor: translucentWhite,
 		borderRadius: 8,
 		overflow: "hidden",
 	},
 	titleContainer: {
-		paddingTop: 8,
+		paddingVertical: 10,
 		paddingHorizontal: 20,
-		height: 46,
 		backgroundColor: HeaderColor,
-		flexDirection: "row",
-		justifyContent: "space-between",
 	},
 	titleText: {
 		fontSize: 20,

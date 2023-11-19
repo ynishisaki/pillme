@@ -12,6 +12,7 @@ import { recordState, today } from "~/states/recordState";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeTitle } from "~/components/home/HomeTitle";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
+import { translucentWhite } from "~/styles/color";
 
 export const Home = () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
 		height: 220,
 		width: 330,
 		borderRadius: 8,
-		backgroundColor: "rgba(255, 255, 255, 0.7)",
+		backgroundColor: translucentWhite,
 		overflow: "hidden",
 	},
 });
