@@ -9,9 +9,9 @@ export const SettingIcon = () => <MaterialCommunityIcons name='cog-outline' size
 
 export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={35} color='gray' />;
 
-export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='DimGray' />;
+export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='dimgray' />;
 
-export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='DimGray' />;
+export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='dimgray' />;
 
 export const PillLgIcon = () => <MaterialCommunityIcons name='pill' size={50} color='#fff' />;
 
