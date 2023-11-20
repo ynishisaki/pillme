@@ -2,20 +2,20 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 
 import ScreenLayout from "~/template/ScreenLayout";
-import { SheetWeeklyRecord } from "~/components/sheet/SheetWeeklyRecord";
-import { SheetCurrentSheet } from "~/components/sheet/SheetCurrentSheet";
+import { WeeklyRecord } from "~/components/record/WeeklyRecord";
+import { CurrentSheet } from "~/components/record/CurrentSheet";
 import { ScreenNavigationProp } from "~/types/navigation";
 import { translucentWhite } from "~/styles/color";
 
-export const Sheet = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+export const Record = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	return (
 		<ScreenLayout>
 			<View style={styles.contentsLayout}>
 				<View style={styles.weeklyRecord}>
-					<SheetWeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+					<WeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 				</View>
 				<View style={styles.sheetRecord}>
-					<SheetCurrentSheet />
+					<CurrentSheet />
 				</View>
 			</View>
 		</ScreenLayout>

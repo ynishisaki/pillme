@@ -4,22 +4,23 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Home } from "~/pages/Home";
-import { Sheet } from "~/pages/Sheet";
+import { Record } from "~/pages/Record";
 import { Settings } from "~/pages/Settings";
+import { EditWeeklyRecord } from "~/pages/EditWeeklyRecord";
+
 import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from "@react-navigation/stack";
-import { EditWeeklyRecord } from "~/pages/EditWeeklyRecord";
-import { HeaderColor, palePink } from "~/styles/color";
+import { HeaderColor, skyBlue } from "~/styles/color";
 
 const Stack = createStackNavigator();
 
-function SheetStacks() {
+function RecordStacks() {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name='Sheet'
-				component={Sheet}
+				name='Record'
+				component={Record}
 				options={{
 					headerShown: false,
 				}}
@@ -47,15 +48,15 @@ export default function App() {
 									fontWeight: "bold",
 								},
 								tabBarIcon: (parameter) => {
-									return <HomeIcon color={parameter.focused ? palePink : undefined} />;
+									return <HomeIcon color={parameter.focused ? skyBlue : undefined} />;
 								},
 								headerShown: false,
-								tabBarActiveTintColor: palePink,
+								tabBarActiveTintColor: skyBlue,
 							}}
 						/>
 						<Tab.Screen
-							name='SheetStacks'
-							component={SheetStacks}
+							name='RecordStacks'
+							component={RecordStacks}
 							options={{
 								tabBarLabel: "記録",
 								tabBarLabelStyle: {
@@ -63,10 +64,10 @@ export default function App() {
 									fontWeight: "bold",
 								},
 								tabBarIcon: (parameter) => {
-									return <HistoryIcon color={parameter.focused ? palePink : undefined} />;
+									return <HistoryIcon color={parameter.focused ? skyBlue : undefined} />;
 								},
 								headerShown: false,
-								tabBarActiveTintColor: palePink,
+								tabBarActiveTintColor: skyBlue,
 							}}
 						/>
 						<Tab.Screen
@@ -79,10 +80,10 @@ export default function App() {
 									fontWeight: "bold",
 								},
 								tabBarIcon: (parameter) => {
-									return <SettingIcon color={parameter.focused ? palePink : undefined} />;
+									return <SettingIcon color={parameter.focused ? skyBlue : undefined} />;
 								},
 								headerShown: false,
-								tabBarActiveTintColor: palePink,
+								tabBarActiveTintColor: skyBlue,
 							}}
 						/>
 					</Tab.Navigator>

@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { pillColor, unPressableCheckBoxColor } from "~/styles/color";
 
-export const CurrentSheetStatus = ({ tookDays, remainingDays }: { tookDays: number; remainingDays: number }) => {
+export const Sheet = ({ tookDays, remainingDays }: { tookDays: number; remainingDays: number }) => {
 	const checkBoxes = [];
 	// 現在のシートの飲んだ分
 	if (tookDays > 0) {
@@ -62,7 +62,7 @@ export const CurrentSheetStatus = ({ tookDays, remainingDays }: { tookDays: numb
 const styles = StyleSheet.create({
 	container: {
 		// flex: 1,
-		borderColor: "#fff",
+		borderColor: "gainsboro",
 		borderWidth: 2,
 		borderRadius: 16,
 		width: 200,

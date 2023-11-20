@@ -18,7 +18,7 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 					<EditWeellyRecordCheckBoxes />
 				</ContentLayout>
 
-				<TouchableOpacity onPress={() => navigation.navigate("Sheet")}>
+				<TouchableOpacity onPress={() => navigation.navigate("Record")}>
 					<View style={styles.backButtonContainer}>
 						<LeftIcon />
 						<Text style={styles.buttonText}>戻る</Text>

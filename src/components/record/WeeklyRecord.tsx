@@ -1,14 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { RightIcon } from "~/components/Icons";
-import CountRecord from "~/components/sheet/WeeklyCountRecord";
-import CheckBox from "~/components/sheet/WeeklyCheckBox";
+import CountRecord from "~/components/record/WeeklyCountRecord";
+import CheckBox from "~/components/record/WeeklyCheckBox";
 import { recordState } from "~/states/recordState";
 import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
 import { HeaderColor } from "~/styles/color";
 
-export const SheetWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
+export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const { takeMedicineDays } = countTakeMedicineDays(record);
@@ -57,8 +57,10 @@ export const SheetWeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 			<View style={styles.container}>
 				<View style={styles.textLayout}>
-					<CountRecord title='服薬' days={takeMedicineDays}></CountRecord>
-					<CountRecord title='出血' days={haveBleedingDays}></CountRecord>
+					<Text style={styles.subtitleText}>服薬</Text>
+					<Text style={styles.numberOfDaysText}>{`${takeMedicineDays}日目`}</Text>
+					<Text style={styles.subtitleText}>出血</Text>
+					<Text style={styles.numberOfDaysText}>{`${haveBleedingDays}日目`}</Text>
 				</View>
 
 				<View style={styles.recordLayout}>
@@ -124,6 +126,13 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		columnGap: 10,
+	},
+	subtitleText: {
+		fontSize: 10,
+	},
+	numberOfDaysText: {
+		fontSize: 16,
+		marginBottom: 4,
 	},
 	textLayout: {
 		marginTop: 10,

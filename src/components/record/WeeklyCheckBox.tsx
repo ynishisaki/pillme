@@ -5,19 +5,17 @@ import { unPressableCheckBoxColor, pillColor, unfillCheckBoxColor } from "~/styl
 
 export default ({ title, isChecked, isRestPeriod }: { title: string; isChecked: boolean; isRestPeriod: boolean }) => {
 	return (
-		<>
-			<BouncyCheckbox
-				style={styles.container}
-				size={25}
-				fillColor={isRestPeriod ? unPressableCheckBoxColor : pillColor} // タスク
-				unfillColor={unfillCheckBoxColor}
-				isChecked={isRestPeriod ? true : isChecked} // must set
-				disableText={true}
-				ImageComponent={isRestPeriod ? CancelSmIcon : title === "服薬" ? PillSmIcon : DropSmIcon}
-				disabled={true}
-				disableBuiltInState={isChecked}
-			/>
-		</>
+		<BouncyCheckbox
+			style={styles.container}
+			size={25}
+			fillColor={isRestPeriod ? unPressableCheckBoxColor : pillColor} // タスク
+			unfillColor={unfillCheckBoxColor}
+			isChecked={isRestPeriod ? true : isChecked} // must set
+			disableText={true}
+			ImageComponent={isRestPeriod ? CancelSmIcon : title === "服薬" ? PillSmIcon : DropSmIcon}
+			disabled={true}
+			disableBuiltInState={isChecked}
+		/>
 	);
 };
 

@@ -17,7 +17,6 @@ import { translucentWhite } from "~/styles/color";
 export const Home = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	// This hook returns `true` if the screen is focused, `false` otherwise
 	const isFocused = useIsFocused();
 
 	// AsyncStorageから記録を取得

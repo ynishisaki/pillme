@@ -1,13 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import { CurrentSheetStatus } from "~/components/sheet/CurrentSheetStatus";
+import { Sheet } from "~/components/record/Sheet";
 import { RightIcon } from "~/components/Icons";
 import { recordState } from "~/states/recordState";
 import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 import getCurrentSheetStatus from "~/functions/countRecord";
 import { HeaderColor } from "~/styles/color";
 
-export const SheetCurrentSheet = () => {
+export const CurrentSheet = () => {
 	const record = useRecoilValue(recordState);
 
 	// シートの終了日を計算
@@ -44,7 +44,7 @@ export const SheetCurrentSheet = () => {
 					<Text style={styles.subtitleText}>{`シート終了日(推定)`}</Text>
 					<Text style={styles.numberOfDaysText}>{estimatedEndDate}</Text>
 				</View>
-				<CurrentSheetStatus tookDays={tookDays} remainingDays={remainingDays} />
+				<Sheet tookDays={tookDays} remainingDays={remainingDays} />
 			</View>
 		</>
 	);
