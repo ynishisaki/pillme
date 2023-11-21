@@ -70,7 +70,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 								.reverse()
 								.map((record, index) => (
 									<View key={index} style={styles.checkBoxLayout}>
-										<Text style={styles.weekTextLayout}>{weekArr[index]}</Text>
+										<Text style={styles.weekText}>{weekArr[index]}</Text>
 										<CheckBox
 											title='服薬'
 											isChecked={record.tookMedicine}
@@ -85,9 +85,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 								))
 						: [...record.dailyRecord].reverse().map((record, index) => (
 								<View key={index} style={styles.checkBoxLayout}>
-									<Text style={styles.weekTextLayout}>
-										{weekArr[(index + (7 - recordLength)) % 7]}
-									</Text>
+									<Text style={styles.weekText}>{weekArr[(index + (7 - recordLength)) % 7]}</Text>
 									<CheckBox
 										title='服薬'
 										isChecked={record.tookMedicine}
@@ -127,6 +125,10 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		columnGap: 10,
 	},
+
+	textLayout: {
+		marginTop: 10,
+	},
 	subtitleText: {
 		fontSize: 10,
 	},
@@ -134,17 +136,18 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		marginBottom: 4,
 	},
-	textLayout: {
-		marginTop: 10,
-	},
+
 	recordLayout: {
 		flexDirection: "row",
 	},
 	checkBoxLayout: {
 		alignItems: "center",
 		marginHorizontal: 5,
+		// columnGap: 5,
+		flexDirection: "column",
+		rowGap: 5,
 	},
-	weekTextLayout: {
+	weekText: {
 		fontSize: 10,
 	},
 });

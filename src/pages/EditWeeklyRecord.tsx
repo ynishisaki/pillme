@@ -13,15 +13,15 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 			{/* <ScreenLayout> */}
 
 			<View style={styles.contentsLayout}>
-				<ContentLayout title='過去一週間分の記録'>
-					<Text style={styles.description}>昨日から一週間前まで記録をさかのぼって編集することができます</Text>
+				<ContentLayout title='過去の記録の編集'>
+					<Text style={styles.overviewText}>一週間前までさかのぼって記録を編集することができます</Text>
 					<EditWeellyRecordCheckBoxes />
 				</ContentLayout>
 
 				<TouchableOpacity onPress={() => navigation.navigate("Record")}>
 					<View style={styles.backButtonContainer}>
 						<LeftIcon />
-						<Text style={styles.buttonText}>戻る</Text>
+						<Text style={styles.buttonLabelText}>戻る</Text>
 					</View>
 				</TouchableOpacity>
 			</View>
@@ -33,65 +33,25 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		// justifyContent: "flex-end",
-		// alignItems: "center",
-		flexDirection: "column",
-		// rowGap: 50,
+		// flexDirection: "column",
+		// rowGap: 1,
 		justifyContent: "space-between",
-		// marginBottom: 40,
 	},
-	weeklyRecord: {
-		// height: 170,
-		// width: 330,
-		backgroundColor: "rgba(255, 255, 255, 0.7)",
-		borderRadius: 8,
-		overflow: "hidden",
-	},
-
-	titleContainer: {
-		flexDirection: "row",
-		// justifyContent: "space-between",
-		columnGap: 10,
-		alignItems: "center",
-		paddingHorizontal: 20,
-		height: 46,
-		backgroundColor: HeaderColor,
-	},
-	titleText: {
-		fontSize: 18,
-		fontWeight: "bold",
-		color: "white",
-	},
-	container: {
-		flex: 1,
-		width: 330,
-		textAlign: "center",
-		backgroundColor: "#fff",
-		borderRadius: 16,
-	},
-	containerLayout: {
-		flex: 1,
-		padding: 20,
-	},
-	description: {
+	overviewText: {
 		fontSize: 12,
 		color: "#000000A8",
 	},
-
 	backButtonContainer: {
-		// paddingTop: 4,
 		paddingVertical: 4,
 		paddingHorizontal: 12,
-		// height: 38,
 		backgroundColor: HeaderColor,
 		flexDirection: "row",
 		columnGap: 10,
 		width: 116,
 		borderRadius: 8,
 	},
-	buttonText: {
+	buttonLabelText: {
 		fontSize: 18,
-		// fontWeight: "bold",
 		color: "white",
 	},
 });

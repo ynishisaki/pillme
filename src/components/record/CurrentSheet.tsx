@@ -30,15 +30,9 @@ export const CurrentSheet = () => {
 
 	return (
 		<>
-			{/* <TouchableOpacity
-				onPress={() => {
-					console.log("test: pressed");
-				}}> */}
 			<View style={styles.titleContainer}>
 				<Text style={styles.titleText}>現在のシート</Text>
-				{/* <RightIcon /> */}
 			</View>
-			{/* </TouchableOpacity> */}
 			<View style={styles.container}>
 				<View style={styles.textLayout}>
 					<Text style={styles.subtitleText}>{`シート終了日(推定)`}</Text>
@@ -70,6 +64,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		columnGap: 10,
 	},
+
 	textLayout: {
 		marginTop: 16,
 	},
