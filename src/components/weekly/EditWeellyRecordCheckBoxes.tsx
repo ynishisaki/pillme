@@ -7,28 +7,14 @@ import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
 
-	function onPressTookMedicine(nextBoolean: boolean, index: number) {
+	function updateAWeekRecord(key: string, nextBoolean: boolean, index: number) {
 		setRecord({
 			...record,
 			dailyRecord: [
 				...record.dailyRecord.slice(0, index),
 				{
 					...record.dailyRecord[index],
-					tookMedicine: nextBoolean,
-				},
-				...record.dailyRecord.slice(index + 1),
-			],
-		});
-	}
-
-	function onPressHaveBleeding(nextBoolean: boolean, index: number) {
-		setRecord({
-			...record,
-			dailyRecord: [
-				...record.dailyRecord.slice(0, index),
-				{
-					...record.dailyRecord[index],
-					haveBleeding: nextBoolean,
+					[key]: nextBoolean,
 				},
 				...record.dailyRecord.slice(index + 1),
 			],
@@ -51,7 +37,7 @@ export default function EditWeellyRecordCheckBoxes() {
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
 							isRestPeriod={record.dailyRecord[i].isRestPeriod}
-							onPress={(nextBoolean) => onPressTookMedicine(nextBoolean, i)}
+							onPress={(nextBoolean) => updateAWeekRecord("tookMedicine", nextBoolean, i)}
 						/>
 						<CheckBox
 							title={i === 0 ? "出血" : null}
@@ -59,7 +45,7 @@ export default function EditWeellyRecordCheckBoxes() {
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
 							isRestPeriod={record.dailyRecord[i].isRestPeriod}
-							onPress={(nextBoolean) => onPressHaveBleeding(nextBoolean, i)}
+							onPress={(nextBoolean) => updateAWeekRecord("haveBleeding", nextBoolean, i)}
 						/>
 					</>
 				)}

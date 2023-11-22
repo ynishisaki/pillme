@@ -1,4 +1,5 @@
 import { useRecoilState } from "recoil";
+import { StyleSheet, Text } from "react-native";
 import { recordState } from "~/states/recordState";
 import SettingPicker from "~/components/settings/SettingPicker";
 import ContentLayout from "../ContentLayout";
@@ -32,6 +33,12 @@ export default function SettingsSheetManagement() {
 
 	return (
 		<ContentLayout title='現在のシート'>
+			<Text style={styles.overviewText}>
+				{"現在のシートの錠数と開始位置を設定します。"}
+				{"シートの錠数は１シートの錠数（プラセボ除く）を設定します。"}
+				{"シートの開始位置は、シートの錠数の中で、初めの錠剤の位置を設定します。"}
+			</Text>
+
 			<SettingPicker
 				description={"１シートの錠数（プラセボ除く）"}
 				selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
@@ -50,3 +57,10 @@ export default function SettingsSheetManagement() {
 		</ContentLayout>
 	);
 }
+
+const styles = StyleSheet.create({
+	overviewText: {
+		fontSize: 12,
+		color: "#000000A8",
+	},
+});

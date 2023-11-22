@@ -33,7 +33,7 @@ export default function SettingsDataInit() {
 
 	return (
 		<ContentLayout title='初期化'>
-			<Text style={styles.description}>
+			<Text style={styles.overviewText}>
 				{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}
 			</Text>
 			<Button
@@ -47,7 +47,7 @@ export default function SettingsDataInit() {
 }
 
 const styles = StyleSheet.create({
-	description: {
+	overviewText: {
 		fontSize: 12,
 		color: "#000000A8",
 		paddingBottom: 10,

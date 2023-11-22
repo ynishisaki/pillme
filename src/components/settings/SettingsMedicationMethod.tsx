@@ -55,8 +55,8 @@ export default function SettingsMedicationMethod() {
 
 	return (
 		<ContentLayout title='服薬方法'>
-			<Text style={styles.description}>このアプリは、120日連続服用を対象としています。</Text>
-			<Text style={styles.description}>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</Text>
+			<Text style={styles.overviewText}>このアプリは、120日連続服用を対象としています。</Text>
+			<Text style={styles.overviewText}>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</Text>
 
 			<CurrentSettings />
 
@@ -96,8 +96,8 @@ export default function SettingsMedicationMethod() {
 }
 
 const styles = StyleSheet.create({
-	description: {
-		fontSize: 13,
+	overviewText: {
+		fontSize: 12,
 		color: "#000000A8",
 	},
 });
