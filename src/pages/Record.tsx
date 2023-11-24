@@ -6,18 +6,23 @@ import { WeeklyRecord } from "~/components/record/WeeklyRecord";
 import { CurrentSheet } from "~/components/record/CurrentSheet";
 import { ScreenNavigationProp } from "~/types/navigation";
 import { translucentWhite } from "~/styles/color";
+import { useIsFocused } from "@react-navigation/native";
 
 export const Record = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+	const isFocused = useIsFocused();
+
 	return (
 		<ScreenLayout>
-			<View style={styles.contentsLayout}>
-				<View style={styles.weeklyRecord}>
-					<WeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+			{isFocused && (
+				<View style={styles.contentsLayout}>
+					<View style={styles.weeklyRecord}>
+						<WeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+					</View>
+					<View style={styles.sheetRecord}>
+						<CurrentSheet />
+					</View>
 				</View>
-				<View style={styles.sheetRecord}>
-					<CurrentSheet />
-				</View>
-			</View>
+			)}
 		</ScreenLayout>
 	);
 };

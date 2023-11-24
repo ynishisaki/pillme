@@ -6,26 +6,28 @@ import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 import { HeaderColor } from "~/styles/color";
 import { LeftIcon } from "~/components/Icons";
 import ContentLayout from "~/components/ContentLayout";
+import { useIsFocused } from "@react-navigation/native";
 
 export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
+	const isFocused = useIsFocused();
+
 	return (
 		<ScrollableScreenLayout>
-			{/* <ScreenLayout> */}
+			{isFocused && (
+				<View style={styles.contentsLayout}>
+					<ContentLayout title='過去の記録の編集'>
+						<Text style={styles.overviewText}>一週間前までさかのぼって記録を編集することができます</Text>
+						<EditWeellyRecordCheckBoxes />
+					</ContentLayout>
 
-			<View style={styles.contentsLayout}>
-				<ContentLayout title='過去の記録の編集'>
-					<Text style={styles.overviewText}>一週間前までさかのぼって記録を編集することができます</Text>
-					<EditWeellyRecordCheckBoxes />
-				</ContentLayout>
-
-				<TouchableOpacity onPress={() => navigation.navigate("Record")}>
-					<View style={styles.backButtonContainer}>
-						<LeftIcon />
-						<Text style={styles.buttonLabelText}>戻る</Text>
-					</View>
-				</TouchableOpacity>
-			</View>
-			{/* </ScreenLayout> */}
+					<TouchableOpacity onPress={() => navigation.navigate("Record")}>
+						<View style={styles.backButtonContainer}>
+							<LeftIcon />
+							<Text style={styles.buttonLabelText}>戻る</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
+			)}
 		</ScrollableScreenLayout>
 	);
 };
