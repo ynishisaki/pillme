@@ -1,6 +1,6 @@
 import { recordType } from "~/types/record";
 
-// 現在のシートの飲んだ数と残りの錠数を返す
+// シートの飲んだ数と残りの錠数
 export default function getCurrentSheetStatus(record: recordType) {
 	const { numOfPillsPerSheet, beginSheetIndex } = record.initialSheetSettings;
 	const totalTookMedicineLength = record.dailyRecord.filter((item) => item.tookMedicine === true).length;
@@ -10,8 +10,6 @@ export default function getCurrentSheetStatus(record: recordType) {
 	const isTodayTookMedicine = record.dailyRecord[0].tookMedicine;
 	tookDays = tookDays === 0 && isTodayTookMedicine ? numOfPillsPerSheet : tookDays;
 	const remainingDays = numOfPillsPerSheet - tookDays;
-	// console.log("tookDays", tookDays);
-	// console.log("remainingDays", remainingDays);
 
 	return {
 		tookDays,
@@ -19,11 +17,42 @@ export default function getCurrentSheetStatus(record: recordType) {
 	};
 }
 
-// 最後のisRestPeriod=trueの翌日から数える
-export function countStartTakeMedicineIndex(record: recordType) {
+// 記録をつけていない日があるか調べる
+export function hasNoRecordDays(record: recordType) {
+	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
+	const truncatedDailyRecordWithoutToday = [...record.dailyRecord].slice(1, startTakeMedicineIndex);
+
+	const hasNoRecordWithoutToday = truncatedDailyRecordWithoutToday.some((record) => {
+		if (record.tookMedicine === false && record.haveBleeding === false && record.isRestPeriod === false) {
+			return false;
+		} else {
+			return true;
+		}
+	});
+
+	const hasNoRecordToday =
+		record.dailyRecord[0].tookMedicine === false &&
+		record.dailyRecord[0].haveBleeding === false &&
+		record.dailyRecord[0].isRestPeriod === false;
+
+	return {
+		hasNoRecordWithoutToday,
+		hasNoRecordToday,
+	};
+}
+
+// 服薬開始インデックス
+function countStartTakeMedicineIndex(record: recordType) {
 	const latestIsRestPeriodIndex = record.dailyRecord.findIndex((item) => item.isRestPeriod === true);
-	const recordLength = record.dailyRecord.length;
-	return latestIsRestPeriodIndex > 0 ? latestIsRestPeriodIndex : recordLength - 1;
+	const recordLastIndex = record.dailyRecord.length - 1;
+
+	// -1: 休薬日なし -> 記録初日が服薬開始日
+	// 0: 今日が休薬日 -> もっと前の日になるはず（用途による）
+	if (latestIsRestPeriodIndex === -1) return recordLastIndex;
+	else if (latestIsRestPeriodIndex === 0) return recordLastIndex;
+
+	// 服薬開始日は休薬日の翌日
+	return latestIsRestPeriodIndex - 1;
 }
 
 // 服薬日数
@@ -31,13 +60,23 @@ export function countTakeMedicineDays(record: recordType) {
 	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
 
 	let takeMedicineDaysWithoutToday = 0;
-	for (let i = startTakeMedicineIndex; i > 0; i--) {
-		if (record.dailyRecord[i].tookMedicine === true) {
+
+	const truncatedDailyRecordWithoutToday = [...record.dailyRecord].slice(1, startTakeMedicineIndex).reverse();
+	truncatedDailyRecordWithoutToday.some((record) => {
+		if (record.tookMedicine === true) {
 			takeMedicineDaysWithoutToday++;
+			return false;
 		} else {
-			break;
+			return true;
 		}
-	}
+	});
+	// for (let i = startTakeMedicineIndex; i >= 0; i--) {
+	// 	if (record.dailyRecord[i].tookMedicine === true) {
+	// 		takeMedicineDaysWithoutToday++;
+	// 	} else {
+	// 		break;
+	// 	}
+	// }
 
 	const todaysCount = record.dailyRecord[0].tookMedicine ? 1 : 0;
 	const takeMedicineDays = takeMedicineDaysWithoutToday + todaysCount;
@@ -86,22 +125,4 @@ export function countIsRestPeriodDays(record: recordType) {
 		restPeriodDaysWithoutToday,
 		restPeriodDays,
 	};
-}
-
-// 今日から何日前まで記録をつけていないか
-export function countNotRecordDays(record: recordType) {
-	let count = 0;
-	for (let i = 0; i < record.dailyRecord.length; i++) {
-		if (
-			record.dailyRecord[i].tookMedicine === false &&
-			record.dailyRecord[i].haveBleeding === false &&
-			record.dailyRecord[i].isRestPeriod === false
-		) {
-			count++;
-		} else {
-			break;
-		}
-	}
-
-	return count;
 }

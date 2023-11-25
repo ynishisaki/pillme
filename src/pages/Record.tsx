@@ -15,11 +15,11 @@ export const Record = ({ navigation }: { navigation: ScreenNavigationProp }) => 
 		<ScreenLayout>
 			{isFocused && (
 				<View style={styles.contentsLayout}>
-					<View style={styles.weeklyRecord}>
-						<WeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
-					</View>
 					<View style={styles.sheetRecord}>
 						<CurrentSheet />
+					</View>
+					<View style={styles.weeklyRecord}>
+						<WeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 					</View>
 				</View>
 			)}

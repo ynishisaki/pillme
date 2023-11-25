@@ -1,5 +1,6 @@
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { HeaderColor } from "~/styles/color";
 
 export const HomeIcon = ({ color }: { color?: string }) => <Octicons name='home' size={28} color={color || "gray"} />;
 
@@ -11,7 +12,7 @@ export const SettingIcon = ({ color }: { color?: string }) => (
 	<MaterialCommunityIcons name='cog-outline' size={30} color={color || "gray"} />
 );
 
-export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={35} color='gray' />;
+export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={24} color={HeaderColor} />;
 
 export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='white' />;
 
