@@ -1,12 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { EditIcon, RightIcon } from "~/components/Icons";
-import CheckBox from "~/components/record/WeeklyCheckBox";
 import { recordState } from "~/states/recordState";
 import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
 import { HeaderColor } from "~/styles/color";
 import { BackButton } from "../weekly/BackButton";
+import CheckBox from "../CheckBox";
 
 export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -44,8 +44,24 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 					{truncateRecord.map((record, index) => (
 						<View key={index} style={styles.checkBoxLayout}>
 							<Text style={styles.weekText}>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</Text>
-							<CheckBox title='服薬' isChecked={record.tookMedicine} isRestPeriod={record.isRestPeriod} />
-							<CheckBox title='出血' isChecked={record.haveBleeding} isRestPeriod={record.isRestPeriod} />
+							<CheckBox
+								title=''
+								type='medicine'
+								size={"sm"}
+								isChecked={record.tookMedicine}
+								isRestPeriod={false}
+								readonly
+								onPress={() => {}}
+							/>
+							<CheckBox
+								title=''
+								type='bleeding'
+								size={"sm"}
+								isChecked={record.haveBleeding}
+								isRestPeriod={false}
+								readonly
+								onPress={() => {}}
+							/>
 						</View>
 					))}
 				</View>

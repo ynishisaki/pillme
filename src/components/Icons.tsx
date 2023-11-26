@@ -20,14 +20,28 @@ export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size
 
 export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='white' />;
 
-export const PillLgIcon = () => <MaterialCommunityIcons name='pill' size={50} color='#fff' />;
+function getSize(size: "sm" | "md" | "lg") {
+	console.log("size", size);
+	switch (size) {
+		case "sm":
+			return 20;
+		case "md":
+			return 30;
+		case "lg":
+			return 60;
+		default:
+			return 30;
+	}
+}
 
-export const PillSmIcon = () => <MaterialCommunityIcons name='pill' size={20} color='#fff' />;
+export const PillIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
+	return <MaterialCommunityIcons name='pill' size={getSize(size)} color='#fff' />;
+};
 
-export const DropLgIcon = () => <MaterialCommunityIcons name='water' size={50} color='#fff' />;
+export const DropIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
+	return <MaterialCommunityIcons name='water' size={getSize(size)} color='#fff' />;
+};
 
-export const DropSmIcon = () => <MaterialCommunityIcons name='water' size={20} color='#fff' />;
-
-export const CancelLgIcon = () => <MaterialCommunityIcons name='cancel' size={50} color='#fff' />;
-
-export const CancelSmIcon = () => <MaterialCommunityIcons name='cancel' size={20} color='#fff' />;
+export const CancelIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
+	return <MaterialCommunityIcons name='cancel' size={getSize(size)} color='#fff' />;
+};
