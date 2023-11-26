@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { useRecoilValue } from "recoil";
 import { recordState } from "~/states/recordState";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
-import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
+import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 
 export const HomeTitle = () => {
@@ -14,6 +14,8 @@ export const HomeTitle = () => {
 	const isTodayRestPeriod = judgeIsTodayRestPeriod(record);
 	const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(record);
 
+	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>{displayDate}</Text>
@@ -23,6 +25,9 @@ export const HomeTitle = () => {
 
 			{isTodayRestPeriod && <Text style={styles.text}>休薬中</Text>}
 			{isTomorrowStartsRestPeriod && <Text style={styles.text}>明日から休薬です</Text>}
+
+			{hasNoRecordWithoutToday && <Text style={styles.text}>前回の記録がありません</Text>}
+			{hasNoRecordToday && <Text style={styles.text}>今日の記録がありません</Text>}
 		</View>
 	);
 };

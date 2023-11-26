@@ -1,4 +1,4 @@
-import { recordType } from "~/types/record";
+import { dailyRecordType, recordType } from "~/types/record";
 
 // シートの飲んだ数と残りの錠数
 export default function getCurrentSheetStatus(record: recordType) {
@@ -22,18 +22,15 @@ export function hasNoRecordDays(record: recordType) {
 	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
 	const truncatedDailyRecordWithoutToday = [...record.dailyRecord].slice(1, startTakeMedicineIndex);
 
+	function isAllKeyFalse(record: dailyRecordType) {
+		return record.tookMedicine === false && record.haveBleeding === false && record.isRestPeriod === false;
+	}
+
 	const hasNoRecordWithoutToday = truncatedDailyRecordWithoutToday.some((record) => {
-		if (record.tookMedicine === false && record.haveBleeding === false && record.isRestPeriod === false) {
-			return false;
-		} else {
-			return true;
-		}
+		return isAllKeyFalse(record);
 	});
 
-	const hasNoRecordToday =
-		record.dailyRecord[0].tookMedicine === false &&
-		record.dailyRecord[0].haveBleeding === false &&
-		record.dailyRecord[0].isRestPeriod === false;
+	const hasNoRecordToday = isAllKeyFalse(record.dailyRecord[0]);
 
 	return {
 		hasNoRecordWithoutToday,

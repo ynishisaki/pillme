@@ -21,7 +21,7 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	const { restPeriodDaysWithoutToday } = countIsRestPeriodDays(record);
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 
-	// 記録忘れがある場合は判定しない(false)
+	// 記録忘れがある場合は判定しない（できない）
 	if (hasNoRecordWithoutToday) return false;
 
 	// 今日の記録があるので、それをそのまま返す
@@ -39,12 +39,7 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 		(takeMedicineDaysWithoutToday >= minConteniousTakingDays &&
 			haveBleedingDaysWithoutToday >= conteniousBleeingDaysForRest) ||
 		(restPeriodDaysWithoutToday > 0 && restPeriodDaysWithoutToday < stopTakingDays);
-	if (shouldRest) {
-		return true;
-	}
-
-	// 昨日以前の記録がない場合もfalseとする
-	return false;
+	return shouldRest;
 };
 
 export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => {
@@ -63,23 +58,20 @@ export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => 
 	const { restPeriodDays } = countIsRestPeriodDays(record);
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 
-	// 記録忘れがある場合は判定しない(false)
-	if (hasNoRecordWithoutToday) return false;
+	// 記録忘れがある場合は判定しない（できない）
+	if (hasNoRecordWithoutToday || hasNoRecordToday) return false;
 
 	// 今日の記録がある場合のみ判定を行う
-	if (!hasNoRecordToday) {
-		// 今日までで、服薬120日以上の場合 -> 明日から休薬期間
-		// 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
-		// 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
-		const shouldRest =
-			(takeMedicineDays >= maxConteniousTakingDays && tookMedicine) ||
-			(takeMedicineDays >= minConteniousTakingDays &&
-				tookMedicine &&
-				haveBleedingDays >= conteniousBleeingDaysForRest &&
-				haveBleeding) ||
-			(restPeriodDays > 0 && restPeriodDays < stopTakingDays);
+	// 今日までで、服薬120日以上の場合 -> 明日から休薬期間
+	// 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
+	// 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
+	const shouldRest =
+		(takeMedicineDays >= maxConteniousTakingDays && tookMedicine) ||
+		(takeMedicineDays >= minConteniousTakingDays &&
+			tookMedicine &&
+			haveBleedingDays >= conteniousBleeingDaysForRest &&
+			haveBleeding) ||
+		(restPeriodDays > 0 && restPeriodDays < stopTakingDays);
 
-		return shouldRest;
-	}
-	return false;
+	return shouldRest;
 };

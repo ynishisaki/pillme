@@ -28,17 +28,16 @@ const styles = StyleSheet.create({
 	container: {
 		marginTop: 10,
 		padding: 20,
-		// backgroundColor: "#ffffe0",
 		backgroundColor: "#ddd",
 		borderRadius: 8,
 		boxShadow: "0px 0px 4px #00000040",
 	},
 	subtitle: {
 		fontSize: 16,
-		// textAlign: "center",
 		paddingBottom: 6,
 	},
 	textline: {
+		fontSize: 14,
 		flexDirection: "row",
 		height: 50,
 		alignItems: "center",
