@@ -29,18 +29,19 @@ export default function CheckBox({
 			return <CancelIcon size={size} />;
 		}
 		if (type === "medicine") {
-			return <DropIcon size={size} />;
-		}
-		if (type === "bleeding") {
 			return <PillIcon size={size} />;
+		}
+
+		if (type === "bleeding") {
+			return <DropIcon size={size} />;
 		}
 	};
 
 	return (
 		<View style={styles.container}>
-			{/* {title && (
+			{title && (
 				<Text style={(styles.checkBoxText, size === "md" ? { fontSize: 10 } : { fontSize: 16 })}>{title}</Text>
-			)} */}
+			)}
 			<BouncyCheckbox
 				size={checkBoxSize}
 				style={{
@@ -51,9 +52,9 @@ export default function CheckBox({
 				fillColor={isRestPeriod ? unPressableCheckBoxColor : pillColor}
 				unfillColor={unfillCheckBoxColor}
 				isChecked={isRestPeriod ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
-				textComponent={<Text>{title}</Text>}
-				textStyle={{ ...styles.checkBoxText, fontSize: size === "md" ? 10 : 16 }}
-				// disableText={true}
+				// textComponent={<Text>{title}</Text>}
+				// textStyle={{ ...styles.checkBoxText, fontSize: size === "md" ? 10 : 16 }}
+				disableText={true}
 				disabled={isRestPeriod || readonly}
 				ImageComponent={ImageComponent}
 				onPress={(nextBoolean) => onPress(nextBoolean)}
@@ -64,8 +65,8 @@ export default function CheckBox({
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		// alignItems: "center",
+		// flex: 1,
+		alignItems: "center",
 	},
 	checkBoxText: {
 		color: "gray",

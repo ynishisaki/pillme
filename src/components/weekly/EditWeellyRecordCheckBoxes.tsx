@@ -32,7 +32,8 @@ export default function EditWeellyRecordCheckBoxes() {
 				{record.isAsyncStorageLoaded && (
 					<>
 						<CheckBox
-							title={i === 0 ? "服薬" : null}
+							// title={i === 0 ? "服薬" : null}
+							title={null}
 							type='medicine'
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
@@ -40,7 +41,8 @@ export default function EditWeellyRecordCheckBoxes() {
 							onPress={(nextBoolean) => updateAWeekRecord("tookMedicine", nextBoolean, i)}
 						/>
 						<CheckBox
-							title={i === 0 ? "出血" : null}
+							// title={i === 0 ? "出血" : null}
+							title={null}
 							type='bleeding'
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
@@ -53,7 +55,16 @@ export default function EditWeellyRecordCheckBoxes() {
 		);
 	}
 
-	return <View style={styles.verticalStackLayout}>{editableWeelyRecordCheckBoxes}</View>;
+	return (
+		<View style={styles.verticalStackLayout}>
+			<View style={styles.horizonalStackLayout}>
+				<Text style={styles.text}>日付</Text>
+				<Text style={styles.checkboxTitleText}>服薬</Text>
+				<Text style={styles.checkboxTitleText}>出血</Text>
+			</View>
+			{editableWeelyRecordCheckBoxes}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
@@ -66,11 +77,18 @@ const styles = StyleSheet.create({
 	},
 	horizonalStackLayout: {
 		flexDirection: "row",
+
 		justifyContent: "space-around",
 		// marginTop: 20,
+		// columnGap: 20,
 		alignItems: "center",
 	},
+	checkboxTitleText: {
+		width: 40,
+		textAlign: "center",
+	},
 	text: {
-		paddingRight: 20,
+		// paddingRight: 20,
+		width: 100,
 	},
 });
