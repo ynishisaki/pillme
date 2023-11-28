@@ -31,6 +31,7 @@ export default function AppNavigation() {
 					},
 					headerShown: false,
 					tabBarActiveTintColor: skyBlue,
+					tabBarBadge: hasNoRecordToday ? "!" : undefined,
 				}}
 			/>
 			<Tab.Screen
@@ -47,7 +48,7 @@ export default function AppNavigation() {
 					},
 					headerShown: false,
 					tabBarActiveTintColor: skyBlue,
-					tabBarBadge: hasNoRecordWithoutToday || hasNoRecordToday ? "!" : undefined,
+					tabBarBadge: hasNoRecordWithoutToday ? "!" : undefined,
 				}}
 			/>
 			<Tab.Screen

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { EditIcon, RightIcon } from "~/components/Icons";
+import { EditExclamationIcon, EditIcon, ExclamationIcon, RightIcon } from "~/components/Icons";
 import { recordState } from "~/states/recordState";
-import { countHaveBleedingDays, countTakeMedicineDays } from "~/functions/countRecord";
+import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
 import { HeaderColor } from "~/styles/color";
 import { BackButton } from "../weekly/BackButton";
@@ -13,6 +13,8 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	const { takeMedicineDays } = countTakeMedicineDays(record);
 	const { haveBleedingDays } = countHaveBleedingDays(record);
+
+	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 
 	const recordLength = record.dailyRecord.length;
 	const truncateRecordLength = recordLength > 7 ? 7 : recordLength;
@@ -25,11 +27,7 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 			<TouchableOpacity onPress={onPress}>
 				<View style={styles.titleContainer}>
 					<Text style={styles.titleText}>一週間の記録</Text>
-					{/* <RightIcon /> */}
-					{/* <View style={styles.icon}> */}
-					<EditIcon />
-					{/* <Text style={styles.titleText}>編集</Text> */}
-					{/* </View> */}
+					<EditIcon hasExclamation={hasNoRecordWithoutToday} />
 				</View>
 			</TouchableOpacity>
 			<View style={styles.container}>

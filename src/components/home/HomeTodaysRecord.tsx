@@ -27,7 +27,6 @@ export const HomeTodaysRecord = () => {
 		setRecord(updatedRecord);
 
 		// 明日から休薬日の場合はアラートを表示
-		console.log("isTomorrowStartsRestPeriod", isTomorrowStartsRestPeriod);
 		nextBoolean && isTomorrowStartsRestPeriod && createTwoButtonAlert();
 	}
 

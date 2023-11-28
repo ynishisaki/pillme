@@ -1,6 +1,8 @@
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { HeaderColor } from "~/styles/color";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { View, Text } from "react-native";
 
 export const HomeIcon = ({ color }: { color?: string }) => <Octicons name='home' size={28} color={color || "gray"} />;
 
@@ -12,7 +14,19 @@ export const SettingIcon = ({ color }: { color?: string }) => (
 	<MaterialCommunityIcons name='cog-outline' size={30} color={color || "gray"} />
 );
 
-export const EditIcon = () => <MaterialCommunityIcons name='playlist-edit' size={30} color='white' />;
+export const EditIcon = ({ hasExclamation }: { hasExclamation?: boolean }) => (
+	<View>
+		<MaterialCommunityIcons name='playlist-edit' size={30} color='white' />
+		{hasExclamation && (
+			<MaterialCommunityIcons
+				name='circle'
+				size={16}
+				color='red'
+				style={{ position: "absolute", top: -2, right: -2 }}
+			/>
+		)}
+	</View>
+);
 
 export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={24} color={HeaderColor} />;
 
@@ -21,7 +35,6 @@ export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size
 export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='white' />;
 
 function getSize(size: "sm" | "md" | "lg") {
-	console.log("size", size);
 	switch (size) {
 		case "sm":
 			return 20;
