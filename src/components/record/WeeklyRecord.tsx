@@ -42,24 +42,28 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 					{truncateRecord.map((record, index) => (
 						<View key={index} style={styles.checkBoxLayout}>
 							<Text style={styles.weekText}>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</Text>
-							<CheckBox
-								title=''
-								type='medicine'
-								size={"sm"}
-								isChecked={record.tookMedicine}
-								isRestPeriod={false}
-								readonly
-								onPress={() => {}}
-							/>
-							<CheckBox
-								title=''
-								type='bleeding'
-								size={"sm"}
-								isChecked={record.haveBleeding}
-								isRestPeriod={false}
-								readonly
-								onPress={() => {}}
-							/>
+							<View style={{ flex: 1 }}>
+								<CheckBox
+									title=''
+									type='medicine'
+									size={"sm"}
+									isChecked={record.tookMedicine}
+									isRestPeriod={false}
+									readonly
+									onPress={() => {}}
+								/>
+							</View>
+							<View style={{ flex: 1 }}>
+								<CheckBox
+									title=''
+									type='bleeding'
+									size={"sm"}
+									isChecked={record.haveBleeding}
+									isRestPeriod={false}
+									readonly
+									onPress={() => {}}
+								/>
+							</View>
 						</View>
 					))}
 				</View>

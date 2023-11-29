@@ -22,7 +22,6 @@ export default function CheckBox({
 	onPress: (nextBoolean: boolean) => void;
 }) {
 	const checkBoxSize = size === "sm" ? 25 : size === "md" ? 40 : 100;
-	// = size === "md" ? 40 : 100;
 
 	const ImageComponent = () => {
 		if (isRestPeriod) {
@@ -65,7 +64,6 @@ export default function CheckBox({
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
 		alignItems: "center",
 	},
 	checkBoxText: {
