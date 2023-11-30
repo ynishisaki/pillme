@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CancelIcon, DropIcon, PillIcon } from "~/components/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { HeaderColor, pillColor, unPressableCheckBoxColor, unfillCheckBoxColor } from "~/styles/color";
+import { pillColor, unPressableCheckBoxColor, unfillCheckBoxColor } from "~/styles/color";
 import React from "react";
 
 export default function CheckBox({
@@ -15,13 +15,13 @@ export default function CheckBox({
 }: {
 	title: string | null;
 	type: "medicine" | "bleeding";
-	size: "sm" | "md" | "lg"; //  60 | 80
+	size: "sm" | "md" | "lg";
 	isChecked: boolean;
 	isRestPeriod: boolean;
 	readonly?: boolean;
 	onPress: (nextBoolean: boolean) => void;
 }) {
-	const checkBoxSize = size === "sm" ? 25 : size === "md" ? 40 : 100;
+	const checkBoxSize = size === "sm" ? 25 : size === "md" ? 70 : 100;
 
 	const ImageComponent = () => {
 		if (isRestPeriod) {
@@ -51,8 +51,6 @@ export default function CheckBox({
 				fillColor={isRestPeriod ? unPressableCheckBoxColor : pillColor}
 				unfillColor={unfillCheckBoxColor}
 				isChecked={isRestPeriod ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
-				// textComponent={<Text>{title}</Text>}
-				// textStyle={{ ...styles.checkBoxText, fontSize: size === "md" ? 10 : 16 }}
 				disableText={true}
 				disabled={isRestPeriod || readonly}
 				ImageComponent={ImageComponent}

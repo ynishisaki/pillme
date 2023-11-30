@@ -1,8 +1,7 @@
+import { View } from "react-native";
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { HeaderColor } from "~/styles/color";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import { View, Text } from "react-native";
 
 export const HomeIcon = ({ color }: { color?: string }) => <Octicons name='home' size={28} color={color || "gray"} />;
 
