@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { EditExclamationIcon, EditIcon, ExclamationIcon, RightIcon } from "~/components/Icons";
+import { EditIcon, RightIcon } from "~/components/Icons";
 import { recordState } from "~/states/recordState";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";

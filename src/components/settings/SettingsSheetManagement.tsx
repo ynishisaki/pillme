@@ -32,12 +32,8 @@ export default function SettingsSheetManagement() {
 	}
 
 	return (
-		<ContentLayout title='現在のシート'>
-			<Text style={styles.overviewText}>
-				{"現在のシートの錠数と開始位置を設定します。"}
-				{"シートの錠数は１シートの錠数（プラセボ除く）を設定します。"}
-				{"シートの開始位置は、シートの錠数の中で、初めの錠剤の位置を設定します。"}
-			</Text>
+		<ContentLayout title='シート設定'>
+			<Text style={styles.overviewText}>{"記録開始時のシートの錠数と開始位置を設定します。"}</Text>
 
 			<SettingPicker
 				description={"１シートの錠数（プラセボ除く）"}
