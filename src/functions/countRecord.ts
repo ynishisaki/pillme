@@ -39,9 +39,11 @@ export function hasNoRecordDays(record: recordType) {
 }
 
 // 服薬開始インデックス
-function countStartTakeMedicineIndex(record: recordType) {
-	const latestIsRestPeriodIndex = record.dailyRecord.findIndex((item) => item.isRestPeriod === true);
-	const recordLastIndex = record.dailyRecord.length - 1;
+function countStartTakeMedicineIndex(record: recordType, offset = 0) {
+	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
+
+	const latestIsRestPeriodIndex = trimedDairyRecord.findIndex((item) => item.isRestPeriod === true);
+	const recordLastIndex = trimedDairyRecord.length - 1;
 
 	// -1: 休薬日なし -> 記録初日が服薬開始日
 	// 0: 今日が休薬日 -> もっと前の日になるはず（用途による）
@@ -53,12 +55,13 @@ function countStartTakeMedicineIndex(record: recordType) {
 }
 
 // 服薬日数
-export function countTakeMedicineDays(record: recordType) {
-	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
+export function countTakeMedicineDays(record: recordType, offset = 0) {
+	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
+	const startTakeMedicineIndex = countStartTakeMedicineIndex(record, offset);
 
 	let takeMedicineDaysWithoutToday = 0;
 
-	const truncatedDailyRecordWithoutToday = [...record.dailyRecord].slice(1, startTakeMedicineIndex).reverse();
+	const truncatedDailyRecordWithoutToday = [...trimedDairyRecord].slice(1, startTakeMedicineIndex).reverse();
 	truncatedDailyRecordWithoutToday.some((record) => {
 		if (record.tookMedicine === true) {
 			takeMedicineDaysWithoutToday++;
@@ -67,15 +70,8 @@ export function countTakeMedicineDays(record: recordType) {
 			return true;
 		}
 	});
-	// for (let i = startTakeMedicineIndex; i >= 0; i--) {
-	// 	if (record.dailyRecord[i].tookMedicine === true) {
-	// 		takeMedicineDaysWithoutToday++;
-	// 	} else {
-	// 		break;
-	// 	}
-	// }
 
-	const todaysCount = record.dailyRecord[0].tookMedicine ? 1 : 0;
+	const todaysCount = trimedDairyRecord[0].tookMedicine ? 1 : 0;
 	const takeMedicineDays = takeMedicineDaysWithoutToday + todaysCount;
 
 	return {
@@ -85,17 +81,19 @@ export function countTakeMedicineDays(record: recordType) {
 }
 
 // 出血日数
-export function countHaveBleedingDays(record: recordType) {
+export function countHaveBleedingDays(record: recordType, offset = 0) {
+	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
+
 	let haveBleedingDaysWithoutToday = 0;
-	for (let i = 1; i < record.dailyRecord.length; i++) {
-		if (record.dailyRecord[i].haveBleeding === true) {
+	for (let i = 1; i < trimedDairyRecord.length; i++) {
+		if (trimedDairyRecord[i].haveBleeding === true) {
 			haveBleedingDaysWithoutToday++;
 		} else {
 			break;
 		}
 	}
 
-	const todaysCount = record.dailyRecord[0].haveBleeding ? 1 : 0;
+	const todaysCount = trimedDairyRecord[0].haveBleeding ? 1 : 0;
 	const haveBleedingDays = haveBleedingDaysWithoutToday + todaysCount;
 
 	return {
@@ -105,17 +103,19 @@ export function countHaveBleedingDays(record: recordType) {
 }
 
 // 休薬日数
-export function countIsRestPeriodDays(record: recordType) {
+export function countIsRestPeriodDays(record: recordType, offset = 0) {
+	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
+
 	let restPeriodDaysWithoutToday = 0;
-	for (let i = 1; i < record.dailyRecord.length; i++) {
-		if (record.dailyRecord[i].isRestPeriod === true) {
+	for (let i = 1; i < trimedDairyRecord.length; i++) {
+		if (trimedDairyRecord[i].isRestPeriod === true) {
 			restPeriodDaysWithoutToday++;
 		} else {
 			break;
 		}
 	}
 
-	const todaysCount = record.dailyRecord[0].isRestPeriod ? 1 : 0;
+	const todaysCount = trimedDairyRecord[0].isRestPeriod ? 1 : 0;
 	const restPeriodDays = restPeriodDaysWithoutToday + todaysCount;
 
 	return {

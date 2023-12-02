@@ -8,7 +8,7 @@ export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function updateAWeekRecord(key: string, nextBoolean: boolean, index: number) {
-		setRecord({
+		const updatedRecord = {
 			...record,
 			dailyRecord: [
 				...record.dailyRecord.slice(0, index),
@@ -18,7 +18,9 @@ export default function EditWeellyRecordCheckBoxes() {
 				},
 				...record.dailyRecord.slice(index + 1),
 			],
-		});
+		};
+
+		setRecord({ ...updatedRecord });
 	}
 
 	const recordLength = record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
