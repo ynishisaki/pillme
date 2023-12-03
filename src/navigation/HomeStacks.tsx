@@ -1,15 +1,16 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { EditWeeklyRecord } from "~/pages/EditWeeklyRecord";
+import { Home } from "~/pages/Home";
 import { Record } from "~/pages/Record";
 
 const Stack = createStackNavigator();
 
-export default function RecordStacks() {
+export default function HomeStacks() {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name='Record'
-				component={Record}
+				name='Home'
+				component={Home}
 				options={{
 					headerShown: false,
 				}}

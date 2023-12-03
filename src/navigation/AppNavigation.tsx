@@ -1,13 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilValue } from "recoil";
 
-import RecordStacks from "./RecordStacks";
+import RecordStacks from "./HomeStacks";
 import { Home } from "~/pages/Home";
 import { Settings } from "~/pages/Settings";
 import { recordState } from "~/states/recordState";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { skyBlue } from "~/styles/color";
+import { Record } from "~/pages/Record";
+import HomeStacks from "./HomeStacks";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,8 +20,8 @@ export default function AppNavigation() {
 	return (
 		<Tab.Navigator>
 			<Tab.Screen
-				name='Home'
-				component={Home}
+				name='HomeStacks'
+				component={HomeStacks}
 				options={{
 					tabBarLabel: "ホーム",
 					tabBarLabelStyle: {
@@ -35,8 +37,8 @@ export default function AppNavigation() {
 				}}
 			/>
 			<Tab.Screen
-				name='RecordStacks'
-				component={RecordStacks}
+				name='Record'
+				component={Record}
 				options={{
 					tabBarLabel: "記録",
 					tabBarLabelStyle: {

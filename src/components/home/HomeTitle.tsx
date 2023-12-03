@@ -26,8 +26,8 @@ export const HomeTitle = () => {
 			{isTodayRestPeriod && <Text style={styles.text}>休薬中</Text>}
 			{isTomorrowStartsRestPeriod && <Text style={styles.text}>明日から休薬です</Text>}
 
-			{hasNoRecordWithoutToday && <Text style={styles.text}>前回の記録がありません</Text>}
-			{hasNoRecordToday && <Text style={styles.text}>今日の記録がありません</Text>}
+			{hasNoRecordWithoutToday && <Text style={styles.text}>昨日以前で記録のない日があります</Text>}
+			{hasNoRecordToday && <Text style={styles.text}>今日の記録をつけていません</Text>}
 		</View>
 	);
 };

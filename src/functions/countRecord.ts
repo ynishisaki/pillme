@@ -17,27 +17,6 @@ export default function getCurrentSheetStatus(record: recordType) {
 	};
 }
 
-// 記録をつけていない日があるか調べる
-export function hasNoRecordDays(record: recordType) {
-	const startTakeMedicineIndex = countStartTakeMedicineIndex(record);
-	const truncatedDailyRecordWithoutToday = [...record.dailyRecord].slice(1, startTakeMedicineIndex);
-
-	function isAllKeyFalse(record: dailyRecordType) {
-		return record.tookMedicine === false && record.haveBleeding === false && record.isRestPeriod === false;
-	}
-
-	const hasNoRecordWithoutToday = truncatedDailyRecordWithoutToday.some((record) => {
-		return isAllKeyFalse(record);
-	});
-
-	const hasNoRecordToday = isAllKeyFalse(record.dailyRecord[0]);
-
-	return {
-		hasNoRecordWithoutToday,
-		hasNoRecordToday,
-	};
-}
-
 // 服薬開始インデックス
 function countStartTakeMedicineIndex(record: recordType, offset = 0) {
 	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
@@ -52,6 +31,29 @@ function countStartTakeMedicineIndex(record: recordType, offset = 0) {
 
 	// 服薬開始日は休薬日の翌日
 	return latestIsRestPeriodIndex - 1;
+}
+
+// 記録をつけていない日があるか調べる
+export function hasNoRecordDays(record: recordType, offset = 0) {
+	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
+	const startTakeMedicineIndex = countStartTakeMedicineIndex(record, offset);
+
+	const truncatedDailyRecordWithoutToday = trimedDairyRecord.slice(1, startTakeMedicineIndex);
+
+	function isAllKeyFalse(record: dailyRecordType) {
+		return record.tookMedicine === false && record.haveBleeding === false && record.isRestPeriod === false;
+	}
+
+	const hasNoRecordWithoutToday = truncatedDailyRecordWithoutToday.some((record) => {
+		return isAllKeyFalse(record);
+	});
+
+	const hasNoRecordToday = isAllKeyFalse(trimedDairyRecord[0]);
+
+	return {
+		hasNoRecordWithoutToday,
+		hasNoRecordToday,
+	};
 }
 
 // 服薬日数
