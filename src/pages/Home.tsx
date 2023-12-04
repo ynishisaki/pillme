@@ -13,8 +13,9 @@ import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeTitle } from "~/components/home/HomeTitle";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { translucentWhite } from "~/styles/color";
+import { ScreenNavigationProp } from "~/types/navigation";
 
-export const Home = () => {
+export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const isFocused = useIsFocused();
@@ -105,7 +106,7 @@ export const Home = () => {
 						<HomeTitle />
 					</View>
 					<View style={styles.todaysRecordView}>
-						<HomeTodaysRecord />
+						<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 					</View>
 				</View>
 			)}

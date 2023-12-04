@@ -27,7 +27,7 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 							<Text style={styles.overviewAlertText}>記録忘れの日があります</Text>
 						)}
 						<EditWeellyRecordCheckBoxes />
-						<BackButton onPress={() => navigation.navigate("Record")} />
+						<BackButton onPress={() => navigation.navigate("Home")} />
 					</ContentLayout>
 				</View>
 			)}

@@ -8,7 +8,7 @@ import { ScreenNavigationProp } from "~/types/navigation";
 import { translucentWhite } from "~/styles/color";
 import { useIsFocused } from "@react-navigation/native";
 
-export const Record = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+export const Record = () => {
 	const isFocused = useIsFocused();
 
 	return (
@@ -19,7 +19,7 @@ export const Record = ({ navigation }: { navigation: ScreenNavigationProp }) => 
 						<CurrentSheet />
 					</View>
 					<View style={styles.weeklyRecord}>
-						<WeeklyRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+						<WeeklyRecord />
 					</View>
 				</View>
 			)}

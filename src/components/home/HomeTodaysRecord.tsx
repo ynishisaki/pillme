@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Alert } from "react-native";
+import { StyleSheet, View, Text, Alert, TouchableOpacity } from "react-native";
 import { useRecoilState } from "recoil";
 import CheckBox from "~/components/CheckBox";
 import { hasNoRecordDays } from "~/functions/countRecord";
@@ -6,6 +6,7 @@ import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
 import { HeaderColor } from "~/styles/color";
 import { recordType } from "~/types/record";
+import { EditIcon } from "../Icons";
 
 export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -46,9 +47,12 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 
 	return (
 		<>
-			<View style={styles.titleContainer}>
-				<Text style={styles.titleText}>今日の記録</Text>
-			</View>
+			<TouchableOpacity onPress={onPress}>
+				<View style={styles.titleContainer}>
+					<Text style={styles.titleText}>今日の記録</Text>
+					<EditIcon hasExclamation={hasNoRecordWithoutToday} />
+				</View>
+			</TouchableOpacity>
 
 			<View style={styles.contentLayout}>
 				<View style={styles.checkBoxLayout}>
@@ -85,13 +89,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	titleContainer: {
-		paddingTop: 8,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 		paddingHorizontal: 20,
 		height: 46,
 		backgroundColor: HeaderColor,
 	},
 	titleText: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: "bold",
 		color: "white",
 	},

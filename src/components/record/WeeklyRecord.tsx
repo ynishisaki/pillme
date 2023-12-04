@@ -8,7 +8,7 @@ import { HeaderColor } from "~/styles/color";
 import { BackButton } from "../weekly/BackButton";
 import CheckBox from "../CheckBox";
 
-export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
+export const WeeklyRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const { takeMedicineDays } = countTakeMedicineDays(record);
@@ -24,12 +24,9 @@ export const WeeklyRecord = ({ onPress }: { onPress: () => void }) => {
 
 	return (
 		<>
-			<TouchableOpacity onPress={onPress}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.titleText}>一週間の記録</Text>
-					<EditIcon hasExclamation={hasNoRecordWithoutToday} />
-				</View>
-			</TouchableOpacity>
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>一週間の記録</Text>
+			</View>
 			<View style={styles.container}>
 				<View style={styles.textLayout}>
 					<Text style={styles.subtitleText}>服薬</Text>
