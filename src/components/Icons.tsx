@@ -1,6 +1,8 @@
 import { View } from "react-native";
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { HeaderColor } from "~/styles/color";
 
 export const HomeIcon = ({ color }: { color?: string }) => <Octicons name='home' size={28} color={color || "gray"} />;
@@ -56,4 +58,8 @@ export const DropIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
 
 export const CancelIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
 	return <MaterialCommunityIcons name='cancel' size={getSize(size)} color='#fff' />;
+};
+
+export const QuestionIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
+	return <AntDesign name='question' size={getSize(size)} color='#fff' />;
 };

@@ -64,7 +64,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 								size={"lg"}
 								isChecked={tookMedicine}
 								isRestPeriod={isRestPeriod}
-								readonly={hasNoRecordWithoutToday}
+								isNotRecorded={hasNoRecordWithoutToday}
 								onPress={() => updateTodayRecord("tookMedicine", !tookMedicine)}
 							/>
 							<CheckBox
@@ -73,7 +73,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 								size={"lg"}
 								isChecked={haveBleeding}
 								isRestPeriod={isRestPeriod}
-								readonly={hasNoRecordWithoutToday}
+								isNotRecorded={hasNoRecordWithoutToday}
 								onPress={() => updateTodayRecord("haveBleeding", !haveBleeding)}
 							/>
 						</>
