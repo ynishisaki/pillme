@@ -92,8 +92,8 @@ export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
 	// AsyncStorageに記録を保存
 	useEffect(() => {
 		AsyncStorage.setItem("record", JSON.stringify(record));
-		console.log(record.dailyRecord);
-		console.log(record.initialSheetSettings);
+		// console.log(record.dailyRecord);
+		// console.log(record.initialSheetSettings);
 		console.log("stored");
 		console.log();
 	}, [record]);

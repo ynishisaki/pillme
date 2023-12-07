@@ -6,3 +6,4 @@ export const warningRed = "indianred";
 export const pillColor = "#E37376";
 export const unfillCheckBoxColor = "white";
 export const unPressableCheckBoxColor = "gray"; // #808080
+export const unPressableUnknownCheckBoxColor = "lightgray";

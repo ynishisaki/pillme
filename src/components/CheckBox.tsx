@@ -1,7 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import { CancelIcon, DropIcon, PillIcon, QuestionIcon } from "~/components/Icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { pillColor, unPressableCheckBoxColor, unfillCheckBoxColor } from "~/styles/color";
+import {
+	pillColor,
+	unPressableCheckBoxColor,
+	unPressableUnknownCheckBoxColor,
+	unfillCheckBoxColor,
+} from "~/styles/color";
 import React from "react";
 
 export default function CheckBox({
@@ -29,17 +34,25 @@ export default function CheckBox({
 		if (isRestPeriod) {
 			return <CancelIcon size={size} />;
 		}
-
 		if (isNotRecorded) {
 			return <QuestionIcon size={size} />;
 		}
 		if (type === "medicine") {
 			return <PillIcon size={size} />;
 		}
-
 		if (type === "bleeding") {
 			return <DropIcon size={size} />;
 		}
+	};
+
+	const fillColor = () => {
+		if (isRestPeriod) {
+			return unPressableCheckBoxColor;
+		}
+		if (isNotRecorded) {
+			return unPressableUnknownCheckBoxColor;
+		}
+		return pillColor;
 	};
 
 	return (
@@ -49,18 +62,18 @@ export default function CheckBox({
 			)}
 			<BouncyCheckbox
 				size={checkBoxSize}
-				style={{
-					borderRadius: 10,
-					borderWidth: 0,
-					flexDirection: "column",
+				innerIconStyle={{
+					borderWidth: 2,
 				}}
-				fillColor={isRestPeriod || isNotRecorded ? unPressableCheckBoxColor : pillColor}
+				ImageComponent={ImageComponent}
+				fillColor={fillColor()}
 				unfillColor={unfillCheckBoxColor}
 				isChecked={isRestPeriod || isNotRecorded ? true : isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				disableText={true}
 				disabled={isRestPeriod || isNotRecorded || readonly}
-				ImageComponent={ImageComponent}
-				onPress={(nextBoolean) => onPress(nextBoolean)}
+				// onPress={(nextBoolean) => onPress(nextBoolean)}
+				disableBuiltInState={true}
+				onPress={() => onPress(!isChecked)}
 			/>
 		</View>
 	);

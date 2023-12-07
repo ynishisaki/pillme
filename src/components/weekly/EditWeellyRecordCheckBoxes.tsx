@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import { recordState } from "~/states/recordState";
 import CheckBox from "~/components/CheckBox";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
+import { hasNoRecordDays } from "~/functions/countRecord";
+import { useEffect } from "react";
 
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -28,6 +30,9 @@ export default function EditWeellyRecordCheckBoxes() {
 	const editableWeelyRecordCheckBoxes = [];
 	// 今日の記録はHomeでつける
 	for (let i = 1; i < recordLength; i++) {
+		console.log("checkbox");
+		const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record, i);
+		console.log(1, hasNoRecordWithoutToday, hasNoRecordToday);
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
 				<Text style={styles.text}>
@@ -42,6 +47,7 @@ export default function EditWeellyRecordCheckBoxes() {
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
 							isRestPeriod={record.dailyRecord[i].isRestPeriod}
+							isNotRecorded={hasNoRecordWithoutToday}
 							onPress={(nextBoolean) => updateAWeekRecord("tookMedicine", nextBoolean, i)}
 						/>
 						<CheckBox
@@ -50,6 +56,7 @@ export default function EditWeellyRecordCheckBoxes() {
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
 							isRestPeriod={record.dailyRecord[i].isRestPeriod}
+							isNotRecorded={hasNoRecordWithoutToday}
 							onPress={(nextBoolean) => updateAWeekRecord("haveBleeding", nextBoolean, i)}
 						/>
 					</>
@@ -57,6 +64,11 @@ export default function EditWeellyRecordCheckBoxes() {
 			</View>
 		);
 	}
+
+	// recordを更新、isAsyncStorageLoadedをtrueに戻すことでチェックボックスを再描画させる
+	// useEffect(() => {
+	// 	setRecord({ ...record, isAsyncStorageLoaded: true });
+	// }, []);
 
 	return (
 		<View style={styles.verticalStackLayout}>
