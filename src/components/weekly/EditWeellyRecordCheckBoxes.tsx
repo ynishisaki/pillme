@@ -5,6 +5,7 @@ import CheckBox from "~/components/CheckBox";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { useEffect } from "react";
+import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -22,7 +23,19 @@ export default function EditWeellyRecordCheckBoxes() {
 			],
 		};
 
-		setRecord({ ...updatedRecord });
+		const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(updatedRecord, index);
+
+		setRecord({
+			...updatedRecord,
+			dailyRecord: [
+				...updatedRecord.dailyRecord.slice(0, index - 1),
+				{
+					...updatedRecord.dailyRecord[index - 1],
+					isRestPeriod: isTomorrowStartsRestPeriod,
+				},
+				...updatedRecord.dailyRecord.slice(index),
+			],
+		});
 	}
 
 	const recordLength = record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
@@ -30,9 +43,7 @@ export default function EditWeellyRecordCheckBoxes() {
 	const editableWeelyRecordCheckBoxes = [];
 	// 今日の記録はHomeでつける
 	for (let i = 1; i < recordLength; i++) {
-		console.log("checkbox");
 		const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record, i);
-		console.log(1, hasNoRecordWithoutToday, hasNoRecordToday);
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
 				<Text style={styles.text}>

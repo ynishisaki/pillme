@@ -42,7 +42,7 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	return shouldRest;
 };
 
-export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => {
+export const judgeIsTomorrowStartsRestPeriod = (record: recordType, offset = 0): boolean => {
 	const {
 		beginSheetIndex,
 		conteniousBleeingDaysForRest,
@@ -52,11 +52,11 @@ export const judgeIsTomorrowStartsRestPeriod = (record: recordType): boolean => 
 		stopTakingDays,
 	} = record.initialSheetSettings;
 
-	const { tookMedicine, haveBleeding, isRestPeriod } = record.dailyRecord[0];
-	const { takeMedicineDays } = countTakeMedicineDays(record);
-	const { haveBleedingDays } = countHaveBleedingDays(record);
-	const { restPeriodDays } = countIsRestPeriodDays(record);
-	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
+	const { tookMedicine, haveBleeding, isRestPeriod } = record.dailyRecord[offset];
+	const { takeMedicineDays } = countTakeMedicineDays(record, offset);
+	const { haveBleedingDays } = countHaveBleedingDays(record, offset);
+	const { restPeriodDays } = countIsRestPeriodDays(record, offset);
+	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record, offset);
 
 	// 記録忘れがある場合は判定しない（できない）
 	if (hasNoRecordWithoutToday || hasNoRecordToday) return false;

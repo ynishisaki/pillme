@@ -13,7 +13,6 @@ import { pillColor } from "~/styles/color";
 
 export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 	const isFocused = useIsFocused();
-	console.log("EditWeeklyRecord isFocused", isFocused);
 	const record = useRecoilValue(recordState);
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 

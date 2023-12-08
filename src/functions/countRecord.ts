@@ -40,15 +40,16 @@ export function hasNoRecordDays(record: recordType, offset = 0) {
 
 	const truncatedDailyRecordWithoutToday = trimedDairyRecord.slice(1, startTakeMedicineIndex);
 
-	function isAllKeyFalse(record: dailyRecordType) {
-		return record.tookMedicine === false && record.haveBleeding === false && record.isRestPeriod === false;
+	// 未記入がある
+	function isUnfilled(record: dailyRecordType) {
+		return record.tookMedicine === false && record.isRestPeriod === false;
 	}
 
 	const hasNoRecordWithoutToday = truncatedDailyRecordWithoutToday.some((record) => {
-		return isAllKeyFalse(record);
+		return isUnfilled(record);
 	});
 
-	const hasNoRecordToday = isAllKeyFalse(trimedDairyRecord[0]);
+	const hasNoRecordToday = isUnfilled(trimedDairyRecord[0]);
 
 	return {
 		hasNoRecordWithoutToday,
