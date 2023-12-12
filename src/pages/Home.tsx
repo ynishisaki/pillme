@@ -13,9 +13,8 @@ import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeTitle } from "~/components/home/HomeTitle";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { translucentWhite } from "~/styles/color";
-import { ScreenNavigationProp } from "~/types/navigation";
 
-export const Home = ({ navigation }: { navigation: ScreenNavigationProp }) => {
+export const Home = ({ navigation }: { navigation: any }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const isFocused = useIsFocused();

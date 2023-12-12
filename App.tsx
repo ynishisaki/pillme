@@ -1,17 +1,17 @@
 import "expo-dev-client";
+import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
-import { NavigationContainer } from "@react-navigation/native";
 import AppNavigation from "~/navigation/AppNavigation";
 
 export default function App() {
 	return (
-		<SafeAreaProvider>
-			<NavigationContainer>
+		<NavigationContainer>
+			<SafeAreaProvider>
 				<RecoilRoot>
 					<AppNavigation />
 				</RecoilRoot>
-			</NavigationContainer>
-		</SafeAreaProvider>
+			</SafeAreaProvider>
+		</NavigationContainer>
 	);
 }

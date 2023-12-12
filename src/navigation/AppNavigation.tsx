@@ -1,8 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilValue } from "recoil";
 
-import RecordStacks from "./HomeStacks";
-import { Home } from "~/pages/Home";
 import { Settings } from "~/pages/Settings";
 import { recordState } from "~/states/recordState";
 import { hasNoRecordDays } from "~/functions/countRecord";
