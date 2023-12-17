@@ -11,7 +11,7 @@ export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function updateAWeekRecord(key: string, nextBoolean: boolean, index: number) {
-		const updatedRecord = {
+		let updatedRecord = {
 			...record,
 			dailyRecord: [
 				...record.dailyRecord.slice(0, index),
@@ -25,17 +25,27 @@ export default function EditWeellyRecordCheckBoxes() {
 
 		const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(updatedRecord, index);
 
-		setRecord({
-			...updatedRecord,
-			dailyRecord: [
-				...updatedRecord.dailyRecord.slice(0, index - 1),
-				{
-					...updatedRecord.dailyRecord[index - 1],
-					isRestPeriod: isTomorrowStartsRestPeriod,
-				},
-				...updatedRecord.dailyRecord.slice(index),
-			],
-		});
+		if (isTomorrowStartsRestPeriod) {
+			const { stopTakingDays } = record.initialSheetSettings;
+			const updateRecordToIndex = index > stopTakingDays ? index - stopTakingDays : 0;
+
+			updatedRecord = {
+				...updatedRecord,
+				dailyRecord: [
+					...updatedRecord.dailyRecord.slice(0, updateRecordToIndex),
+					// 休薬期間
+					...Array.from({ length: index - updateRecordToIndex }, (_, i) => {
+						return {
+							...updatedRecord.dailyRecord[i],
+							isRestPeriod: isTomorrowStartsRestPeriod,
+						};
+					}),
+					// 記録した日はすでにupdatedRecordに含まれている
+					...updatedRecord.dailyRecord.slice(index),
+				],
+			};
+		}
+		setRecord(updatedRecord);
 	}
 
 	const recordLength = record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
