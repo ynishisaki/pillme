@@ -14,7 +14,16 @@ export default function EditWeellyRecordCheckBoxes() {
 		let updatedRecord = {
 			...record,
 			dailyRecord: [
-				...record.dailyRecord.slice(0, index),
+				// 記録更新対象の日以降の記録は削除
+				...record.dailyRecord.slice(0, index).map((dailyRecord) => {
+					return {
+						...dailyRecord,
+						tookMedicine: false,
+						haveBleeding: false,
+						isRestPeriod: false,
+					};
+				}),
+				// 記録更新対象
 				{
 					...record.dailyRecord[index],
 					[key]: nextBoolean,
@@ -85,11 +94,6 @@ export default function EditWeellyRecordCheckBoxes() {
 			</View>
 		);
 	}
-
-	// recordを更新、isAsyncStorageLoadedをtrueに戻すことでチェックボックスを再描画させる
-	// useEffect(() => {
-	// 	setRecord({ ...record, isAsyncStorageLoaded: true });
-	// }, []);
 
 	return (
 		<View style={styles.verticalStackLayout}>
