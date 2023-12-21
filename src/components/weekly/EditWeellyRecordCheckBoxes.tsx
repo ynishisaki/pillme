@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { recordState } from "~/states/recordState";
 import CheckBox from "~/components/CheckBox";
-import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { hasNoRecordDays } from "~/functions/countRecord";
-import { useEffect } from "react";
+import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
+import { recordState } from "~/states/recordState";
 
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -53,6 +52,8 @@ export default function EditWeellyRecordCheckBoxes() {
 					...updatedRecord.dailyRecord.slice(index),
 				],
 			};
+
+			alertTomorrowRestPeriod();
 		}
 		setRecord(updatedRecord);
 	}
@@ -94,6 +95,18 @@ export default function EditWeellyRecordCheckBoxes() {
 			</View>
 		);
 	}
+
+	const alertTomorrowRestPeriod = () =>
+		Alert.alert(
+			"休薬日となりました",
+			`出血の有無に関わらず${record.initialSheetSettings.stopTakingDays}日間休薬します。`,
+			[
+				{
+					text: "OK",
+					style: "default",
+				},
+			]
+		);
 
 	return (
 		<View style={styles.verticalStackLayout}>
