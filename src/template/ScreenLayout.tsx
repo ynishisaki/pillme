@@ -1,9 +1,47 @@
+import {
+	NotoSansJP_100Thin,
+	NotoSansJP_300Light,
+	NotoSansJP_400Regular,
+	NotoSansJP_500Medium,
+	NotoSansJP_700Bold,
+	NotoSansJP_900Black,
+	useFonts,
+} from "@expo-google-fonts/noto-sans-jp";
+import * as SplashScreen from "expo-splash-screen";
+import React, { useCallback, useEffect } from "react";
 import { ImageBackground, StatusBar, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import React from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function ScreenLayout({ children }: { children: React.ReactNode }) {
 	const insets = useSafeAreaInsets();
+
+	const [fontsLoaded, fontError] = useFonts({
+		NotoSansJP_100Thin,
+		NotoSansJP_300Light,
+		NotoSansJP_400Regular,
+		NotoSansJP_500Medium,
+		NotoSansJP_700Bold,
+		NotoSansJP_900Black,
+	});
+
+	const onLayoutRootView = useCallback(async () => {
+		if (fontsLoaded || fontError) {
+			await SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded, fontError]);
+
+	if (!fontsLoaded && !fontError) {
+		null;
+	}
+
+	// todo: 上記useCallbackで画面が表示されない問題
+	useEffect(() => {
+		if (fontsLoaded || fontError) {
+			SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded, fontError]);
 
 	return (
 		<ImageBackground source={require("../../assets/bgimage3.png")} resizeMode='cover' style={styles.bgimage}>
@@ -18,7 +56,9 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 					},
 				]}>
 				<StatusBar barStyle='light-content' translucent={true} backgroundColor='rgba(0, 0, 0, 0)' />
-				<View style={styles.contentsLayout}>{children}</View>
+				<View style={styles.contentsLayout} onLayout={onLayoutRootView}>
+					{children}
+				</View>
 			</View>
 		</ImageBackground>
 	);

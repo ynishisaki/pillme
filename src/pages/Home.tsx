@@ -1,22 +1,20 @@
-import { StyleSheet, View } from "react-native";
-import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
-
-import ScreenLayout from "~/template/ScreenLayout";
+import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import { useRecoilState } from "recoil";
 import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
+import ScreenLayout from "~/template/ScreenLayout";
 
-import { dailyRecordType, recordType } from "~/types/record";
-import { recordState, today } from "~/states/recordState";
-import { getDateStrings } from "~/functions/getDateStrings";
 import { HomeTitle } from "~/components/home/HomeTitle";
+import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
+import { recordState, today } from "~/states/recordState";
 import { translucentWhite } from "~/styles/color";
+import { dailyRecordType, recordType } from "~/types/record";
 
 export const Home = ({ navigation }: { navigation: any }) => {
 	const [record, setRecord] = useRecoilState(recordState);
-
 	const isFocused = useIsFocused();
 
 	// AsyncStorageから記録を取得

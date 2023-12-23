@@ -1,6 +1,7 @@
-import { StyleSheet, View, Text, Alert, TouchableOpacity } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
 import CheckBox from "~/components/CheckBox";
+import ContainerTitleText from "~/components/common/ContainerTitleText";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
@@ -49,7 +50,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 		<>
 			<TouchableOpacity onPress={onPress}>
 				<View style={styles.titleContainer}>
-					<Text style={styles.titleText}>今日の記録</Text>
+					<ContainerTitleText>今日の記録</ContainerTitleText>
 					<EditIcon hasExclamation={hasNoRecordWithoutToday} />
 				</View>
 			</TouchableOpacity>
@@ -95,11 +96,6 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		height: 46,
 		backgroundColor: HeaderColor,
-	},
-	titleText: {
-		fontSize: 18,
-		fontWeight: "bold",
-		color: "white",
 	},
 	contentLayout: {
 		flex: 1,

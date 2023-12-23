@@ -1,10 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
+import BaseBlackText from "~/components/common/BaseBlackText";
+import ContainerTitleText from "~/components/common/ContainerTitleText";
+import SubTitleText from "~/components/common/SubTitleText";
 import { Sheet } from "~/components/record/Sheet";
-import { RightIcon } from "~/components/Icons";
-import { recordState } from "~/states/recordState";
-import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 import getCurrentSheetStatus from "~/functions/countRecord";
+import { getDateStringsForDisplay } from "~/functions/getDateStrings";
+import { recordState } from "~/states/recordState";
 import { HeaderColor } from "~/styles/color";
 
 export const CurrentSheet = () => {
@@ -31,12 +33,12 @@ export const CurrentSheet = () => {
 	return (
 		<>
 			<View style={styles.titleContainer}>
-				<Text style={styles.titleText}>現在のシート</Text>
+				<ContainerTitleText>現在のシート</ContainerTitleText>
 			</View>
 			<View style={styles.container}>
 				<View style={styles.textLayout}>
-					<Text style={styles.subtitleText}>{`シート終了日(推定)`}</Text>
-					<Text style={styles.numberOfDaysText}>{estimatedEndDate}</Text>
+					<SubTitleText>{`シート終了日(推定)`}</SubTitleText>
+					<BaseBlackText>{estimatedEndDate}</BaseBlackText>
 				</View>
 				<Sheet tookDays={tookDays} remainingDays={remainingDays} />
 			</View>
