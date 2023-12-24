@@ -1,12 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { EditIcon, RightIcon } from "~/components/Icons";
-import { recordState } from "~/states/recordState";
+import BaseBlackText from "~/components/common/BaseBlackText";
+import ContainerTitleText from "~/components/common/ContainerTitleText";
+import SubTitleText from "~/components/common/SubTitleText";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
+import { recordState } from "~/states/recordState";
 import { HeaderColor } from "~/styles/color";
-import { BackButton } from "../weekly/BackButton";
-import CheckBox from "../CheckBox";
+import CheckBox from "../common/CheckBox";
 
 export const WeeklyRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -25,20 +26,20 @@ export const WeeklyRecord = () => {
 	return (
 		<>
 			<View style={styles.titleContainer}>
-				<Text style={styles.titleText}>一週間の記録</Text>
+				<ContainerTitleText>一週間の記録</ContainerTitleText>
 			</View>
 			<View style={styles.container}>
 				<View style={styles.textLayout}>
-					<Text style={styles.subtitleText}>服薬</Text>
-					<Text style={styles.numberOfDaysText}>{`${takeMedicineDays}日目`}</Text>
-					<Text style={styles.subtitleText}>出血</Text>
-					<Text style={styles.numberOfDaysText}>{`${haveBleedingDays}日目`}</Text>
+					<SubTitleText>服薬</SubTitleText>
+					<BaseBlackText>{`${takeMedicineDays}日目`}</BaseBlackText>
+					<SubTitleText>出血</SubTitleText>
+					<BaseBlackText>{`${haveBleedingDays}日目`}</BaseBlackText>
 				</View>
 
 				<View style={styles.recordLayout}>
 					{truncateRecord.map((record, index) => (
 						<View key={index} style={styles.checkBoxLayout}>
-							<Text style={styles.weekText}>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</Text>
+							<SubTitleText>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</SubTitleText>
 							<View style={{ flex: 1 }}>
 								<CheckBox
 									title=''
@@ -78,11 +79,7 @@ const styles = StyleSheet.create({
 		height: 46,
 		backgroundColor: HeaderColor,
 	},
-	titleText: {
-		fontSize: 18,
-		fontWeight: "bold",
-		color: "white",
-	},
+
 	icon: {
 		flexDirection: "row",
 		alignItems: "center",
@@ -95,18 +92,9 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		columnGap: 10,
 	},
-
 	textLayout: {
 		marginTop: 10,
 	},
-	subtitleText: {
-		fontSize: 10,
-	},
-	numberOfDaysText: {
-		fontSize: 16,
-		marginBottom: 4,
-	},
-
 	recordLayout: {
 		flexDirection: "row",
 	},
@@ -116,8 +104,5 @@ const styles = StyleSheet.create({
 		// columnGap: 5,
 		flexDirection: "column",
 		rowGap: 5,
-	},
-	weekText: {
-		fontSize: 10,
 	},
 });

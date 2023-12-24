@@ -1,6 +1,7 @@
-import { Alert, Button, StyleSheet, Text } from "react-native";
-import { useRecoilState } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert, Button } from "react-native";
+import { useRecoilState } from "recoil";
+import OverviewText from "~/components/common/OverviewText";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
 import ContentLayout from "../ContentLayout";
@@ -33,9 +34,7 @@ export default function SettingsDataInit() {
 
 	return (
 		<ContentLayout title='初期化'>
-			<Text style={styles.overviewText}>
-				{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}
-			</Text>
+			<OverviewText>{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}</OverviewText>
 			<Button
 				onPress={createTwoButtonAlert}
 				title='データ初期化'
@@ -45,11 +44,3 @@ export default function SettingsDataInit() {
 		</ContentLayout>
 	);
 }
-
-const styles = StyleSheet.create({
-	overviewText: {
-		fontSize: 12,
-		color: "#000000A8",
-		paddingBottom: 10,
-	},
-});

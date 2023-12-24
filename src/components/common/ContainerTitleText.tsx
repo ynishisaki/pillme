@@ -9,5 +9,6 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontSize: 18,
 		fontFamily: "NotoSansJP_700Bold",
+		lineHeight: 24,
 	},
 });

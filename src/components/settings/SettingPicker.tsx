@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import PickerText from "~/components/common/PickerText";
 import SmallPicker from "~/components/settings/SmallPicker";
 
 interface props {
@@ -12,7 +13,7 @@ interface props {
 export default function SettingPicker(props: props) {
 	return (
 		<View style={styles.contentLayout}>
-			<Text style={styles.contentText}>{props.description}</Text>
+			<PickerText>{props.description}</PickerText>
 			<SmallPicker
 				selectedValue={props.selectedValue}
 				minValue={props.minValue}

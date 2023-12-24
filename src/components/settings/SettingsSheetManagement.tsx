@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
-import { StyleSheet, Text } from "react-native";
-import { recordState } from "~/states/recordState";
+import OverviewText from "~/components/common/OverviewText";
 import SettingPicker from "~/components/settings/SettingPicker";
+import { recordState } from "~/states/recordState";
 import ContentLayout from "../ContentLayout";
 
 export default function SettingsSheetManagement() {
@@ -33,7 +33,7 @@ export default function SettingsSheetManagement() {
 
 	return (
 		<ContentLayout title='シート設定'>
-			<Text style={styles.overviewText}>{"記録開始時のシートの錠数と開始位置を設定します。"}</Text>
+			<OverviewText>{"記録開始時のシートの錠数と開始位置を設定します。"}</OverviewText>
 
 			<SettingPicker
 				description={"１シートの錠数（プラセボ除く）"}
@@ -53,10 +53,3 @@ export default function SettingsSheetManagement() {
 		</ContentLayout>
 	);
 }
-
-const styles = StyleSheet.create({
-	overviewText: {
-		fontSize: 12,
-		color: "#000000A8",
-	},
-});

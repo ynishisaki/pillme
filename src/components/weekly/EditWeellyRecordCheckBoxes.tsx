@@ -1,6 +1,7 @@
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import CheckBox from "~/components/CheckBox";
+import BaseBlackText from "~/components/common/BaseBlackText";
+import CheckBox from "~/components/common/CheckBox";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -66,14 +67,13 @@ export default function EditWeellyRecordCheckBoxes() {
 		const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record, i);
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
-				<Text style={styles.text}>
+				<BaseBlackText>
 					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)} ({i}日前)
-				</Text>
+				</BaseBlackText>
 
 				{record.isAsyncStorageLoaded && (
 					<>
 						<CheckBox
-							title={null}
 							type='medicine'
 							size={"md"}
 							isChecked={record.dailyRecord[i].tookMedicine}
@@ -82,7 +82,6 @@ export default function EditWeellyRecordCheckBoxes() {
 							onPress={(nextBoolean) => updateAWeekRecord("tookMedicine", nextBoolean, i)}
 						/>
 						<CheckBox
-							title={null}
 							type='bleeding'
 							size={"md"}
 							isChecked={record.dailyRecord[i].haveBleeding}
@@ -112,6 +111,7 @@ export default function EditWeellyRecordCheckBoxes() {
 		<View style={styles.verticalStackLayout}>
 			<View style={styles.horizonalStackLayout}>
 				<Text style={styles.text}></Text>
+
 				<Text style={styles.checkboxTitleText}>服薬</Text>
 				<Text style={styles.checkboxTitleText}>出血</Text>
 			</View>
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
 	checkboxTitleText: {
 		width: 70,
 		textAlign: "center",
+		fontFamily: "NotoSansJP_400Regular",
 	},
 	text: {
 		width: 100,

@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
+import BaseBlackText from "~/components/common/BaseBlackText";
+import OverviewText from "~/components/common/OverviewText";
 import { recordState } from "~/states/recordState";
 
 export default function CurrentSettings() {
@@ -12,14 +14,14 @@ export default function CurrentSettings() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.subtitle}>現在の設定内容</Text>
+			<BaseBlackText>現在の設定内容</BaseBlackText>
 
-			<Text style={styles.textline}>
+			<OverviewText>
 				{`服用1日目～${minConteniousTakingDays - 1}日目までは出血がみられても連続して服用します。`}
-			</Text>
-			<Text>
+			</OverviewText>
+			<OverviewText>
 				{`服用${minConteniousTakingDays}日目〜${maxConteniousTakingDays}日目の間に${conteniousBleeingDaysForRest}日連続で出血が見られた場合、服用を中止し、休薬期間を翌日から${stopTakingDays}日間とします。`}
-			</Text>
+			</OverviewText>
 		</View>
 	);
 }
@@ -31,15 +33,5 @@ const styles = StyleSheet.create({
 		backgroundColor: "#ddd",
 		borderRadius: 8,
 		boxShadow: "0px 0px 4px #00000040",
-	},
-	subtitle: {
-		fontSize: 16,
-		paddingBottom: 6,
-	},
-	textline: {
-		fontSize: 14,
-		flexDirection: "row",
-		height: 50,
-		alignItems: "center",
 	},
 });

@@ -55,25 +55,13 @@ const styles = StyleSheet.create({
 		height: 46,
 		backgroundColor: HeaderColor,
 	},
-	titleText: {
-		fontSize: 18,
-		fontWeight: "bold",
-		color: "white",
-	},
 	container: {
 		margin: 20,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		columnGap: 10,
 	},
-
 	textLayout: {
 		marginTop: 16,
-	},
-	subtitleText: {
-		fontSize: 10,
-	},
-	numberOfDaysText: {
-		fontSize: 16,
 	},
 });

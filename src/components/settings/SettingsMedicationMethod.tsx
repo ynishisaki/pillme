@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
+import OverviewText from "~/components/common/OverviewText";
 import CurrentSettings from "~/components/settings/CurrentSettings";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
@@ -55,8 +55,8 @@ export default function SettingsMedicationMethod() {
 
 	return (
 		<ContentLayout title='服薬方法'>
-			<Text style={styles.overviewText}>このアプリは、120日連続服用を対象としています。</Text>
-			<Text style={styles.overviewText}>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</Text>
+			<OverviewText>このアプリは、120日連続服用を対象としています。</OverviewText>
+			<OverviewText>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</OverviewText>
 
 			<CurrentSettings />
 
@@ -94,10 +94,3 @@ export default function SettingsMedicationMethod() {
 		</ContentLayout>
 	);
 }
-
-const styles = StyleSheet.create({
-	overviewText: {
-		fontSize: 12,
-		color: "#000000A8",
-	},
-});

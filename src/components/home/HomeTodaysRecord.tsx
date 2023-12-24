@@ -1,6 +1,7 @@
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import CheckBox from "~/components/CheckBox";
+import BaseBlackText from "~/components/common/BaseBlackText";
+import CheckBox from "~/components/common/CheckBox";
 import ContainerTitleText from "~/components/common/ContainerTitleText";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -61,6 +62,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 						<>
 							<CheckBox
 								title='服薬'
+								textComponent={<BaseBlackText>服薬</BaseBlackText>}
 								type='medicine'
 								size={"lg"}
 								isChecked={tookMedicine}
@@ -70,6 +72,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 							/>
 							<CheckBox
 								title='出血'
+								textComponent={<BaseBlackText>出血</BaseBlackText>}
 								type='bleeding'
 								size={"lg"}
 								isChecked={haveBleeding}
