@@ -44,7 +44,7 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 	}, [fontsLoaded, fontError]);
 
 	return (
-		<ImageBackground source={require("../../assets/bgimage3.png")} resizeMode='cover' style={styles.bgimage}>
+		<ImageBackground source={require("../../assets/bgimage.png")} resizeMode='cover' style={styles.bgimage}>
 			<View
 				style={[
 					styles.container,
