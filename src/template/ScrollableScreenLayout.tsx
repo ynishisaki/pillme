@@ -5,7 +5,7 @@ export default function ScrollableScreenLayout({ children }: { children: React.R
 	const insets = useSafeAreaInsets();
 
 	return (
-		<ImageBackground source={require("../../assets/bgimage3.png")} resizeMode='cover' style={styles.bgimage}>
+		<ImageBackground source={require("../../assets/bgimage.png")} resizeMode='cover' style={styles.bgimage}>
 			<View
 				style={[
 					styles.container,

@@ -42,7 +42,6 @@ export const WeeklyRecord = () => {
 							<SubTitleText>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</SubTitleText>
 							<View style={{ flex: 1 }}>
 								<CheckBox
-									title=''
 									type='medicine'
 									size={"sm"}
 									isChecked={record.tookMedicine}
@@ -53,7 +52,6 @@ export const WeeklyRecord = () => {
 							</View>
 							<View style={{ flex: 1 }}>
 								<CheckBox
-									title=''
 									type='bleeding'
 									size={"sm"}
 									isChecked={record.haveBleeding}

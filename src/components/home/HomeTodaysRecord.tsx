@@ -61,7 +61,6 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 					{record.isAsyncStorageLoaded && (
 						<>
 							<CheckBox
-								title='服薬'
 								textComponent={<BaseBlackText>服薬</BaseBlackText>}
 								type='medicine'
 								size={"lg"}
@@ -71,7 +70,6 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 								onPress={() => updateTodayRecord("tookMedicine", !tookMedicine)}
 							/>
 							<CheckBox
-								title='出血'
 								textComponent={<BaseBlackText>出血</BaseBlackText>}
 								type='bleeding'
 								size={"lg"}

@@ -5,12 +5,9 @@ export default function OverviewText({ children }: { children: React.ReactNode }
 
 const styles = StyleSheet.create({
 	overviewText: {
-		fontSize: 12,
 		color: "#000000A8",
-		// fontSize: 16,
+		fontSize: 12,
 		lineHeight: 16,
-		// marginBottom: 16,
-		// fontFamily: "NotoSansJP_300Light",
 		fontFamily: "NotoSansJP_400Regular",
 	},
 });
