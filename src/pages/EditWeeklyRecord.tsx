@@ -1,15 +1,14 @@
-import React from "react";
-import ScreenLayout from "~/template/ScreenLayout";
-import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
-import { StyleSheet, Text, View } from "react-native";
-import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
-import ContentLayout from "~/components/ContentLayout";
 import { useIsFocused } from "@react-navigation/native";
-import { BackButton } from "../components/weekly/BackButton";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import { recordState } from "~/states/recordState";
+import ContentLayout from "~/components/ContentLayout";
+import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
 import { hasNoRecordDays } from "~/functions/countRecord";
+import { recordState } from "~/states/recordState";
 import { pillColor } from "~/styles/color";
+import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
+import { BackButton } from "../components/weekly/BackButton";
 
 export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 	const isFocused = useIsFocused();
@@ -17,7 +16,7 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 
 	return (
-		//  <ScreenLayout>
+		// <ScreenLayout>
 		<ScrollableScreenLayout>
 			{isFocused && (
 				<View style={styles.contentsLayout}>

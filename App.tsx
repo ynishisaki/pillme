@@ -1,5 +1,5 @@
-import "expo-dev-client";
 import { NavigationContainer } from "@react-navigation/native";
+import "expo-dev-client";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
 import AppNavigation from "~/navigation/AppNavigation";

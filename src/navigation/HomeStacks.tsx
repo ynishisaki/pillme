@@ -14,7 +14,14 @@ export default function HomeStacks() {
 					headerShown: false,
 				}}
 			/>
-			<Stack.Screen name='EditWeeklyRecord' component={EditWeeklyRecord} options={{ headerShown: false }} />
+			<Stack.Screen
+				name='EditWeeklyRecord'
+				component={EditWeeklyRecord}
+				options={{
+					headerShown: false,
+					animation: "none",
+				}}
+			/>
 		</Stack.Navigator>
 	);
 }
