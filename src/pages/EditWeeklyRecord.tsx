@@ -21,7 +21,7 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 			{isFocused && (
 				<View style={styles.contentsLayout}>
 					<ContentLayout title='記録の編集'>
-						<Text style={styles.overviewText}>過去一週間の記録を編集することができます</Text>
+						<Text style={styles.overviewText}>最大一週間前までさかのぼって記録を編集できます</Text>
 						{hasNoRecordWithoutToday && (
 							<Text style={styles.overviewAlertText}>記録忘れの日があります</Text>
 						)}

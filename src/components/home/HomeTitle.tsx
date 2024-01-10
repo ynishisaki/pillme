@@ -26,8 +26,8 @@ export const HomeTitle = () => {
 			{haveBleedingDays !== 0 && <BaseWhiteText>出血　{haveBleedingDays}日</BaseWhiteText>}
 			{isTodayRestPeriod && <BaseWhiteText>休薬中</BaseWhiteText>}
 			{isTomorrowStartsRestPeriod && <BaseWhiteText>明日から休薬です</BaseWhiteText>}
-			{hasNoRecordWithoutToday && <BaseWhiteText>昨日以前で記録のない日があります</BaseWhiteText>}
-			{hasNoRecordToday && <BaseWhiteText>今日の記録をつけていません</BaseWhiteText>}
+			{hasNoRecordWithoutToday && <BaseWhiteText>記録忘れの日があります</BaseWhiteText>}
+			{!hasNoRecordWithoutToday && hasNoRecordToday && <BaseWhiteText>今日の記録が未記入です</BaseWhiteText>}
 		</View>
 	);
 };

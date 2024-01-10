@@ -1,6 +1,5 @@
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
@@ -59,18 +58,38 @@ export default function EditWeellyRecordCheckBoxes() {
 		setRecord(updatedRecord);
 	}
 
-	const recordLength = record.dailyRecord.length >= 7 ? 7 : record.dailyRecord.length;
+	const alertTomorrowRestPeriod = () =>
+		Alert.alert(
+			"休薬日となりました",
+			`出血の有無に関わらず${record.initialSheetSettings.stopTakingDays}日間休薬します。`,
+			[
+				{
+					text: "OK",
+					style: "default",
+				},
+			]
+		);
+
+	const recordLength = record.dailyRecord.length >= 8 ? 8 : record.dailyRecord.length;
 
 	const editableWeelyRecordCheckBoxes = [];
+	editableWeelyRecordCheckBoxes.push(
+		<View key={-1} style={styles.horizonalStackLayout}>
+			<Text style={styles.text}></Text>
+
+			<Text style={styles.checkboxTitleText}>服薬</Text>
+			<Text style={styles.checkboxTitleText}>出血</Text>
+		</View>
+	);
+
 	// 今日の記録はHomeでつける
 	for (let i = 1; i < recordLength; i++) {
 		const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record, i);
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
-				<BaseBlackText>
+				<Text style={styles.text}>
 					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)} ({i}日前)
-				</BaseBlackText>
-
+				</Text>
 				{record.isAsyncStorageLoaded && (
 					<>
 						<CheckBox
@@ -95,29 +114,7 @@ export default function EditWeellyRecordCheckBoxes() {
 		);
 	}
 
-	const alertTomorrowRestPeriod = () =>
-		Alert.alert(
-			"休薬日となりました",
-			`出血の有無に関わらず${record.initialSheetSettings.stopTakingDays}日間休薬します。`,
-			[
-				{
-					text: "OK",
-					style: "default",
-				},
-			]
-		);
-
-	return (
-		<View style={styles.verticalStackLayout}>
-			<View style={styles.horizonalStackLayout}>
-				<Text style={styles.text}></Text>
-
-				<Text style={styles.checkboxTitleText}>服薬</Text>
-				<Text style={styles.checkboxTitleText}>出血</Text>
-			</View>
-			{editableWeelyRecordCheckBoxes}
-		</View>
-	);
+	return <View style={styles.verticalStackLayout}>{editableWeelyRecordCheckBoxes}</View>;
 }
 
 const styles = StyleSheet.create({
@@ -129,8 +126,7 @@ const styles = StyleSheet.create({
 	},
 	horizonalStackLayout: {
 		flexDirection: "row",
-		// justifyContent: "space-around",
-		justifyContent: "center",
+		justifyContent: "space-between",
 		columnGap: 20,
 		alignItems: "center",
 	},
@@ -140,6 +136,6 @@ const styles = StyleSheet.create({
 		fontFamily: "NotoSansJP_400Regular",
 	},
 	text: {
-		width: 100,
+		width: 125,
 	},
 });

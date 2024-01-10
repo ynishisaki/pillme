@@ -5,7 +5,7 @@ export default function BaseBlackText({ children }: { children: React.ReactNode 
 
 const styles = StyleSheet.create({
 	baseText: {
-		fontSize: 16,
+		fontSize: 14,
 		lineHeight: 20,
 		fontFamily: "NotoSansJP_400Regular",
 		marginBottom: 8,

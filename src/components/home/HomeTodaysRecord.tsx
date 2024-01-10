@@ -51,7 +51,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 		<>
 			<TouchableOpacity onPress={onPress}>
 				<View style={styles.titleContainer}>
-					<ContainerTitleText>今日の記録</ContainerTitleText>
+					<ContainerTitleText>記録の編集</ContainerTitleText>
 					<EditIcon hasExclamation={hasNoRecordWithoutToday} />
 				</View>
 			</TouchableOpacity>
