@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 	},
 	contentsLayout: {
 		flex: 1,
+		marginHorizontal: 32,
 		marginBottom: 16,
-		paddingHorizontal: 16,
 	},
 });

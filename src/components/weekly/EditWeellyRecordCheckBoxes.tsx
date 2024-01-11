@@ -88,7 +88,8 @@ export default function EditWeellyRecordCheckBoxes() {
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
 				<Text style={styles.text}>
-					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)} ({i}日前)
+					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)}
+					{"\n"}({i}日前)
 				</Text>
 				{record.isAsyncStorageLoaded && (
 					<>
@@ -122,20 +123,26 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginVertical: 20,
 		marginHorizontal: "auto",
-		gap: 20,
+		gap: 12,
 	},
 	horizonalStackLayout: {
 		flexDirection: "row",
-		justifyContent: "space-between",
+		justifyContent: "center",
 		columnGap: 20,
 		alignItems: "center",
 	},
 	checkboxTitleText: {
 		width: 70,
 		textAlign: "center",
+		fontSize: 14,
+		lineHeight: 20,
 		fontFamily: "NotoSansJP_400Regular",
 	},
 	text: {
-		width: 125,
+		width: 90,
+		textAlign: "right",
+		fontSize: 14,
+		lineHeight: 20,
+		fontFamily: "NotoSansJP_400Regular",
 	},
 });

@@ -1,5 +1,5 @@
-import { StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import { StyleSheet, View } from "react-native";
 
 interface props {
 	selectedValue: number;
@@ -13,7 +13,15 @@ export default function SmallPicker(props: props) {
 		const items = [];
 		for (let i = minValue; i <= maxValue; i++) {
 			const fontColor = props.selectedValue === i ? "#000" : "#bbb";
-			items.push(<Picker.Item key={i} label={`${i}`} value={i} color={fontColor} />);
+			items.push(
+				<Picker.Item
+					key={i}
+					label={`${i}`}
+					value={i}
+					color={fontColor}
+					// fontFamily={"NotoSansJP_400Regular"}
+				/>
+			);
 		}
 
 		return items;
@@ -42,5 +50,7 @@ const styles = StyleSheet.create({
 	picker: {
 		height: 50,
 		width: 110,
+		// fontSize: 16,
+		// fontFamily: "NotoSansJP_400Regular",
 	},
 });

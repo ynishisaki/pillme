@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilValue } from "recoil";
 
+import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
+import { hasNoRecordDays } from "~/functions/countRecord";
+import { Record } from "~/pages/Record";
 import { Settings } from "~/pages/Settings";
 import { recordState } from "~/states/recordState";
-import { hasNoRecordDays } from "~/functions/countRecord";
-import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { skyBlue } from "~/styles/color";
-import { Record } from "~/pages/Record";
 import HomeStacks from "./HomeStacks";
 
 const Tab = createBottomTabNavigator();
@@ -24,7 +24,8 @@ export default function AppNavigation() {
 					tabBarLabel: "ホーム",
 					tabBarLabelStyle: {
 						fontSize: 12,
-						fontWeight: "bold",
+						lineHeight: 14,
+						fontFamily: "NotoSansJP_700Bold",
 					},
 					tabBarIcon: (parameter) => {
 						return <HomeIcon color={parameter.focused ? skyBlue : undefined} />;
@@ -41,7 +42,8 @@ export default function AppNavigation() {
 					tabBarLabel: "記録",
 					tabBarLabelStyle: {
 						fontSize: 12,
-						fontWeight: "bold",
+						lineHeight: 14,
+						fontFamily: "NotoSansJP_700Bold",
 					},
 					tabBarIcon: (parameter) => {
 						return <HistoryIcon color={parameter.focused ? skyBlue : undefined} />;
@@ -57,7 +59,8 @@ export default function AppNavigation() {
 					tabBarLabel: "設定",
 					tabBarLabelStyle: {
 						fontSize: 12,
-						fontWeight: "bold",
+						lineHeight: 14,
+						fontFamily: "NotoSansJP_700Bold",
 					},
 					tabBarIcon: (parameter) => {
 						return <SettingIcon color={parameter.focused ? skyBlue : undefined} />;

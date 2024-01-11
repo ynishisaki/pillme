@@ -36,7 +36,7 @@ export default function SettingsSheetManagement() {
 			<OverviewText>{"記録開始時のシートの錠数と開始位置を設定します。"}</OverviewText>
 
 			<SettingPicker
-				description={"１シートの錠数（プラセボ除く）"}
+				description={"１シートの錠数(プラセボ除く)"}
 				selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
 				minValue={1}
 				maxValue={28}

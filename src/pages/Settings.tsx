@@ -1,9 +1,9 @@
 import React from "react";
+import { StyleSheet, View } from "react-native";
+import SettingsDataInit from "~/components/settings/SettingsDataInit";
 import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
-import SettingsDataInit from "~/components/settings/SettingsDataInit";
-import { View, StyleSheet } from "react-native";
 
 export const Settings = () => {
 	return (
@@ -22,5 +22,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginTop: 10,
 		rowGap: 40,
+		flexDirection: "column",
 	},
 });
