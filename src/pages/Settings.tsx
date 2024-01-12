@@ -20,8 +20,7 @@ export const Settings = () => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginTop: 10,
-		rowGap: 40,
-		flexDirection: "column",
+		marginTop: 20,
+		rowGap: 20,
 	},
 });
