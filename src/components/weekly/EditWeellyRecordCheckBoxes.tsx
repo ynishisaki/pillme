@@ -1,6 +1,7 @@
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import CheckBox from "~/components/common/CheckBox";
+import OverviewAlertText from "~/components/common/OverviewAlertText";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -73,14 +74,19 @@ export default function EditWeellyRecordCheckBoxes() {
 	const recordLength = record.dailyRecord.length >= 8 ? 8 : record.dailyRecord.length;
 
 	const editableWeelyRecordCheckBoxes = [];
-	editableWeelyRecordCheckBoxes.push(
-		<View key={-1} style={styles.horizonalStackLayout}>
-			<Text style={styles.text}></Text>
+	if (recordLength < 2) {
+		// 昨日以前の記録がない場合
+		editableWeelyRecordCheckBoxes.push(<OverviewAlertText>編集できる記録がありません</OverviewAlertText>);
+	} else {
+		editableWeelyRecordCheckBoxes.push(
+			<View key={-1} style={styles.horizonalStackLayout}>
+				<Text style={styles.text}></Text>
 
-			<Text style={styles.checkboxTitleText}>服薬</Text>
-			<Text style={styles.checkboxTitleText}>出血</Text>
-		</View>
-	);
+				<Text style={styles.checkboxTitleText}>服薬</Text>
+				<Text style={styles.checkboxTitleText}>出血</Text>
+			</View>
+		);
+	}
 
 	// 今日の記録はHomeでつける
 	for (let i = 1; i < recordLength; i++) {

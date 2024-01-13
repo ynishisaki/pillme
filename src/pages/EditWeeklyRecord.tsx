@@ -3,6 +3,8 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
+import OverviewAlertText from "~/components/common/OverviewAlertText";
+import OverviewText from "~/components/common/OverviewText";
 import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { recordState } from "~/states/recordState";
@@ -21,10 +23,8 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 			{isFocused && (
 				<View style={styles.contentsLayout}>
 					<ContentLayout title='記録の編集'>
-						<Text style={styles.overviewText}>最大7日前までさかのぼって記録を編集できます</Text>
-						{hasNoRecordWithoutToday && (
-							<Text style={styles.overviewAlertText}>記録忘れの日があります</Text>
-						)}
+						<OverviewText>最大7日前までさかのぼって記録を編集できます</OverviewText>
+						{hasNoRecordWithoutToday && <OverviewText>記録忘れの日があります</OverviewText>}
 						<EditWeellyRecordCheckBoxes />
 						<BackButton onPress={() => navigation.navigate("Home")} />
 					</ContentLayout>
@@ -39,13 +39,5 @@ const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
 		marginTop: 10,
-	},
-	overviewText: {
-		fontSize: 12,
-		color: "#000000A8",
-	},
-	overviewAlertText: {
-		fontSize: 12,
-		color: pillColor,
 	},
 });
