@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
 		fontSize: 52,
 		lineHeight: 56,
 		fontFamily: "NotoSansJP_700Bold",
+		marginTop: 40,
 		marginBottom: 20,
 	},
 });

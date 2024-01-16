@@ -1,21 +1,26 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
-import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
 import ScreenLayout from "~/template/ScreenLayout";
 
 import { HomeTitle } from "~/components/home/HomeTitle";
+import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
+import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState, today } from "~/states/recordState";
 import { translucentWhite } from "~/styles/color";
+import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 import { dailyRecordType, recordType } from "~/types/record";
 
 export const Home = ({ navigation }: { navigation: any }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 	const isFocused = useIsFocused();
+
+	const [modalVisible, setModalVisible] = useState(false);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -24,6 +29,8 @@ export const Home = ({ navigation }: { navigation: any }) => {
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
+				setModalVisible(true);
+
 				return setRecord((oldRecord) => ({
 					...oldRecord,
 					isAsyncStorageLoaded: true,
@@ -104,7 +111,37 @@ export const Home = ({ navigation }: { navigation: any }) => {
 					</View>
 					<View style={styles.todaysRecordView}>
 						<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+						<Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
+							<Text style={styles.textStyle}>Show Modal</Text>
+						</Pressable>
 					</View>
+
+					<Modal
+						animationType='slide'
+						transparent={true}
+						visible={modalVisible}
+						onRequestClose={() => {
+							Alert.alert("Modal has been closed.");
+							setModalVisible(!modalVisible);
+						}}>
+						{/* <View style={styles.centeredView}> */}
+						{/* <View style={styles.modalView}> */}
+						<ScrollView style={[styles.modalLayout]}>
+							<View style={styles.modelView}>
+								<SettingsMedicationMethod />
+								<SettingsSheetManagement />
+								<Pressable
+									style={[styles.button, styles.buttonClose]}
+									onPress={() => setModalVisible(!modalVisible)}>
+									<Text style={styles.textStyle}>Hide Modal</Text>
+								</Pressable>
+							</View>
+						</ScrollView>
+
+						{/* </View> */}
+						{/* </ScrollableScreenLayout> */}
+						{/* </View> */}
+					</Modal>
 				</View>
 			)}
 		</ScreenLayout>
@@ -129,5 +166,42 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		backgroundColor: translucentWhite,
 		overflow: "hidden",
+	},
+	centeredView: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		// marginTop: 22,
+	},
+	modalLayout: {
+		flex: 1,
+		paddingHorizontal: 32,
+		paddingBottom: 16,
+		backgroundColor: "white",
+	},
+	modelView: {
+		flex: 1,
+		marginTop: 20,
+		rowGap: 20,
+	},
+	button: {
+		borderRadius: 20,
+		padding: 10,
+		elevation: 2,
+	},
+	buttonOpen: {
+		backgroundColor: "#F194FF",
+	},
+	buttonClose: {
+		backgroundColor: "#2196F3",
+	},
+	textStyle: {
+		color: "white",
+		fontWeight: "bold",
+		textAlign: "center",
+	},
+	modalText: {
+		marginBottom: 15,
+		textAlign: "center",
 	},
 });

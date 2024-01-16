@@ -76,7 +76,7 @@ export default function EditWeellyRecordCheckBoxes() {
 	const editableWeelyRecordCheckBoxes = [];
 	if (recordLength < 2) {
 		// 昨日以前の記録がない場合
-		editableWeelyRecordCheckBoxes.push(<OverviewAlertText>編集できる記録がありません</OverviewAlertText>);
+		editableWeelyRecordCheckBoxes.push(<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>);
 	} else {
 		editableWeelyRecordCheckBoxes.push(
 			<View key={-1} style={styles.horizonalStackLayout}>

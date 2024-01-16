@@ -5,6 +5,7 @@ export default function SubTitleText({ children }: { children: React.ReactNode }
 
 const styles = StyleSheet.create({
 	subText: {
+		color: "gray",
 		fontSize: 10,
 		lineHeight: 16,
 		fontFamily: "NotoSansJP_400Regular",

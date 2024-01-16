@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
 	titleText: {
 		color: "white",
 		fontSize: 18,
-		fontFamily: "NotoSansJP_700Bold",
+		// fontFamily: "NotoSansJP_700Bold",
+		fontFamily: "NotoSansJP_400Regular",
 		lineHeight: 24,
 	},
 });

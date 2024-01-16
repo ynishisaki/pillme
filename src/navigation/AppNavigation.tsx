@@ -25,7 +25,7 @@ export default function AppNavigation() {
 					tabBarLabelStyle: {
 						fontSize: 12,
 						lineHeight: 14,
-						fontFamily: "NotoSansJP_700Bold",
+						fontFamily: "NotoSansJP_400Regular",
 					},
 					tabBarIcon: (parameter) => {
 						return <HomeIcon color={parameter.focused ? skyBlue : undefined} />;
@@ -43,7 +43,7 @@ export default function AppNavigation() {
 					tabBarLabelStyle: {
 						fontSize: 12,
 						lineHeight: 14,
-						fontFamily: "NotoSansJP_700Bold",
+						fontFamily: "NotoSansJP_400Regular",
 					},
 					tabBarIcon: (parameter) => {
 						return <HistoryIcon color={parameter.focused ? skyBlue : undefined} />;
@@ -60,7 +60,7 @@ export default function AppNavigation() {
 					tabBarLabelStyle: {
 						fontSize: 12,
 						lineHeight: 14,
-						fontFamily: "NotoSansJP_700Bold",
+						fontFamily: "NotoSansJP_400Regular",
 					},
 					tabBarIcon: (parameter) => {
 						return <SettingIcon color={parameter.focused ? skyBlue : undefined} />;
