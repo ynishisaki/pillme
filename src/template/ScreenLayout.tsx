@@ -26,22 +26,21 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 		NotoSansJP_900Black,
 	});
 
+	console.log("fontsLoaded", fontsLoaded);
+	// if (fontsLoaded || fontError) {
+	// 	SplashScreen.hideAsync();
+	// }
+
 	const onLayoutRootView = useCallback(async () => {
+		console.log("onLayoutRootView", fontsLoaded, fontError);
 		if (fontsLoaded || fontError) {
 			await SplashScreen.hideAsync();
 		}
 	}, [fontsLoaded, fontError]);
 
 	if (!fontsLoaded && !fontError) {
-		null;
+		return null;
 	}
-
-	// todo: 上記useCallbackで画面が表示されない問題
-	useEffect(() => {
-		if (fontsLoaded || fontError) {
-			SplashScreen.hideAsync();
-		}
-	}, [fontsLoaded, fontError]);
 
 	return (
 		<ImageBackground source={require("../../assets/bgimage.png")} resizeMode='cover' style={styles.bgimage}>
