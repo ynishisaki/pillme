@@ -8,7 +8,7 @@ import {
 	useFonts,
 } from "@expo-google-fonts/noto-sans-jp";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { ImageBackground, StatusBar, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -26,13 +26,7 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 		NotoSansJP_900Black,
 	});
 
-	console.log("fontsLoaded", fontsLoaded);
-	// if (fontsLoaded || fontError) {
-	// 	SplashScreen.hideAsync();
-	// }
-
 	const onLayoutRootView = useCallback(async () => {
-		console.log("onLayoutRootView", fontsLoaded, fontError);
 		if (fontsLoaded || fontError) {
 			await SplashScreen.hideAsync();
 		}

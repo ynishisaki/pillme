@@ -1,19 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { Alert, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
-import ScreenLayout from "~/template/ScreenLayout";
-
+import BaseWhiteText from "~/components/common/BaseWhiteText";
 import { HomeTitle } from "~/components/home/HomeTitle";
+import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
 import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState, today } from "~/states/recordState";
 import { translucentWhite } from "~/styles/color";
-import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
+import ScreenLayout from "~/template/ScreenLayout";
 import { dailyRecordType, recordType } from "~/types/record";
 
 export const Home = ({ navigation }: { navigation: any }) => {
@@ -112,7 +111,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 					<View style={styles.todaysRecordView}>
 						<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 						<Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
-							<Text style={styles.textStyle}>Show Modal</Text>
+							<BaseWhiteText>Show Modal</BaseWhiteText>
 						</Pressable>
 					</View>
 
@@ -133,7 +132,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								<Pressable
 									style={[styles.button, styles.buttonClose]}
 									onPress={() => setModalVisible(!modalVisible)}>
-									<Text style={styles.textStyle}>Hide Modal</Text>
+									<BaseWhiteText>Hide Modal</BaseWhiteText>
 								</Pressable>
 							</View>
 						</ScrollView>
@@ -151,10 +150,10 @@ export const Home = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
 		flexDirection: "column",
-		rowGap: 200,
+		justifyContent: "space-between",
+		alignItems: "center",
+		marginVertical: 80,
 	},
 	infoView: {
 		height: 200,
@@ -194,14 +193,5 @@ const styles = StyleSheet.create({
 	},
 	buttonClose: {
 		backgroundColor: "#2196F3",
-	},
-	textStyle: {
-		color: "white",
-		fontWeight: "bold",
-		textAlign: "center",
-	},
-	modalText: {
-		marginBottom: 15,
-		textAlign: "center",
 	},
 });

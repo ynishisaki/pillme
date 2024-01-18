@@ -6,10 +6,10 @@ export default function ContainerTitleText({ children }: { children: React.React
 
 const styles = StyleSheet.create({
 	titleText: {
-		color: "white",
+		color: "whitesmoke",
 		fontSize: 18,
-		// fontFamily: "NotoSansJP_700Bold",
-		fontFamily: "NotoSansJP_400Regular",
+		fontFamily: "NotoSansJP_700Bold",
+		// fontFamily: "NotoSansJP_400Regular",
 		lineHeight: 24,
 	},
 });

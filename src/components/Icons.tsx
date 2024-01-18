@@ -1,8 +1,7 @@
 import { View } from "react-native";
-import Octicons from "react-native-vector-icons/Octicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Octicons from "react-native-vector-icons/Octicons";
 import { HeaderColor } from "~/styles/color";
 
 export const HomeIcon = ({ color }: { color?: string }) => <Octicons name='home' size={28} color={color || "gray"} />;
@@ -29,7 +28,7 @@ export const EditIcon = ({ hasExclamation }: { hasExclamation?: boolean }) => (
 	</View>
 );
 
-export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={24} color={HeaderColor} />;
+export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={20} color={HeaderColor} />;
 
 export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='white' />;
 

@@ -1,8 +1,8 @@
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useRecoilState } from "recoil";
-import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
 import ContainerTitleText from "~/components/common/ContainerTitleText";
+import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
@@ -61,7 +61,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 					{record.isAsyncStorageLoaded && (
 						<>
 							<CheckBox
-								textComponent={<BaseBlackText>服薬</BaseBlackText>}
+								textComponent={<WidthFixedCheckboxTitleText>服薬</WidthFixedCheckboxTitleText>}
 								type='medicine'
 								size={"lg"}
 								isChecked={tookMedicine}
@@ -70,7 +70,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 								onPress={() => updateTodayRecord("tookMedicine", !tookMedicine)}
 							/>
 							<CheckBox
-								textComponent={<BaseBlackText>出血</BaseBlackText>}
+								textComponent={<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>}
 								type='bleeding'
 								size={"lg"}
 								isChecked={haveBleeding}

@@ -1,10 +1,10 @@
-import { recordType } from "~/types/record";
 import {
-	hasNoRecordDays,
 	countHaveBleedingDays,
 	countIsRestPeriodDays,
 	countTakeMedicineDays,
+	hasNoRecordDays,
 } from "~/functions/countRecord";
+import { recordType } from "~/types/record";
 
 export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
 	const {

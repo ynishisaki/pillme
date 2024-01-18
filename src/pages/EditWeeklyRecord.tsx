@@ -1,14 +1,12 @@
 import { useIsFocused } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import OverviewAlertText from "~/components/common/OverviewAlertText";
 import OverviewText from "~/components/common/OverviewText";
 import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { recordState } from "~/states/recordState";
-import { pillColor } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 import { BackButton } from "../components/weekly/BackButton";
 

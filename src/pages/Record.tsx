@@ -1,12 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import React from "react";
-
-import ScreenLayout from "~/template/ScreenLayout";
-import { WeeklyRecord } from "~/components/record/WeeklyRecord";
-import { CurrentSheet } from "~/components/record/CurrentSheet";
-// import { ScreenNavigationProp } from "~/types/navigation";
-import { translucentWhite } from "~/styles/color";
 import { useIsFocused } from "@react-navigation/native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { CurrentSheet } from "~/components/record/CurrentSheet";
+import { WeeklyRecord } from "~/components/record/WeeklyRecord";
+import { translucentWhite } from "~/styles/color";
+import ScreenLayout from "~/template/ScreenLayout";
 
 export const Record = () => {
 	const isFocused = useIsFocused();

@@ -1,7 +1,9 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import CheckBox from "~/components/common/CheckBox";
 import OverviewAlertText from "~/components/common/OverviewAlertText";
+import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
+import WidthFixedRightText from "~/components/common/WidthFixedRightText";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -74,29 +76,16 @@ export default function EditWeellyRecordCheckBoxes() {
 	const recordLength = record.dailyRecord.length >= 8 ? 8 : record.dailyRecord.length;
 
 	const editableWeelyRecordCheckBoxes = [];
-	if (recordLength < 2) {
-		// 昨日以前の記録がない場合
-		editableWeelyRecordCheckBoxes.push(<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>);
-	} else {
-		editableWeelyRecordCheckBoxes.push(
-			<View key={-1} style={styles.horizonalStackLayout}>
-				<Text style={styles.text}></Text>
-
-				<Text style={styles.checkboxTitleText}>服薬</Text>
-				<Text style={styles.checkboxTitleText}>出血</Text>
-			</View>
-		);
-	}
 
 	// 今日の記録はHomeでつける
 	for (let i = 1; i < recordLength; i++) {
-		const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record, i);
+		const { hasNoRecordWithoutToday } = hasNoRecordDays(record, i);
 		editableWeelyRecordCheckBoxes.push(
 			<View key={i} style={styles.horizonalStackLayout}>
-				<Text style={styles.text}>
+				<WidthFixedRightText>
 					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)}
 					{"\n"}({i}日前)
-				</Text>
+				</WidthFixedRightText>
 				{record.isAsyncStorageLoaded && (
 					<>
 						<CheckBox
@@ -121,14 +110,35 @@ export default function EditWeellyRecordCheckBoxes() {
 		);
 	}
 
-	return <View style={styles.verticalStackLayout}>{editableWeelyRecordCheckBoxes}</View>;
+	return (
+		<View style={styles.container}>
+			{/* 昨日以前の記録がない場合 */}
+			{recordLength < 2 ? (
+				<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>
+			) : (
+				<View key={-1} style={styles.horizonalStackLayout}>
+					<WidthFixedRightText>
+						<></>
+					</WidthFixedRightText>
+
+					<WidthFixedCheckboxTitleText>服薬</WidthFixedCheckboxTitleText>
+					<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>
+				</View>
+			)}
+
+			<View style={styles.verticalStackLayout}>{editableWeelyRecordCheckBoxes}</View>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-	verticalStackLayout: {
+	container: {
 		flex: 1,
 		marginVertical: 20,
 		marginHorizontal: "auto",
+	},
+
+	verticalStackLayout: {
 		gap: 12,
 	},
 	horizonalStackLayout: {
@@ -136,19 +146,5 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		columnGap: 20,
 		alignItems: "center",
-	},
-	checkboxTitleText: {
-		width: 70,
-		textAlign: "center",
-		fontSize: 14,
-		lineHeight: 20,
-		fontFamily: "NotoSansJP_400Regular",
-	},
-	text: {
-		width: 90,
-		textAlign: "right",
-		fontSize: 14,
-		lineHeight: 20,
-		fontFamily: "NotoSansJP_400Regular",
 	},
 });
