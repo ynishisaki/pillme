@@ -28,12 +28,11 @@ export const Home = ({ navigation }: { navigation: any }) => {
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
-				setModalVisible(true);
-
-				return setRecord((oldRecord) => ({
-					...oldRecord,
-					isAsyncStorageLoaded: true,
-				}));
+				// setRecord((oldRecord) => ({
+				// 	...oldRecord,
+				// 	isAsyncStorageLoaded: true,
+				// }));
+				return navigation.navigate("FirstSettings");
 			}
 
 			// AsyncStorageから記録取得、stateにsetする
@@ -110,37 +109,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 					</View>
 					<View style={styles.todaysRecordView}>
 						<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
-						<Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
-							<BaseWhiteText>Show Modal</BaseWhiteText>
-						</Pressable>
 					</View>
-
-					<Modal
-						animationType='slide'
-						transparent={true}
-						visible={modalVisible}
-						onRequestClose={() => {
-							Alert.alert("Modal has been closed.");
-							setModalVisible(!modalVisible);
-						}}>
-						{/* <View style={styles.centeredView}> */}
-						{/* <View style={styles.modalView}> */}
-						<ScrollView style={[styles.modalLayout]}>
-							<View style={styles.modelView}>
-								<SettingsMedicationMethod />
-								<SettingsSheetManagement />
-								<Pressable
-									style={[styles.button, styles.buttonClose]}
-									onPress={() => setModalVisible(!modalVisible)}>
-									<BaseWhiteText>Hide Modal</BaseWhiteText>
-								</Pressable>
-							</View>
-						</ScrollView>
-
-						{/* </View> */}
-						{/* </ScrollableScreenLayout> */}
-						{/* </View> */}
-					</Modal>
 				</View>
 			)}
 		</ScreenLayout>
@@ -165,33 +134,5 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		backgroundColor: translucentWhite,
 		overflow: "hidden",
-	},
-	centeredView: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		// marginTop: 22,
-	},
-	modalLayout: {
-		flex: 1,
-		paddingHorizontal: 32,
-		paddingBottom: 16,
-		backgroundColor: "white",
-	},
-	modelView: {
-		flex: 1,
-		marginTop: 20,
-		rowGap: 20,
-	},
-	button: {
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-	},
-	buttonOpen: {
-		backgroundColor: "#F194FF",
-	},
-	buttonClose: {
-		backgroundColor: "#2196F3",
 	},
 });
