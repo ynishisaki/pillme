@@ -14,7 +14,7 @@ import HomeStacks from "./HomeStacks";
 
 const Tab = createBottomTabNavigator();
 
-const [isFirstTime, setIsFirstTime] = useState<boolean | null>(null);
+// const [isFirstTime, setIsFirstTime] = useState<boolean>(false);
 
 export default function AppNavigation() {
 	const record = useRecoilValue(recordState);
@@ -27,9 +27,9 @@ export default function AppNavigation() {
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
-				return setIsFirstTime(true);
+				// return setIsFirstTime(true);
 			} else {
-				return setIsFirstTime(false);
+				// return setIsFirstTime(false);
 			}
 		})();
 		// 上記の括弧をつけることで即時関数を実行
@@ -38,7 +38,8 @@ export default function AppNavigation() {
 	return (
 		<Tab.Navigator
 			// isFirstTimeがtrueなら、FirstSettingsを表示
-			initialRouteName={isFirstTime ? "FirstSettings" : "HomeStacks"}>
+			// initialRouteName={isFirstTime ? "FirstSettings" : "HomeStacks"}
+			initialRouteName='FirstSettings'>
 			<Tab.Screen
 				name='FirstSettings'
 				component={FirstSettings}
