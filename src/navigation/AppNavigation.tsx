@@ -37,16 +37,17 @@ export default function AppNavigation() {
 
 	return (
 		<Tab.Navigator
-			// isFirstTimeがtrueなら、FirstSettingsを表示
-			// initialRouteName={isFirstTime ? "FirstSettings" : "HomeStacks"}
-			initialRouteName='FirstSettings'>
-			<Tab.Screen
+		// isFirstTimeがtrueなら、FirstSettingsを表示
+		// initialRouteName={isFirstTime ? "FirstSettings" : "HomeStacks"}
+		// initialRouteName='FirstSettings'
+		>
+			{/* <Tab.Screen
 				name='FirstSettings'
 				component={FirstSettings}
 				options={{
 					headerShown: false,
 				}}
-			/>
+			/> */}
 			<Tab.Screen
 				name='HomeStacks'
 				component={HomeStacks}

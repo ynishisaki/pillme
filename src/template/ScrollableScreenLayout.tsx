@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
 	},
 	bgimage: {
 		flex: 1,
+		justifyContent: "center",
+		width: "100%",
+		height: "100%",
 	},
 	contentsLayout: {
 		flex: 1,
