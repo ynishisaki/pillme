@@ -5,13 +5,13 @@ import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMe
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 
-export const Settings = () => {
+export const Settings = ({ navigation }: { navigation: any }) => {
 	return (
 		<ScrollableScreenLayout>
 			<View style={styles.contentsLayout}>
 				<SettingsMedicationMethod />
 				<SettingsSheetManagement />
-				<SettingsDataInit />
+				<SettingsDataInit navigation={navigation} />
 			</View>
 		</ScrollableScreenLayout>
 	);

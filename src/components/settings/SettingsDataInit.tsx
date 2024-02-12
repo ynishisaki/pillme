@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 import { Alert, Button, View } from "react-native";
 import { useRecoilState } from "recoil";
 import OverviewText from "~/components/common/OverviewText";
@@ -7,7 +6,7 @@ import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
 import ContentLayout from "../ContentLayout";
 
-export default function SettingsDataInit() {
+export default function SettingsDataInit({ navigation }: { navigation: any }) {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const onPressDelete = async () => {
@@ -18,6 +17,8 @@ export default function SettingsDataInit() {
 
 		await AsyncStorage.clear();
 		console.log("Initialized AsyncStorage.");
+
+		navigation.navigate("FirstSettings");
 	};
 
 	const createTwoButtonAlert = () =>

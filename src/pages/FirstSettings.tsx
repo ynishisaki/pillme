@@ -110,10 +110,7 @@ export const FirstSettings = ({ navigation }: { navigation: any }) => {
 				{/* <View style={styles.modelView}> */}
 				<SettingsMedicationMethod />
 				<SettingsSheetManagement />
-				<Pressable
-					style={[styles.button, styles.buttonClose]}
-					// onPress={() => navigation.navigate("HomeStacks")}
-				>
+				<Pressable style={[styles.button, styles.buttonClose]} onPress={() => navigation.navigate("Home")}>
 					<BaseWhiteText>設定を確定する</BaseWhiteText>
 				</Pressable>
 				{/* </View> */}
