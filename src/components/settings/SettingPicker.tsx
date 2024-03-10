@@ -26,14 +26,14 @@ export default function SettingPicker(props: props) {
 
 const styles = StyleSheet.create({
 	contentLayout: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
+		// flexDirection: "row",
+		// alignItems: "center",
+		// justifyContent: "space-between",
 		paddingVertical: 6,
 	},
 
 	contentText: {
-		fontSize: 14,
-		maxWidth: 200,
+		// fontSize: 14,
+		// maxWidth: 200,
 	},
 });

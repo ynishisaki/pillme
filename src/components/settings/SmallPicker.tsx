@@ -12,13 +12,13 @@ export default function SmallPicker(props: props) {
 	const pickerItems = (minValue: number, maxValue: number) => {
 		const items = [];
 		for (let i = minValue; i <= maxValue; i++) {
-			const fontColor = props.selectedValue === i ? "#000" : "#bbb";
+			// const fontColor = props.selectedValue === i ? "#000" : "#bbb";
 			items.push(
 				<Picker.Item
 					key={i}
 					label={`${i}`}
 					value={i}
-					color={fontColor}
+					// color={fontColor}
 					// fontFamily={"NotoSansJP_400Regular"}
 				/>
 			);
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	picker: {
-		height: 50,
-		width: 110,
+		// height: 50,
+		// width: 110,
 		// fontSize: 16,
 		// fontFamily: "NotoSansJP_400Regular",
 	},

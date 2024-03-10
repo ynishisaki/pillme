@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
 	pickerText: {
 		color: "dimgray",
 		fontSize: 14,
-		maxWidth: 200,
+		// maxWidth: 200,
+		lineHeight: 24,
 		fontFamily: "NotoSansJP_400Regular",
 	},
 });
