@@ -21,7 +21,7 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 		navigation.navigate("FirstSettings");
 	};
 
-	const createTwoButtonAlert = () =>
+	const onPressDataInitButton = () =>
 		Alert.alert("データを削除しますか？", "一度削除したデータは復元できません。よろしいですか？", [
 			{
 				text: "キャンセル",
@@ -39,7 +39,7 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 			<OverviewText>{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}</OverviewText>
 			<View style={{ height: 20 }} />
 			<Button
-				onPress={createTwoButtonAlert}
+				onPress={onPressDataInitButton}
 				title='データ初期化'
 				color={warningRed}
 				accessibilityLabel='delete button'

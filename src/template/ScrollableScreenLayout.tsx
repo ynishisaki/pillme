@@ -5,7 +5,7 @@ export default function ScrollableScreenLayout({ children }: { children: React.R
 	const insets = useSafeAreaInsets();
 
 	return (
-		<ImageBackground source={require("../../assets/bgimage.png")} resizeMode='cover' style={styles.bgimage}>
+		<ImageBackground source={require("../../assets/bgimage.png")} resizeMode='cover' style={styles.backgroundImage}>
 			<View
 				style={[
 					styles.container,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-	bgimage: {
+	backgroundImage: {
 		flex: 1,
 		justifyContent: "center",
 		width: "100%",
@@ -36,6 +36,5 @@ const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
 		paddingHorizontal: 32,
-		paddingBottom: 16,
 	},
 });

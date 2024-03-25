@@ -20,7 +20,7 @@ export const Settings = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginTop: 20,
+		marginVertical: 20,
 		rowGap: 20,
 	},
 });
