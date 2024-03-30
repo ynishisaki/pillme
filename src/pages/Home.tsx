@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
 		height: 220,
 		width: 330,
 		borderRadius: 8,
+		elevation: 3,
 		backgroundColor: translucentWhite,
 		overflow: "hidden",
 	},

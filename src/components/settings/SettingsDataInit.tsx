@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, Button, View } from "react-native";
 import { useRecoilState } from "recoil";
+import CustomButton from "~/components/common/CustomButton";
 import OverviewText from "~/components/common/OverviewText";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
@@ -38,12 +39,7 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 		<ContentLayout title='初期化'>
 			<OverviewText>{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}</OverviewText>
 			<View style={{ height: 20 }} />
-			<Button
-				onPress={onPressDataInitButton}
-				title='データ初期化'
-				color={warningRed}
-				accessibilityLabel='delete button'
-			/>
+			<CustomButton onPress={onPressDataInitButton} title='データ初期化' color={warningRed} />
 		</ContentLayout>
 	);
 }

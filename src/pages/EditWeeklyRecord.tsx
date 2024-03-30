@@ -16,7 +16,6 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 
 	return (
-		// <ScreenLayout>
 		<ScrollableScreenLayout>
 			{isFocused && (
 				<View style={styles.contentsLayout}>
@@ -29,7 +28,6 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 				</View>
 			)}
 		</ScrollableScreenLayout>
-		// </ScreenLayout>
 	);
 };
 

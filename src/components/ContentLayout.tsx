@@ -16,9 +16,9 @@ export default function ContentLayout({ children, title }: { children: React.Rea
 
 const styles = StyleSheet.create({
 	container: {
-		// marginBottom: 40,
 		backgroundColor: translucentWhite,
 		borderRadius: 8,
+		elevation: 3,
 		overflow: "hidden",
 	},
 	titleContainer: {

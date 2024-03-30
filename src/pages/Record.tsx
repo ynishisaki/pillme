@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 		width: 330,
 		backgroundColor: translucentWhite,
 		borderRadius: 8,
+		elevation: 3,
 		overflow: "hidden",
 	},
 	sheetRecord: {
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
 		width: 330,
 		backgroundColor: translucentWhite,
 		borderRadius: 8,
+		elevation: 3,
 		overflow: "hidden",
 	},
 });
