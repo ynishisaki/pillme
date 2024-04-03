@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 		paddingHorizontal: 20,
 		backgroundColor: HeaderColor,
+		elevation: 3,
 	},
 	contentLayout: {
 		flex: 1,

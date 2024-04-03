@@ -8,7 +8,7 @@ import OverviewText from "~/components/common/OverviewText";
 import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { recordState } from "~/states/recordState";
-import { HeaderColor } from "~/styles/color";
+import { HeaderColor, secondaryColor } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 import { BackButton } from "../components/weekly/BackButton";
 
@@ -25,8 +25,12 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 						<OverviewText>最大7日前までさかのぼって記録を編集できます</OverviewText>
 						{hasNoRecordWithoutToday && <OverviewText>記録忘れの日があります</OverviewText>}
 						<EditWeellyRecordCheckBoxes />
-						<BackButton onPress={() => navigation.navigate("Home")} />
-						<CustomButton onPress={() => navigation.navigate("Home")} color={HeaderColor} title='戻る' />
+						<CustomButton
+							onPress={() => navigation.navigate("Home")}
+							bgColor={secondaryColor}
+							textColor='dimgray'
+							title='ホームに戻る'
+						/>
 					</ContentLayout>
 				</View>
 			)}
