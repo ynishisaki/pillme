@@ -30,9 +30,9 @@ export const EditIcon = ({ hasExclamation }: { hasExclamation?: boolean }) => (
 
 export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={20} color={HeaderColor} />;
 
-export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='white' />;
+export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='dimgray' />;
 
-export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='white' />;
+export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='dimgray' />;
 
 function getSize(size: "sm" | "md" | "lg") {
 	switch (size) {

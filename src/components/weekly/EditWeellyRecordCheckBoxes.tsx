@@ -1,5 +1,7 @@
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
+import { LeftIcon, RightIcon } from "~/components/Icons";
+import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
 import OverviewAlertText from "~/components/common/OverviewAlertText";
 import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
@@ -112,6 +114,11 @@ export default function EditWeellyRecordCheckBoxes() {
 
 	return (
 		<View style={styles.container}>
+			<View style={styles.monthSelectContainer}>
+				<LeftIcon />
+				<BaseBlackText>YYYY年M月</BaseBlackText>
+				<RightIcon />
+			</View>
 			{/* 昨日以前の記録がない場合 */}
 			{recordLength < 2 ? (
 				<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>
@@ -137,7 +144,11 @@ const styles = StyleSheet.create({
 		marginVertical: 20,
 		marginHorizontal: "auto",
 	},
-
+	monthSelectContainer: {
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
+	},
 	verticalStackLayout: {
 		gap: 12,
 	},
