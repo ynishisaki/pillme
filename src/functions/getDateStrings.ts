@@ -12,7 +12,16 @@ export function getDateStringsForDisplay(selectedDate: Date) {
 	return `${month}月${day}日`;
 }
 
-// export function showDate(dateStrings: string) {
+// YYYY年MM月
+export function getYearMonthStrings(dateStrings: string) {
+	const date = new Date(dateStrings);
+
+	const year = date.getFullYear();
+	const month = date.getMonth() + 1;
+
+	return `${year}年${month}月`;
+}
+
 export function getDateWeekStringsForDisplay(dateStrings: string) {
 	const date = new Date(dateStrings);
 

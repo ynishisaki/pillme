@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import { getDateStrings } from "~/functions/getDateStrings";
-import { recordType } from "~/types/record";
+import { dailyRecordType, recordType } from "~/types/record";
 
 export const today = getDateStrings(new Date()); // YYYY-DD-MM
 
@@ -37,5 +37,44 @@ export const recordStatusSelector = selector({
 		const record = get(recordState);
 
 		return {};
+	},
+});
+
+// initialRecordから計算されるstate
+interface monthlyRecordType {
+	[yearMonth: string]: [
+		// {
+		// 	index: number; // record.dailyRecordのindexに対応
+		// 	date: string;
+		// 	tookMedicine: boolean;
+		// 	haveBleeding: boolean;
+		// 	isRestPeriod: boolean;
+		// }
+		dailyRecordType & { index: number }
+	];
+}
+export const monthlyRecordState = selector({
+	key: "monthlyRecord",
+	get: ({ get }) => {
+		const record = get(recordState);
+		const monthlyRecord: monthlyRecordType = {};
+
+		// 今日の記録はHome画面で操作するため、除外
+		record.dailyRecord.slice(1).forEach((dailyRecord, index) => {
+			const yearMonth = dailyRecord.date.slice(0, 7);
+			const currentRecord = record.dailyRecord[index];
+
+			if (!monthlyRecord[yearMonth]) {
+				monthlyRecord[yearMonth] = [{ index: index, ...currentRecord }];
+				return;
+			}
+
+			monthlyRecord[yearMonth].push({ index: index, ...currentRecord });
+		});
+
+		// 月のリスト
+		// const yearMonthList = monthlyRecord.map((yearMonth) => yearMonth);
+
+		return monthlyRecord;
 	},
 });

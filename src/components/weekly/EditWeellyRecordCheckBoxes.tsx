@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { LeftIcon, RightIcon } from "~/components/Icons";
 import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
@@ -7,14 +8,19 @@ import OverviewAlertText from "~/components/common/OverviewAlertText";
 import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
 import WidthFixedRightText from "~/components/common/WidthFixedRightText";
 import { hasNoRecordDays } from "~/functions/countRecord";
-import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
+import { getDateWeekStringsForDisplay, getYearMonthStrings } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
-import { recordState } from "~/states/recordState";
+import { monthlyRecordState, recordState } from "~/states/recordState";
 
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
+	const monthlyRecord = useRecoilValue(monthlyRecordState);
+	const [yearMonth, setYearMonth] = useState<string>(record.dailyRecord[0].date.slice(0, 7)); // "2023-01"
+	// console.log("record", record);
+	// console.log("monthlyRecord", monthlyRecord);
+	// console.log("yearMonth", yearMonth);
 
-	function updateAWeekRecord(key: string, nextBoolean: boolean, index: number) {
+	function handleUpdateRecord(key: string, nextBoolean: boolean, index: number) {
 		let updatedRecord = {
 			...record,
 			dailyRecord: [
@@ -75,65 +81,62 @@ export default function EditWeellyRecordCheckBoxes() {
 			]
 		);
 
-	const recordLength = record.dailyRecord.length >= 8 ? 8 : record.dailyRecord.length;
-
-	const editableWeelyRecordCheckBoxes = [];
-
-	// 今日の記録はHomeでつける
-	for (let i = 1; i < recordLength; i++) {
-		const { hasNoRecordWithoutToday } = hasNoRecordDays(record, i);
-		editableWeelyRecordCheckBoxes.push(
-			<View key={i} style={styles.horizonalStackLayout}>
-				<WidthFixedRightText>
-					{getDateWeekStringsForDisplay(record.dailyRecord[i].date)}
-					{"\n"}({i}日前)
-				</WidthFixedRightText>
-				{record.isAsyncStorageLoaded && (
-					<>
-						<CheckBox
-							type='medicine'
-							size={"md"}
-							isChecked={record.dailyRecord[i].tookMedicine}
-							isRestPeriod={record.dailyRecord[i].isRestPeriod}
-							isNotRecorded={hasNoRecordWithoutToday}
-							onPress={(nextBoolean) => updateAWeekRecord("tookMedicine", nextBoolean, i)}
-						/>
-						<CheckBox
-							type='bleeding'
-							size={"md"}
-							isChecked={record.dailyRecord[i].haveBleeding}
-							isRestPeriod={record.dailyRecord[i].isRestPeriod}
-							isNotRecorded={hasNoRecordWithoutToday}
-							onPress={(nextBoolean) => updateAWeekRecord("haveBleeding", nextBoolean, i)}
-						/>
-					</>
-				)}
-			</View>
-		);
-	}
-
 	return (
 		<View style={styles.container}>
 			<View style={styles.monthSelectContainer}>
 				<LeftIcon />
-				<BaseBlackText>YYYY年M月</BaseBlackText>
+				<BaseBlackText>{getYearMonthStrings(yearMonth)}</BaseBlackText>
 				<RightIcon />
 			</View>
 			{/* 昨日以前の記録がない場合 */}
-			{recordLength < 2 ? (
-				<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>
+			{monthlyRecord[yearMonth] ? (
+				<>
+					<View key={-1} style={styles.horizonalStackLayout}>
+						<WidthFixedRightText>
+							<></>
+						</WidthFixedRightText>
+
+						<WidthFixedCheckboxTitleText>服薬</WidthFixedCheckboxTitleText>
+						<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>
+					</View>
+					<View style={styles.verticalStackLayout}>
+						{monthlyRecord[yearMonth].map((dailyRecord, index) => {
+							return (
+								<View key={index} style={styles.horizonalStackLayout}>
+									<WidthFixedRightText>
+										{getDateWeekStringsForDisplay(dailyRecord.date)}
+										{"\n"}({dailyRecord.index}日前)
+									</WidthFixedRightText>
+									{record.isAsyncStorageLoaded && (
+										<>
+											<CheckBox
+												type='medicine'
+												size={"md"}
+												isChecked={dailyRecord.tookMedicine}
+												isRestPeriod={dailyRecord.isRestPeriod}
+												onPress={(nextBoolean) =>
+													handleUpdateRecord("tookMedicine", nextBoolean, dailyRecord.index)
+												}
+											/>
+											<CheckBox
+												type='bleeding'
+												size={"md"}
+												isChecked={dailyRecord.haveBleeding}
+												isRestPeriod={dailyRecord.isRestPeriod}
+												onPress={(nextBoolean) =>
+													handleUpdateRecord("haveBleeding", nextBoolean, dailyRecord.index)
+												}
+											/>
+										</>
+									)}
+								</View>
+							);
+						})}
+					</View>
+				</>
 			) : (
-				<View key={-1} style={styles.horizonalStackLayout}>
-					<WidthFixedRightText>
-						<></>
-					</WidthFixedRightText>
-
-					<WidthFixedCheckboxTitleText>服薬</WidthFixedCheckboxTitleText>
-					<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>
-				</View>
+				<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>
 			)}
-
-			<View style={styles.verticalStackLayout}>{editableWeelyRecordCheckBoxes}</View>
 		</View>
 	);
 }
@@ -148,6 +151,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",
+		textAlign: "center",
 	},
 	verticalStackLayout: {
 		gap: 12,
