@@ -4,10 +4,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { LeftIcon, RightIcon } from "~/components/Icons";
 import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
+import CustomIconButton from "~/components/common/CustomIconButton";
 import OverviewAlertText from "~/components/common/OverviewAlertText";
 import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
 import WidthFixedRightText from "~/components/common/WidthFixedRightText";
-import { hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay, getYearMonthStrings } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { monthlyRecordState, recordState } from "~/states/recordState";
@@ -16,9 +16,6 @@ export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
 	const monthlyRecord = useRecoilValue(monthlyRecordState);
 	const [yearMonth, setYearMonth] = useState<string>(record.dailyRecord[0].date.slice(0, 7)); // "2023-01"
-	// console.log("record", record);
-	// console.log("monthlyRecord", monthlyRecord);
-	// console.log("yearMonth", yearMonth);
 
 	function handleUpdateRecord(key: string, nextBoolean: boolean, index: number) {
 		let updatedRecord = {
@@ -84,9 +81,21 @@ export default function EditWeellyRecordCheckBoxes() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.monthSelectContainer}>
-				<LeftIcon />
+				<CustomIconButton
+					onPress={() =>
+						// setYearMonth(getPrevMonth(yearMonth))
+						console.log("getPrevMonth")
+					}>
+					<LeftIcon />
+				</CustomIconButton>
 				<BaseBlackText>{getYearMonthStrings(yearMonth)}</BaseBlackText>
-				<RightIcon />
+				<CustomIconButton
+					onPress={() =>
+						// setYearMonth(getPrevMonth(yearMonth))
+						console.log("getPrevMonth")
+					}>
+					<RightIcon />
+				</CustomIconButton>
 			</View>
 			{/* 昨日以前の記録がない場合 */}
 			{monthlyRecord[yearMonth] ? (
@@ -152,6 +161,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		textAlign: "center",
+		gap: 8,
 	},
 	verticalStackLayout: {
 		gap: 12,

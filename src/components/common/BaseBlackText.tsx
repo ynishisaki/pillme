@@ -9,6 +9,5 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		lineHeight: 20,
 		fontFamily: "NotoSansJP_400Regular",
-		marginBottom: 8,
 	},
 });

@@ -30,10 +30,14 @@ export const WeeklyRecord = () => {
 			</View>
 			<View style={styles.container}>
 				<View style={styles.textLayout}>
-					<SubTitleText>服薬</SubTitleText>
-					<BaseBlackText>{`${takeMedicineDays}日目`}</BaseBlackText>
-					<SubTitleText>出血</SubTitleText>
-					<BaseBlackText>{`${haveBleedingDays}日目`}</BaseBlackText>
+					<View>
+						<SubTitleText>服薬</SubTitleText>
+						<BaseBlackText>{`${takeMedicineDays}日目`}</BaseBlackText>
+					</View>
+					<View>
+						<SubTitleText>出血</SubTitleText>
+						<BaseBlackText>{`${haveBleedingDays}日目`}</BaseBlackText>
+					</View>
 				</View>
 
 				<View style={styles.recordLayout}>
@@ -92,6 +96,7 @@ const styles = StyleSheet.create({
 	},
 	textLayout: {
 		marginTop: 10,
+		gap: 8,
 	},
 	recordLayout: {
 		flexDirection: "row",

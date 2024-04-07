@@ -1,6 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { BackIcon } from "~/components/Icons";
-import BaseBlackText from "~/components/common/BaseBlackText";
 import OverviewText from "~/components/common/OverviewText";
 import { HeaderColor } from "~/styles/color";
 
