@@ -64,7 +64,7 @@ export function countTakeMedicineDays(record: recordType, offset = 0) {
 
 	let takeMedicineDaysWithoutToday = 0;
 
-	const truncatedDailyRecordWithoutToday = [...trimedDairyRecord].slice(1, startTakeMedicineIndex).reverse();
+	const truncatedDailyRecordWithoutToday = [...trimedDairyRecord].slice(1, startTakeMedicineIndex + 1).reverse();
 	truncatedDailyRecordWithoutToday.some((record) => {
 		if (record.tookMedicine === true) {
 			takeMedicineDaysWithoutToday++;
