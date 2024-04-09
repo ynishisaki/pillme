@@ -5,6 +5,7 @@ import { LeftIcon, RightIcon } from "~/components/Icons";
 import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
 import CustomIconButton from "~/components/common/CustomIconButton";
+import Divider from "~/components/common/Divider";
 import OverviewAlertText from "~/components/common/OverviewAlertText";
 import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
 import WidthFixedRightText from "~/components/common/WidthFixedRightText";
@@ -15,7 +16,22 @@ import { monthlyRecordState, recordState } from "~/states/recordState";
 export default function EditWeellyRecordCheckBoxes() {
 	const [record, setRecord] = useRecoilState(recordState);
 	const monthlyRecord = useRecoilValue(monthlyRecordState);
-	const [yearMonth, setYearMonth] = useState<string>(record.dailyRecord[0].date.slice(0, 7)); // "2023-01"
+	const [yearMonthIndex, setYearMonthIndex] = useState<number>(0);
+
+	const oldestYearMonthIndex = Object.keys(monthlyRecord).length - 1;
+	const selectedYearMonth = Object.keys(monthlyRecord)[yearMonthIndex];
+
+	const isPrevMonthDisabled = yearMonthIndex === oldestYearMonthIndex;
+	const isNextMonthDisabled = yearMonthIndex === 0;
+
+	const handlePrevMonth = () => {
+		if (isPrevMonthDisabled) return;
+		setYearMonthIndex(yearMonthIndex + 1);
+	};
+	const handleNextMonth = () => {
+		if (isNextMonthDisabled) return;
+		setYearMonthIndex(yearMonthIndex - 1);
+	};
 
 	function handleUpdateRecord(key: string, nextBoolean: boolean, index: number) {
 		let updatedRecord = {
@@ -81,24 +97,19 @@ export default function EditWeellyRecordCheckBoxes() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.monthSelectContainer}>
-				<CustomIconButton
-					onPress={() =>
-						// setYearMonth(getPrevMonth(yearMonth))
-						console.log("getPrevMonth")
-					}>
+				<CustomIconButton onPress={handlePrevMonth} disabled={isPrevMonthDisabled}>
 					<LeftIcon />
 				</CustomIconButton>
-				<BaseBlackText>{getYearMonthStrings(yearMonth)}</BaseBlackText>
-				<CustomIconButton
-					onPress={() =>
-						// setYearMonth(getPrevMonth(yearMonth))
-						console.log("getPrevMonth")
-					}>
+				<BaseBlackText>{getYearMonthStrings(selectedYearMonth)}</BaseBlackText>
+				<CustomIconButton onPress={handleNextMonth} disabled={isPrevMonthDisabled}>
 					<RightIcon />
 				</CustomIconButton>
 			</View>
+
+			<Divider />
+
 			{/* 昨日以前の記録がない場合 */}
-			{monthlyRecord[yearMonth] ? (
+			{monthlyRecord[selectedYearMonth] ? (
 				<>
 					<View key={-1} style={styles.horizonalStackLayout}>
 						<WidthFixedRightText>
@@ -109,7 +120,7 @@ export default function EditWeellyRecordCheckBoxes() {
 						<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>
 					</View>
 					<View style={styles.verticalStackLayout}>
-						{monthlyRecord[yearMonth].map((dailyRecord, index) => {
+						{monthlyRecord[selectedYearMonth].map((dailyRecord, index) => {
 							return (
 								<View key={index} style={styles.horizonalStackLayout}>
 									<WidthFixedRightText>
@@ -144,8 +155,10 @@ export default function EditWeellyRecordCheckBoxes() {
 					</View>
 				</>
 			) : (
-				<OverviewAlertText key={-1}>編集できる記録がありません</OverviewAlertText>
+				<OverviewAlertText key={-1}>記録がありません</OverviewAlertText>
 			)}
+
+			<Divider />
 		</View>
 	);
 }

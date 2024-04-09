@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text } from "react-native";
 
 interface Props {
 	onPress: () => void;
+	disabled: boolean;
 	children: React.ReactNode;
 }
 
@@ -12,6 +13,7 @@ export default function CustomIconButton(props: Props) {
 			style={({ pressed }) => [
 				{
 					backgroundColor: pressed ? "lightgray" : "white",
+					display: props.disabled ? "none" : undefined,
 				},
 				styles.button,
 			]}
