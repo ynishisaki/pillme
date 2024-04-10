@@ -28,10 +28,10 @@ export const Home = ({ navigation }: { navigation: any }) => {
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
-				// setRecord((oldRecord) => ({
-				// 	...oldRecord,
-				// 	isAsyncStorageLoaded: true,
-				// }));
+				setRecord((oldRecord) => ({
+					...oldRecord,
+					isAsyncStorageLoaded: true,
+				}));
 				return navigation.navigate("FirstSettings");
 			}
 

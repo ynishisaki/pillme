@@ -59,8 +59,10 @@ export const monthlyRecordState = selector({
 		const record = get(recordState);
 		const monthlyRecord: monthlyRecordType = {};
 
-		// 今日の記録はHome画面で操作するため、除外
-		record.dailyRecord.slice(1).forEach((dailyRecord, index) => {
+		record.dailyRecord.forEach((dailyRecord, index) => {
+			// 今日の記録は表示しない
+			if (index === 0) return;
+
 			const yearMonth = dailyRecord.date.slice(0, 7);
 			const currentRecord = record.dailyRecord[index];
 
@@ -72,8 +74,7 @@ export const monthlyRecordState = selector({
 			monthlyRecord[yearMonth].push({ index: index, ...currentRecord });
 		});
 
-		// 月のリスト
-		// const yearMonthList = monthlyRecord.map((yearMonth) => yearMonth);
+		const oldestYearMonthIndex = Object.keys(monthlyRecord).length - 1;
 
 		return monthlyRecord;
 	},
