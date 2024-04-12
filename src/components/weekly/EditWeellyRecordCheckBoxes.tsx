@@ -21,7 +21,6 @@ export default function EditWeellyRecordCheckBoxes() {
 	const oldestYearMonthIndex = Object.keys(monthlyRecord).length - 1;
 	const selectedYearMonth = Object.keys(monthlyRecord)[yearMonthIndex];
 
-	console.log("monthlyRecord[selectedYearMonth]", monthlyRecord[selectedYearMonth]);
 	const isPrevMonthDisabled = yearMonthIndex === oldestYearMonthIndex;
 	const isNextMonthDisabled = yearMonthIndex === 0;
 
@@ -112,7 +111,7 @@ export default function EditWeellyRecordCheckBoxes() {
 			<Divider />
 
 			{/* 昨日以前の記録がない場合 */}
-			{monthlyRecord[selectedYearMonth] !== undefined ? (
+			{monthlyRecord[selectedYearMonth] ? (
 				<>
 					<View key={-1} style={styles.horizonalStackLayout}>
 						<WidthFixedRightText>
@@ -160,8 +159,6 @@ export default function EditWeellyRecordCheckBoxes() {
 			) : (
 				<OverviewAlertText key={-1}>記録がありません</OverviewAlertText>
 			)}
-
-			<Divider />
 		</View>
 	);
 }
