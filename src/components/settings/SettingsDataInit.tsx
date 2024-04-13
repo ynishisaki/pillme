@@ -36,12 +36,13 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 		]);
 
 	return (
-		<ContentLayout title='初期化'>
-			<OverviewText>{"本アプリ内の全データを削除し、インストール時の状態に初期化します。"}</OverviewText>
+		<ContentLayout title='データの削除'>
+			<OverviewText>{"本アプリ内のすべてのデータを削除します。"}</OverviewText>
+			<OverviewText>{"この操作を元に戻すことはできません。"}</OverviewText>
 			<View style={{ height: 20 }} />
 			<CustomButton
 				onPress={onPressDataInitButton}
-				title='データ初期化'
+				title='データの削除'
 				bgColor={warningYellow}
 				textColor='white'
 			/>
