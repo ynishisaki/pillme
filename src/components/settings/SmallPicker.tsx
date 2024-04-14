@@ -12,16 +12,7 @@ export default function SmallPicker(props: props) {
 	const pickerItems = (minValue: number, maxValue: number) => {
 		const items = [];
 		for (let i = minValue; i <= maxValue; i++) {
-			// const fontColor = props.selectedValue === i ? "#000" : "#bbb";
-			items.push(
-				<Picker.Item
-					key={i}
-					label={`${i}`}
-					value={i}
-					// color={fontColor}
-					// fontFamily={"NotoSansJP_400Regular"}
-				/>
-			);
+			items.push(<Picker.Item key={i} label={`${i}`} value={i} />);
 		}
 
 		return items;
@@ -30,7 +21,6 @@ export default function SmallPicker(props: props) {
 	return (
 		<View style={styles.border}>
 			<Picker
-				style={styles.picker}
 				selectedValue={props.selectedValue}
 				onValueChange={(itemValue) => props.onChange(itemValue)}
 				mode='dropdown'>
@@ -46,11 +36,7 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		borderStyle: "solid",
 		borderWidth: 1,
-	},
-	picker: {
-		// height: 50,
-		// width: 110,
-		// fontSize: 16,
-		// fontFamily: "NotoSansJP_400Regular",
+		backgroundColor: "white",
+		elevation: 1,
 	},
 });

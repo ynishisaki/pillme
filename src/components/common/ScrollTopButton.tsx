@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { ArrowUpIcon } from "~/components/Icons";
 
 interface Props {
@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
 		bottom: 20,
 		right: 20,
 		padding: 12,
+		elevation: 1,
 	},
 });

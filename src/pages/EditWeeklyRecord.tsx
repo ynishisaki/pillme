@@ -8,9 +8,8 @@ import OverviewText from "~/components/common/OverviewText";
 import EditWeellyRecordCheckBoxes from "~/components/weekly/EditWeellyRecordCheckBoxes";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { recordState } from "~/states/recordState";
-import { HeaderColor, secondaryColor } from "~/styles/color";
+import { secondaryColor } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
-import { BackButton } from "../components/weekly/BackButton";
 
 export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 	const isFocused = useIsFocused();
@@ -22,7 +21,7 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 			{isFocused && (
 				<View style={styles.contentsLayout}>
 					<ContentLayout title='記録の編集'>
-						<OverviewText>最大7日前までさかのぼって記録を編集できます</OverviewText>
+						<OverviewText>過去の記録を編集できます</OverviewText>
 						{hasNoRecordWithoutToday && <OverviewText>記録忘れの日があります</OverviewText>}
 						<EditWeellyRecordCheckBoxes />
 						<CustomButton

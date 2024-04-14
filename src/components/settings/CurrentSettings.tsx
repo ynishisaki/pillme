@@ -1,11 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import BaseBlackText from "~/components/common/BaseBlackText";
-import Divider from "~/components/common/Divider";
 import OverviewText from "~/components/common/OverviewText";
-import PickerText from "~/components/common/PickerText";
 import { recordState } from "~/states/recordState";
-import { skyBlue } from "~/styles/color";
 
 export default function CurrentSettings() {
 	const record = useRecoilValue(recordState);
@@ -16,7 +13,7 @@ export default function CurrentSettings() {
 	const stopTakingDays = record.initialSheetSettings.stopTakingDays;
 
 	return (
-		<>
+		<View style={styles.container}>
 			<BaseBlackText>現在の設定内容</BaseBlackText>
 
 			<>
@@ -27,21 +24,21 @@ export default function CurrentSettings() {
 					{`服用${minConteniousTakingDays}日目〜${maxConteniousTakingDays}日目の間に${conteniousBleeingDaysForRest}日連続で出血が見られた場合、服用を中止し、休薬期間を翌日から${stopTakingDays}日間とします。`}
 				</OverviewText>
 			</>
-		</>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 10,
+		marginTop: 20,
+		marginBottom: 20,
 		padding: 20,
-		// backgroundColor: "#ddd",
-		// backgroundColor: "whitesmoke",
-		borderRadius: 8,
-		// borderColor: skyBlue,
-		borderColor: "dimgray",
+		backgroundColor: "whitesmoke",
+		borderColor: "gray",
+		borderStyle: "solid",
 		borderWidth: 1,
-		elevation: 5,
+		borderRadius: 8,
+		elevation: 1,
 		gap: 8,
 	},
 });

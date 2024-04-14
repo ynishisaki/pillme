@@ -1,14 +1,9 @@
-import { View } from "react-native";
 import { useRecoilState } from "recoil";
-import BaseBlackText from "~/components/common/BaseBlackText";
-import CustomButton from "~/components/common/CustomButton";
-import Divider from "~/components/common/Divider";
+import ContentLayout from "~/components/ContentLayout";
 import OverviewText from "~/components/common/OverviewText";
 import CurrentSettings from "~/components/settings/CurrentSettings";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
-import { secondaryColor } from "~/styles/color";
-import ContentLayout from "../ContentLayout";
 
 export default function SettingsMedicationMethod() {
 	const [record, setRecord] = useRecoilState(recordState);
@@ -63,11 +58,7 @@ export default function SettingsMedicationMethod() {
 			<OverviewText>このアプリは、120日連続服用を対象としています。</OverviewText>
 			<OverviewText>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</OverviewText>
 
-			<Divider />
-
 			<CurrentSettings />
-
-			<Divider />
 
 			<>
 				<SettingPicker

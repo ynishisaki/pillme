@@ -14,6 +14,7 @@ export default function CustomButton(props: Props) {
 			style={({ pressed }) => [
 				{
 					backgroundColor: pressed ? "lightgray" : props.bgColor,
+					borderColor: props.textColor,
 				},
 				styles.button,
 			]}
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingVertical: 8,
 		paddingHorizontal: 32,
-		borderColor: "dimgray",
 		borderStyle: "solid",
 		borderWidth: 1,
 		borderRadius: 8,
@@ -47,9 +47,6 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		lineHeight: 20,
 		fontFamily: "NotoSansJP_700Bold",
-		// fontFamily: "NotoSansJP_400Regular",
 		letterSpacing: 0.25,
-		// color: "white",
-		// color: "dimgray",
 	},
 });

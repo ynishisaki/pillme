@@ -5,7 +5,7 @@ import FirstSettingsTitleText from "~/components/common/FirstSettingsTitleText";
 import SupplementText from "~/components/common/SupplementText";
 import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
-import { warningYellow } from "~/styles/color";
+import { warningRed } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 
 export const FirstSettings = ({ navigation }: { navigation: any }) => {
@@ -26,7 +26,7 @@ export const FirstSettings = ({ navigation }: { navigation: any }) => {
 					<CustomButton
 						onPress={onPressDecideButton}
 						title='アプリを開始する'
-						bgColor={warningYellow}
+						bgColor={warningRed}
 						textColor='white'
 					/>
 				</View>
