@@ -1,13 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
-import { Alert, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import BaseWhiteText from "~/components/common/BaseWhiteText";
 import { HomeTitle } from "~/components/home/HomeTitle";
 import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
-import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
-import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState, today } from "~/states/recordState";
@@ -18,8 +15,6 @@ import { dailyRecordType, recordType } from "~/types/record";
 export const Home = ({ navigation }: { navigation: any }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 	const isFocused = useIsFocused();
-
-	const [modalVisible, setModalVisible] = useState(false);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
