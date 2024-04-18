@@ -6,6 +6,7 @@ interface Props {
 	title?: string;
 	bgColor?: string;
 	textColor?: string;
+	iconComponent?: React.ReactNode;
 }
 
 export default function CustomButton(props: Props) {
@@ -26,6 +27,8 @@ export default function CustomButton(props: Props) {
 						color: props.textColor,
 					},
 				]}>
+				{props.iconComponent}
+
 				{props.title}
 			</Text>
 		</Pressable>
