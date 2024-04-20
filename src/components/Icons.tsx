@@ -33,7 +33,7 @@ export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' 
 export const ArrowUpIcon = () => <MaterialCommunityIcons name='arrow-up' size={30} color='dimgray' />;
 export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='dimgray' />;
 
-export const LeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='dimgray' />;
+export const LeftIcon = () => <MaterialCommunityIcons name='arrow-left' size={20} color='dimgray' />;
 
 function getSize(size: "sm" | "md" | "lg") {
 	switch (size) {

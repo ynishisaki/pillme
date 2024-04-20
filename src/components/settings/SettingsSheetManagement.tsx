@@ -1,3 +1,4 @@
+import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import OverviewText from "~/components/common/OverviewText";
 import SettingPicker from "~/components/settings/SettingPicker";
@@ -33,23 +34,31 @@ export default function SettingsSheetManagement() {
 
 	return (
 		<ContentLayout title='シート設定'>
-			<OverviewText>{"記録開始時のシートの錠数と開始位置を設定します。"}</OverviewText>
+			<View style={styles.contentLayout}>
+				<OverviewText>{"記録開始時のシートの錠数と開始位置を設定します。"}</OverviewText>
 
-			<SettingPicker
-				description={"１シートの錠数(プラセボ除く)"}
-				selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
-				minValue={1}
-				maxValue={28}
-				onChange={setNumOfPillsPerSheet}
-			/>
+				<SettingPicker
+					description={"１シートの錠数(プラセボ除く)"}
+					selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
+					minValue={1}
+					maxValue={28}
+					onChange={setNumOfPillsPerSheet}
+				/>
 
-			<SettingPicker
-				description={"シートの開始位置"}
-				selectedValue={record.initialSheetSettings.beginSheetIndex + 1}
-				minValue={1}
-				maxValue={record.initialSheetSettings.numOfPillsPerSheet}
-				onChange={setBeginSheetIndex}
-			/>
+				<SettingPicker
+					description={"シートの開始位置"}
+					selectedValue={record.initialSheetSettings.beginSheetIndex + 1}
+					minValue={1}
+					maxValue={record.initialSheetSettings.numOfPillsPerSheet}
+					onChange={setBeginSheetIndex}
+				/>
+			</View>
 		</ContentLayout>
 	);
 }
+
+const styles = StyleSheet.create({
+	contentLayout: {
+		margin: 20,
+	},
+});

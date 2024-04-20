@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Alert, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import CustomButton from "~/components/common/CustomButton";
 import OverviewText from "~/components/common/OverviewText";
@@ -37,10 +37,23 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 
 	return (
 		<ContentLayout title='データの削除'>
-			<OverviewText>{"本アプリ内のすべてのデータを削除します。"}</OverviewText>
-			<OverviewText>{"この操作を元に戻すことはできません。"}</OverviewText>
-			<View style={{ height: 20 }} />
-			<CustomButton onPress={onPressDataInitButton} title='データの削除' bgColor='white' textColor={warningRed} />
+			<View style={styles.contentLayout}>
+				<OverviewText>{"本アプリ内のすべてのデータを削除します。"}</OverviewText>
+				<OverviewText>{"この操作を元に戻すことはできません。"}</OverviewText>
+				<View style={{ height: 20 }} />
+				<CustomButton
+					onPress={onPressDataInitButton}
+					title='データの削除'
+					bgColor='white'
+					textColor={warningRed}
+				/>
+			</View>
 		</ContentLayout>
 	);
 }
+
+const styles = StyleSheet.create({
+	contentLayout: {
+		margin: 20,
+	},
+});

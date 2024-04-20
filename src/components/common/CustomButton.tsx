@@ -20,6 +20,7 @@ export default function CustomButton(props: Props) {
 				styles.button,
 			]}
 			onPress={props.onPress}>
+			{props.iconComponent}
 			<Text
 				style={[
 					styles.text,
@@ -27,8 +28,6 @@ export default function CustomButton(props: Props) {
 						color: props.textColor,
 					},
 				]}>
-				{props.iconComponent}
-
 				{props.title}
 			</Text>
 		</Pressable>
@@ -37,10 +36,11 @@ export default function CustomButton(props: Props) {
 
 const styles = StyleSheet.create({
 	button: {
+		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
 		paddingVertical: 8,
-		paddingHorizontal: 32,
+		// paddingHorizontal: 32,
 		borderStyle: "solid",
 		borderWidth: 1,
 		borderRadius: 8,
@@ -50,6 +50,5 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		lineHeight: 20,
 		fontFamily: "NotoSansJP_700Bold",
-		letterSpacing: 0.25,
 	},
 });

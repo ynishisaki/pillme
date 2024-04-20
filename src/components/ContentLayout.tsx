@@ -9,7 +9,7 @@ export default function ContentLayout({ children, title }: { children: React.Rea
 				<ContainerTitleText>{title}</ContainerTitleText>
 			</View>
 
-			<View style={styles.contentLayout}>{children}</View>
+			{children}
 		</View>
 	);
 }
@@ -22,13 +22,13 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 	},
 	titleContainer: {
-		paddingVertical: 10,
-		paddingHorizontal: 20,
-		backgroundColor: HeaderColor,
 		elevation: 3,
-	},
-	contentLayout: {
-		flex: 1,
-		padding: 20,
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
+		paddingHorizontal: 20,
+		paddingVertical: 10,
+		// height: 46,
+		backgroundColor: HeaderColor,
 	},
 });

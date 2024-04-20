@@ -3,7 +3,6 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { CurrentSheet } from "~/components/record/CurrentSheet";
 import { WeeklyRecord } from "~/components/record/WeeklyRecord";
-import { translucentWhite } from "~/styles/color";
 import ScreenLayout from "~/template/ScreenLayout";
 
 export const Record = () => {
@@ -13,12 +12,8 @@ export const Record = () => {
 		<ScreenLayout>
 			{isFocused && (
 				<View style={styles.contentsLayout}>
-					<View style={styles.sheetRecord}>
-						<CurrentSheet />
-					</View>
-					<View style={styles.weeklyRecord}>
-						<WeeklyRecord />
-					</View>
+					<CurrentSheet />
+					<WeeklyRecord />
 				</View>
 			)}
 		</ScreenLayout>
@@ -33,21 +28,5 @@ const styles = StyleSheet.create({
 		flexDirection: "column",
 		rowGap: 50,
 		marginBottom: 40,
-	},
-	weeklyRecord: {
-		height: 170,
-		width: 330,
-		backgroundColor: translucentWhite,
-		borderRadius: 8,
-		elevation: 3,
-		overflow: "hidden",
-	},
-	sheetRecord: {
-		height: 214,
-		width: 330,
-		backgroundColor: translucentWhite,
-		borderRadius: 8,
-		elevation: 3,
-		overflow: "hidden",
 	},
 });
