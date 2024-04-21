@@ -11,7 +11,7 @@ export const Record = () => {
 	return (
 		<ScreenLayout>
 			{isFocused && (
-				<View style={styles.contentsLayout}>
+				<View style={styles.viewLayout}>
 					<CurrentSheet />
 					<WeeklyRecord />
 				</View>
@@ -21,7 +21,7 @@ export const Record = () => {
 };
 
 const styles = StyleSheet.create({
-	contentsLayout: {
+	viewLayout: {
 		flex: 1,
 		justifyContent: "flex-end",
 		alignItems: "center",

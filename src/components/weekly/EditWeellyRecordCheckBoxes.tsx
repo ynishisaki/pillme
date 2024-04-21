@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { LeftIcon, RightIcon } from "~/components/Icons";
+import { LeftIcon, RedCircleIcon, RightIcon } from "~/components/Icons";
 import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
+import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import CustomIconButton from "~/components/common/CustomIconButton";
 import Divider from "~/components/common/Divider";
-import OverviewAlertText from "~/components/common/OverviewAlertText";
-import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
+import OverviewText from "~/components/common/OverviewText";
 import WidthFixedRightText from "~/components/common/WidthFixedRightText";
 import { getDateWeekStringsForDisplay, getYearMonthStrings } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -110,7 +110,7 @@ export default function EditWeellyRecordCheckBoxes() {
 
 			<Divider />
 
-			{/* 昨日以前の記録がない場合 */}
+			{/* 選択月に記録があれば表示 */}
 			{monthlyRecord[selectedYearMonth] ? (
 				<ScrollView>
 					<View key={-1} style={styles.horizonalStackLayout}>
@@ -118,14 +118,23 @@ export default function EditWeellyRecordCheckBoxes() {
 							<></>
 						</WidthFixedRightText>
 
-						<WidthFixedCheckboxTitleText>服薬</WidthFixedCheckboxTitleText>
-						<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>
+						<CheckboxTitleText>服薬</CheckboxTitleText>
+						<CheckboxTitleText>出血</CheckboxTitleText>
 					</View>
 					<View style={styles.verticalStackLayout}>
 						{monthlyRecord[selectedYearMonth].map((dailyRecord, index) => {
 							return (
 								<View key={index} style={styles.horizonalStackLayout}>
 									<WidthFixedRightText>
+										{/* 記録をつけるべき箇所に赤丸を表示 */}
+										{!dailyRecord.tookMedicine && !dailyRecord.isRestPeriod && (
+											<RedCircleIcon
+												style={{
+													position: "absolute",
+													left: -2,
+												}}
+											/>
+										)}
 										{getDateWeekStringsForDisplay(dailyRecord.date)}
 										{"\n"}({dailyRecord.index}日前)
 									</WidthFixedRightText>
@@ -157,7 +166,9 @@ export default function EditWeellyRecordCheckBoxes() {
 					</View>
 				</ScrollView>
 			) : (
-				<OverviewAlertText key={-1}>記録がありません</OverviewAlertText>
+				<OverviewText type='warn' key={-1}>
+					記録がありません
+				</OverviewText>
 			)}
 			<Divider />
 		</View>

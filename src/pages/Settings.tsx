@@ -8,7 +8,7 @@ import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 export const Settings = ({ navigation }: { navigation: any }) => {
 	return (
 		<ScrollableScreenLayout>
-			<View style={styles.contentsLayout}>
+			<View style={styles.viewLayout}>
 				<SettingsMedicationMethod />
 				<SettingsSheetManagement />
 				<SettingsDataInit navigation={navigation} />
@@ -18,7 +18,7 @@ export const Settings = ({ navigation }: { navigation: any }) => {
 };
 
 const styles = StyleSheet.create({
-	contentsLayout: {
+	viewLayout: {
 		flex: 1,
 		marginVertical: 20,
 		rowGap: 20,

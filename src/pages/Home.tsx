@@ -8,7 +8,6 @@ import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState, today } from "~/states/recordState";
-import { translucentWhite } from "~/styles/color";
 import ScreenLayout from "~/template/ScreenLayout";
 import { dailyRecordType, recordType } from "~/types/record";
 
@@ -98,13 +97,9 @@ export const Home = ({ navigation }: { navigation: any }) => {
 	return (
 		<ScreenLayout>
 			{isFocused && (
-				<View style={styles.contentsLayout}>
-					<View style={styles.infoView}>
-						<HomeTitle />
-					</View>
-					<View style={styles.todaysRecordView}>
-						<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
-					</View>
+				<View style={styles.viewLayout}>
+					<HomeTitle />
+					<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
 				</View>
 			)}
 		</ScreenLayout>
@@ -112,23 +107,11 @@ export const Home = ({ navigation }: { navigation: any }) => {
 };
 
 const styles = StyleSheet.create({
-	contentsLayout: {
+	viewLayout: {
 		flex: 1,
 		flexDirection: "column",
 		justifyContent: "space-between",
 		alignItems: "center",
 		marginVertical: 80,
-	},
-	infoView: {
-		height: 200,
-		width: 330,
-	},
-	todaysRecordView: {
-		height: 220,
-		width: 330,
-		borderRadius: 8,
-		elevation: 3,
-		backgroundColor: translucentWhite,
-		overflow: "hidden",
 	},
 });

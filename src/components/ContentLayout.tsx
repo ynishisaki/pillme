@@ -1,15 +1,32 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { EditIcon } from "~/components/Icons";
 import ContainerTitleText from "~/components/common/ContainerTitleText";
 import { HeaderColor, translucentWhite } from "~/styles/color";
 
-export default function ContentLayout({ children, title }: { children: React.ReactNode; title: string }) {
+interface Props {
+	children: React.ReactNode;
+	title: string;
+	onPress?: () => void;
+	titleIcon?: React.ReactNode;
+}
+
+export default function ContentLayout(props: Props) {
 	return (
 		<View style={styles.container}>
-			<View style={styles.titleContainer}>
-				<ContainerTitleText>{title}</ContainerTitleText>
-			</View>
+			{props.onPress ? (
+				<TouchableOpacity onPress={props.onPress}>
+					<View style={styles.titleContainer}>
+						<Text style={styles.titleText}>{props.title}</Text>
+						{props.titleIcon}
+					</View>
+				</TouchableOpacity>
+			) : (
+				<View style={styles.titleContainer}>
+					<Text style={styles.titleText}>{props.title}</Text>
+				</View>
+			)}
 
-			{children}
+			{props.children}
 		</View>
 	);
 }
@@ -30,5 +47,11 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 		// height: 46,
 		backgroundColor: HeaderColor,
+	},
+	titleText: {
+		color: "whitesmoke",
+		fontSize: 18,
+		fontFamily: "NotoSansJP_700Bold",
+		lineHeight: 24,
 	},
 });

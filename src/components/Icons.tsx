@@ -14,17 +14,14 @@ export const SettingIcon = ({ color }: { color?: string }) => (
 	<MaterialCommunityIcons name='cog-outline' size={30} color={color || "gray"} />
 );
 
+export const RedCircleIcon = ({ style }: { style: object }) => (
+	<MaterialCommunityIcons name='circle' size={16} color='red' style={style} />
+);
+
 export const EditIcon = ({ hasExclamation }: { hasExclamation?: boolean }) => (
 	<View>
 		<MaterialCommunityIcons name='playlist-edit' size={30} color='white' />
-		{hasExclamation && (
-			<MaterialCommunityIcons
-				name='circle'
-				size={16}
-				color='red'
-				style={{ position: "absolute", top: -2, right: -2 }}
-			/>
-		)}
+		{hasExclamation && <RedCircleIcon style={{ position: "absolute", top: -2, right: -2 }} />}
 	</View>
 );
 

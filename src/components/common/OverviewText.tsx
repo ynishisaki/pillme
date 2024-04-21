@@ -1,6 +1,14 @@
 import { StyleSheet, Text } from "react-native";
-export default function OverviewText({ children }: { children: React.ReactNode }) {
-	return <Text style={styles.overviewText}>{children}</Text>;
+import { pillColor } from "~/styles/color";
+
+interface Props {
+	children: React.ReactNode;
+	type?: "warn";
+}
+export default function OverviewText(props: Props) {
+	const color = props.type === "warn" ? pillColor : "gray";
+
+	return <Text style={[styles.overviewText, { color }]}>{props.children}</Text>;
 }
 
 const styles = StyleSheet.create({

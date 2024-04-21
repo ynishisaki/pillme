@@ -1,12 +1,12 @@
-import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
+import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
-import ContainerTitleText from "~/components/common/ContainerTitleText";
-import WidthFixedCheckboxTitleText from "~/components/common/WidthFixedCheckboxTitleText";
+import CheckboxTitleText from "~/components/common/CheckboxTitleText";
+import OverviewText from "~/components/common/OverviewText";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
-import { HeaderColor } from "~/styles/color";
 import { recordType } from "~/types/record";
 import { EditIcon } from "../Icons";
 
@@ -48,20 +48,23 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 		);
 
 	return (
-		<>
-			<TouchableOpacity onPress={onPress}>
-				<View style={styles.titleContainer}>
-					<ContainerTitleText>今日の記録</ContainerTitleText>
-					<EditIcon hasExclamation={hasNoRecordWithoutToday} />
-				</View>
-			</TouchableOpacity>
-
+		<ContentLayout
+			title='今日の記録'
+			onPress={onPress}
+			titleIcon={<EditIcon hasExclamation={hasNoRecordWithoutToday} />}>
 			<View style={styles.contentLayout}>
+				{!hasNoRecordWithoutToday && hasNoRecordToday && (
+					<>
+						<OverviewText type='warn'>今日の記録をつけてください</OverviewText>
+						<View style={{ height: 20 }}></View>
+					</>
+				)}
+
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (
 						<>
 							<CheckBox
-								textComponent={<WidthFixedCheckboxTitleText>服薬</WidthFixedCheckboxTitleText>}
+								textComponent={<CheckboxTitleText>服薬</CheckboxTitleText>}
 								type='medicine'
 								size={"lg"}
 								isChecked={tookMedicine}
@@ -70,7 +73,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 								onPress={() => updateTodayRecord("tookMedicine", !tookMedicine)}
 							/>
 							<CheckBox
-								textComponent={<WidthFixedCheckboxTitleText>出血</WidthFixedCheckboxTitleText>}
+								textComponent={<CheckboxTitleText>出血</CheckboxTitleText>}
 								type='bleeding'
 								size={"lg"}
 								isChecked={haveBleeding}
@@ -82,22 +85,11 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 					)}
 				</View>
 			</View>
-		</>
+		</ContentLayout>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	titleContainer: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		paddingHorizontal: 20,
-		height: 46,
-		backgroundColor: HeaderColor,
-	},
 	contentLayout: {
 		flex: 1,
 		padding: 20,
@@ -105,5 +97,6 @@ const styles = StyleSheet.create({
 	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
+		minWidth: 300,
 	},
 });

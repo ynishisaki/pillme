@@ -9,7 +9,7 @@ interface Props {
 	iconComponent?: React.ReactNode;
 }
 
-export default function CustomButton(props: Props) {
+export default function CustomOutlineButton(props: Props) {
 	return (
 		<Pressable
 			style={({ pressed }) => [
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		paddingVertical: 8,
-		// paddingHorizontal: 32,
 		borderStyle: "solid",
 		borderWidth: 1,
 		borderRadius: 8,

@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import CustomButton from "~/components/common/CustomButton";
+import CustomOutlineButton from "~/components/common/CustomOutlineButton";
 import OverviewText from "~/components/common/OverviewText";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
@@ -41,7 +41,7 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 				<OverviewText>{"本アプリ内のすべてのデータを削除します。"}</OverviewText>
 				<OverviewText>{"この操作を元に戻すことはできません。"}</OverviewText>
 				<View style={{ height: 20 }} />
-				<CustomButton
+				<CustomOutlineButton
 					onPress={onPressDataInitButton}
 					title='データの削除'
 					bgColor='white'

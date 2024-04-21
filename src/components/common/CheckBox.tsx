@@ -56,13 +56,15 @@ export default function CheckBox(props: Props) {
 				innerIconStyle={{
 					borderWidth: 2,
 				}}
+				iconStyle={{
+					elevation: 1,
+				}}
 				ImageComponent={ImageComponent}
 				fillColor={fillColor()}
 				unfillColor={unfillCheckBoxColor}
 				isChecked={props.isRestPeriod || props.isNotRecorded ? true : props.isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				disableText={true}
 				disabled={props.isRestPeriod || props.isNotRecorded || props.readonly}
-				// onPress={(nextBoolean) => onPress(nextBoolean)}
 				disableBuiltInState={true}
 				onPress={() => props.onPress(!props.isChecked)}
 			/>
