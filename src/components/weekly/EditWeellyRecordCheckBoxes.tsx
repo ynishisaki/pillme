@@ -112,7 +112,7 @@ export default function EditWeellyRecordCheckBoxes() {
 
 			{/* 選択月に記録があれば表示 */}
 			{monthlyRecord[selectedYearMonth] ? (
-				<ScrollView>
+				<ScrollView style={styles.scrollView}>
 					<View key={-1} style={styles.horizonalStackLayout}>
 						<WidthFixedRightText>
 							<></>
@@ -131,7 +131,7 @@ export default function EditWeellyRecordCheckBoxes() {
 											<RedCircleIcon
 												style={{
 													position: "absolute",
-													left: -2,
+													left: 1,
 												}}
 											/>
 										)}
@@ -178,8 +178,8 @@ export default function EditWeellyRecordCheckBoxes() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		marginVertical: 20,
-		marginHorizontal: 16,
+		marginTop: 20,
+		// marginHorizontal: 16,
 	},
 	monthSelectContainer: {
 		flexDirection: "row",
@@ -190,6 +190,10 @@ const styles = StyleSheet.create({
 	},
 	verticalStackLayout: {
 		gap: 12,
+	},
+	scrollView: {
+		padding: 12,
+		paddingHorizontal: 20,
 	},
 	horizonalStackLayout: {
 		flexDirection: "row",

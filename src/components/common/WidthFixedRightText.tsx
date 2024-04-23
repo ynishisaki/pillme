@@ -5,7 +5,7 @@ export default function WidthFixedRightText({ children }: { children: React.Reac
 
 const styles = StyleSheet.create({
 	baseText: {
-		width: 90,
+		width: 100,
 		textAlign: "right",
 		color: "dimgray",
 		fontSize: 14,

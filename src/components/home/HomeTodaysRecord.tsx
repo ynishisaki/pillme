@@ -91,8 +91,8 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 
 const styles = StyleSheet.create({
 	contentLayout: {
-		flex: 1,
 		padding: 20,
+		paddingVertical: 30,
 	},
 	checkBoxLayout: {
 		flexDirection: "row",

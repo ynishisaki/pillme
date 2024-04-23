@@ -1,6 +1,4 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { EditIcon } from "~/components/Icons";
-import ContainerTitleText from "~/components/common/ContainerTitleText";
 import { HeaderColor, translucentWhite } from "~/styles/color";
 
 interface Props {
@@ -39,13 +37,11 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 	},
 	titleContainer: {
-		elevation: 3,
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",
 		paddingHorizontal: 20,
 		paddingVertical: 10,
-		// height: 46,
 		backgroundColor: HeaderColor,
 	},
 	titleText: {

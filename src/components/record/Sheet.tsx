@@ -61,18 +61,17 @@ export const Sheet = ({ tookDays, remainingDays }: { tookDays: number; remaining
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
-		borderColor: "gainsboro",
-		borderWidth: 2,
-		borderRadius: 16,
-		width: 200,
-		height: 130,
 		flexDirection: "row",
 		flexWrap: "wrap",
-		// padding: "auto",
-		padding: 5,
 		justifyContent: "space-between",
-		// alignItems: "center",
+		width: 200,
+		height: 130,
+		padding: 5,
+		backgroundColor: "whitesmoke",
+		borderColor: "gainsboro",
+		borderWidth: 2,
+		borderRadius: 8,
+		elevation: 1,
 	},
 	checkBoxLayout: {
 		margin: 5,
