@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { LeftIcon, RedCircleIcon, RightIcon } from "~/components/Icons";
+import { ChevronLeftIcon, ChevronRightIcon, RedCircleIcon } from "~/components/Icons";
 import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
@@ -98,13 +98,17 @@ export default function EditWeellyRecordCheckBoxes() {
 		<View style={styles.container}>
 			{monthlyRecord[selectedYearMonth] && (
 				<View style={styles.monthSelectContainer}>
-					<CustomIconButton onPress={handlePrevMonth} disabled={isPrevMonthDisabled}>
-						<LeftIcon />
-					</CustomIconButton>
+					{!isPrevMonthDisabled && (
+						<CustomIconButton onPress={handlePrevMonth}>
+							<ChevronLeftIcon />
+						</CustomIconButton>
+					)}
 					<BaseBlackText>{getYearMonthStrings(selectedYearMonth)}</BaseBlackText>
-					<CustomIconButton onPress={handleNextMonth} disabled={isPrevMonthDisabled}>
-						<RightIcon />
-					</CustomIconButton>
+					{!isNextMonthDisabled && (
+						<CustomIconButton onPress={handleNextMonth}>
+							<ChevronRightIcon />
+						</CustomIconButton>
+					)}
 				</View>
 			)}
 
@@ -192,7 +196,6 @@ const styles = StyleSheet.create({
 		gap: 12,
 	},
 	scrollView: {
-		padding: 12,
 		paddingHorizontal: 20,
 	},
 	horizonalStackLayout: {

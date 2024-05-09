@@ -28,7 +28,8 @@ export const EditIcon = ({ hasExclamation }: { hasExclamation?: boolean }) => (
 export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={20} color={HeaderColor} />;
 
 export const ArrowUpIcon = () => <MaterialCommunityIcons name='arrow-up' size={30} color='dimgray' />;
-export const RightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='dimgray' />;
+export const ChevronRightIcon = () => <MaterialCommunityIcons name='chevron-right' size={30} color='dimgray' />;
+export const ChevronLeftIcon = () => <MaterialCommunityIcons name='chevron-left' size={30} color='dimgray' />;
 
 export const LeftIcon = () => <MaterialCommunityIcons name='arrow-left' size={20} color='dimgray' />;
 
