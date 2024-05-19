@@ -79,3 +79,25 @@ export const monthlyRecordState = selector({
 		return monthlyRecord;
 	},
 });
+
+export const generateTestRecord = (numOfDays: number): recordType => {
+	if (numOfDays < 1) return initialRecord;
+
+	const record = initialRecord;
+	let dailyRecord = [] as dailyRecordType[];
+
+	for (let i = 0; i < numOfDays; i++) {
+		const date = new Date();
+		date.setDate(date.getDate() - i);
+		dailyRecord.push({
+			date: getDateStrings(date),
+			tookMedicine: false,
+			haveBleeding: false,
+			isRestPeriod: false,
+		});
+	}
+	return {
+		...record,
+		dailyRecord: dailyRecord,
+	};
+};

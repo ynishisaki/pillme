@@ -13,7 +13,6 @@ export default function AppNavigation() {
 	// AsyncStorageから記録を取得
 	const load = async () => {
 		await AsyncStorage.getItem("record").then((result) => {
-			console.log("RES: ", result);
 			if (result == null) {
 				setIsFirstTime(true);
 			} else {
