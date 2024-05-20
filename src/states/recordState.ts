@@ -80,7 +80,7 @@ export const monthlyRecordState = selector({
 	},
 });
 
-export const generateTestRecord = (numOfDays: number): recordType => {
+export const generatePastRecord = (numOfDays: number): recordType => {
 	if (numOfDays < 1) return initialRecord;
 
 	const record = initialRecord;
@@ -91,7 +91,7 @@ export const generateTestRecord = (numOfDays: number): recordType => {
 		date.setDate(date.getDate() - i);
 		dailyRecord.push({
 			date: getDateStrings(date),
-			tookMedicine: false,
+			tookMedicine: true,
 			haveBleeding: false,
 			isRestPeriod: false,
 		});
