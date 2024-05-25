@@ -23,13 +23,13 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 	};
 
 	const onPressDataInitButton = () =>
-		Alert.alert("データを削除しますか？", "一度削除したデータは復元できません。よろしいですか？", [
+		Alert.alert("アプリ内データを削除しますか？", "一度削除したデータは復元できません。よろしいですか？", [
 			{
 				text: "キャンセル",
 				style: "cancel",
 			},
 			{
-				text: "OK",
+				text: "アプリ内データを削除",
 				style: "destructive",
 				onPress: onPressDelete,
 			},
