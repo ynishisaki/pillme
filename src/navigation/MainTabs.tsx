@@ -5,7 +5,7 @@ import { hasNoRecordDays } from "~/functions/countRecord";
 import { Record } from "~/pages/Record";
 import { Settings } from "~/pages/Settings";
 import { recordState } from "~/states/recordState";
-import { skyBlue } from "~/styles/color";
+import { softBlue } from "~/styles/color";
 import HomeStacks from "./HomeStacks";
 
 const Tab = createBottomTabNavigator();
@@ -27,10 +27,10 @@ export default function MainTabs() {
 						fontFamily: "NotoSansJP_400Regular",
 					},
 					tabBarIcon: (parameter) => {
-						return <HomeIcon color={parameter.focused ? skyBlue : undefined} />;
+						return <HomeIcon color={parameter.focused ? softBlue : undefined} />;
 					},
 					headerShown: false,
-					tabBarActiveTintColor: skyBlue,
+					tabBarActiveTintColor: softBlue,
 					tabBarBadge: hasNoRecordToday || hasNoRecordWithoutToday ? "!" : undefined,
 				}}
 			/>
@@ -45,10 +45,10 @@ export default function MainTabs() {
 						fontFamily: "NotoSansJP_400Regular",
 					},
 					tabBarIcon: (parameter) => {
-						return <HistoryIcon color={parameter.focused ? skyBlue : undefined} />;
+						return <HistoryIcon color={parameter.focused ? softBlue : undefined} />;
 					},
 					headerShown: false,
-					tabBarActiveTintColor: skyBlue,
+					tabBarActiveTintColor: softBlue,
 				}}
 			/>
 			<Tab.Screen
@@ -62,10 +62,10 @@ export default function MainTabs() {
 						fontFamily: "NotoSansJP_400Regular",
 					},
 					tabBarIcon: (parameter) => {
-						return <SettingIcon color={parameter.focused ? skyBlue : undefined} />;
+						return <SettingIcon color={parameter.focused ? softBlue : undefined} />;
 					},
 					headerShown: false,
-					tabBarActiveTintColor: skyBlue,
+					tabBarActiveTintColor: softBlue,
 				}}
 			/>
 		</Tab.Navigator>

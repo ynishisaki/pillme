@@ -6,7 +6,10 @@ import CurrentSettings from "~/components/settings/CurrentSettings";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
 
-export default function SettingsMedicationMethod() {
+interface Props {
+	isFirstSettings?: boolean;
+}
+export default function SettingsMedicationMethod(props: Props) {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const minConteniousTakingDays = record.initialSheetSettings.minConteniousTakingDays;
@@ -59,6 +62,7 @@ export default function SettingsMedicationMethod() {
 			<View style={styles.contentLayout}>
 				<OverviewText>このアプリは、120日連続服用を対象としています。</OverviewText>
 				<OverviewText>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</OverviewText>
+				{props.isFirstSettings && <OverviewText>※この設定はアプリ開始後にも変更可能です。</OverviewText>}
 
 				<CurrentSettings />
 

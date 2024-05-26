@@ -1,11 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
+import ContentLayout from "~/components/ContentLayout";
 import OverviewText from "~/components/common/OverviewText";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
-import ContentLayout from "../ContentLayout";
 
-export default function SettingsSheetManagement() {
+interface Props {
+	isFirstSettings?: boolean;
+}
+export default function SettingsSheetManagement(props: Props) {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	function setNumOfPillsPerSheet(itemValue: number) {
@@ -34,8 +37,9 @@ export default function SettingsSheetManagement() {
 
 	return (
 		<ContentLayout title='シート設定'>
-			<View style={styles.contentLayout}>
+			<View style={styles.container}>
 				<OverviewText>{"記録開始時のシートの錠数と開始位置を設定します。"}</OverviewText>
+				{props.isFirstSettings && <OverviewText>※この設定はアプリ開始後にも変更可能です。</OverviewText>}
 
 				<SettingPicker
 					description={"１シートの錠数(プラセボ除く)"}
@@ -58,7 +62,7 @@ export default function SettingsSheetManagement() {
 }
 
 const styles = StyleSheet.create({
-	contentLayout: {
+	container: {
 		margin: 20,
 	},
 });
