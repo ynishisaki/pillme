@@ -1,14 +1,20 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useRecoilState } from "recoil";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
-import SupplementText from "~/components/common/SupplementText";
 import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import SettingsStartRecordDate from "~/components/settings/SettingsStartRecordDate";
+import { recordState } from "~/states/recordState";
 import { lightBlue } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 
 export const FirstSettings = ({ navigation }: { navigation: any }) => {
+	const [record, setRecord] = useRecoilState(recordState);
 	const onPressDecideButton = () => {
+		setRecord({
+			...record,
+			isAsyncStorageLoaded: true,
+		});
 		navigation.navigate("Home");
 	};
 

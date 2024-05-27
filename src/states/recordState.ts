@@ -91,7 +91,7 @@ export const generatePastRecord = (numOfDays: number): recordType => {
 		date.setDate(date.getDate() - i);
 		dailyRecord.push({
 			date: getDateStrings(date),
-			tookMedicine: true,
+			tookMedicine: i === 0 ? false : true, // 今日の記録はfalse
 			haveBleeding: false,
 			isRestPeriod: false,
 		});
