@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import CustomModal from "~/components/common/CustomModal";
+import CustomModal from "~/components/firstSettings/CustomModal";
 import OverviewText from "~/components/common/OverviewText";
 import { generatePastRecord, recordState } from "~/states/recordState";
 

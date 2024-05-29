@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { Modal, StyleSheet, Text, View } from "react-native";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
-import CustomDatePickerModalButton from "~/components/common/CustomDatePickerModalButton";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
+import CustomDatePickerModalButton from "~/components/firstSettings/CustomDatePickerModalButton";
 import { secondaryColor } from "~/styles/color";
 
 interface props {

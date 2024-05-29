@@ -7,7 +7,7 @@ import { HomeTitle } from "~/components/home/HomeTitle";
 import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
 import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
-import { generatePastRecord, recordState, today } from "~/states/recordState";
+import { recordState, today } from "~/states/recordState";
 import ScreenLayout from "~/template/ScreenLayout";
 import { dailyRecordType, recordType } from "~/types/record";
 
@@ -19,15 +19,6 @@ export const Home = ({ navigation }: { navigation: any }) => {
 	useEffect(() => {
 		(async () => {
 			const storedRecordAsString: string | null = await AsyncStorage.getItem("record");
-
-			// test
-			// if (true) {
-			// 	const genRecord = generatePastRecord(120);
-			// 	return setRecord({
-			// 		...genRecord,
-			// 		isAsyncStorageLoaded: true,
-			// 	});
-			// }
 
 			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
 			if (storedRecordAsString === null) {
