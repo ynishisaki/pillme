@@ -9,14 +9,12 @@ import {
 } from "@expo-google-fonts/noto-sans-jp";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback } from "react";
-import { ImageBackground, StatusBar, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StyleSheet, View } from "react-native";
+import ScreenContainer from "~/template/ScreenContainer";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function ScreenLayout({ children }: { children: React.ReactNode }) {
-	const insets = useSafeAreaInsets();
-
 	const [fontsLoaded, fontError] = useFonts({
 		NotoSansJP_100Thin,
 		NotoSansJP_300Light,
@@ -37,36 +35,15 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 	}
 
 	return (
-		<ImageBackground source={require("../../assets/bgimage.png")} resizeMode='cover' style={styles.bgimage}>
-			<View
-				style={[
-					styles.container,
-					{
-						paddingTop: insets.top,
-						paddingBottom: insets.bottom,
-						paddingLeft: insets.left,
-						paddingRight: insets.right,
-					},
-				]}>
-				<StatusBar barStyle='light-content' translucent={true} backgroundColor='rgba(0, 0, 0, 0)' />
-				<View style={styles.contentsLayout} onLayout={onLayoutRootView}>
-					{children}
-				</View>
+		<ScreenContainer>
+			<View style={styles.contentsLayout} onLayout={onLayoutRootView}>
+				{children}
 			</View>
-		</ImageBackground>
+		</ScreenContainer>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	bgimage: {
-		flex: 1,
-		justifyContent: "center",
-		width: "100%",
-		height: "100%",
-	},
 	contentsLayout: {
 		flex: 1,
 		marginBottom: 16,
