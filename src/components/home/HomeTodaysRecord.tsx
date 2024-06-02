@@ -97,6 +97,6 @@ const styles = StyleSheet.create({
 	checkBoxLayout: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		minWidth: 300,
+		width: "100%",
 	},
 });

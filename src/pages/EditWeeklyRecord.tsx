@@ -20,26 +20,26 @@ export const EditWeeklyRecord = ({ navigation }: { navigation: any }) => {
 	return (
 		<ScreenLayout>
 			{isFocused && (
-				// <View style={styles.viewLayout}>
-				<ContentLayout title='記録の編集'>
-					<View style={styles.contentsLayout}>
-						<OverviewText>過去の記録を編集できます</OverviewText>
-						{hasNoRecordWithoutToday && (
-							<OverviewText type='warn'>下から順番に服薬記録を記入してください</OverviewText>
-						)}
+				<View style={styles.viewLayout}>
+					<ContentLayout title='記録の編集'>
+						<View style={styles.contentsLayout}>
+							<OverviewText>過去の記録を編集できます</OverviewText>
+							{hasNoRecordWithoutToday && (
+								<OverviewText type='warn'>下から順番に服薬記録を記入してください</OverviewText>
+							)}
 
-						<EditWeellyRecordCheckBoxes />
+							<EditWeellyRecordCheckBoxes />
 
-						<CustomOutlineButton
-							onPress={() => navigation.navigate("Home")}
-							bgColor={secondaryColor}
-							textColor='dimgray'
-							title='ホームに戻る'
-							iconComponent={<LeftIcon />}
-						/>
-					</View>
-				</ContentLayout>
-				// </View>
+							<CustomOutlineButton
+								onPress={() => navigation.navigate("Home")}
+								bgColor={secondaryColor}
+								textColor='dimgray'
+								title='ホームに戻る'
+								iconComponent={<LeftIcon />}
+							/>
+						</View>
+					</ContentLayout>
+				</View>
 			)}
 		</ScreenLayout>
 	);
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		flexDirection: "column",
 		justifyContent: "space-between",
 		alignItems: "center",
-		marginVertical: 20,
+		// marginVertical: 20,
 	},
 	contentsLayout: {
 		flex: 1,

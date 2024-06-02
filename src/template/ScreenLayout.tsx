@@ -46,9 +46,7 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginBottom: 16,
-		marginHorizontal: 16,
-		alignItems: "center",
-		flexDirection: "column",
+		marginVertical: 40,
+		marginHorizontal: 32,
 	},
 });

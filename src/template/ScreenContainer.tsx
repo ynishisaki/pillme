@@ -49,9 +49,7 @@ export default function ScreenContainer({ children }: { children: React.ReactNod
 					},
 				]}>
 				<StatusBar barStyle='light-content' translucent={true} backgroundColor='rgba(0, 0, 0, 0)' />
-				{/* <View style={styles.contentsLayout} onLayout={onLayoutRootView}> */}
 				{children}
-				{/* </View> */}
 			</View>
 		</ImageBackground>
 	);
@@ -66,16 +64,5 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		width: "100%",
 		height: "100%",
-	},
-	// contentsLayout: {
-	// 	flex: 1,
-	// 	paddingHorizontal: 32,
-	// },
-	contentsLayout: {
-		flex: 1,
-		marginBottom: 16,
-		marginHorizontal: 16,
-		alignItems: "center",
-		flexDirection: "column",
 	},
 });

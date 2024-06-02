@@ -33,7 +33,7 @@ export default function ScrollableScreenLayout({ children }: { children: React.R
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		paddingHorizontal: 32,
+		marginHorizontal: 32,
 	},
 	scrollTopButton: {
 		position: "absolute",

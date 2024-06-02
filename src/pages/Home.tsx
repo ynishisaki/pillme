@@ -109,9 +109,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
 	viewLayout: {
 		flex: 1,
-		flexDirection: "column",
 		justifyContent: "space-between",
 		alignItems: "center",
-		marginVertical: 80,
 	},
 });
