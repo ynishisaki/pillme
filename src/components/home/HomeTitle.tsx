@@ -24,7 +24,7 @@ export const HomeTitle = () => {
 			<BaseWhiteText>服薬　{takeMedicineDays}日目</BaseWhiteText>
 
 			{haveBleedingDays !== 0 && <BaseWhiteText>出血　{haveBleedingDays}日</BaseWhiteText>}
-			{isTodayRestPeriod && <BaseWhiteText>休薬中</BaseWhiteText>}
+			{isTodayRestPeriod && <BaseWhiteText>本日は休薬します</BaseWhiteText>}
 			{isTomorrowStartsRestPeriod && <BaseWhiteText>明日から休薬です</BaseWhiteText>}
 			{hasNoRecordWithoutToday && <BaseWhiteText>記録忘れの日があります</BaseWhiteText>}
 			{!hasNoRecordWithoutToday && hasNoRecordToday && <BaseWhiteText>今日の記録をつけてください</BaseWhiteText>}

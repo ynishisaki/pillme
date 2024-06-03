@@ -70,8 +70,9 @@ export const judgeIsTomorrowStartsRestPeriod = (record: recordType, offset = 0):
 		(takeMedicineDays >= minConteniousTakingDays &&
 			tookMedicine &&
 			haveBleedingDays >= conteniousBleeingDaysForRest &&
-			haveBleeding) ||
-		(restPeriodDays > 0 && restPeriodDays < stopTakingDays);
+			haveBleeding);
+	// 	||
+	// (restPeriodDays > 0 && restPeriodDays < stopTakingDays);
 
 	return shouldRest;
 };
