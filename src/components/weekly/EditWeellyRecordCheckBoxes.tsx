@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		marginTop: 20,
-		// marginHorizontal: 16,
 	},
 	monthSelectContainer: {
 		flexDirection: "row",
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
 	horizonalStackLayout: {
 		flexDirection: "row",
 		justifyContent: "center",
-		columnGap: 20,
+		columnGap: 16,
 		alignItems: "center",
 	},
 });

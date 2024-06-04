@@ -46,7 +46,7 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
-		marginVertical: 40,
+		marginVertical: 32,
 		marginHorizontal: 32,
 	},
 });

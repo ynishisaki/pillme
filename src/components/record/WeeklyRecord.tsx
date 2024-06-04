@@ -68,7 +68,7 @@ export const WeeklyRecord = () => {
 
 const styles = StyleSheet.create({
 	contentLayout: {
-		margin: 20,
+		padding: 20,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		columnGap: 10,
