@@ -42,8 +42,8 @@ export const WeeklyRecord = () => {
 								<CheckBox
 									type='medicine'
 									size={"sm"}
-									isChecked={record.tookMedicine}
-									isRestPeriod={false}
+									isChecked={record.tookMedicine || record.isRestPeriod}
+									isRestPeriod={record.isRestPeriod}
 									readonly
 									onPress={() => {}}
 								/>
@@ -52,8 +52,8 @@ export const WeeklyRecord = () => {
 								<CheckBox
 									type='bleeding'
 									size={"sm"}
-									isChecked={record.haveBleeding}
-									isRestPeriod={false}
+									isChecked={record.haveBleeding || record.isRestPeriod}
+									isRestPeriod={record.isRestPeriod}
 									readonly
 									onPress={() => {}}
 								/>
