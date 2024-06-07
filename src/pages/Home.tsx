@@ -56,7 +56,10 @@ export const Home = ({ navigation }: { navigation: any }) => {
 						date: getDateStrings(latestDate),
 						tookMedicine: false,
 						haveBleeding: false,
-						isRestPeriod: false,
+						isRestPeriod: judgeIsTodayRestPeriod({
+							...storedRecord,
+							dailyRecord: lapsedDailyRecords,
+						}),
 					},
 					...lapsedDailyRecords,
 				];

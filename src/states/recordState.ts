@@ -42,16 +42,7 @@ export const recordStatusSelector = selector({
 
 // initialRecordから計算されるstate
 interface monthlyRecordType {
-	[yearMonth: string]: [
-		// {
-		// 	index: number; // record.dailyRecordのindexに対応
-		// 	date: string;
-		// 	tookMedicine: boolean;
-		// 	haveBleeding: boolean;
-		// 	isRestPeriod: boolean;
-		// }
-		dailyRecordType & { index: number }
-	];
+	[yearMonth: string]: [dailyRecordType & { index: number }];
 }
 export const monthlyRecordState = selector({
 	key: "monthlyRecord",
