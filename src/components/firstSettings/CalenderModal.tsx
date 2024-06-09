@@ -1,17 +1,16 @@
 import dayjs from "dayjs";
 import { useState } from "react";
-import { Modal, StyleSheet, Text, View } from "react-native";
+import { Modal, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
 import CustomDatePickerModalButton from "~/components/firstSettings/CustomDatePickerModalButton";
-import { secondaryColor } from "~/styles/color";
 
 interface props {
 	numOfDays: number;
 	handleSetNumOfDays: (numOfDays: number) => void;
 }
 
-export default function CustomModal(props: props) {
+export default function CalenderModal(props: props) {
 	const parentDate = dayjs().subtract(props.numOfDays - 1, "day");
 
 	const [selectedDate, setSelectedDate] = useState<DateType>(parentDate);
@@ -38,6 +37,10 @@ export default function CustomModal(props: props) {
 			<View style={styles.centeredView}>
 				<Modal animationType='fade' transparent={true} visible={modalVisible} onRequestClose={handleCancel}>
 					<View style={styles.centeredView}>
+						<TouchableWithoutFeedback onPress={handleCancel}>
+							<View style={styles.modalOverlay} />
+						</TouchableWithoutFeedback>
+
 						<View style={styles.modalView}>
 							<View>
 								<Text>最新の服薬開始日</Text>
@@ -80,15 +83,16 @@ const styles = StyleSheet.create({
 	centeredView: {
 		flex: 1,
 		justifyContent: "center",
-		// alignItems: "center",
-		// marginTop: 22,
+	},
+	modalOverlay: {
+		...StyleSheet.absoluteFillObject,
+		backgroundColor: "rgba(0,0,0,0.5)",
 	},
 	modalView: {
 		margin: 20,
 		backgroundColor: "white",
 		borderRadius: 20,
 		padding: 35,
-		// alignItems: "center",
 		shadowColor: "#000",
 		shadowOffset: {
 			width: 0,
@@ -97,19 +101,5 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
 		elevation: 5,
-	},
-	button: {
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-	},
-	textStyle: {
-		color: "white",
-		fontWeight: "bold",
-		textAlign: "center",
-	},
-	modalText: {
-		marginBottom: 15,
-		textAlign: "center",
 	},
 });

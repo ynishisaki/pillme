@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import CustomModal from "~/components/firstSettings/CustomModal";
 import OverviewText from "~/components/common/OverviewText";
+import CalenderModal from "~/components/firstSettings/CalenderModal";
 import { generatePastRecord, recordState } from "~/states/recordState";
 
 interface Props {
@@ -34,10 +34,7 @@ export default function SettingsStartRecordDate(props: Props) {
 
 				<View style={styles.contentLayout}>
 					<Text style={styles.pickerText}>最新の服薬開始日</Text>
-					{/* <Text>
-						{startRecordDateString}(今日で服薬{numOfRecordDays}日目)
-					</Text> */}
-					<CustomModal numOfDays={numOfRecordDays} handleSetNumOfDays={setNumOfRecordDays}></CustomModal>
+					<CalenderModal numOfDays={numOfRecordDays} handleSetNumOfDays={setNumOfRecordDays}></CalenderModal>
 				</View>
 			</View>
 		</ContentLayout>
