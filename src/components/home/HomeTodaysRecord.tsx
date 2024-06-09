@@ -4,6 +4,7 @@ import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import OverviewText from "~/components/common/OverviewText";
+import SheetModal from "~/components/home/SheetModal";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
@@ -54,12 +55,8 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 			titleIcon={<EditIcon hasExclamation={hasNoRecordWithoutToday} />}>
 			<View style={styles.contentLayout}>
 				{!hasNoRecordWithoutToday && hasNoRecordToday && (
-					<>
-						<OverviewText type='warn'>今日の記録をつけてください</OverviewText>
-						<View style={{ height: 20 }}></View>
-					</>
+					<OverviewText type='warn'>今日の記録をつけてください</OverviewText>
 				)}
-
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (
 						<>
@@ -84,6 +81,8 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 						</>
 					)}
 				</View>
+
+				<SheetModal />
 			</View>
 		</ContentLayout>
 	);
@@ -93,6 +92,7 @@ const styles = StyleSheet.create({
 	contentLayout: {
 		paddingHorizontal: 20,
 		paddingVertical: 30,
+		gap: 20,
 	},
 	checkBoxLayout: {
 		flexDirection: "row",

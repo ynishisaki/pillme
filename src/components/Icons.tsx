@@ -25,6 +25,8 @@ export const EditIcon = ({ hasExclamation }: { hasExclamation?: boolean }) => (
 	</View>
 );
 
+export const CloseIcon = () => <MaterialCommunityIcons name='close' size={30} color='white' />;
+
 export const BackIcon = () => <MaterialCommunityIcons name='keyboard-backspace' size={20} color={HeaderColor} />;
 
 export const ArrowUpIcon = () => <MaterialCommunityIcons name='arrow-up' size={30} color='dimgray' />;

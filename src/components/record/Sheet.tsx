@@ -1,8 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useRecoilValue } from "recoil";
+import getCurrentSheetStatus from "~/functions/countRecord";
+import { recordState } from "~/states/recordState";
 import { pillColor, unPressableCheckBoxColor } from "~/styles/color";
 
-export const Sheet = ({ tookDays, remainingDays }: { tookDays: number; remainingDays: number }) => {
+export const Sheet = () => {
+	const record = useRecoilValue(recordState);
+	const { tookDays, remainingDays } = getCurrentSheetStatus(record);
+
 	const checkBoxes = [];
 	// 現在のシートの飲んだ分
 	if (tookDays > 0) {

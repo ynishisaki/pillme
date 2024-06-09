@@ -21,7 +21,7 @@ export const CurrentSheet = () => {
 	// シート2枚目、シート開始index20の場合：
 	// 今日の日付 + ((numOfPillsPerSheet -(recordLength + index) % numOfPillsPerSheet)日
 
-	const { tookDays, remainingDays } = getCurrentSheetStatus(record);
+	const { remainingDays } = getCurrentSheetStatus(record);
 
 	const today = new Date();
 	const todayDate = today.getDate();
@@ -36,7 +36,7 @@ export const CurrentSheet = () => {
 					<SubTitleText>{`シート終了日(推定)`}</SubTitleText>
 					<BaseBlackText>{estimatedEndDate}</BaseBlackText>
 				</View>
-				<Sheet tookDays={tookDays} remainingDays={remainingDays} />
+				<Sheet />
 			</View>
 		</ContentLayout>
 	);
