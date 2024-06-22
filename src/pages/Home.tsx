@@ -113,6 +113,5 @@ const styles = StyleSheet.create({
 	viewLayout: {
 		flex: 1,
 		justifyContent: "space-between",
-		alignItems: "center",
 	},
 });

@@ -7,8 +7,8 @@ export default function HomeTitleText({ children }: { children: React.ReactNode 
 const styles = StyleSheet.create({
 	titleText: {
 		color: "white",
-		fontSize: 58,
-		lineHeight: 66,
+		fontSize: 52,
+		lineHeight: 60,
 		fontFamily: "NotoSansJP_700Bold",
 		marginBottom: 30,
 	},

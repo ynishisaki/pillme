@@ -41,7 +41,7 @@ export default function SheetModal(props: props) {
 				// bgColor={"#2196F3"}
 				// textColor='white'
 				bgColor={secondaryColor}
-				textColor='dimgray'
+				textColor='gray'
 				title='現在のシートを確認する'
 				iconComponent={null}
 			/>

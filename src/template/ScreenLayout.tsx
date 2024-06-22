@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
 	contentsLayout: {
 		flex: 1,
 		marginVertical: 32,
-		marginHorizontal: 32,
+		marginHorizontal: 28,
 	},
 });

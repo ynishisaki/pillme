@@ -1,6 +1,7 @@
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
+import { EditIcon } from "~/components/Icons";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import OverviewText from "~/components/common/OverviewText";
@@ -9,7 +10,6 @@ import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
 import { recordType } from "~/types/record";
-import { EditIcon } from "../Icons";
 
 export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 	const [record, setRecord] = useRecoilState(recordState);
