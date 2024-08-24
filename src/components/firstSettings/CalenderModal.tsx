@@ -1,9 +1,17 @@
-import dayjs from "dayjs";
+import { addDay, diffDays, format } from "@formkit/tempo";
 import { useState } from "react";
 import { Modal, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import DateTimePicker, { DateType } from "react-native-ui-datepicker";
+import { DateData } from "react-native-calendars";
+import { MarkedDates } from "react-native-calendars/src/types";
+import { CustomCalender } from "~/components/common/CustomCalender";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
 import CustomDatePickerModalButton from "~/components/firstSettings/CustomDatePickerModalButton";
+import { lightBlue } from "~/styles/color";
+
+// tempo options
+const locale = "ja";
+const yyyymmdd = "YYYY-MM-DD";
+const md = "M月D日";
 
 interface props {
 	numOfDays: number;
@@ -11,11 +19,31 @@ interface props {
 }
 
 export default function CalenderModal(props: props) {
-	const parentDate = dayjs().subtract(props.numOfDays - 1, "day");
+	const todayDate = new Date();
 
-	const [selectedDate, setSelectedDate] = useState<DateType>(parentDate);
+	const parentDate = format(addDay(todayDate, -props.numOfDays + 1), "YYYY-MM-DD", locale);
+	const parentDateForDisplay = format(parentDate, md, locale);
 
-	const currentNumOfDays = dayjs().diff(selectedDate, "day") + 1;
+	// 120日前まで（今日の服薬も含めるため+1）
+	const minDateStr = format(addDay(todayDate, -120 + 1), yyyymmdd, locale);
+	const maxDateStr = format(todayDate, yyyymmdd, locale);
+
+	const [selectedDateStr, setSelectedDateStr] = useState<string>(parentDate);
+	const selectedDateForDisplay = format(selectedDateStr, md, locale);
+
+	function handleDayPress(date: DateData) {
+		setSelectedDateStr(date.dateString);
+	}
+
+	const markedDates: MarkedDates = {
+		[selectedDateStr]: {
+			selected: true,
+			selectedColor: lightBlue,
+		},
+	};
+
+	// 今日の服薬も含めるため+1
+	const currentNumOfDays = diffDays(todayDate, selectedDateStr) + 1;
 
 	const [modalVisible, setModalVisible] = useState(false);
 	function handleToggleModalVisible() {
@@ -23,7 +51,7 @@ export default function CalenderModal(props: props) {
 	}
 
 	function handleCancel() {
-		setSelectedDate(parentDate); // reset date
+		setSelectedDateStr(parentDate); // reset date
 		handleToggleModalVisible();
 	}
 
@@ -45,17 +73,13 @@ export default function CalenderModal(props: props) {
 							<View>
 								<Text>最新の服薬開始日</Text>
 								<View>
-									<DateTimePicker
-										mode='single'
-										locale='ja'
-										// 120日前〜今日まで選択可能
-										minDate={dayjs().subtract(120, "day")}
-										maxDate={dayjs()}
-										date={selectedDate}
-										onChange={(params) => setSelectedDate(params.date)}
+									<CustomCalender
+										handleDayPress={handleDayPress}
+										markedDates={markedDates}
+										minDate={minDateStr}
+										maxDate={maxDateStr}
 									/>
-
-									<Text>{`${selectedDate.format("M月D日")}(今日で服薬${currentNumOfDays}日目)`}</Text>
+									<Text>{`${selectedDateForDisplay}（本日服薬${currentNumOfDays}日目）`}</Text>
 								</View>
 							</View>
 
@@ -72,8 +96,7 @@ export default function CalenderModal(props: props) {
 			</View>
 			<CustomDatePickerModalButton
 				onPress={handleToggleModalVisible}
-				// title='服薬開始日の変更'
-				title={`${parentDate.format("M月D日")}(今日で服薬${props.numOfDays}日目)`}
+				title={`${parentDateForDisplay}（本日服薬${props.numOfDays}日目）`}
 			/>
 		</>
 	);

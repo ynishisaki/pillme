@@ -1,17 +1,18 @@
 import { useIsFocused } from "@react-navigation/native";
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
-import { Calendar, DateData, LocaleConfig } from "react-native-calendars";
+import { DateData, LocaleConfig } from "react-native-calendars";
 import { MarkedDates } from "react-native-calendars/src/types";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
+import { CustomCalender } from "~/components/common/CustomCalender";
 import OverviewText from "~/components/common/OverviewText";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
-import { pillColor } from "~/styles/color";
+import { lightBlue, pillColor } from "~/styles/color";
 import ScreenLayout from "~/template/ScreenLayout";
 
 LocaleConfig.locales.jp = {
@@ -55,7 +56,7 @@ export const Record = () => {
 			[record.date]: {
 				selected: selectedDate === record.date ? true : false,
 				marked: record.tookMedicine || record.isRestPeriod,
-				selectedColor: "blue",
+				selectedColor: lightBlue,
 				dotColor: record.tookMedicine ? pillColor : "gray",
 			},
 		};
@@ -130,22 +131,12 @@ export const Record = () => {
 		<ScreenLayout>
 			{isFocused && (
 				<View style={styles.viewLayout}>
-					<ContentLayout title='カレンダー'>
-						<Calendar
-							// TODO: Pressできる日付を限定する
-							onDayPress={handleDayPress}
+					<ContentLayout title='服薬カレンダー'>
+						<CustomCalender
+							handleDayPress={handleDayPress}
 							markedDates={markedDates}
-							showSixWeeks
-							theme={{
-								"stylesheet.calendar.header": {
-									dayTextAtIndex0: {
-										color: "red",
-									},
-									dayTextAtIndex6: {
-										color: "blue",
-									},
-								},
-							}}
+							minDate={record.dailyRecord[record.dailyRecord.length - 1].date}
+							maxDate={record.dailyRecord[0].date}
 						/>
 					</ContentLayout>
 					<ContentLayout title={`${dateWeekStringsForDisplay} の記録`}>
@@ -157,7 +148,7 @@ export const Record = () => {
 									<CheckBox
 										textComponent={<CheckboxTitleText>服薬</CheckboxTitleText>}
 										type='medicine'
-										size={"md"}
+										size={"lg"}
 										isChecked={selectedRecord.tookMedicine}
 										isRestPeriod={selectedRecord.isRestPeriod}
 										onPress={(nextBoolean) =>
@@ -167,7 +158,7 @@ export const Record = () => {
 									<CheckBox
 										textComponent={<CheckboxTitleText>出血</CheckboxTitleText>}
 										type='bleeding'
-										size={"md"}
+										size={"lg"}
 										isChecked={selectedRecord.haveBleeding}
 										isRestPeriod={selectedRecord.isRestPeriod}
 										onPress={(nextBoolean) =>
@@ -190,12 +181,10 @@ const styles = StyleSheet.create({
 		// justifyContent: "center",
 		justifyContent: "flex-end",
 		// alignItems: "center",
-		rowGap: 10,
+		rowGap: 40,
 	},
 	contentLayout: {
-		// paddingHorizontal: 10,
-		paddingVertical: 10,
-		gap: 10,
+		padding: 20,
 	},
 	checkBoxLayout: {
 		flexDirection: "row",

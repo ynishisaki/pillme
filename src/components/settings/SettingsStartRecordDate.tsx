@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
@@ -12,8 +11,6 @@ interface Props {
 }
 export default function SettingsStartRecordDate(props: Props) {
 	const [numOfRecordDays, setNumOfRecordDays] = useState(1);
-	const startRecordDate = dayjs().subtract(numOfRecordDays - 1, "day");
-	const startRecordDateString = startRecordDate.format("M月D日");
 
 	const [record, setRecord] = useRecoilState(recordState);
 

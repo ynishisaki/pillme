@@ -28,7 +28,7 @@ export default function SheetModal(props: props) {
 
 					<View style={styles.modalView}>
 						<ContentLayout title='現在のシート' onPress={handleClose} titleIcon={<CloseIcon />}>
-							<View>
+							<View style={styles.contentLayout}>
 								<Sheet />
 							</View>
 						</ContentLayout>
@@ -60,5 +60,10 @@ const styles = StyleSheet.create({
 	},
 	modalView: {
 		margin: 20,
+	},
+	contentLayout: {
+		flexDirection: "row",
+		justifyContent: "center",
+		padding: 20,
 	},
 });
