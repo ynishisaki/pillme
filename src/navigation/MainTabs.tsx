@@ -2,12 +2,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilValue } from "recoil";
 import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
 import { hasNoRecordDays } from "~/functions/countRecord";
-// import { Record } from "~/pages/Record";
-import { Record } from "~/pages/RecordNew";
+import { Home } from "~/pages/Home";
+import { Record } from "~/pages/Record";
 import { Settings } from "~/pages/Settings";
 import { recordState } from "~/states/recordState";
 import { softBlue } from "~/styles/color";
-import HomeStacks from "./HomeStacks";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,8 +17,8 @@ export default function MainTabs() {
 	return (
 		<Tab.Navigator>
 			<Tab.Screen
-				name='HomeStacks'
-				component={HomeStacks}
+				name='Home'
+				component={Home}
 				options={{
 					tabBarLabel: "ホーム",
 					tabBarLabelStyle: {

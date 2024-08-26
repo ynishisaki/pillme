@@ -102,7 +102,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 			{isFocused && (
 				<View style={styles.viewLayout}>
 					<HomeTitle />
-					<HomeTodaysRecord onPress={() => navigation.navigate("EditWeeklyRecord")} />
+					<HomeTodaysRecord />
 				</View>
 			)}
 		</ScreenLayout>

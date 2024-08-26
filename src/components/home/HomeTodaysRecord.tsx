@@ -1,7 +1,6 @@
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import { EditIcon } from "~/components/Icons";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import OverviewText from "~/components/common/OverviewText";
@@ -11,7 +10,7 @@ import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
 import { recordType } from "~/types/record";
 
-export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
+export const HomeTodaysRecord = () => {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const { tookMedicine, haveBleeding, isRestPeriod } = record.dailyRecord[0];
@@ -49,10 +48,7 @@ export const HomeTodaysRecord = ({ onPress }: { onPress: () => void }) => {
 		);
 
 	return (
-		<ContentLayout
-			title='今日の記録'
-			onPress={onPress}
-			titleIcon={<EditIcon hasExclamation={hasNoRecordWithoutToday} />}>
+		<ContentLayout title='今日の記録'>
 			<View style={styles.contentLayout}>
 				{!hasNoRecordWithoutToday && hasNoRecordToday && (
 					<OverviewText type='warn'>今日の記録をつけてください</OverviewText>

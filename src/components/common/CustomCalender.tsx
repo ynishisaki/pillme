@@ -1,5 +1,5 @@
 import { Calendar, DateData, LocaleConfig } from "react-native-calendars";
-import { MarkedDates } from "react-native-calendars/src/types";
+import { MarkedDates, MarkingTypes } from "react-native-calendars/src/types";
 
 LocaleConfig.locales.jp = {
 	monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
@@ -11,6 +11,7 @@ LocaleConfig.defaultLocale = "jp";
 
 interface Props {
 	handleDayPress: (date: DateData) => void;
+	markingType?: MarkingTypes;
 	markedDates: MarkedDates;
 	minDate: string;
 	maxDate: string;
@@ -20,6 +21,7 @@ export const CustomCalender = (props: Props) => {
 	return (
 		<Calendar
 			onDayPress={props.handleDayPress}
+			markingType={props.markingType}
 			markedDates={props.markedDates}
 			showSixWeeks
 			minDate={props.minDate}
