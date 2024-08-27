@@ -110,15 +110,16 @@ export const Record = () => {
 			updatedRecord = {
 				...updatedRecord,
 				dailyRecord: [
+					// 休薬期間以降
 					...updatedRecord.dailyRecord.slice(0, updateRecordToIndex),
-					// 休薬期間
-					...Array.from({ length: index - updateRecordToIndex }, (_, i) => {
+					// 休薬期間（更新）
+					...updatedRecord.dailyRecord.slice(updateRecordToIndex, index).map((dailyRecord) => {
 						return {
-							...updatedRecord.dailyRecord[i],
+							...dailyRecord,
 							isRestPeriod: isTomorrowStartsRestPeriod,
 						};
 					}),
-					// 記録した日はすでにupdatedRecordに含まれている
+					// 休薬期間以前
 					...updatedRecord.dailyRecord.slice(index),
 				],
 			};
