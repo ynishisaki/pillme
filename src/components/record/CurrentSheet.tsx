@@ -1,14 +1,19 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import BaseBlackText from "~/components/common/BaseBlackText";
+import { CloseIcon } from "~/components/Icons";
 import SubTitleText from "~/components/common/SubTitleText";
+import { ThemedText } from "~/components/common/ThemedText";
 import { Sheet } from "~/components/record/Sheet";
 import getCurrentSheetStatus from "~/functions/countRecord";
 import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 import { recordState } from "~/states/recordState";
 
-export const CurrentSheet = () => {
+interface props {
+	handleClose: () => void;
+}
+
+export const CurrentSheet = (props: props) => {
 	const record = useRecoilValue(recordState);
 
 	// シートの終了日を計算
@@ -30,11 +35,11 @@ export const CurrentSheet = () => {
 	const estimatedEndDate = getDateStringsForDisplay(new Date(calculateSheetEndDate));
 
 	return (
-		<ContentLayout title='現在のシート'>
+		<ContentLayout title='現在のシート' onPress={props.handleClose} titleIcon={<CloseIcon />}>
 			<View style={styles.contentLayout}>
 				<View style={styles.textLayout}>
 					<SubTitleText>{`シート終了日(推定)`}</SubTitleText>
-					<BaseBlackText>{estimatedEndDate}</BaseBlackText>
+					<ThemedText type='default'>{estimatedEndDate}</ThemedText>
 				</View>
 				<Sheet />
 			</View>
@@ -49,6 +54,11 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		columnGap: 10,
 	},
+	// contentLayout: {
+	// 	flexDirection: "row",
+	// 	justifyContent: "center",
+	// 	padding: 20,
+	// },
 	textLayout: {
 		marginTop: 16,
 	},

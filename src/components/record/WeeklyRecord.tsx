@@ -1,8 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import BaseBlackText from "~/components/common/BaseBlackText";
 import SubTitleText from "~/components/common/SubTitleText";
+import { ThemedText } from "~/components/common/ThemedText";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
 import { recordState } from "~/states/recordState";
@@ -26,11 +26,11 @@ export const WeeklyRecord = () => {
 				<View style={styles.textLayout}>
 					<View>
 						<SubTitleText>服薬</SubTitleText>
-						<BaseBlackText>{`${takeMedicineDays}日目`}</BaseBlackText>
+						<ThemedText type='default'>{`${takeMedicineDays}日目`}</ThemedText>
 					</View>
 					<View>
 						<SubTitleText>出血</SubTitleText>
-						<BaseBlackText>{`${haveBleedingDays}日目`}</BaseBlackText>
+						<ThemedText type='default'>{`${haveBleedingDays}日目`}</ThemedText>
 					</View>
 				</View>
 

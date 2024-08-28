@@ -18,6 +18,7 @@ web-build/
 /android
 /ios
 
+app.json
 app.config.ts
 google-services.json
 README_HOWTO.md

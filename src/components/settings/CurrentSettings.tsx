@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import BaseBlackText from "~/components/common/BaseBlackText";
 import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import { recordState } from "~/states/recordState";
 
 export default function CurrentSettings() {
@@ -14,7 +14,7 @@ export default function CurrentSettings() {
 
 	return (
 		<View style={styles.container}>
-			<BaseBlackText>現在の設定内容</BaseBlackText>
+			<ThemedText type='default'>現在の設定内容</ThemedText>
 
 			<>
 				<OverviewText>

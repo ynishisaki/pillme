@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Modal, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import ContentLayout from "~/components/ContentLayout";
-import { CloseIcon } from "~/components/Icons";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
-import { Sheet } from "~/components/record/Sheet";
+import { CurrentSheet } from "~/components/record/CurrentSheet";
 import { secondaryColor } from "~/styles/color";
 
 interface props {}
@@ -27,11 +25,7 @@ export default function SheetModal(props: props) {
 					</TouchableWithoutFeedback>
 
 					<View style={styles.modalView}>
-						<ContentLayout title='現在のシート' onPress={handleClose} titleIcon={<CloseIcon />}>
-							<View style={styles.contentLayout}>
-								<Sheet />
-							</View>
-						</ContentLayout>
+						<CurrentSheet handleClose={handleClose} />
 					</View>
 				</View>
 			</Modal>
@@ -65,5 +59,8 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 		padding: 20,
+	},
+	textLayout: {
+		marginTop: 16,
 	},
 });

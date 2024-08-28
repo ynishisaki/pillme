@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ChevronLeftIcon, ChevronRightIcon, RedCircleIcon } from "~/components/Icons";
-import BaseBlackText from "~/components/common/BaseBlackText";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import CustomIconButton from "~/components/common/CustomIconButton";
 import Divider from "~/components/common/Divider";
 import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import WidthFixedRightText from "~/components/common/WidthFixedRightText";
 import { getDateWeekStringsForDisplay, getYearMonthStrings } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -103,7 +103,8 @@ export default function EditWeellyRecordCheckBoxes() {
 							<ChevronLeftIcon />
 						</CustomIconButton>
 					)}
-					<BaseBlackText>{getYearMonthStrings(selectedYearMonth)}</BaseBlackText>
+
+					<ThemedText type='default'>{getYearMonthStrings(selectedYearMonth)}</ThemedText>
 					{!isNextMonthDisabled && (
 						<CustomIconButton onPress={handleNextMonth}>
 							<ChevronRightIcon />
