@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import CalenderModal from "~/components/firstSettings/CalenderModal";
 import { generatePastRecord, recordState } from "~/states/recordState";
 
@@ -24,9 +24,9 @@ export default function SettingsStartRecordDate(props: Props) {
 	return (
 		<ContentLayout title='服薬開始日'>
 			<View style={styles.container}>
-				<OverviewText>{"服薬開始日を設定します。"}</OverviewText>
+				<ThemedText type='overview'>服薬開始日を設定します。</ThemedText>
 				{props.isFirstSettings && (
-					<OverviewText type='warn'>※この設定はアプリ開始後に変更できません。</OverviewText>
+					<ThemedText type='warn'>※この設定はアプリ開始後に変更できません。</ThemedText>
 				)}
 
 				<View style={styles.contentLayout}>

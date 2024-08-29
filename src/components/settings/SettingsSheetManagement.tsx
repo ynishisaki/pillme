@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
 
@@ -38,8 +38,10 @@ export default function SettingsSheetManagement(props: Props) {
 	return (
 		<ContentLayout title='シート設定'>
 			<View style={styles.container}>
-				<OverviewText>{"記録開始時のシートの錠数と開始位置を設定します。"}</OverviewText>
-				{props.isFirstSettings && <OverviewText>※この設定はアプリ開始後にも変更可能です。</OverviewText>}
+				<ThemedText type='overview'>記録開始時のシートの錠数と開始位置を設定します。</ThemedText>
+				{props.isFirstSettings && (
+					<ThemedText type='overview'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
+				)}
 
 				<SettingPicker
 					description={"１シートの錠数(プラセボ除く)"}

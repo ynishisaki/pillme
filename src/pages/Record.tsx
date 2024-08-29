@@ -8,7 +8,7 @@ import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import { CustomCalender } from "~/components/common/CustomCalender";
-import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
@@ -157,7 +157,7 @@ export const Record = () => {
 					<ContentLayout title={`${dateWeekStringsForDisplay} の記録`}>
 						<View style={styles.contentLayout}>
 							{isRecordNone ? (
-								<OverviewText type='warn'>服薬記録がありません</OverviewText>
+								<ThemedText type='warn'>服薬記録がありません</ThemedText>
 							) : (
 								<View style={styles.checkBoxLayout}>
 									<CheckBox

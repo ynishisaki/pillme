@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
 import CheckboxTitleText from "~/components/common/CheckboxTitleText";
-import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import SheetModal from "~/components/home/SheetModal";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -51,7 +51,7 @@ export const HomeTodaysRecord = () => {
 		<ContentLayout title='今日の記録'>
 			<View style={styles.contentLayout}>
 				{!hasNoRecordWithoutToday && hasNoRecordToday && (
-					<OverviewText type='warn'>今日の記録をつけてください</OverviewText>
+					<ThemedText type='warn'>今日の記録をつけてください</ThemedText>
 				)}
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (

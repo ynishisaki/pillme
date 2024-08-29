@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import BaseWhiteText from "~/components/common/BaseWhiteText";
-import HomeTitleText from "~/components/common/HomeTitleText";
+import { ThemedText } from "~/components/common/ThemedText";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
@@ -20,7 +20,7 @@ export const HomeTitle = () => {
 
 	return (
 		<View style={styles.container}>
-			<HomeTitleText>{displayDate}</HomeTitleText>
+			<ThemedText type='homeTitle'>{displayDate}</ThemedText>
 			<BaseWhiteText>服薬　{takeMedicineDays}日目</BaseWhiteText>
 
 			{haveBleedingDays !== 0 && <BaseWhiteText>出血　{haveBleedingDays}日</BaseWhiteText>}

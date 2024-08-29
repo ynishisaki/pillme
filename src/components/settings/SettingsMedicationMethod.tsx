@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import OverviewText from "~/components/common/OverviewText";
+import { ThemedText } from "~/components/common/ThemedText";
 import CurrentSettings from "~/components/settings/CurrentSettings";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";
@@ -60,9 +60,12 @@ export default function SettingsMedicationMethod(props: Props) {
 	return (
 		<ContentLayout title='服薬方法'>
 			<View style={styles.contentLayout}>
-				<OverviewText>このアプリは、120日連続服用を対象としています。</OverviewText>
-				<OverviewText>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</OverviewText>
-				{props.isFirstSettings && <OverviewText>※この設定はアプリ開始後にも変更可能です。</OverviewText>}
+				<ThemedText type='overview'>このアプリは、120日連続服用を対象としています。</ThemedText>
+				<ThemedText type='overview'>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</ThemedText>
+
+				{props.isFirstSettings && (
+					<ThemedText type='overview'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
+				)}
 
 				<CurrentSettings />
 

@@ -2,7 +2,6 @@ import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
 import { CloseIcon } from "~/components/Icons";
-import SubTitleText from "~/components/common/SubTitleText";
 import { ThemedText } from "~/components/common/ThemedText";
 import { Sheet } from "~/components/record/Sheet";
 import getCurrentSheetStatus from "~/functions/countRecord";
@@ -38,7 +37,7 @@ export const CurrentSheet = (props: props) => {
 		<ContentLayout title='現在のシート' onPress={props.handleClose} titleIcon={<CloseIcon />}>
 			<View style={styles.contentLayout}>
 				<View style={styles.textLayout}>
-					<SubTitleText>{`シート終了日(推定)`}</SubTitleText>
+					<ThemedText type='subTitle'>シート終了日(推定)</ThemedText>
 					<ThemedText type='default'>{estimatedEndDate}</ThemedText>
 				</View>
 				<Sheet />

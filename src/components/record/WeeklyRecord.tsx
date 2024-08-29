@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
-import SubTitleText from "~/components/common/SubTitleText";
 import { ThemedText } from "~/components/common/ThemedText";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getWeekArr } from "~/functions/getDateStrings";
@@ -25,11 +24,11 @@ export const WeeklyRecord = () => {
 			<View style={styles.contentLayout}>
 				<View style={styles.textLayout}>
 					<View>
-						<SubTitleText>服薬</SubTitleText>
+						<ThemedText type='subTitle'>服薬</ThemedText>
 						<ThemedText type='default'>{`${takeMedicineDays}日目`}</ThemedText>
 					</View>
 					<View>
-						<SubTitleText>出血</SubTitleText>
+						<ThemedText type='subTitle'>出血</ThemedText>
 						<ThemedText type='default'>{`${haveBleedingDays}日目`}</ThemedText>
 					</View>
 				</View>
@@ -37,7 +36,7 @@ export const WeeklyRecord = () => {
 				<View style={styles.recordLayout}>
 					{truncateRecord.map((record, index) => (
 						<View key={index} style={styles.checkBoxLayout}>
-							<SubTitleText>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</SubTitleText>
+							<ThemedText type='subTitle'>{weekArr[(index + (7 - truncateRecordLength)) % 7]}</ThemedText>
 							<View style={{ flex: 1 }}>
 								<CheckBox
 									type='medicine'
