@@ -2,7 +2,6 @@ import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
-import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import { ThemedText } from "~/components/common/ThemedText";
 import SheetModal from "~/components/home/SheetModal";
 import { hasNoRecordDays } from "~/functions/countRecord";
@@ -57,7 +56,11 @@ export const HomeTodaysRecord = () => {
 					{record.isAsyncStorageLoaded && (
 						<>
 							<CheckBox
-								textComponent={<CheckboxTitleText>服薬</CheckboxTitleText>}
+								textComponent={
+									<View style={{ marginBottom: 6 }}>
+										<ThemedText type='default'>服薬</ThemedText>
+									</View>
+								}
 								type='medicine'
 								size={"lg"}
 								isChecked={tookMedicine}
@@ -66,7 +69,11 @@ export const HomeTodaysRecord = () => {
 								onPress={() => updateTodayRecord("tookMedicine", !tookMedicine)}
 							/>
 							<CheckBox
-								textComponent={<CheckboxTitleText>出血</CheckboxTitleText>}
+								textComponent={
+									<View style={{ marginBottom: 6 }}>
+										<ThemedText type='default'>出血</ThemedText>
+									</View>
+								}
 								type='bleeding'
 								size={"lg"}
 								isChecked={haveBleeding}

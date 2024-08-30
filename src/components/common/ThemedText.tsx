@@ -45,18 +45,12 @@ const styles = StyleSheet.create({
 		lineHeight: 20,
 		fontFamily: "NotoSansJP_400Regular",
 	},
-	// baseWhite: {
-	// 	color: "gainsboro",
-	// 	fontSize: 16,
-	// 	lineHeight: 24,
-	// 	fontFamily: "NotoSansJP_400Regular",
-	// },
+
 	homeTitle: {
 		color: "white",
 		fontSize: 52,
 		lineHeight: 60,
 		fontFamily: "NotoSansJP_700Bold",
-		marginBottom: 30,
 	},
 	subTitle: {
 		color: "gray",

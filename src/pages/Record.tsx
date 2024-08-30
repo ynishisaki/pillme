@@ -6,7 +6,6 @@ import { MarkedDates } from "react-native-calendars/src/types";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
-import CheckboxTitleText from "~/components/common/CheckboxTitleText";
 import { CustomCalender } from "~/components/common/CustomCalender";
 import { ThemedText } from "~/components/common/ThemedText";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
@@ -161,7 +160,11 @@ export const Record = () => {
 							) : (
 								<View style={styles.checkBoxLayout}>
 									<CheckBox
-										textComponent={<CheckboxTitleText>服薬</CheckboxTitleText>}
+										textComponent={
+											<View style={{ marginBottom: 6 }}>
+												<ThemedText type='default'>服薬</ThemedText>
+											</View>
+										}
 										type='medicine'
 										size={"lg"}
 										isChecked={selectedRecord.tookMedicine}
@@ -171,7 +174,11 @@ export const Record = () => {
 										}
 									/>
 									<CheckBox
-										textComponent={<CheckboxTitleText>出血</CheckboxTitleText>}
+										textComponent={
+											<View style={{ marginBottom: 6 }}>
+												<ThemedText type='default'>服薬</ThemedText>
+											</View>
+										}
 										type='bleeding'
 										size={"lg"}
 										isChecked={selectedRecord.haveBleeding}

@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import BaseWhiteText from "~/components/common/BaseWhiteText";
 import { ThemedText } from "~/components/common/ThemedText";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
 import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
@@ -20,14 +19,20 @@ export const HomeTitle = () => {
 
 	return (
 		<View style={styles.container}>
-			<ThemedText type='homeTitle'>{displayDate}</ThemedText>
-			<BaseWhiteText>服薬　{takeMedicineDays}日目</BaseWhiteText>
+			<View style={{ marginBottom: 30 }}>
+				<ThemedText type='homeTitle'>{displayDate}</ThemedText>
+			</View>
 
-			{haveBleedingDays !== 0 && <BaseWhiteText>出血　{haveBleedingDays}日</BaseWhiteText>}
-			{isTodayRestPeriod && <BaseWhiteText>本日は休薬します</BaseWhiteText>}
-			{isTomorrowStartsRestPeriod && <BaseWhiteText>明日から休薬です</BaseWhiteText>}
-			{hasNoRecordWithoutToday && <BaseWhiteText>記録忘れの日があります</BaseWhiteText>}
-			{!hasNoRecordWithoutToday && hasNoRecordToday && <BaseWhiteText>今日の記録をつけてください</BaseWhiteText>}
+			<ThemedText style={{ color: "gainsboro" }}>服薬　{takeMedicineDays}日目</ThemedText>
+			{haveBleedingDays !== 0 && (
+				<ThemedText style={{ color: "gainsboro" }}>出血　{haveBleedingDays}日</ThemedText>
+			)}
+			{isTodayRestPeriod && <ThemedText style={{ color: "gainsboro" }}>本日は休薬します</ThemedText>}
+			{isTomorrowStartsRestPeriod && <ThemedText style={{ color: "gainsboro" }}>明日から休薬日です</ThemedText>}
+			{hasNoRecordWithoutToday && <ThemedText style={{ color: "gainsboro" }}>記録忘れの日があります</ThemedText>}
+			{!hasNoRecordWithoutToday && hasNoRecordToday && (
+				<ThemedText style={{ color: "gainsboro" }}>今日の記録をつけてください</ThemedText>
+			)}
 		</View>
 	);
 };
