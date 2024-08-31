@@ -3,14 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useState } from "react";
 import "react-native-gesture-handler";
 import MainTabs from "~/navigation/MainTabs";
-import useBackHandler from "~/navigation/useBackHandler";
 import { FirstSettings } from "~/pages/FirstSettings";
 
 const Stack = createStackNavigator();
 
 export default function AppNavigation() {
-	useBackHandler(true);
-
 	const [isFirstTime, setIsFirstTime] = useState(false); // trueだとロード画面から動かない
 
 	// AsyncStorageから記録を取得
