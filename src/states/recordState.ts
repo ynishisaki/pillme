@@ -1,8 +1,7 @@
+import { format } from "@formkit/tempo";
 import { atom, selector } from "recoil";
-import { getDateStrings } from "~/functions/getDateStrings";
 import { dailyRecordType, recordType } from "~/types/record";
-
-export const today = getDateStrings(new Date()); // YYYY-DD-MM
+import { locale, yyyymmdd } from "~/utils/tempo-options";
 
 export const initialRecord: recordType = {
 	initialSheetSettings: {
@@ -17,7 +16,7 @@ export const initialRecord: recordType = {
 	},
 	dailyRecord: [
 		{
-			date: today,
+			date: format(new Date(), yyyymmdd, locale),
 			tookMedicine: false, // 今日薬を飲んだか
 			haveBleeding: false, // 今日出血があったか
 			isRestPeriod: false, // 休薬日か
@@ -78,10 +77,8 @@ export const generatePastRecord = (numOfDays: number): recordType => {
 	let dailyRecord = [] as dailyRecordType[];
 
 	for (let i = 0; i < numOfDays; i++) {
-		const date = new Date();
-		date.setDate(date.getDate() - i);
 		dailyRecord.push({
-			date: getDateStrings(date),
+			date: format(new Date(), yyyymmdd, locale),
 			tookMedicine: i === 0 ? false : true, // 今日の記録はfalse
 			haveBleeding: false,
 			isRestPeriod: false,

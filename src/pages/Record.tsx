@@ -1,3 +1,4 @@
+import { format } from "@formkit/tempo";
 import { useIsFocused } from "@react-navigation/native";
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
@@ -8,11 +9,11 @@ import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
 import { CustomCalender } from "~/components/common/CustomCalender";
 import { ThemedText } from "~/components/common/ThemedText";
-import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
 import { lightBlue, pillColor } from "~/styles/color";
 import ScreenLayout from "~/template/ScreenLayout";
+import { locale, mdweek } from "~/utils/tempo-options";
 
 LocaleConfig.locales.jp = {
 	monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
@@ -34,7 +35,7 @@ export const Record = () => {
 	const selectedRecord = record.dailyRecord[selectedDailyRecordIndex];
 
 	const selectedDate = record.dailyRecord[selectedDailyRecordIndex].date;
-	const dateWeekStringsForDisplay = getDateWeekStringsForDisplay(selectedDate);
+	const dateWeekStringsForDisplay = format(selectedDate, mdweek, locale);
 
 	function handleDayPress(date: DateData) {
 		const pressedDate = date.dateString;

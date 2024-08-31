@@ -1,15 +1,16 @@
+import { format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import { ThemedText } from "~/components/common/ThemedText";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "~/functions/countRecord";
-import { getDateWeekStringsForDisplay } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
+import { locale, mdweek } from "~/utils/tempo-options";
 
 export const HomeTitle = () => {
 	const record = useRecoilValue(recordState);
 
-	const displayDate = getDateWeekStringsForDisplay(record.dailyRecord[0].date);
+	const displayDate = format(record.dailyRecord[0].date, mdweek, locale);
 	const { takeMedicineDays } = countTakeMedicineDays(record);
 	const { haveBleedingDays } = countHaveBleedingDays(record);
 	const isTodayRestPeriod = judgeIsTodayRestPeriod(record);

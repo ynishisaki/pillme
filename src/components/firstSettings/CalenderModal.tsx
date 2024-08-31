@@ -7,11 +7,7 @@ import { CustomCalender } from "~/components/common/CustomCalender";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
 import CustomDatePickerModalButton from "~/components/firstSettings/CustomDatePickerModalButton";
 import { lightBlue } from "~/styles/color";
-
-// tempo options
-const locale = "ja";
-const yyyymmdd = "YYYY-MM-DD";
-const md = "M月D日";
+import { locale, md, yyyymmdd } from "~/utils/tempo-options";
 
 interface props {
 	numOfDays: number;

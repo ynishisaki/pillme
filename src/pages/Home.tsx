@@ -1,3 +1,4 @@
+import { addDay, diffDays, format } from "@formkit/tempo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
 import React, { useEffect } from "react";
@@ -5,15 +6,18 @@ import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import { HomeTitle } from "~/components/home/HomeTitle";
 import { HomeTodaysRecord } from "~/components/home/HomeTodaysRecord";
-import { getDateStrings } from "~/functions/getDateStrings";
 import { judgeIsTodayRestPeriod } from "~/functions/judgeIsRestPeriod";
-import { recordState, today } from "~/states/recordState";
+import { recordState } from "~/states/recordState";
 import ScreenLayout from "~/template/ScreenLayout";
 import { dailyRecordType, recordType } from "~/types/record";
+import { locale, yyyymmdd } from "~/utils/tempo-options";
 
 export const Home = ({ navigation }: { navigation: any }) => {
 	const [record, setRecord] = useRecoilState(recordState);
 	const isFocused = useIsFocused();
+
+	const todayDate = format(new Date(), yyyymmdd, locale); // YYYY-DD-MM
+	console.log("today", todayDate);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -31,43 +35,37 @@ export const Home = ({ navigation }: { navigation: any }) => {
 
 			// AsyncStorageから記録取得、stateにsetする
 			const storedRecord: recordType = JSON.parse(storedRecordAsString);
-			const latestRecordDateString = storedRecord.dailyRecord[0].date;
+			const latestRecordDate = storedRecord.dailyRecord[0].date;
 
 			// アプリ起動日が、前回起動日と同日の場合
-			if (latestRecordDateString === today) {
+			if (latestRecordDate === todayDate) {
 				return setRecord({
 					...storedRecord,
 					isAsyncStorageLoaded: true,
 				});
 			}
 
-			// アプリ起動日が、前回起動日と異なる日だったら、前回から今日までの記録を追加
-			let latestDate = new Date(latestRecordDateString);
-			let todayDate = new Date();
+			// アプリ起動日が、前回起動日と異なる場合
+			// 前回から今日までの記録を追加
+			const numberOfDays = diffDays(todayDate, latestRecordDate);
 
-			todayDate.setHours(0, 0, 0, 0);
-
-			let lapsedDailyRecords: Array<dailyRecordType> = [];
-			// 時刻まで比較すると、左項は0時0分0秒、右項は現在時刻になることに注意
-			while (latestDate.getTime() < todayDate.getTime()) {
-				latestDate.setDate(latestDate.getDate() + 1);
-				lapsedDailyRecords = [
-					{
-						date: getDateStrings(latestDate),
-						tookMedicine: false,
-						haveBleeding: false,
-						isRestPeriod: judgeIsTodayRestPeriod({
-							...storedRecord,
-							dailyRecord: lapsedDailyRecords,
-						}),
-					},
-					...lapsedDailyRecords,
-				];
-			}
+			// 日付の昇順であることに注意
+			const lapsedDailyRecords: Array<dailyRecordType> = Array.from({ length: numberOfDays }, (_, i) => {
+				const date = format(addDay(latestRecordDate, i + 1), yyyymmdd, locale);
+				return {
+					date,
+					tookMedicine: false,
+					haveBleeding: false,
+					isRestPeriod: judgeIsTodayRestPeriod({
+						...storedRecord,
+						dailyRecord: storedRecord.dailyRecord,
+					}),
+				};
+			});
 
 			const updatedRecord = {
 				...storedRecord,
-				dailyRecord: [...lapsedDailyRecords, ...storedRecord.dailyRecord],
+				dailyRecord: [...lapsedDailyRecords.reverse(), ...storedRecord.dailyRecord],
 				isAsyncStorageLoaded: true,
 			};
 
@@ -91,7 +89,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 	// AsyncStorageに記録を保存
 	useEffect(() => {
 		AsyncStorage.setItem("record", JSON.stringify(record));
-		// console.log(record.dailyRecord);
+		console.log(record.dailyRecord);
 		// console.log(record.initialSheetSettings);
 		console.log("stored");
 		console.log();

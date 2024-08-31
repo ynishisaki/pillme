@@ -1,3 +1,4 @@
+import { addDay, format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import ContentLayout from "~/components/ContentLayout";
@@ -5,8 +6,8 @@ import { CloseIcon } from "~/components/Icons";
 import { ThemedText } from "~/components/common/ThemedText";
 import { Sheet } from "~/components/record/Sheet";
 import getCurrentSheetStatus from "~/functions/countRecord";
-import { getDateStringsForDisplay } from "~/functions/getDateStrings";
 import { recordState } from "~/states/recordState";
+import { locale, md } from "~/utils/tempo-options";
 
 interface props {
 	handleClose: () => void;
@@ -27,11 +28,8 @@ export const CurrentSheet = (props: props) => {
 
 	const { remainingDays } = getCurrentSheetStatus(record);
 
-	const today = new Date();
-	const todayDate = today.getDate();
-	const calculateSheetEndDate = today.setDate(todayDate + remainingDays);
-
-	const estimatedEndDate = getDateStringsForDisplay(new Date(calculateSheetEndDate));
+	const calculateSheetEndDate = addDay(new Date(), remainingDays);
+	const estimatedEndDate = format(calculateSheetEndDate, md, locale);
 
 	return (
 		<ContentLayout title='現在のシート' onPress={props.handleClose} titleIcon={<CloseIcon />}>
