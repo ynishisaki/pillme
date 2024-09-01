@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useRecoilValue } from "recoil";
-import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/Icons";
+import { HistoryIcon, HomeIcon, SettingIcon } from "~/components/common/Icons";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { Home } from "~/pages/Home";
 import { Record } from "~/pages/Record";

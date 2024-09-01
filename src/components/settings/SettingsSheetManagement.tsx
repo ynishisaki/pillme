@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import ContentLayout from "~/components/ContentLayout";
+import ContentLayout from "~/components/common/ContentLayout";
 import { ThemedText } from "~/components/common/ThemedText";
 import SettingPicker from "~/components/settings/SettingPicker";
 import { recordState } from "~/states/recordState";

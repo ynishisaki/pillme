@@ -1,8 +1,8 @@
 import { addDay, format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
-import ContentLayout from "~/components/ContentLayout";
-import { CloseIcon } from "~/components/Icons";
+import ContentLayout from "~/components/common/ContentLayout";
+import { CloseIcon } from "~/components/common/Icons";
 import { ThemedText } from "~/components/common/ThemedText";
 import { Sheet } from "~/components/record/Sheet";
 import getCurrentSheetStatus from "~/functions/countRecord";

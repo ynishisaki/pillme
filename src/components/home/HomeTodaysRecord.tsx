@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import ContentLayout from "~/components/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
+import ContentLayout from "~/components/common/ContentLayout";
 import { ThemedText } from "~/components/common/ThemedText";
 import SheetModal from "~/components/home/SheetModal";
 import { hasNoRecordDays } from "~/functions/countRecord";

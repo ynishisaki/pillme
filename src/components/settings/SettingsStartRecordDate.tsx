@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useRecoilState } from "recoil";
-import ContentLayout from "~/components/ContentLayout";
+import ContentLayout from "~/components/common/ContentLayout";
 import { ThemedText } from "~/components/common/ThemedText";
 import CalenderModal from "~/components/firstSettings/CalenderModal";
 import { generatePastRecord, recordState } from "~/states/recordState";

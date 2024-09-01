@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { CancelIcon, DropIcon, PillIcon, QuestionIcon } from "~/components/Icons";
+import { CancelIcon, DropIcon, PillIcon, QuestionIcon } from "~/components/common/Icons";
 import {
 	pillColor,
 	unPressableCheckBoxColor,

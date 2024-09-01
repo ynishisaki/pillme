@@ -5,7 +5,7 @@ import { Alert, StyleSheet, View } from "react-native";
 import { DateData, LocaleConfig } from "react-native-calendars";
 import { MarkedDates } from "react-native-calendars/src/types";
 import { useRecoilState } from "recoil";
-import ContentLayout from "~/components/ContentLayout";
+import ContentLayout from "~/components/common/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
 import { CustomCalender } from "~/components/common/CustomCalender";
 import { ThemedText } from "~/components/common/ThemedText";

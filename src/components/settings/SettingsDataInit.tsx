@@ -5,7 +5,7 @@ import CustomOutlineButton from "~/components/common/CustomOutlineButton";
 import { ThemedText } from "~/components/common/ThemedText";
 import { initialRecord, recordState } from "~/states/recordState";
 import { warningRed } from "~/styles/color";
-import ContentLayout from "../ContentLayout";
+import ContentLayout from "../common/ContentLayout";
 
 export default function SettingsDataInit({ navigation }: { navigation: any }) {
 	const [record, setRecord] = useRecoilState(recordState);
