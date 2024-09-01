@@ -1,4 +1,4 @@
-import { format } from "@formkit/tempo";
+import { addDay, format } from "@formkit/tempo";
 import { atom, selector } from "recoil";
 import { dailyRecordType, recordType } from "~/types/record";
 import { locale, yyyymmdd } from "~/utils/tempo-options";
@@ -77,8 +77,9 @@ export const generatePastRecord = (numOfDays: number): recordType => {
 	let dailyRecord = [] as dailyRecordType[];
 
 	for (let i = 0; i < numOfDays; i++) {
+		const pastDate = addDay(new Date(), -i);
 		dailyRecord.push({
-			date: format(new Date(), yyyymmdd, locale),
+			date: format(pastDate, yyyymmdd, locale),
 			tookMedicine: i === 0 ? false : true, // 今日の記録はfalse
 			haveBleeding: false,
 			isRestPeriod: false,
