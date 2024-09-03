@@ -57,7 +57,15 @@ export function hasNoRecordDays(record: recordType, offset = 0) {
 	};
 }
 
-// 服薬日数
+// 服薬日数(全期間、今日含む)
+export function countTotalTakeMedicineDays(record: recordType) {
+	const takeMedicineDays = record.dailyRecord.filter((dailyRecord) => dailyRecord.tookMedicine).length;
+	const isTodayTookMedicine = record.dailyRecord[0].tookMedicine;
+
+	return isTodayTookMedicine ? takeMedicineDays : takeMedicineDays + 1;
+}
+
+// 服薬日数(最新の服薬開始日から)
 export function countTakeMedicineDays(record: recordType, offset = 0) {
 	const trimedDairyRecord = [...record.dailyRecord].slice(offset);
 	const startTakeMedicineIndex = countStartTakeMedicineIndex(record, offset);

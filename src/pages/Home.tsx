@@ -17,7 +17,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 	const isFocused = useIsFocused();
 
 	const todayDate = format(new Date(), yyyymmdd, locale); // YYYY-DD-MM
-	console.log("today", todayDate);
+	// console.log("today", todayDate);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -89,7 +89,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 	// AsyncStorageに記録を保存
 	useEffect(() => {
 		AsyncStorage.setItem("record", JSON.stringify(record));
-		console.log(record.dailyRecord);
+		// console.log(record.dailyRecord);
 		// console.log(record.initialSheetSettings);
 		console.log("stored");
 		console.log();

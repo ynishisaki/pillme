@@ -2,7 +2,9 @@ import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/common/ContentLayout";
 import { ThemedText } from "~/components/common/ThemedText";
+import CurrentSettingsSheet from "~/components/settings/CurrentSettingsSheet";
 import SettingPicker from "~/components/settings/SettingPicker";
+import { getBeginSheetIndex, getTodaySheetIndex } from "~/functions/getSheetIndex";
 import { recordState } from "~/states/recordState";
 
 interface Props {
@@ -10,6 +12,12 @@ interface Props {
 }
 export default function SettingsSheetManagement(props: Props) {
 	const [record, setRecord] = useRecoilState(recordState);
+
+	// 今日服薬するピルの位置インデックス
+	const todaySheetIndex = getTodaySheetIndex(record);
+
+	// 服薬開始日のピルの位置インデックス
+	const beginSheetIndex = getBeginSheetIndex(record, todaySheetIndex);
 
 	function setNumOfPillsPerSheet(itemValue: number) {
 		setRecord({
@@ -25,12 +33,12 @@ export default function SettingsSheetManagement(props: Props) {
 		});
 	}
 
-	function setBeginSheetIndex(itemValue: number) {
+	function setTodayPillIndex(itemValue: number) {
 		setRecord({
 			...record,
 			initialSheetSettings: {
 				...record.initialSheetSettings,
-				beginSheetIndex: Number(itemValue) - 1, // 0スタート
+				beginSheetIndex: getBeginSheetIndex(record, itemValue - 1),
 			},
 		});
 	}
@@ -43,6 +51,8 @@ export default function SettingsSheetManagement(props: Props) {
 					<ThemedText type='overview'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
 				)}
 
+				<CurrentSettingsSheet />
+
 				<SettingPicker
 					description={"１シートの錠数(プラセボ除く)"}
 					selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
@@ -52,11 +62,11 @@ export default function SettingsSheetManagement(props: Props) {
 				/>
 
 				<SettingPicker
-					description={"シートの開始位置"}
-					selectedValue={record.initialSheetSettings.beginSheetIndex + 1}
+					description={"本日服薬するピルの位置"}
+					selectedValue={todaySheetIndex + 1}
 					minValue={1}
 					maxValue={record.initialSheetSettings.numOfPillsPerSheet}
-					onChange={setBeginSheetIndex}
+					onChange={setTodayPillIndex}
 				/>
 			</View>
 		</ContentLayout>

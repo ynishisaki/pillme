@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useRecoilValue } from "recoil";
 import getCurrentSheetStatus from "~/functions/countRecord";
+import { getTodaySheetIndex } from "~/functions/getSheetIndex";
 import { recordState } from "~/states/recordState";
 import { pillColor, unPressableCheckBoxColor } from "~/styles/color";
 
@@ -9,12 +10,21 @@ export const Sheet = () => {
 	const record = useRecoilValue(recordState);
 	const { tookDays, remainingDays } = getCurrentSheetStatus(record);
 
+	const isTodayTookMedicine = record.dailyRecord[0].tookMedicine;
+	const todaySheetIndex = getTodaySheetIndex(record);
+
 	const checkBoxes = [];
 	// 現在のシートの飲んだ分
 	if (tookDays > 0) {
 		for (let i = 0; i < tookDays; i++) {
 			checkBoxes.push(
-				<View key={i} style={styles.checkBoxLayout}>
+				<View
+					key={i}
+					style={
+						isTodayTookMedicine && i === todaySheetIndex
+							? styles.todayCheckBoxLayout
+							: styles.checkBoxLayout
+					}>
 					<BouncyCheckbox
 						size={15}
 						fillColor={unPressableCheckBoxColor}
@@ -33,7 +43,9 @@ export const Sheet = () => {
 	// 現在のシートの残り分
 	for (let i = 0; i < remainingDays; i++) {
 		checkBoxes.push(
-			<View key={1000 + i} style={styles.checkBoxLayout}>
+			<View
+				key={1000 + i}
+				style={!isTodayTookMedicine && i === 0 ? styles.todayCheckBoxLayout : styles.checkBoxLayout}>
 				<BouncyCheckbox
 					size={15}
 					fillColor={unPressableCheckBoxColor}
@@ -82,6 +94,14 @@ const styles = StyleSheet.create({
 	checkBoxLayout: {
 		margin: 5,
 		marginVertical: 7,
+	},
+	todayCheckBoxLayout: {
+		margin: 0,
+		marginVertical: 2,
+		padding: 3,
+		borderRadius: 9999,
+		borderWidth: 2,
+		borderColor: pillColor,
 	},
 	dammyCheckBox: {
 		width: 15,
