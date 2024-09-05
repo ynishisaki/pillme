@@ -5,7 +5,7 @@ import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMe
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import SettingsStartRecordDate from "~/components/settings/SettingsStartRecordDate";
 import { recordState } from "~/states/recordState";
-import { lightBlue } from "~/styles/color";
+import { HeaderColor, lightBlue, pillColor } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 
 export const FirstSettings = ({ navigation }: { navigation: any }) => {
@@ -33,8 +33,9 @@ export const FirstSettings = ({ navigation }: { navigation: any }) => {
 					<CustomOutlineButton
 						onPress={onPressDecideButton}
 						title='アプリを開始する'
-						bgColor={lightBlue}
+						bgColor={pillColor}
 						textColor='whitesmoke'
+						borderColor='transparent'
 					/>
 				</View>
 			</View>

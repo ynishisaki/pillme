@@ -6,6 +6,7 @@ interface Props {
 	title?: string;
 	bgColor?: string;
 	textColor?: string;
+	borderColor?: string;
 	iconComponent?: React.ReactNode;
 }
 
@@ -15,7 +16,7 @@ export default function CustomOutlineButton(props: Props) {
 			style={({ pressed }) => [
 				{
 					backgroundColor: pressed ? "lightgray" : props.bgColor,
-					borderColor: props.textColor,
+					borderColor: props.borderColor ?? props.textColor,
 				},
 				styles.button,
 			]}
