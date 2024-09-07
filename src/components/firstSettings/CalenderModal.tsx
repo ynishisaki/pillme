@@ -1,10 +1,11 @@
 import { addDay, diffDays, format } from "@formkit/tempo";
 import { useState } from "react";
-import { Modal, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Modal, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { DateData } from "react-native-calendars";
 import { MarkedDates } from "react-native-calendars/src/types";
 import { CustomCalender } from "~/components/common/CustomCalender";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
+import { ThemedText } from "~/components/common/ThemedText";
 import CustomDatePickerModalButton from "~/components/firstSettings/CustomDatePickerModalButton";
 import { lightBlue } from "~/styles/color";
 import { locale, md, yyyymmdd } from "~/utils/tempo-options";
@@ -67,7 +68,7 @@ export default function CalenderModal(props: props) {
 
 						<View style={styles.modalView}>
 							<View>
-								<Text>最新の服薬開始日</Text>
+								<ThemedText>最新の服薬開始日</ThemedText>
 								<View>
 									<CustomCalender
 										handleDayPress={handleDayPress}
@@ -75,7 +76,9 @@ export default function CalenderModal(props: props) {
 										minDate={minDateStr}
 										maxDate={maxDateStr}
 									/>
-									<Text>{`${selectedDateForDisplay}（本日服薬${currentNumOfDays}日目）`}</Text>
+									<ThemedText>
+										{`${selectedDateForDisplay}（本日服薬${currentNumOfDays}日目）`}
+									</ThemedText>
 								</View>
 							</View>
 

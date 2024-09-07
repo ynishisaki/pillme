@@ -26,7 +26,7 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 
 	const onLayoutRootView = useCallback(async () => {
 		if (fontsLoaded || fontError) {
-			await SplashScreen.hideAsync();
+			// await SplashScreen.hideAsync();
 		}
 	}, [fontsLoaded, fontError]);
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import ContentLayout from "~/components/common/ContentLayout";
 import { ThemedText } from "~/components/common/ThemedText";
@@ -24,13 +24,13 @@ export default function SettingsStartRecordDate(props: Props) {
 	return (
 		<ContentLayout title='服薬開始日'>
 			<View style={styles.container}>
-				<ThemedText type='overview'>服薬開始日を設定します。</ThemedText>
+				<ThemedText type='description'>服薬開始日を設定します。</ThemedText>
 				{props.isFirstSettings && (
 					<ThemedText type='warn'>※この設定はアプリ開始後に変更できません。</ThemedText>
 				)}
 
 				<View style={styles.contentLayout}>
-					<Text style={styles.pickerText}>最新の服薬開始日</Text>
+					<ThemedText>最新の服薬開始日</ThemedText>
 					<CalenderModal numOfDays={numOfRecordDays} handleSetNumOfDays={setNumOfRecordDays}></CalenderModal>
 				</View>
 			</View>
@@ -43,12 +43,6 @@ const styles = StyleSheet.create({
 		margin: 20,
 	},
 	contentLayout: {
-		paddingVertical: 6,
-	},
-	pickerText: {
-		color: "dimgray",
-		fontSize: 14,
-		lineHeight: 24,
-		fontFamily: "NotoSansJP_400Regular",
+		paddingVertical: 16,
 	},
 });

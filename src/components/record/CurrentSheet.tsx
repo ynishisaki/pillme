@@ -2,18 +2,13 @@ import { addDay, format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 import ContentLayout from "~/components/common/ContentLayout";
-import { CloseIcon } from "~/components/common/Icons";
 import { ThemedText } from "~/components/common/ThemedText";
 import { Sheet } from "~/components/record/Sheet";
 import getCurrentSheetStatus from "~/functions/countRecord";
 import { recordState } from "~/states/recordState";
 import { locale, md } from "~/utils/tempo-options";
 
-interface props {
-	handleClose: () => void;
-}
-
-export const CurrentSheet = (props: props) => {
+export const CurrentSheet = () => {
 	const record = useRecoilValue(recordState);
 
 	// シートの終了日を計算
@@ -32,12 +27,9 @@ export const CurrentSheet = (props: props) => {
 	const estimatedEndDate = format(calculateSheetEndDate, md, locale);
 
 	return (
-		<ContentLayout title='現在のシート' onPress={props.handleClose} titleIcon={<CloseIcon />}>
+		<ContentLayout title='現在のシート'>
 			<View style={styles.contentLayout}>
-				<View style={styles.textLayout}>
-					<ThemedText type='subTitle'>シート終了日(推定)</ThemedText>
-					<ThemedText type='default'>{estimatedEndDate}</ThemedText>
-				</View>
+				<ThemedText>シート終了日(推定)　{estimatedEndDate}</ThemedText>
 				<Sheet />
 			</View>
 		</ContentLayout>
@@ -47,16 +39,7 @@ export const CurrentSheet = (props: props) => {
 const styles = StyleSheet.create({
 	contentLayout: {
 		padding: 20,
-		flexDirection: "row",
-		justifyContent: "space-between",
-		columnGap: 10,
-	},
-	// contentLayout: {
-	// 	flexDirection: "row",
-	// 	justifyContent: "center",
-	// 	padding: 20,
-	// },
-	textLayout: {
-		marginTop: 16,
+		flexDirection: "column",
+		gap: 10,
 	},
 });

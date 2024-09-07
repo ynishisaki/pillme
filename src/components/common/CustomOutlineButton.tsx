@@ -1,5 +1,6 @@
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
+import { ThemedText } from "~/components/common/ThemedText";
 
 interface Props {
 	onPress: () => void;
@@ -22,15 +23,9 @@ export default function CustomOutlineButton(props: Props) {
 			]}
 			onPress={props.onPress}>
 			{props.iconComponent}
-			<Text
-				style={[
-					styles.text,
-					{
-						color: props.textColor,
-					},
-				]}>
+			<ThemedText type='bold' style={{ color: props.textColor }}>
 				{props.title}
-			</Text>
+			</ThemedText>
 		</Pressable>
 	);
 }
@@ -45,10 +40,5 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 8,
 		elevation: 1,
-	},
-	text: {
-		fontSize: 14,
-		lineHeight: 20,
-		fontFamily: "NotoSansJP_700Bold",
 	},
 });

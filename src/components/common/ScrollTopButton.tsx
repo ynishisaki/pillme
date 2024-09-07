@@ -1,4 +1,3 @@
-import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { ArrowUpIcon } from "~/components/common/Icons";
 

@@ -7,6 +7,7 @@ import SheetModal from "~/components/home/SheetModal";
 import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
+import { pillColor } from "~/styles/color";
 import { recordType } from "~/types/record";
 
 export const HomeTodaysRecord = () => {
@@ -50,7 +51,12 @@ export const HomeTodaysRecord = () => {
 		<ContentLayout title='今日の記録'>
 			<View style={styles.contentLayout}>
 				{!hasNoRecordWithoutToday && hasNoRecordToday && (
-					<ThemedText type='warn'>今日の記録をつけてください</ThemedText>
+					<ThemedText
+						style={{
+							color: pillColor,
+						}}>
+						今日の記録をつけてください
+					</ThemedText>
 				)}
 				<View style={styles.checkBoxLayout}>
 					{record.isAsyncStorageLoaded && (

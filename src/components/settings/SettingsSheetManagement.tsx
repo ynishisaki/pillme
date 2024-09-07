@@ -46,9 +46,9 @@ export default function SettingsSheetManagement(props: Props) {
 	return (
 		<ContentLayout title='シート設定'>
 			<View style={styles.container}>
-				<ThemedText type='overview'>記録開始時のシートの錠数と開始位置を設定します。</ThemedText>
+				<ThemedText type='description'>記録開始時のシートの錠数と開始位置を設定します。</ThemedText>
 				{props.isFirstSettings && (
-					<ThemedText type='overview'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
+					<ThemedText type='description'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
 				)}
 
 				<CurrentSettingsSheet />

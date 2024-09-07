@@ -6,16 +6,7 @@ import { pillColor } from "~/styles/color";
 export type ThemedTextProps = TextProps & {
 	lightColor?: string;
 	darkColor?: string;
-	type?:
-		| "default"
-		| "homeTitle"
-		| "subTitle"
-		| "overview"
-		| "warn"
-		| "title"
-		| "defaultSemiBold"
-		| "subtitle"
-		| "link";
+	type?: "default" | "bold" | "homeTitle" | "contentTitle" | "description" | "warn";
 };
 
 export function ThemedText({ style, lightColor, darkColor, type = "default", ...rest }: ThemedTextProps) {
@@ -23,14 +14,11 @@ export function ThemedText({ style, lightColor, darkColor, type = "default", ...
 		<Text
 			style={[
 				type === "default" ? styles.default : undefined,
+				type === "bold" ? styles.bold : undefined,
 				type === "homeTitle" ? styles.homeTitle : undefined,
-				type === "subTitle" ? styles.subTitle : undefined,
-				type === "overview" ? styles.overview : undefined,
+				type === "contentTitle" ? styles.contentTitle : undefined,
+				type === "description" ? styles.description : undefined,
 				type === "warn" ? styles.warn : undefined,
-				type === "title" ? styles.title : undefined,
-				type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-				type === "subtitle" ? styles.subtitle : undefined,
-				type === "link" ? styles.link : undefined,
 				style,
 			]}
 			{...rest}
@@ -41,24 +29,29 @@ export function ThemedText({ style, lightColor, darkColor, type = "default", ...
 const styles = StyleSheet.create({
 	default: {
 		color: "dimgray",
-		fontSize: 14,
+		fontSize: 16,
 		lineHeight: 20,
 		fontFamily: "NotoSansJP_400Regular",
 	},
-
+	bold: {
+		color: "dimgray",
+		fontSize: 16,
+		lineHeight: 20,
+		fontFamily: "NotoSansJP_700Bold",
+	},
 	homeTitle: {
 		color: "white",
-		fontSize: 52,
+		fontSize: 56,
 		lineHeight: 60,
 		fontFamily: "NotoSansJP_700Bold",
 	},
-	subTitle: {
-		color: "gray",
-		fontSize: 10,
-		lineHeight: 16,
-		fontFamily: "NotoSansJP_400Regular",
+	contentTitle: {
+		color: "white",
+		fontSize: 24,
+		fontFamily: "NotoSansJP_700Bold",
+		lineHeight: 32,
 	},
-	overview: {
+	description: {
 		color: "gray",
 		fontSize: 12,
 		lineHeight: 16,
@@ -69,30 +62,5 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		lineHeight: 16,
 		fontFamily: "NotoSansJP_400Regular",
-	},
-
-	defaultSemiBold: {
-		fontSize: 16,
-		lineHeight: 24,
-		fontWeight: "600",
-	},
-	topTitle: {
-		fontSize: 40,
-		fontWeight: "bold",
-		lineHeight: 40,
-	},
-	title: {
-		fontSize: 32,
-		fontWeight: "bold",
-		lineHeight: 32,
-	},
-	subtitle: {
-		fontSize: 20,
-		fontWeight: "bold",
-	},
-	link: {
-		lineHeight: 30,
-		fontSize: 16,
-		color: "#0a7ea4",
 	},
 });

@@ -38,8 +38,8 @@ export default function SettingsDataInit({ navigation }: { navigation: any }) {
 	return (
 		<ContentLayout title='データの削除'>
 			<View style={styles.contentLayout}>
-				<ThemedText type='overview'>本アプリ内のすべてのデータを削除します。</ThemedText>
-				<ThemedText type='overview'>この操作を元に戻すことはできません。</ThemedText>
+				<ThemedText type='description'>本アプリ内のすべてのデータを削除します。</ThemedText>
+				<ThemedText type='description'>この操作を元に戻すことはできません。</ThemedText>
 
 				<View style={{ height: 20 }} />
 				<CustomOutlineButton

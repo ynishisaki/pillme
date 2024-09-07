@@ -60,11 +60,13 @@ export default function SettingsMedicationMethod(props: Props) {
 	return (
 		<ContentLayout title='服薬方法'>
 			<View style={styles.contentLayout}>
-				<ThemedText type='overview'>このアプリは、120日連続服用を対象としています。</ThemedText>
-				<ThemedText type='overview'>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</ThemedText>
+				<ThemedText type='description'>このアプリは、120日連続服用を対象としています。</ThemedText>
+				<ThemedText type='description'>
+					お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。
+				</ThemedText>
 
 				{props.isFirstSettings && (
-					<ThemedText type='overview'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
+					<ThemedText type='description'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
 				)}
 
 				<CurrentSettings />

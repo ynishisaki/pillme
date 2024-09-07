@@ -31,7 +31,7 @@ export default function MainTabs() {
 					},
 					headerShown: false,
 					tabBarActiveTintColor: softBlue,
-					tabBarBadge: hasNoRecordToday || hasNoRecordWithoutToday ? "!" : undefined,
+					tabBarBadge: !hasNoRecordWithoutToday && hasNoRecordToday ? "!" : undefined,
 				}}
 			/>
 			<Tab.Screen
@@ -49,6 +49,7 @@ export default function MainTabs() {
 					},
 					headerShown: false,
 					tabBarActiveTintColor: softBlue,
+					tabBarBadge: hasNoRecordWithoutToday ? "!" : undefined,
 				}}
 			/>
 			<Tab.Screen

@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 import CustomOutlineButton from "~/components/common/CustomOutlineButton";
+import { ThemedText } from "~/components/common/ThemedText";
 import SettingsMedicationMethod from "~/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "~/components/settings/SettingsSheetManagement";
 import SettingsStartRecordDate from "~/components/settings/SettingsStartRecordDate";
 import { recordState } from "~/states/recordState";
-import { HeaderColor, lightBlue, pillColor } from "~/styles/color";
+import { pillColor } from "~/styles/color";
 import ScrollableScreenLayout from "~/template/ScrollableScreenLayout";
 
 export const FirstSettings = ({ navigation }: { navigation: any }) => {
@@ -22,7 +23,7 @@ export const FirstSettings = ({ navigation }: { navigation: any }) => {
 		<ScrollableScreenLayout>
 			<View style={styles.viewLayout}>
 				<View>
-					<Text style={styles.titleText}>初期設定</Text>
+					<ThemedText type='contentTitle'>初期設定</ThemedText>
 				</View>
 
 				<SettingsMedicationMethod isFirstSettings />
@@ -49,12 +50,7 @@ const styles = StyleSheet.create({
 		marginVertical: 20,
 		rowGap: 20,
 	},
-	titleText: {
-		color: "white",
-		fontSize: 30,
-		lineHeight: 36,
-		fontFamily: "NotoSansJP_700Bold",
-	},
+
 	buttonContainer: {
 		rowGap: 6,
 	},

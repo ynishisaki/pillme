@@ -16,10 +16,10 @@ export default function CurrentSettings() {
 			<ThemedText type='default'>現在の設定内容</ThemedText>
 
 			<>
-				<ThemedText type='overview'>
+				<ThemedText type='description'>
 					{`服用1日目～${minConteniousTakingDays - 1}日目までは出血がみられても連続して服用します。`}
 				</ThemedText>
-				<ThemedText type='overview'>
+				<ThemedText type='description'>
 					{`服用${minConteniousTakingDays}日目〜${maxConteniousTakingDays}日目の間に${conteniousBleeingDaysForRest}日連続で出血が見られた場合、服用を中止し、休薬期間を翌日から${stopTakingDays}日間とします。`}
 				</ThemedText>
 			</>

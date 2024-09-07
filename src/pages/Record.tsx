@@ -5,10 +5,11 @@ import { Alert, StyleSheet, View } from "react-native";
 import { DateData, LocaleConfig } from "react-native-calendars";
 import { MarkedDates } from "react-native-calendars/src/types";
 import { useRecoilState } from "recoil";
-import ContentLayout from "~/components/common/ContentLayout";
 import CheckBox from "~/components/common/CheckBox";
+import ContentLayout from "~/components/common/ContentLayout";
 import { CustomCalender } from "~/components/common/CustomCalender";
 import { ThemedText } from "~/components/common/ThemedText";
+import { hasNoRecordDays } from "~/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "~/functions/judgeIsRestPeriod";
 import { recordState } from "~/states/recordState";
 import { lightBlue, pillColor } from "~/styles/color";
@@ -27,6 +28,8 @@ export const Record = () => {
 	const isFocused = useIsFocused();
 
 	const [record, setRecord] = useRecoilState(recordState);
+
+	const { hasNoRecordWithoutToday } = hasNoRecordDays(record);
 
 	const [selectedDailyRecordIndex, setSelectedDailyRecordIndex] = useState(0);
 	const [isRecordNone, setIsRecordNone] = useState(false);
@@ -146,6 +149,11 @@ export const Record = () => {
 			{isFocused && (
 				<View style={styles.viewLayout}>
 					<ContentLayout title='服薬カレンダー'>
+						{hasNoRecordWithoutToday && (
+							<View style={{ margin: 20 }}>
+								<ThemedText style={{ color: pillColor }}>記録忘れの日があります</ThemedText>
+							</View>
+						)}
 						<CustomCalender
 							handleDayPress={handleDayPress}
 							markingType={"multi-dot"}
@@ -163,7 +171,7 @@ export const Record = () => {
 									<CheckBox
 										textComponent={
 											<View style={{ marginBottom: 6 }}>
-												<ThemedText type='default'>服薬</ThemedText>
+												<ThemedText>服薬</ThemedText>
 											</View>
 										}
 										type='medicine'
@@ -177,7 +185,7 @@ export const Record = () => {
 									<CheckBox
 										textComponent={
 											<View style={{ marginBottom: 6 }}>
-												<ThemedText type='default'>服薬</ThemedText>
+												<ThemedText>出血</ThemedText>
 											</View>
 										}
 										type='bleeding'
