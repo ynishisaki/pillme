@@ -1,4 +1,4 @@
-import { recordType } from "~/types/record";
+import { recordType } from "@/types/record";
 
 // 3日連続で出血しているが、24日連続投与していないので、休薬しない
 export const testDataOne: recordType = {

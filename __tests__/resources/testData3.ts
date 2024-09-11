@@ -1,4 +1,4 @@
-import { recordType } from "~/types/record";
+import { recordType } from "@/types/record";
 
 // "2023-01-01" ~ "2023-04-30": 120日間
 const dateList = [
