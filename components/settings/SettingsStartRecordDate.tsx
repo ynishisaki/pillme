@@ -1,6 +1,6 @@
 import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
-import CalenderModal from "@/components/firstSettings/CalenderModal";
+import CalenderModal from "@/components/initial-settings/CalenderModal";
 import { generatePastRecord, recordState } from "@/states/recordState";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";

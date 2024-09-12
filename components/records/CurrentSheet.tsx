@@ -1,9 +1,9 @@
 import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
-import { Sheet } from "@/components/record/Sheet";
+import { Sheet } from "@/components/records/Sheet";
+import { locale, md } from "@/constants/tempo-options";
 import getCurrentSheetStatus from "@/functions/countRecord";
 import { recordState } from "@/states/recordState";
-import { locale, md } from "@/utils/tempo-options";
 import { addDay, format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";

@@ -1,4 +1,4 @@
-import { pillColor } from "@/styles/color";
+import { pillColor } from "@/constants/color";
 import { StyleSheet, Text, type TextProps } from "react-native";
 
 // import { useThemeColor } from "@/hooks/useThemeColor";

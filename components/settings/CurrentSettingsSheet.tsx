@@ -1,5 +1,5 @@
 import { ThemedText } from "@/components/common/ThemedText";
-import { Sheet } from "@/components/record/Sheet";
+import { Sheet } from "@/components/records/Sheet";
 import { StyleSheet, View } from "react-native";
 
 export default function CurrentSettingsSheet() {

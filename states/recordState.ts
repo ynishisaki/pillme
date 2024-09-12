@@ -1,5 +1,5 @@
+import { locale, yyyymmdd } from "@/constants/tempo-options";
 import { dailyRecordType, recordType } from "@/types/record";
-import { locale, yyyymmdd } from "@/utils/tempo-options";
 import { addDay, format } from "@formkit/tempo";
 import { atom, selector } from "recoil";
 
@@ -28,46 +28,6 @@ export const initialRecord: recordType = {
 export const recordState = atom({
 	key: "recordState",
 	default: initialRecord,
-});
-
-export const recordStatusSelector = selector({
-	key: "recordStatusSelector",
-	get: ({ get }) => {
-		const record = get(recordState);
-
-		return {};
-	},
-});
-
-// initialRecordから計算されるstate
-interface monthlyRecordType {
-	[yearMonth: string]: [dailyRecordType & { index: number }];
-}
-export const monthlyRecordState = selector({
-	key: "monthlyRecord",
-	get: ({ get }) => {
-		const record = get(recordState);
-		const monthlyRecord: monthlyRecordType = {};
-
-		record.dailyRecord.forEach((dailyRecord, index) => {
-			// 今日の記録は表示しない
-			if (index === 0) return;
-
-			const yearMonth = dailyRecord.date.slice(0, 7);
-			const currentRecord = record.dailyRecord[index];
-
-			if (!monthlyRecord[yearMonth]) {
-				monthlyRecord[yearMonth] = [{ index: index, ...currentRecord }];
-				return;
-			}
-
-			monthlyRecord[yearMonth].push({ index: index, ...currentRecord });
-		});
-
-		const oldestYearMonthIndex = Object.keys(monthlyRecord).length - 1;
-
-		return monthlyRecord;
-	},
 });
 
 export const generatePastRecord = (numOfDays: number): recordType => {

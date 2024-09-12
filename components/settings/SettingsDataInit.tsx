@@ -1,7 +1,7 @@
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
 import { ThemedText } from "@/components/common/ThemedText";
+import { warningRed } from "@/constants/color";
 import { initialRecord, recordState } from "@/states/recordState";
-import { warningRed } from "@/styles/color";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { Alert, StyleSheet, View } from "react-native";

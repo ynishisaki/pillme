@@ -1,11 +1,11 @@
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
+import ScrollableScreenLayout from "@/components/common/ScrollableScreenLayout";
 import { ThemedText } from "@/components/common/ThemedText";
 import SettingsMedicationMethod from "@/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "@/components/settings/SettingsSheetManagement";
 import SettingsStartRecordDate from "@/components/settings/SettingsStartRecordDate";
-import ScrollableScreenLayout from "@/components/template/ScrollableScreenLayout";
+import { pillColor } from "@/constants/color";
 import { recordState } from "@/states/recordState";
-import { pillColor } from "@/styles/color";
 import { useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";

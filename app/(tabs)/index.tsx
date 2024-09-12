@@ -1,10 +1,10 @@
+import ScreenLayout from "@/components/common/ScreenLayout";
 import { HomeTitle } from "@/components/home/HomeTitle";
 import { HomeTodaysRecord } from "@/components/home/HomeTodaysRecord";
-import ScreenLayout from "@/components/template/ScreenLayout";
+import { locale, yyyymmdd } from "@/constants/tempo-options";
 import { judgeIsTodayRestPeriod } from "@/functions/judgeIsRestPeriod";
 import { recordState } from "@/states/recordState";
 import { dailyRecordType, recordType } from "@/types/record";
-import { locale, yyyymmdd } from "@/utils/tempo-options";
 import { addDay, diffDays, format } from "@formkit/tempo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";

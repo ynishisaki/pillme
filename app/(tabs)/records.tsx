@@ -1,13 +1,13 @@
 import CheckBox from "@/components/common/CheckBox";
 import ContentLayout from "@/components/common/ContentLayout";
 import { CustomCalender } from "@/components/common/CustomCalender";
+import ScreenLayout from "@/components/common/ScreenLayout";
 import { ThemedText } from "@/components/common/ThemedText";
-import ScreenLayout from "@/components/template/ScreenLayout";
+import { lightBlue, pillColor } from "@/constants/color";
+import { locale, mdweek } from "@/constants/tempo-options";
 import { hasNoRecordDays } from "@/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "@/functions/judgeIsRestPeriod";
 import { recordState } from "@/states/recordState";
-import { lightBlue, pillColor } from "@/styles/color";
-import { locale, mdweek } from "@/utils/tempo-options";
 import { format } from "@formkit/tempo";
 import { useIsFocused } from "@react-navigation/native";
 import { useState } from "react";

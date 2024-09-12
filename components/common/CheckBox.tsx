@@ -4,7 +4,7 @@ import {
 	unPressableCheckBoxColor,
 	unPressableUnknownCheckBoxColor,
 	unfillCheckBoxColor,
-} from "@/styles/color";
+} from "@/constants/color";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";

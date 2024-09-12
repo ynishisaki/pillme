@@ -1,7 +1,7 @@
+import ScrollableScreenLayout from "@/components/common/ScrollableScreenLayout";
 import SettingsDataInit from "@/components/settings/SettingsDataInit";
 import SettingsMedicationMethod from "@/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "@/components/settings/SettingsSheetManagement";
-import ScrollableScreenLayout from "@/components/template/ScrollableScreenLayout";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 

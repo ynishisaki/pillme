@@ -1,5 +1,5 @@
 import { ThemedText } from "@/components/common/ThemedText";
-import { HeaderColor, translucentWhite } from "@/styles/color";
+import { HeaderColor, translucentWhite } from "@/constants/color";
 import { StyleSheet, View } from "react-native";
 
 interface Props {

@@ -1,7 +1,7 @@
+import { pillColor, unPressableCheckBoxColor } from "@/constants/color";
 import getCurrentSheetStatus from "@/functions/countRecord";
 import { getTodaySheetIndex } from "@/functions/getSheetIndex";
 import { recordState } from "@/states/recordState";
-import { pillColor, unPressableCheckBoxColor } from "@/styles/color";
 import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useRecoilValue } from "recoil";

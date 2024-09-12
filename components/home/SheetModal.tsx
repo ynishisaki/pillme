@@ -1,6 +1,6 @@
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
-import { CurrentSheet } from "@/components/record/CurrentSheet";
-import { secondaryColor } from "@/styles/color";
+import { CurrentSheet } from "@/components/records/CurrentSheet";
+import { secondaryColor } from "@/constants/color";
 import { useState } from "react";
 import { Modal, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 

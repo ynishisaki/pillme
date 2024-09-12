@@ -1,9 +1,9 @@
 import { HistoryIcon, HomeIcon, SettingIcon } from "@/components/common/Icons";
 import { Colors } from "@/constants/Colors";
+import { softBlue } from "@/constants/color";
 import { hasNoRecordDays } from "@/functions/countRecord";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { recordState } from "@/states/recordState";
-import { softBlue } from "@/styles/color";
 import { Tabs } from "expo-router";
 import { useRecoilValue } from "recoil";
 

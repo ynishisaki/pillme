@@ -1,8 +1,8 @@
 import { ThemedText } from "@/components/common/ThemedText";
+import { locale, mdweek } from "@/constants/tempo-options";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "@/functions/countRecord";
 import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "@/functions/judgeIsRestPeriod";
 import { recordState } from "@/states/recordState";
-import { locale, mdweek } from "@/utils/tempo-options";
 import { format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
