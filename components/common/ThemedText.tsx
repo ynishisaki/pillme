@@ -41,15 +41,15 @@ const styles = StyleSheet.create({
 	},
 	homeTitle: {
 		color: "white",
-		fontSize: 56,
+		fontSize: 52,
 		lineHeight: 60,
 		fontFamily: "NotoSansJP_700Bold",
 	},
 	contentTitle: {
 		color: "white",
-		fontSize: 24,
+		fontSize: 22,
 		fontFamily: "NotoSansJP_700Bold",
-		lineHeight: 32,
+		lineHeight: 30,
 	},
 	description: {
 		color: "gray",

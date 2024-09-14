@@ -209,13 +209,11 @@ export default function RecordsScreen() {
 const styles = StyleSheet.create({
 	viewLayout: {
 		flex: 1,
-		// justifyContent: "center",
 		justifyContent: "flex-end",
-		// alignItems: "center",
-		rowGap: 40,
+		rowGap: 20,
 	},
 	contentLayout: {
-		padding: 20,
+		padding: 16,
 	},
 	checkBoxLayout: {
 		flexDirection: "row",
