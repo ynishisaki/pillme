@@ -1,6 +1,5 @@
-import { HistoryIcon, HomeIcon, SettingIcon } from "@/components/common/Icons";
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
-import { softBlue } from "@/constants/color";
 import { hasNoRecordDays } from "@/functions/countRecord";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { recordState } from "@/states/recordState";
@@ -23,15 +22,14 @@ export default function TabLayout() {
 				options={{
 					tabBarLabel: "ホーム",
 					tabBarLabelStyle: {
-						fontSize: 12,
-						lineHeight: 14,
+						fontSize: 10,
+						lineHeight: 12,
 						fontFamily: "NotoSansJP_400Regular",
 					},
-					tabBarIcon: (parameter) => {
-						return <HomeIcon color={parameter.focused ? softBlue : undefined} />;
-					},
+					tabBarIcon: ({ color, focused }) => (
+						<TabBarIcon name={focused ? "home" : "home-outline"} color={color} />
+					),
 					headerShown: false,
-					tabBarActiveTintColor: softBlue,
 					tabBarBadge: !hasNoRecordWithoutToday && hasNoRecordToday ? "!" : undefined,
 				}}
 			/>
@@ -40,15 +38,14 @@ export default function TabLayout() {
 				options={{
 					tabBarLabel: "記録",
 					tabBarLabelStyle: {
-						fontSize: 12,
-						lineHeight: 14,
+						fontSize: 10,
+						lineHeight: 12,
 						fontFamily: "NotoSansJP_400Regular",
 					},
-					tabBarIcon: (parameter) => {
-						return <HistoryIcon color={parameter.focused ? softBlue : undefined} />;
-					},
+					tabBarIcon: ({ color, focused }) => (
+						<TabBarIcon name={focused ? "calendar" : "calendar-outline"} color={color} />
+					),
 					headerShown: false,
-					tabBarActiveTintColor: softBlue,
 					tabBarBadge: hasNoRecordWithoutToday ? "!" : undefined,
 				}}
 			/>
@@ -57,15 +54,14 @@ export default function TabLayout() {
 				options={{
 					tabBarLabel: "設定",
 					tabBarLabelStyle: {
-						fontSize: 12,
-						lineHeight: 14,
+						fontSize: 10,
+						lineHeight: 12,
 						fontFamily: "NotoSansJP_400Regular",
 					},
-					tabBarIcon: (parameter) => {
-						return <SettingIcon color={parameter.focused ? softBlue : undefined} />;
-					},
+					tabBarIcon: ({ color, focused }) => (
+						<TabBarIcon name={focused ? "settings" : "settings-outline"} color={color} />
+					),
 					headerShown: false,
-					tabBarActiveTintColor: softBlue,
 				}}
 			/>
 		</Tabs>
