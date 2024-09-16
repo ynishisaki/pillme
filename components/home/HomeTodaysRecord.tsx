@@ -10,7 +10,7 @@ import { recordType } from "@/types/record";
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 
-export const HomeTodaysRecord = () => {
+export default function HomeTodaysRecord() {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const { tookMedicine, haveBleeding, isRestPeriod } = record.dailyRecord[0];
@@ -95,7 +95,7 @@ export const HomeTodaysRecord = () => {
 			</View>
 		</ContentLayout>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	contentLayout: {

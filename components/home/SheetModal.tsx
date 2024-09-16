@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
 	},
 	modalOverlay: {
 		...StyleSheet.absoluteFillObject,
-		backgroundColor: "rgba(0,0,0,0.5)",
+		backgroundColor: "rgba(0,0,0,0.7)",
 	},
 	modalView: {
-		margin: 20,
+		margin: 28,
 	},
 	contentLayout: {
 		flexDirection: "row",
