@@ -27,12 +27,16 @@ export const CustomCalender = (props: Props) => {
 			minDate={props.minDate}
 			maxDate={props.maxDate}
 			theme={{
-				"stylesheet.calendar.header": {
-					dayTextAtIndex0: {
-						color: "red",
-					},
-					dayTextAtIndex6: {
-						color: "blue",
+				stylesheet: {
+					calendar: {
+						header: {
+							dayTextAtIndex0: {
+								color: "red",
+							},
+							dayTextAtIndex6: {
+								color: "blue",
+							},
+						},
 					},
 				},
 				textDayFontFamily: "monospace",
