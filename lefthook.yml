@@ -10,4 +10,5 @@
 pre-commit:
     parallel: true
     commands:
-        type-check: npx tsc --noEmit
+        typescript-type-check:
+            run: npx tsc --noEmit
