@@ -1,5 +1,5 @@
-import ScreenContainer from "@/components/common/ScreenContainer";
-import ScrollTopButton from "@/components/common/ScrollTopButton";
+import ScreenContainer from "@/components/common/screen/ScreenContainer";
+import ScrollTopButton from "@/components/common/screen/ScrollTopButton";
 import { useRef, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 

@@ -1,8 +1,8 @@
 import CheckBox from "@/components/common/CheckBox";
-import ContentLayout from "@/components/common/ContentLayout";
 import { CustomCalender } from "@/components/common/CustomCalender";
-import ScreenLayout from "@/components/common/ScreenLayout";
 import { ThemedText } from "@/components/common/ThemedText";
+import ContentLayout from "@/components/common/content/ContentLayout";
+import ScreenLayout from "@/components/common/screen/ScreenLayout";
 import { Colors } from "@/constants/Colors";
 import { locale, mdweek } from "@/constants/tempo-options";
 import { hasNoRecordDays } from "@/functions/countRecord";

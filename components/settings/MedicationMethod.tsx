@@ -1,15 +1,15 @@
-import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
+import ContentSubTitle from "@/components/common/content/ContentSubTitle";
 import CurrentSettings from "@/components/settings/CurrentSettings";
 import SettingPicker from "@/components/settings/SettingPicker";
 import { recordState } from "@/states/recordState";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { useRecoilState } from "recoil";
 
 interface Props {
 	isFirstSettings?: boolean;
 }
-export default function NewSettingsMedicationMethod(props: Props) {
+export default function MedicationMethod(props: Props) {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	const minConteniousTakingDays = record.initialSheetSettings.minConteniousTakingDays;
@@ -58,9 +58,9 @@ export default function NewSettingsMedicationMethod(props: Props) {
 	}
 
 	return (
-		// <ContentLayout title='服薬方法'>
-		// 	<View style={styles.contentLayout}>
 		<>
+			<ContentSubTitle title='服薬方法' />
+
 			<ThemedText type='description'>このアプリは、120日連続服用を対象としています。</ThemedText>
 			<ThemedText type='description'>お飲みの薬の服薬方法に合わせて、以下の設定を編集してください。</ThemedText>
 
@@ -104,8 +104,4 @@ export default function NewSettingsMedicationMethod(props: Props) {
 	);
 }
 
-const styles = StyleSheet.create({
-	contentLayout: {
-		margin: 20,
-	},
-});
+const styles = StyleSheet.create({});

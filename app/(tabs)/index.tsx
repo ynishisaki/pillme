@@ -1,4 +1,4 @@
-import ScreenLayout from "@/components/common/ScreenLayout";
+import ScreenLayout from "@/components/common/screen/ScreenLayout";
 import HomeTitle from "@/components/home/HomeTitle";
 import HomeTodaysRecord from "@/components/home/HomeTodaysRecord";
 import { locale, yyyymmdd } from "@/constants/tempo-options";

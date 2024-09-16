@@ -1,4 +1,4 @@
-import ScreenContainer from "@/components/common/ScreenContainer";
+import ScreenContainer from "@/components/common/screen/ScreenContainer";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 

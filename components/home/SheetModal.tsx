@@ -3,9 +3,9 @@ import { CurrentSheet } from "@/components/records/CurrentSheet";
 import { useState } from "react";
 import { Modal, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
-interface props {}
+interface Props {}
 
-export default function SheetModal(props: props) {
+export default function SheetModal(props: Props) {
 	const [modalVisible, setModalVisible] = useState(false);
 	function handleToggleModalVisible() {
 		setModalVisible(!modalVisible);

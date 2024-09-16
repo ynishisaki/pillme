@@ -1,5 +1,5 @@
-import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
+import ContentLayout from "@/components/common/content/ContentLayout";
 import { Sheet } from "@/components/records/Sheet";
 import { locale, md } from "@/constants/tempo-options";
 import getCurrentSheetStatus from "@/functions/countRecord";

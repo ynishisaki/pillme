@@ -2,18 +2,6 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Octicons from "@expo/vector-icons/Octicons";
 
-export const HomeIcon = ({ color }: { color?: string }) => <Octicons name='home' size={28} color={color || "gray"} />;
-
-export const HistoryIcon = ({ color }: { color?: string }) => (
-	<MaterialCommunityIcons name='table-clock' size={30} color={color || "gray"} />
-);
-
-export const SettingIcon = ({ color }: { color?: string }) => (
-	<MaterialCommunityIcons name='cog-outline' size={30} color={color || "gray"} />
-);
-
-export const CloseIcon = () => <MaterialCommunityIcons name='close' size={30} color='white' />;
-
 export const ArrowUpIcon = () => <MaterialCommunityIcons name='arrow-up' size={30} color='dimgray' />;
 
 function getSize(size: "sm" | "md" | "lg") {

@@ -1,16 +1,16 @@
-import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
+import ContentSubTitle from "@/components/common/content/ContentSubTitle";
 import CurrentSettingsSheet from "@/components/settings/CurrentSettingsSheet";
 import SettingPicker from "@/components/settings/SettingPicker";
 import { getBeginSheetIndex, getTodaySheetIndex } from "@/functions/getSheetIndex";
 import { recordState } from "@/states/recordState";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { useRecoilState } from "recoil";
 
 interface Props {
 	isFirstSettings?: boolean;
 }
-export default function SettingsSheetManagement(props: Props) {
+export default function SheetManagement(props: Props) {
 	const [record, setRecord] = useRecoilState(recordState);
 
 	// 今日服薬するピルの位置インデックス
@@ -44,37 +44,33 @@ export default function SettingsSheetManagement(props: Props) {
 	}
 
 	return (
-		<ContentLayout title='シート設定'>
-			<View style={styles.container}>
-				<ThemedText type='description'>記録開始時のシートの錠数と開始位置を設定します。</ThemedText>
-				{props.isFirstSettings && (
-					<ThemedText type='description'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
-				)}
+		<>
+			<ContentSubTitle title='シート設定' />
 
-				<CurrentSettingsSheet />
+			<ThemedText type='description'>記録開始時のシートの錠数と開始位置を設定します。</ThemedText>
+			{props.isFirstSettings && (
+				<ThemedText type='description'>※この設定はアプリ開始後にも変更可能です。</ThemedText>
+			)}
 
-				<SettingPicker
-					description={"１シートの錠数(プラセボ除く)"}
-					selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
-					minValue={1}
-					maxValue={28}
-					onChange={setNumOfPillsPerSheet}
-				/>
+			<CurrentSettingsSheet />
 
-				<SettingPicker
-					description={"本日服薬するピルの位置"}
-					selectedValue={todaySheetIndex + 1}
-					minValue={1}
-					maxValue={record.initialSheetSettings.numOfPillsPerSheet}
-					onChange={setTodayPillIndex}
-				/>
-			</View>
-		</ContentLayout>
+			<SettingPicker
+				description={"１シートの錠数(プラセボ除く)"}
+				selectedValue={record.initialSheetSettings.numOfPillsPerSheet}
+				minValue={1}
+				maxValue={28}
+				onChange={setNumOfPillsPerSheet}
+			/>
+
+			<SettingPicker
+				description={"本日服薬するピルの位置"}
+				selectedValue={todaySheetIndex + 1}
+				minValue={1}
+				maxValue={record.initialSheetSettings.numOfPillsPerSheet}
+				onChange={setTodayPillIndex}
+			/>
+		</>
 	);
 }
 
-const styles = StyleSheet.create({
-	container: {
-		margin: 20,
-	},
-});
+const styles = StyleSheet.create({});

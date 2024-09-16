@@ -1,9 +1,10 @@
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
-import ScrollableScreenLayout from "@/components/common/ScrollableScreenLayout";
-import { ThemedText } from "@/components/common/ThemedText";
-import SettingsMedicationMethod from "@/components/settings/SettingsMedicationMethod";
-import SettingsSheetManagement from "@/components/settings/SettingsSheetManagement";
-import SettingsStartRecordDate from "@/components/settings/SettingsStartRecordDate";
+import Divider from "@/components/common/Divider";
+import ContentLayout from "@/components/common/content/ContentLayout";
+import ScrollableScreenLayout from "@/components/common/screen/ScrollableScreenLayout";
+import { default as StartRecordDate } from "@/components/initial-settings/StartRecordDate";
+import MedicationMethod from "@/components/settings/MedicationMethod";
+import SheetManagement from "@/components/settings/SheetManagement";
 import { Colors } from "@/constants/Colors";
 import { recordState } from "@/states/recordState";
 import { useRouter } from "expo-router";
@@ -25,23 +26,31 @@ export default function InitnialSettingsScreen() {
 	return (
 		<ScrollableScreenLayout>
 			<View style={styles.viewLayout}>
-				<View>
-					<ThemedText type='contentTitle'>初期設定</ThemedText>
-				</View>
+				<ContentLayout title='初期設定'>
+					<View style={styles.contentLayout}>
+						<MedicationMethod isFirstSettings />
 
-				<SettingsMedicationMethod isFirstSettings />
-				<SettingsSheetManagement isFirstSettings />
-				<SettingsStartRecordDate isFirstSettings />
+						<Divider />
 
-				<View style={styles.buttonContainer}>
-					<CustomOutlineButton
-						onPress={onPressDecideButton}
-						title='アプリを開始する'
-						bgColor={Colors.pillColor}
-						textColor='whitesmoke'
-						borderColor='transparent'
-					/>
-				</View>
+						<SheetManagement isFirstSettings />
+
+						<Divider />
+
+						<StartRecordDate isFirstSettings />
+
+						<Divider />
+
+						<View style={styles.buttonContainer}>
+							<CustomOutlineButton
+								onPress={onPressDecideButton}
+								title='アプリを開始する'
+								bgColor={Colors.lightBlue}
+								textColor='whitesmoke'
+								borderColor='transparent'
+							/>
+						</View>
+					</View>
+				</ContentLayout>
 			</View>
 		</ScrollableScreenLayout>
 	);
@@ -51,9 +60,10 @@ const styles = StyleSheet.create({
 	viewLayout: {
 		flex: 1,
 		marginVertical: 20,
-		rowGap: 20,
 	},
-
+	contentLayout: {
+		margin: 20,
+	},
 	buttonContainer: {
 		rowGap: 6,
 	},

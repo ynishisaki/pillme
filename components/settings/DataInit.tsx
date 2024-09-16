@@ -1,3 +1,4 @@
+import ContentSubTitle from "@/components/common/content/ContentSubTitle";
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
 import { ThemedText } from "@/components/common/ThemedText";
 import { Colors } from "@/constants/Colors";
@@ -6,9 +7,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { Alert, StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
-import ContentLayout from "../common/ContentLayout";
 
-export default function SettingsDataInit() {
+export default function DataInit() {
 	const router = useRouter();
 
 	const [record, setRecord] = useRecoilState(recordState);
@@ -39,25 +39,21 @@ export default function SettingsDataInit() {
 		]);
 
 	return (
-		<ContentLayout title='データの削除'>
-			<View style={styles.contentLayout}>
-				<ThemedText type='description'>本アプリ内のすべてのデータを削除します。</ThemedText>
-				<ThemedText type='description'>この操作を元に戻すことはできません。</ThemedText>
+		<>
+			<ContentSubTitle title='データの削除' />
 
-				<View style={{ height: 20 }} />
-				<CustomOutlineButton
-					onPress={onPressDataInitButton}
-					title='データの削除'
-					bgColor='white'
-					textColor={Colors.warningRed}
-				/>
-			</View>
-		</ContentLayout>
+			<ThemedText type='description'>本アプリ内のすべてのデータを削除します。</ThemedText>
+			<ThemedText type='description'>この操作を元に戻すことはできません。</ThemedText>
+
+			<View style={{ height: 20 }} />
+			<CustomOutlineButton
+				onPress={onPressDataInitButton}
+				title='データの削除'
+				bgColor='white'
+				textColor={Colors.warningRed}
+			/>
+		</>
 	);
 }
 
-const styles = StyleSheet.create({
-	contentLayout: {
-		margin: 20,
-	},
-});
+const styles = StyleSheet.create({});

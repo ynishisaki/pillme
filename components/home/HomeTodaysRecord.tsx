@@ -1,6 +1,6 @@
 import CheckBox from "@/components/common/CheckBox";
-import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
+import ContentLayout from "@/components/common/content/ContentLayout";
 import SheetModal from "@/components/home/SheetModal";
 import { Colors } from "@/constants/Colors";
 import { hasNoRecordDays } from "@/functions/countRecord";
