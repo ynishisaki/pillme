@@ -1,10 +1,5 @@
 import { CancelIcon, DropIcon, PillIcon, QuestionIcon } from "@/components/common/Icons";
-import {
-	pillColor,
-	unPressableCheckBoxColor,
-	unPressableUnknownCheckBoxColor,
-	unfillCheckBoxColor,
-} from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
@@ -40,12 +35,12 @@ export default function CheckBox(props: Props) {
 
 	const fillColor = () => {
 		if (props.isRestPeriod) {
-			return unPressableCheckBoxColor;
+			return Colors.checkbox.unpressable;
 		}
 		if (props.isNotRecorded) {
-			return unPressableUnknownCheckBoxColor;
+			return Colors.checkbox.unpressableUnknown;
 		}
-		return pillColor;
+		return Colors.checkbox.fill;
 	};
 
 	return (
@@ -61,7 +56,7 @@ export default function CheckBox(props: Props) {
 				}}
 				ImageComponent={ImageComponent}
 				fillColor={fillColor()}
-				unfillColor={unfillCheckBoxColor}
+				unfillColor={Colors.checkbox.unfill}
 				isChecked={props.isRestPeriod || props.isNotRecorded ? true : props.isChecked} // タスク：isCheckedは無視されるが大丈夫？
 				disableText={true}
 				disabled={props.isRestPeriod || props.isNotRecorded || props.readonly}

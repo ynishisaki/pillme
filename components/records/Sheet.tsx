@@ -1,4 +1,4 @@
-import { pillColor, unPressableCheckBoxColor } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import getCurrentSheetStatus from "@/functions/countRecord";
 import { getTodaySheetIndex } from "@/functions/getSheetIndex";
 import { recordState } from "@/states/recordState";
@@ -27,8 +27,8 @@ export const Sheet = () => {
 					}>
 					<BouncyCheckbox
 						size={15}
-						fillColor={unPressableCheckBoxColor}
-						unfillColor={pillColor}
+						fillColor={Colors.checkbox.unpressable}
+						unfillColor={Colors.checkbox.fill}
 						isChecked={true}
 						disableText={true}
 						disabled={true}
@@ -48,8 +48,8 @@ export const Sheet = () => {
 				style={!isTodayTookMedicine && i === 0 ? styles.todayCheckBoxLayout : styles.checkBoxLayout}>
 				<BouncyCheckbox
 					size={15}
-					fillColor={unPressableCheckBoxColor}
-					unfillColor={pillColor}
+					fillColor={Colors.checkbox.unpressable}
+					unfillColor={Colors.checkbox.fill}
 					isChecked={false}
 					disableText={true}
 					disabled={true}
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
 		padding: 3,
 		borderRadius: 9999,
 		borderWidth: 2,
-		borderColor: pillColor,
+		borderColor: Colors.checkbox.fill,
 	},
 	dammyCheckBox: {
 		width: 15,

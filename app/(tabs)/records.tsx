@@ -3,7 +3,7 @@ import ContentLayout from "@/components/common/ContentLayout";
 import { CustomCalender } from "@/components/common/CustomCalender";
 import ScreenLayout from "@/components/common/ScreenLayout";
 import { ThemedText } from "@/components/common/ThemedText";
-import { lightBlue, pillColor } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import { locale, mdweek } from "@/constants/tempo-options";
 import { hasNoRecordDays } from "@/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "@/functions/judgeIsRestPeriod";
@@ -54,8 +54,8 @@ export default function RecordsScreen() {
 		setIsRecordNone(true);
 	}
 
-	const tookMedicine = { key: "tookMedicine", color: pillColor, selectedDotColor: "blue" };
-	const haveBleeding = { key: "haveBleeding", color: pillColor, selectedDotColor: "blue" };
+	const tookMedicine = { key: "tookMedicine", color: Colors.pillColor, selectedDotColor: "blue" };
+	const haveBleeding = { key: "haveBleeding", color: Colors.pillColor, selectedDotColor: "blue" };
 	const isRestPeriod = { key: "isRestPeriod", color: "gray", selectedDotColor: "blue" };
 
 	const markedDates: MarkedDates = record.dailyRecord.reduce((acc, record, index) => {
@@ -72,7 +72,7 @@ export default function RecordsScreen() {
 		const selectedRecord = {
 			[record.date]: {
 				selected: selectedDate === record.date ? true : false,
-				selectedColor: lightBlue,
+				selectedColor: Colors.lightBlue,
 				dots: dots,
 			},
 		};
@@ -151,7 +151,7 @@ export default function RecordsScreen() {
 					<ContentLayout title='服薬カレンダー'>
 						{hasNoRecordWithoutToday && (
 							<View style={{ margin: 20 }}>
-								<ThemedText style={{ color: pillColor }}>記録忘れの日があります</ThemedText>
+								<ThemedText style={{ color: Colors.pillColor }}>記録忘れの日があります</ThemedText>
 							</View>
 						)}
 						<CustomCalender

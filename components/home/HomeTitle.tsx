@@ -7,7 +7,7 @@ import { format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
 import { useRecoilValue } from "recoil";
 
-export const HomeTitle = () => {
+export default function HomeTitle() {
 	const record = useRecoilValue(recordState);
 
 	const displayDate = format(record.dailyRecord[0].date, mdweek, locale);
@@ -34,7 +34,7 @@ export const HomeTitle = () => {
 			)}
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {},

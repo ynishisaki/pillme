@@ -1,5 +1,5 @@
 import ScreenLayout from "@/components/common/ScreenLayout";
-import { HomeTitle } from "@/components/home/HomeTitle";
+import HomeTitle from "@/components/home/HomeTitle";
 import { HomeTodaysRecord } from "@/components/home/HomeTodaysRecord";
 import { locale, yyyymmdd } from "@/constants/tempo-options";
 import { judgeIsTodayRestPeriod } from "@/functions/judgeIsRestPeriod";

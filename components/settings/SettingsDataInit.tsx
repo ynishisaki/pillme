@@ -1,6 +1,6 @@
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
 import { ThemedText } from "@/components/common/ThemedText";
-import { warningRed } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import { initialRecord, recordState } from "@/states/recordState";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -49,7 +49,7 @@ export default function SettingsDataInit() {
 					onPress={onPressDataInitButton}
 					title='データの削除'
 					bgColor='white'
-					textColor={warningRed}
+					textColor={Colors.warningRed}
 				/>
 			</View>
 		</ContentLayout>

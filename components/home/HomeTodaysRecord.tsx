@@ -2,7 +2,7 @@ import CheckBox from "@/components/common/CheckBox";
 import ContentLayout from "@/components/common/ContentLayout";
 import { ThemedText } from "@/components/common/ThemedText";
 import SheetModal from "@/components/home/SheetModal";
-import { pillColor } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import { hasNoRecordDays } from "@/functions/countRecord";
 import { judgeIsTomorrowStartsRestPeriod } from "@/functions/judgeIsRestPeriod";
 import { recordState } from "@/states/recordState";
@@ -53,7 +53,7 @@ export const HomeTodaysRecord = () => {
 				{!hasNoRecordWithoutToday && hasNoRecordToday && (
 					<ThemedText
 						style={{
-							color: pillColor,
+							color: Colors.pillColor,
 						}}>
 						今日の記録をつけてください
 					</ThemedText>

@@ -1,6 +1,5 @@
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
 import { CurrentSheet } from "@/components/records/CurrentSheet";
-import { secondaryColor } from "@/constants/color";
 import { useState } from "react";
 import { Modal, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 
@@ -25,7 +24,7 @@ export default function SheetModal(props: props) {
 					</TouchableWithoutFeedback>
 
 					<View style={styles.modalView}>
-						<CurrentSheet handleClose={handleClose} />
+						<CurrentSheet />
 					</View>
 				</View>
 			</Modal>
@@ -34,7 +33,7 @@ export default function SheetModal(props: props) {
 				onPress={handleToggleModalVisible}
 				// bgColor={"#2196F3"}
 				// textColor='white'
-				bgColor={secondaryColor}
+				bgColor='white'
 				textColor='gray'
 				title='現在のシートを確認する'
 				iconComponent={null}

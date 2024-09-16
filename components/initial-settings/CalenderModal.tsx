@@ -2,7 +2,7 @@ import { CustomCalender } from "@/components/common/CustomCalender";
 import CustomOutlineButton from "@/components/common/CustomOutlineButton";
 import { ThemedText } from "@/components/common/ThemedText";
 import CustomDatePickerModalButton from "@/components/initial-settings/CustomDatePickerModalButton";
-import { lightBlue } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import { locale, md, yyyymmdd } from "@/constants/tempo-options";
 import { addDay, diffDays, format } from "@formkit/tempo";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export default function CalenderModal(props: props) {
 	const markedDates: MarkedDates = {
 		[selectedDateStr]: {
 			selected: true,
-			selectedColor: lightBlue,
+			selectedColor: Colors.lightBlue,
 		},
 	};
 

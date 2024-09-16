@@ -4,7 +4,7 @@ import { ThemedText } from "@/components/common/ThemedText";
 import SettingsMedicationMethod from "@/components/settings/SettingsMedicationMethod";
 import SettingsSheetManagement from "@/components/settings/SettingsSheetManagement";
 import SettingsStartRecordDate from "@/components/settings/SettingsStartRecordDate";
-import { pillColor } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import { recordState } from "@/states/recordState";
 import { useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
@@ -37,7 +37,7 @@ export default function InitnialSettingsScreen() {
 					<CustomOutlineButton
 						onPress={onPressDecideButton}
 						title='アプリを開始する'
-						bgColor={pillColor}
+						bgColor={Colors.pillColor}
 						textColor='whitesmoke'
 						borderColor='transparent'
 					/>

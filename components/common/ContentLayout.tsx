@@ -1,5 +1,5 @@
 import { ThemedText } from "@/components/common/ThemedText";
-import { HeaderColor, translucentWhite } from "@/constants/color";
+import { Colors } from "@/constants/Colors";
 import { StyleSheet, View } from "react-native";
 
 interface Props {
@@ -22,7 +22,7 @@ export default function ContentLayout(props: Props) {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: translucentWhite,
+		backgroundColor: Colors.translucentWhite,
 		borderRadius: 8,
 		elevation: 3,
 		overflow: "hidden",
@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		paddingHorizontal: 20,
 		paddingVertical: 10,
-		backgroundColor: HeaderColor,
+		backgroundColor: Colors.contentHeader,
 	},
 });
