@@ -33,7 +33,7 @@ export default function SmallPicker(props: props) {
 const styles = StyleSheet.create({
 	border: {
 		borderColor: "#ccc",
-		borderRadius: 8,
+		borderRadius: 16,
 		borderStyle: "solid",
 		borderWidth: 1,
 		backgroundColor: "white",

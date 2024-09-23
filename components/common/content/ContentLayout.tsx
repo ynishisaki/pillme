@@ -23,7 +23,7 @@ export default function ContentLayout(props: Props) {
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: Colors.translucentWhite,
-		borderRadius: 8,
+		borderRadius: 16,
 		elevation: 3,
 		overflow: "hidden",
 	},

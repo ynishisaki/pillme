@@ -27,18 +27,20 @@ export default function HomeScreen() {
 		(async () => {
 			const storedRecordAsString: string | null = await AsyncStorage.getItem("record");
 
-			// AsyncStorageに記録がないので、デフォルトのrecordを利用する
+			// AsyncStorageに記録がない
+			// ->初期設定が完了していない場合
 			if (storedRecordAsString === null) {
-				setRecord((oldRecord) => ({
-					...oldRecord,
-					isAsyncStorageLoaded: true,
-				}));
 				return router.push("/initial-settings");
 			}
 
-			// AsyncStorageから記録取得、stateにsetする
+			// AsyncStorageから記録取得
 			const storedRecord: recordType = JSON.parse(storedRecordAsString);
 			const latestRecordDate = storedRecord.dailyRecord[0].date;
+
+			// 初期設定が完了していない場合
+			if (storedRecord.isInitialSettingsDone === false) {
+				return router.push("/initial-settings");
+			}
 
 			// アプリ起動日が、前回起動日と同日の場合
 			if (latestRecordDate === todayDate) {

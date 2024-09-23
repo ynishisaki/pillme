@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "whitesmoke",
 		borderColor: "gainsboro",
 		borderWidth: 2,
-		borderRadius: 8,
+		borderRadius: 16,
 		elevation: 1,
 	},
 	checkBoxLayout: {

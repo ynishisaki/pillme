@@ -23,6 +23,7 @@ export const initialRecord: recordType = {
 		},
 	],
 	isAsyncStorageLoaded: false,
+	isInitialSettingsDone: false,
 };
 
 export const recordState = atom({

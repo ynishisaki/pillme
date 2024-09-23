@@ -2,6 +2,7 @@ export type recordType = {
 	initialSheetSettings: initialSheetSettingsType;
 	dailyRecord: Array<dailyRecordType>;
 	isAsyncStorageLoaded: boolean;
+	isInitialSettingsDone: boolean;
 };
 
 export interface initialSheetSettingsType {

@@ -45,6 +45,9 @@ export const CustomCalender = (props: Props) => {
 				textDayFontSize: 16,
 				textMonthFontSize: 20,
 			}}
+			style={{
+				paddingBottom: 24,
+			}}
 		/>
 	);
 };

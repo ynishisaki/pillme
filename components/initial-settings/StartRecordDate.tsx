@@ -23,13 +23,12 @@ export default function StartRecordDate(props: Props) {
 
 	return (
 		<>
-			<ContentSubTitle title='服薬開始日' />
+			<ContentSubTitle title='最新の服薬開始日' />
 
 			<ThemedText type='description'>服薬開始日を設定します。</ThemedText>
 			{props.isFirstSettings && <ThemedText type='warn'>※この設定はアプリ開始後に変更できません。</ThemedText>}
 
 			<View style={styles.contentLayout}>
-				<ThemedText>最新の服薬開始日</ThemedText>
 				<CalenderModal numOfDays={numOfRecordDays} handleSetNumOfDays={setNumOfRecordDays}></CalenderModal>
 			</View>
 		</>

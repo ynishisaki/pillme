@@ -1,7 +1,7 @@
+import CustomButton from "@/components/common/CustomButton";
 import { CustomCalender } from "@/components/common/CustomCalender";
-import CustomOutlineButton from "@/components/common/CustomOutlineButton";
 import { ThemedText } from "@/components/common/ThemedText";
-import CustomDatePickerModalButton from "@/components/initial-settings/CustomDatePickerModalButton";
+import ContentSubTitle from "@/components/common/content/ContentSubTitle";
 import { Colors } from "@/constants/Colors";
 import { locale, md, yyyymmdd } from "@/constants/tempo-options";
 import { addDay, diffDays, format } from "@formkit/tempo";
@@ -68,7 +68,8 @@ export default function CalenderModal(props: props) {
 
 						<View style={styles.modalView}>
 							<View>
-								<ThemedText>最新の服薬開始日</ThemedText>
+								<ContentSubTitle title='最新の服薬開始日' />
+
 								<View>
 									<CustomCalender
 										handleDayPress={handleDayPress}
@@ -76,26 +77,23 @@ export default function CalenderModal(props: props) {
 										minDate={minDateStr}
 										maxDate={maxDateStr}
 									/>
+
 									<ThemedText>
 										{`${selectedDateForDisplay}（本日服薬${currentNumOfDays}日目）`}
 									</ThemedText>
 								</View>
 							</View>
 
-							<CustomOutlineButton
-								onPress={handleDecide}
-								bgColor={"#2196F3"}
-								textColor='white'
-								title='決定'
-								iconComponent={null}
-							/>
+							<CustomButton type='fill' title='決定' onPress={handleDecide} />
 						</View>
 					</View>
 				</Modal>
 			</View>
-			<CustomDatePickerModalButton
-				onPress={handleToggleModalVisible}
+
+			<CustomButton
+				type='default'
 				title={`${parentDateForDisplay}（本日服薬${props.numOfDays}日目）`}
+				onPress={handleToggleModalVisible}
 			/>
 		</>
 	);
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
 	modalView: {
 		margin: 20,
 		backgroundColor: "white",
-		borderRadius: 20,
+		borderRadius: 16,
 		padding: 35,
 		shadowColor: "#000",
 		shadowOffset: {

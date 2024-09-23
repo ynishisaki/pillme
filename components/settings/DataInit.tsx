@@ -1,7 +1,6 @@
 import ContentSubTitle from "@/components/common/content/ContentSubTitle";
-import CustomOutlineButton from "@/components/common/CustomOutlineButton";
+import CustomButton from "@/components/common/CustomButton";
 import { ThemedText } from "@/components/common/ThemedText";
-import { Colors } from "@/constants/Colors";
 import { initialRecord, recordState } from "@/states/recordState";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -46,12 +45,7 @@ export default function DataInit() {
 			<ThemedText type='description'>この操作を元に戻すことはできません。</ThemedText>
 
 			<View style={{ height: 20 }} />
-			<CustomOutlineButton
-				onPress={onPressDataInitButton}
-				title='データの削除'
-				bgColor='white'
-				textColor={Colors.warningRed}
-			/>
+			<CustomButton type='warn' title='データの削除' onPress={onPressDataInitButton} />
 		</>
 	);
 }

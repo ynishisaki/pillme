@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/common/ThemedText";
 import ContentLayout from "@/components/common/content/ContentLayout";
+import ContentSubTitle from "@/components/common/content/ContentSubTitle";
 import { Sheet } from "@/components/records/Sheet";
 import { locale, md } from "@/constants/tempo-options";
 import getCurrentSheetStatus from "@/functions/countRecord";
@@ -29,6 +30,8 @@ export const CurrentSheet = () => {
 	return (
 		<ContentLayout title='現在のシート'>
 			<View style={styles.contentLayout}>
+				<ContentSubTitle title='現在のシート' />
+
 				<ThemedText>シート終了日(推定)　{estimatedEndDate}</ThemedText>
 				<Sheet />
 			</View>
