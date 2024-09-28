@@ -30,8 +30,10 @@ export default function HomeScreen() {
 			// AsyncStorageに記録がない
 			// ->初期設定が完了していない場合
 			if (storedRecordAsString === null) {
-				return router.push("/initial-settings");
+				console.log("No record in AsyncStorage.");
+				return router.replace("/initial-settings");
 			}
+			console.log("record in AsyncStorage.");
 
 			// AsyncStorageから記録取得
 			const storedRecord: recordType = JSON.parse(storedRecordAsString);
@@ -39,7 +41,7 @@ export default function HomeScreen() {
 
 			// 初期設定が完了していない場合
 			if (storedRecord.isInitialSettingsDone === false) {
-				return router.push("/initial-settings");
+				return router.replace("/initial-settings");
 			}
 
 			// アプリ起動日が、前回起動日と同日の場合
@@ -55,7 +57,7 @@ export default function HomeScreen() {
 			const numberOfDays = diffDays(todayDate, latestRecordDate);
 
 			// 日付の昇順であることに注意
-			const lapsedDailyRecords: Array<dailyRecordType> = Array.from({ length: numberOfDays }, (_, i) => {
+			const lapsedDailyRecords: dailyRecordType[] = Array.from({ length: numberOfDays }, (_, i) => {
 				const date = format(addDay(latestRecordDate, i + 1), yyyymmdd, locale);
 				return {
 					date,
@@ -93,11 +95,11 @@ export default function HomeScreen() {
 
 	// AsyncStorageに記録を保存
 	useEffect(() => {
-		AsyncStorage.setItem("record", JSON.stringify(record));
-		// console.log(record.dailyRecord);
-		// console.log(record.initialSheetSettings);
-		console.log("stored");
-		console.log();
+		(async () => {
+			if (record.isAsyncStorageLoaded === false) return;
+			await AsyncStorage.setItem("record", JSON.stringify(record));
+			console.log("stored");
+		})();
 	}, [record]);
 
 	return (

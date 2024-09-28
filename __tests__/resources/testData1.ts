@@ -38,4 +38,5 @@ export const testDataOne: recordType = {
 		beginSheetIndex: 0,
 	},
 	isAsyncStorageLoaded: false,
+	isInitialSettingsDone: false,
 };

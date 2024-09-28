@@ -21,7 +21,7 @@ export default function DataInit() {
 		await AsyncStorage.clear();
 		console.log("Initialized AsyncStorage.");
 
-		router.push("/initial-settings");
+		router.replace("/initial-settings");
 	};
 
 	const onPressDataInitButton = () =>

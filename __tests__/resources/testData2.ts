@@ -165,4 +165,5 @@ export const testDataTwo: recordType = {
 		beginSheetIndex: 0,
 	},
 	isAsyncStorageLoaded: false,
+	isInitialSettingsDone: false,
 };

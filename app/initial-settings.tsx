@@ -6,6 +6,7 @@ import StartRecordDate from "@/components/initial-settings/StartRecordDate";
 import MedicationMethod from "@/components/settings/MedicationMethod";
 import SheetManagement from "@/components/settings/SheetManagement";
 import { recordState } from "@/states/recordState";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
@@ -15,12 +16,15 @@ export default function InitnialSettingsScreen() {
 
 	const [record, setRecord] = useRecoilState(recordState);
 
-	const onPressDecideButton = () => {
-		setRecord({
+	const onPressDecideButton = async () => {
+		const newRecord = {
 			...record,
 			isInitialSettingsDone: true,
-		});
-		router.push("/");
+		};
+		setRecord(newRecord);
+		await AsyncStorage.setItem("record", JSON.stringify(newRecord));
+
+		router.replace("/");
 	};
 
 	return (

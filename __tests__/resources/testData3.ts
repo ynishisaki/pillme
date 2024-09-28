@@ -151,4 +151,5 @@ export const testDataThree: recordType = {
 		beginSheetIndex: 0,
 	},
 	isAsyncStorageLoaded: false,
+	isInitialSettingsDone: false,
 };

@@ -3,14 +3,32 @@ import { Colors } from "@/constants/Colors";
 import { hasNoRecordDays } from "@/functions/countRecord";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { recordState } from "@/states/recordState";
-import { Tabs } from "expo-router";
+import { Tabs, usePathname } from "expo-router";
+import { useEffect } from "react";
+import { BackHandler } from "react-native";
 import { useRecoilValue } from "recoil";
 
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
+	const pathname = usePathname();
 
 	const record = useRecoilValue(recordState);
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
+
+	useEffect(() => {
+		console.log("pathname", pathname);
+		const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+			// ホーム画面or初期設定画面 アプリを終了する
+			if (pathname === "/" || pathname === "/initial-settings") {
+				BackHandler.exitApp();
+				return true;
+			}
+			// 通常の戻るボタンの挙動
+			return false;
+		});
+
+		return () => backHandler.remove();
+	}, [pathname]);
 
 	return (
 		<Tabs
