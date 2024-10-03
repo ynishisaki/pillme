@@ -20,7 +20,6 @@ export default function HomeScreen() {
 	const isFocused = useIsFocused();
 
 	const todayDate = format(new Date(), yyyymmdd, locale); // YYYY-DD-MM
-	// console.log("today", todayDate);
 
 	// AsyncStorageから記録を取得
 	useEffect(() => {
@@ -30,10 +29,8 @@ export default function HomeScreen() {
 			// AsyncStorageに記録がない
 			// ->初期設定が完了していない場合
 			if (storedRecordAsString === null) {
-				console.log("No record in AsyncStorage.");
 				return router.replace("/initial-settings");
 			}
-			console.log("record in AsyncStorage.");
 
 			// AsyncStorageから記録取得
 			const storedRecord: recordType = JSON.parse(storedRecordAsString);

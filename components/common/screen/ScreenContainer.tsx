@@ -1,8 +1,9 @@
-import React from "react";
-import { ImageBackground, StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { ReactNode } from "react";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function ScreenContainer({ children }: { children: React.ReactNode }) {
+export default function ScreenContainer({ children }: { children: ReactNode }) {
 	const insets = useSafeAreaInsets();
 
 	return (
@@ -17,7 +18,7 @@ export default function ScreenContainer({ children }: { children: React.ReactNod
 						paddingRight: insets.right,
 					},
 				]}>
-				<StatusBar barStyle='light-content' translucent={true} backgroundColor='rgba(0, 0, 0, 0)' />
+				<StatusBar style='light' />
 				{children}
 			</View>
 		</ImageBackground>

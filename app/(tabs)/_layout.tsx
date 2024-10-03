@@ -16,7 +16,6 @@ export default function TabLayout() {
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
 
 	useEffect(() => {
-		console.log("pathname", pathname);
 		const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
 			// ホーム画面or初期設定画面 アプリを終了する
 			if (pathname === "/" || pathname === "/initial-settings") {
