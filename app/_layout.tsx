@@ -10,8 +10,20 @@ export default function RootLayout() {
 		<RecoilRoot>
 			<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 				<Stack>
-					<Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-					<Stack.Screen name='initial-settings' options={{ headerShown: false }} />
+					<Stack.Screen
+						name='(tabs)'
+						options={{
+							headerShown: false,
+							statusBarTranslucent: true,
+						}}
+					/>
+					<Stack.Screen
+						name='initial-settings'
+						options={{
+							headerShown: false,
+							statusBarTranslucent: true,
+						}}
+					/>
 				</Stack>
 			</ThemeProvider>
 		</RecoilRoot>
