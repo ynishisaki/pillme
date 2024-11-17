@@ -33,6 +33,7 @@ export default defineEasConfig({
 		production: {
 			android: {
 				track: "production",
+				serviceAccountKeyPath: "google-service-account-key.json",
 			},
 		},
 	},
