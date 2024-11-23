@@ -14,107 +14,125 @@ import { StyleSheet, View } from "react-native";
 import { useRecoilState } from "recoil";
 
 export default function HomeScreen() {
-	const router = useRouter();
+  const router = useRouter();
 
-	const [record, setRecord] = useRecoilState(recordState);
-	const isFocused = useIsFocused();
+  const [record, setRecord] = useRecoilState(recordState);
+  const isFocused = useIsFocused();
 
-	const todayDate = format(new Date(), yyyymmdd, locale); // YYYY-DD-MM
+  const todayDate = format(new Date(), yyyymmdd, locale); // YYYY-DD-MM
 
-	// AsyncStorageから記録を取得
-	useEffect(() => {
-		(async () => {
-			const storedRecordAsString: string | null = await AsyncStorage.getItem("record");
+  // AsyncStorageから記録を取得
+  useEffect(() => {
+    (async () => {
+      const storedRecordAsString: string | null = await AsyncStorage.getItem(
+        "record"
+      );
 
-			// AsyncStorageに記録がない
-			// ->初期設定が完了していない場合
-			if (storedRecordAsString === null) {
-				return router.replace("/initial-settings");
-			}
+      // AsyncStorageに記録がない
+      // ->初期設定が完了していない場合
+      if (storedRecordAsString === null) {
+        return router.replace("/initial-settings");
+      }
 
-			// AsyncStorageから記録取得
-			const storedRecord: recordType = JSON.parse(storedRecordAsString);
-			const latestRecordDate = storedRecord.dailyRecord[0].date;
+      // AsyncStorageから記録取得
+      const storedRecord: recordType = JSON.parse(storedRecordAsString);
+      const latestRecordDate = storedRecord.dailyRecord[0].date;
 
-			// 初期設定が完了していない場合
-			if (storedRecord.isInitialSettingsDone === false) {
-				return router.replace("/initial-settings");
-			}
+      console.log("storedRecord", storedRecord.dailyRecord[0]);
 
-			// アプリ起動日が、前回起動日と同日の場合
-			if (latestRecordDate === todayDate) {
-				return setRecord({
-					...storedRecord,
-					isAsyncStorageLoaded: true,
-				});
-			}
+      // 初期設定が完了していない場合
+      if (storedRecord.isInitialSettingsDone === false) {
+        return router.replace("/initial-settings");
+      }
 
-			// アプリ起動日が、前回起動日と異なる場合
-			// 前回から今日までの記録を追加
-			const numberOfDays = diffDays(todayDate, latestRecordDate);
+      // アプリ起動日が、前回起動日と同日の場合
+      if (latestRecordDate === todayDate) {
+        return setRecord({
+          ...storedRecord,
+          isAsyncStorageLoaded: true,
+        });
+      }
 
-			// 日付の昇順であることに注意
-			const lapsedDailyRecords: dailyRecordType[] = Array.from({ length: numberOfDays }, (_, i) => {
-				const date = format(addDay(latestRecordDate, i + 1), yyyymmdd, locale);
-				return {
-					date,
-					tookMedicine: false,
-					haveBleeding: false,
-					isRestPeriod: judgeIsTodayRestPeriod({
-						...storedRecord,
-						dailyRecord: storedRecord.dailyRecord,
-					}),
-				};
-			});
+      // アプリ起動日が、前回起動日と異なる場合
+      // 前回から今日までの記録を追加
+      const numberOfDays = diffDays(todayDate, latestRecordDate);
+      console.log("numberOfDays", numberOfDays);
 
-			const updatedRecord = {
-				...storedRecord,
-				dailyRecord: [...lapsedDailyRecords.reverse(), ...storedRecord.dailyRecord],
-				isAsyncStorageLoaded: true,
-			};
+      let updatedRecord = {
+        ...storedRecord,
+      };
 
-			// 今日が休薬日かどうか判定
-			const shouldRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
+      // 日付の昇順であることに注意
+      Array.from({ length: numberOfDays }, (_, i) => {
+        const date = format(addDay(latestRecordDate, i + 1), yyyymmdd, locale);
+        const isRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
+        console.log("date", date);
+        console.log("isRestPeriod", isRestPeriod);
 
-			return setRecord({
-				...updatedRecord,
-				dailyRecord: [
-					{
-						...updatedRecord.dailyRecord[0],
-						isRestPeriod: shouldRestPeriod,
-					},
-					...updatedRecord.dailyRecord.slice(1),
-				],
-			});
-		})();
-		// 上記の括弧をつけることで即時関数を実行
-	}, []);
+        updatedRecord = {
+          ...updatedRecord,
+          dailyRecord: [
+            {
+              date,
+              tookMedicine: false,
+              haveBleeding: false,
+              isRestPeriod: isRestPeriod,
+            },
+            ...updatedRecord.dailyRecord,
+          ],
+        };
 
-	// AsyncStorageに記録を保存
-	useEffect(() => {
-		(async () => {
-			if (record.isAsyncStorageLoaded === false) return;
-			await AsyncStorage.setItem("record", JSON.stringify(record));
-			console.log("stored");
-		})();
-	}, [record]);
+        return;
+      });
+      console.log("updatedRecord", updatedRecord.dailyRecord[0]);
+      console.log("updatedRecord.length", updatedRecord.dailyRecord.length);
 
-	return (
-		<ScreenLayout>
-			{isFocused && (
-				<View style={styles.viewLayout}>
-					<HomeTitle />
-					<HomeTodaysRecord />
-				</View>
-			)}
-		</ScreenLayout>
-	);
+      // const updatedRecord = {
+      //   ...storedRecord,
+      //   dailyRecord: [
+      //     ...lapsedDailyRecords.reverse(),
+      //     ...storedRecord.dailyRecord,
+      //   ],
+      //   isAsyncStorageLoaded: true,
+      // };
+
+      // 今日が休薬日かどうか判定
+      // const shouldRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
+      // console.log("shouldRestPeriod", shouldRestPeriod);
+
+      return setRecord({
+        ...updatedRecord,
+        isAsyncStorageLoaded: true,
+      });
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // AsyncStorageに記録を保存
+  useEffect(() => {
+    (async () => {
+      if (record.isAsyncStorageLoaded === false) return;
+      await AsyncStorage.setItem("record", JSON.stringify(record));
+      console.log("stored");
+    })();
+  }, [record]);
+
+  return (
+    <ScreenLayout>
+      {isFocused && (
+        <View style={styles.viewLayout}>
+          <HomeTitle />
+          <HomeTodaysRecord />
+        </View>
+      )}
+    </ScreenLayout>
+  );
 }
 
 const styles = StyleSheet.create({
-	viewLayout: {
-		flex: 1,
-		justifyContent: "space-between",
-		marginTop: 20,
-	},
+  viewLayout: {
+    flex: 1,
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
 });

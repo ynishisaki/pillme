@@ -18,7 +18,7 @@ web-build/
 /android
 /ios
 
-app.config.ts
+.env
 credentials.json
 google-service-account-key.json
 
