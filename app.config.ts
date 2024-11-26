@@ -1,4 +1,7 @@
+import * as dotenv from "dotenv";
 import { ConfigContext, ExpoConfig } from "expo/config";
+
+dotenv.config();
 
 const IS_DEV = process.env.APP_VARIANT === "development";
 
