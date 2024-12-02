@@ -1,10 +1,11 @@
 import ScreenLayout from "@/components/common/screen/ScreenLayout";
 import HomeTitle from "@/components/home/HomeTitle";
 import HomeTodaysRecord from "@/components/home/HomeTodaysRecord";
+// import Notification from "@/components/notification/Notification";
 import { locale, yyyymmdd } from "@/constants/tempo-options";
 import { judgeIsTodayRestPeriod } from "@/functions/judgeIsRestPeriod";
 import { recordState } from "@/states/recordState";
-import { dailyRecordType, recordType } from "@/types/record";
+import { recordType } from "@/types/record";
 import { addDay, diffDays, format } from "@formkit/tempo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
@@ -20,7 +21,6 @@ export default function HomeScreen() {
   const isFocused = useIsFocused();
 
   const todayDate = format(new Date(), yyyymmdd, locale); // YYYY-DD-MM
-
   // AsyncStorageから記録を取得
   useEffect(() => {
     (async () => {
@@ -38,8 +38,6 @@ export default function HomeScreen() {
       const storedRecord: recordType = JSON.parse(storedRecordAsString);
       const latestRecordDate = storedRecord.dailyRecord[0].date;
 
-      console.log("storedRecord", storedRecord.dailyRecord[0]);
-
       // 初期設定が完了していない場合
       if (storedRecord.isInitialSettingsDone === false) {
         return router.replace("/initial-settings");
@@ -56,18 +54,13 @@ export default function HomeScreen() {
       // アプリ起動日が、前回起動日と異なる場合
       // 前回から今日までの記録を追加
       const numberOfDays = diffDays(todayDate, latestRecordDate);
-      console.log("numberOfDays", numberOfDays);
 
-      let updatedRecord = {
-        ...storedRecord,
-      };
+      let updatedRecord = storedRecord;
 
       // 日付の昇順であることに注意
-      Array.from({ length: numberOfDays }, (_, i) => {
+      for (let i = 0; i < numberOfDays; i++) {
         const date = format(addDay(latestRecordDate, i + 1), yyyymmdd, locale);
         const isRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
-        console.log("date", date);
-        console.log("isRestPeriod", isRestPeriod);
 
         updatedRecord = {
           ...updatedRecord,
@@ -81,24 +74,7 @@ export default function HomeScreen() {
             ...updatedRecord.dailyRecord,
           ],
         };
-
-        return;
-      });
-      console.log("updatedRecord", updatedRecord.dailyRecord[0]);
-      console.log("updatedRecord.length", updatedRecord.dailyRecord.length);
-
-      // const updatedRecord = {
-      //   ...storedRecord,
-      //   dailyRecord: [
-      //     ...lapsedDailyRecords.reverse(),
-      //     ...storedRecord.dailyRecord,
-      //   ],
-      //   isAsyncStorageLoaded: true,
-      // };
-
-      // 今日が休薬日かどうか判定
-      // const shouldRestPeriod = judgeIsTodayRestPeriod(updatedRecord);
-      // console.log("shouldRestPeriod", shouldRestPeriod);
+      }
 
       return setRecord({
         ...updatedRecord,
@@ -122,6 +98,9 @@ export default function HomeScreen() {
       {isFocused && (
         <View style={styles.viewLayout}>
           <HomeTitle />
+
+          {/* <Notification /> */}
+
           <HomeTodaysRecord />
         </View>
       )}

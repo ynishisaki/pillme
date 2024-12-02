@@ -8,27 +8,19 @@ import { recordType } from "@/types/record";
 
 export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
   const {
-    beginSheetIndex,
     conteniousBleeingDaysForRest,
     maxConteniousTakingDays,
     minConteniousTakingDays,
-    numOfPillsPerSheet,
     stopTakingDays,
   } = record.initialSheetSettings;
 
   const { takeMedicineDaysWithoutToday } = countTakeMedicineDays(record);
   const { haveBleedingDaysWithoutToday } = countHaveBleedingDays(record);
   const { restPeriodDaysWithoutToday } = countIsRestPeriodDays(record);
-  const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);
+  const { hasNoRecordWithoutToday } = hasNoRecordDays(record);
 
   // 記録忘れがある場合は判定しない（できない）
   if (hasNoRecordWithoutToday) return false;
-
-  // 今日の記録があるので、それをそのまま返す
-  if (!hasNoRecordToday) {
-    const todayIsRestPeriod = record.dailyRecord[0].isRestPeriod;
-    return todayIsRestPeriod;
-  }
 
   // 今日の記録がないので、昨日までの記録から判定する
   // 昨日までで、服薬120日以上の場合 -> 今日から休薬期間
