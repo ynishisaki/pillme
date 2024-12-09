@@ -26,6 +26,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: IS_DEV ? "com.ynishisaki.pillme_dev" : "com.ynishisaki.pillme",
     versionCode: 21,
+    googleServicesFile: IS_DEV
+      ? "./google-services-dev.json"
+      : "./google-services.json",
   },
   plugins: [
     "expo-router",

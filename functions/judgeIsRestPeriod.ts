@@ -28,7 +28,8 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
   // 昨日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
   const shouldRest =
     maxConteniousTakingDays <= takeMedicineDaysWithoutToday ||
-    (minConteniousTakingDays <= takeMedicineDaysWithoutToday &&
+    (minConteniousTakingDays + conteniousBleeingDaysForRest <=
+      takeMedicineDaysWithoutToday &&
       conteniousBleeingDaysForRest <= haveBleedingDaysWithoutToday) ||
     (0 < restPeriodDaysWithoutToday &&
       restPeriodDaysWithoutToday < stopTakingDays);
@@ -41,19 +42,14 @@ export const judgeIsTomorrowStartsRestPeriod = (
   offset = 0
 ): boolean => {
   const {
-    beginSheetIndex,
     conteniousBleeingDaysForRest,
     maxConteniousTakingDays,
     minConteniousTakingDays,
-    numOfPillsPerSheet,
-    stopTakingDays,
   } = record.initialSheetSettings;
 
-  const { tookMedicine, haveBleeding, isRestPeriod } =
-    record.dailyRecord[offset];
+  const { tookMedicine, haveBleeding } = record.dailyRecord[offset];
   const { takeMedicineDays } = countTakeMedicineDays(record, offset);
   const { haveBleedingDays } = countHaveBleedingDays(record, offset);
-  const { restPeriodDays } = countIsRestPeriodDays(record, offset);
   const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(
     record,
     offset
@@ -68,12 +64,11 @@ export const judgeIsTomorrowStartsRestPeriod = (
   // 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
   const shouldRest =
     (takeMedicineDays >= maxConteniousTakingDays && tookMedicine) ||
-    (takeMedicineDays >= minConteniousTakingDays &&
+    (takeMedicineDays >=
+      minConteniousTakingDays + conteniousBleeingDaysForRest &&
       tookMedicine &&
       haveBleedingDays >= conteniousBleeingDaysForRest &&
       haveBleeding);
-  // 	||
-  // (restPeriodDays > 0 && restPeriodDays < stopTakingDays);
 
   return shouldRest;
 };

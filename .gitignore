@@ -21,5 +21,6 @@ web-build/
 .env
 credentials.json
 google-service-account-key.json
+google-services*.json
 
 expo-env.d.ts
