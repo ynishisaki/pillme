@@ -23,6 +23,8 @@ export default function getCurrentSheetStatus(record: recordType) {
 
 // 服薬開始インデックス
 function countStartTakeMedicineIndex(record: recordType, offset = 0) {
+  const { stopTakingDays } = record.initialSheetSettings;
+
   const trimedDairyRecord = [...record.dailyRecord].slice(offset);
 
   const latestIsRestPeriodIndex = trimedDairyRecord.findIndex(
@@ -32,8 +34,14 @@ function countStartTakeMedicineIndex(record: recordType, offset = 0) {
 
   // -1: 休薬日なし -> 記録初日が服薬開始日
   // 0: 今日が休薬日 -> もっと前の日になるはず（用途による）
-  if (latestIsRestPeriodIndex === -1) return recordLastIndex;
-  else if (latestIsRestPeriodIndex === 0) return recordLastIndex;
+  if (latestIsRestPeriodIndex === -1) {
+    return recordLastIndex;
+  } else if (latestIsRestPeriodIndex === 0) {
+    const last2ndIsRestPeriodIndex = trimedDairyRecord
+      .slice(stopTakingDays)
+      .findIndex((item) => item.isRestPeriod === true);
+    return last2ndIsRestPeriodIndex;
+  }
 
   // 服薬開始日は休薬日の翌日
   return latestIsRestPeriodIndex - 1;
@@ -88,6 +96,7 @@ export function countTakeMedicineDays(record: recordType, offset = 0) {
   const truncatedDailyRecordWithoutToday = [...trimedDairyRecord]
     .slice(1, startTakeMedicineIndex + 1)
     .reverse();
+
   truncatedDailyRecordWithoutToday.some((record) => {
     if (record.tookMedicine === true) {
       takeMedicineDaysWithoutToday++;
