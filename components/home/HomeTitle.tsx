@@ -1,7 +1,7 @@
 import { ThemedText } from "@/components/common/ThemedText";
 import { locale, mdweek } from "@/constants/tempo-options";
 import { countHaveBleedingDays, countTakeMedicineDays, hasNoRecordDays } from "@/functions/countRecord";
-import { judgeIsTodayRestPeriod, judgeIsTomorrowStartsRestPeriod } from "@/functions/judgeIsRestPeriod";
+import {  judgeIsTomorrowStartsRestPeriod } from "@/functions/judgeIsRestPeriod";
 import { recordState } from "@/states/recordState";
 import { format } from "@formkit/tempo";
 import { StyleSheet, View } from "react-native";
@@ -13,7 +13,7 @@ export default function HomeTitle() {
 	const displayDate = format(record.dailyRecord[0].date, mdweek, locale);
 	const { takeMedicineDays } = countTakeMedicineDays(record);
 	const { haveBleedingDays } = countHaveBleedingDays(record);
-	const isTodayRestPeriod = judgeIsTodayRestPeriod(record);
+	const isTodayRestPeriod = record.dailyRecord[0].isRestPeriod;
 	const isTomorrowStartsRestPeriod = judgeIsTomorrowStartsRestPeriod(record);
 
 	const { hasNoRecordWithoutToday, hasNoRecordToday } = hasNoRecordDays(record);

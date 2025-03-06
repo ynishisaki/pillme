@@ -12,7 +12,7 @@
     "prebuild": "expo prebuild -p android",
     "build-dev": "APP_VARIANT=development eas build --platform android --local --profile development",
     "build-prod": "eas build -p android -e production",
-    "build-prod-local": "cd android && ./gradlew app:bundleRelease",
+    "build-prod-local": "APP_VARIANT=production cd android && ./gradlew app:bundleRelease",
     "submit": "eas submit -p android --profile production",
     "test": "jest",
     "lint": "eslint ."

@@ -13,26 +13,43 @@ export const judgeIsTodayRestPeriod = (record: recordType): boolean => {
     minConteniousTakingDays,
     stopTakingDays,
   } = record.initialSheetSettings;
-
-  const { takeMedicineDaysWithoutToday } = countTakeMedicineDays(record);
-  const { haveBleedingDaysWithoutToday } = countHaveBleedingDays(record);
-  const { restPeriodDaysWithoutToday } = countIsRestPeriodDays(record);
-  const { hasNoRecordWithoutToday } = hasNoRecordDays(record);
+  // 今日の記録がないので、実質昨日までの記録から判定していることに注意
+  const { takeMedicineDays } = countTakeMedicineDays(record);
+  const { haveBleedingDays } = countHaveBleedingDays(record);
+  const { restPeriodDays } = countIsRestPeriodDays(record);
+  const { hasNoRecordToday } = hasNoRecordDays(record);
 
   // 記録忘れがある場合は判定しない（できない）
-  if (hasNoRecordWithoutToday) return false;
+  if (hasNoRecordToday) return false;
 
-  // 今日の記録がないので、昨日までの記録から判定する
   // 昨日までで、服薬120日以上の場合 -> 今日から休薬期間
-  // 昨日までで、服薬24日以上かつ出血3日以上の場合 -> 今日から休薬期間
+  const isOverMaxConteniousTakingDays =
+    maxConteniousTakingDays <= takeMedicineDays;
+
+  // 昨日までで、服薬25+3日以上かつ出血3日以上の場合 -> 今日から休薬期間
+  const isOverMinConteniousBleedingDays =
+    minConteniousTakingDays + conteniousBleeingDaysForRest <=
+    takeMedicineDays &&
+    conteniousBleeingDaysForRest <= haveBleedingDays;
+    console.log("minConteniousTakingDays", minConteniousTakingDays);
+    console.log("conteniousBleeingDaysForRest", conteniousBleeingDaysForRest);
+    console.log("takeMedicineDays", takeMedicineDays);
+    console.log("haveBleedingDays", haveBleedingDays);
+
   // 昨日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
+  const isShouldContinueResting =
+    0 < restPeriodDays &&
+    restPeriodDays < stopTakingDays;
+
+  console.log(
+    "isOverMinConteniousBleedingDays",
+    isOverMinConteniousBleedingDays
+  );
+
   const shouldRest =
-    maxConteniousTakingDays <= takeMedicineDaysWithoutToday ||
-    (minConteniousTakingDays + conteniousBleeingDaysForRest <=
-      takeMedicineDaysWithoutToday &&
-      conteniousBleeingDaysForRest <= haveBleedingDaysWithoutToday) ||
-    (0 < restPeriodDaysWithoutToday &&
-      restPeriodDaysWithoutToday < stopTakingDays);
+    isOverMaxConteniousTakingDays ||
+    isOverMinConteniousBleedingDays ||
+    isShouldContinueResting;
 
   return shouldRest;
 };
@@ -46,7 +63,6 @@ export const judgeIsTomorrowStartsRestPeriod = (
     maxConteniousTakingDays,
     minConteniousTakingDays,
   } = record.initialSheetSettings;
-
   const { tookMedicine, haveBleeding } = record.dailyRecord[offset];
   const { takeMedicineDays } = countTakeMedicineDays(record, offset);
   const { haveBleedingDays } = countHaveBleedingDays(record, offset);
@@ -59,16 +75,22 @@ export const judgeIsTomorrowStartsRestPeriod = (
   if (hasNoRecordWithoutToday || hasNoRecordToday) return false;
 
   // 今日の記録がある場合のみ判定を行う
+  if (!tookMedicine) return false;
+
   // 今日までで、服薬120日以上の場合 -> 明日から休薬期間
+  const isOverMaxConteniousTakingDays =
+    maxConteniousTakingDays <= takeMedicineDays;
+
   // 今日までで、服薬24日以上かつ出血3日以上の場合 -> 明日から休薬期間
+  const isOverMinConteniousBleedingDays =
+    minConteniousTakingDays + conteniousBleeingDaysForRest <=
+      takeMedicineDays &&
+    conteniousBleeingDaysForRest <= haveBleedingDays &&
+    haveBleeding;
+
   // 今日までで、休薬期間1~3日以内の場合 -> 継続して今日も服薬期間
   const shouldRest =
-    (takeMedicineDays >= maxConteniousTakingDays && tookMedicine) ||
-    (takeMedicineDays >=
-      minConteniousTakingDays + conteniousBleeingDaysForRest &&
-      tookMedicine &&
-      haveBleedingDays >= conteniousBleeingDaysForRest &&
-      haveBleeding);
+    isOverMaxConteniousTakingDays || isOverMinConteniousBleedingDays;
 
   return shouldRest;
 };
